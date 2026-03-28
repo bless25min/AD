@@ -1,0 +1,6 @@
+name = "ad-sales-funnel"
+compatibility_date = "2024-03-24"
+pages_build_output_dir = "dist"
+
+[vars]
+# 這裡放置不需要保密的公開變數例如 API_URL
