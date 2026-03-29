@@ -17,54 +17,52 @@ export const useLiff = () => {
         const liffId = import.meta.env.VITE_LIFF_ID;
         if (!liffId) throw new Error("VITE_LIFF_ID is not defined.");
 
-        // withLoginOnExternalBrowser: true 滿足要求
         await liff.init({
           liffId,
-          withLoginOnExternalBrowser: true,
+          // 移除 withLoginOnExternalBrowser 讓我們先取得主控權
         });
 
         const isLoggedIn = liff.isLoggedIn();
         setIsLoggedIn(isLoggedIn);
 
-        if (isLoggedIn) {
-          // 取得使用者資料
-          const profile = await liff.getProfile();
-          setProfile({
-            userId: profile.userId,
-            displayName: profile.displayName,
-            pictureUrl: profile.pictureUrl
+        if (!isLoggedIn) {
+          // 動態抓取當下的網址 (例如 /liff 或 /contract)，讓 LINE 登入後精準跳回目前頁面
+          liff.login({ redirectUri: window.location.href });
+          return; // 因為會重新導向，所以中斷後續執行
+        }
+
+        // 以下為已登入 (isLoggedIn = true) 的處理邏輯
+        // 取得使用者資料
+        const profile = await liff.getProfile();
+        setProfile({
+          userId: profile.userId,
+          displayName: profile.displayName,
+          pictureUrl: profile.pictureUrl
+        });
+
+        // 呼叫後端 API 建立 Cookie Session，並記錄這個名單
+        try {
+          const idToken = liff.getIDToken();
+          await fetch('/api/session/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              idToken,
+              painPoint: selectedPainPoint,
+              entryPath: window.location.pathname
+            })
           });
+        } catch (apiErr) {
+          console.error('Session establishment failed', apiErr);
+        }
 
-          // 呼叫後端 API 建立 Cookie Session，並記錄這個名單
-          // 這樣 Profile/Session Security 就依賴 Server 端，不再依賴 LocalStorage
-          try {
-            const idToken = liff.getIDToken();
-            await fetch('/api/session/login', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                idToken,
-                painPoint: selectedPainPoint,
-                entryPath: window.location.pathname
-              })
-            });
-          } catch (apiErr) {
-            console.error('Session establishment failed', apiErr);
-          }
-
-          // 確認好友狀態
-          try {
-            const friend = await liff.getFriendship();
-            setFriendshipStatus(friend.friendFlag ? 'friend' : 'not_friend_or_blocked');
-          } catch (friendErr) {
-            console.warn("無法取得好友狀態（可能尚未授權 profile 或是發生網路錯誤）", friendErr);
-            setFriendshipStatus('unknown');
-          }
-        } else {
-          // 若 withLoginOnExternalBrowser 失敗或取消，可手動登入
-          // 這裡雖然通常不會進來，但可做 fallback login
-          // 沒有直接在 liff.login() 放 botPrompt 是因為 LINE Dev 控制台「Link official account」選單已包含此邏輯 (預設建議設定為 Aggressive)
-          liff.login();
+        // 確認好友狀態
+        try {
+          const friend = await liff.getFriendship();
+          setFriendshipStatus(friend.friendFlag ? 'friend' : 'not_friend_or_blocked');
+        } catch (friendErr) {
+          console.warn("無法取得好友狀態", friendErr);
+          setFriendshipStatus('unknown');
         }
 
       } catch (err: any) {
