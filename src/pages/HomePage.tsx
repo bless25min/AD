@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, ChevronRight, MessageCircle, Activity, TrendingDown, Target, HelpCircle, Check, AlertTriangle, ChevronDown, VideoOff } from 'lucide-react';
+import { CheckCircle2, ChevronRight, MessageCircle, Activity, TrendingDown, Target, HelpCircle, ChevronDown } from 'lucide-react';
 import { siteContent } from '../content/siteContent';
 import { painPoints } from '../content/painPoints';
 import { faqs } from '../content/faq';
@@ -81,6 +81,9 @@ export const HomePage = () => {
           <div className="inline-block mb-6 px-4 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300 text-sm font-medium tracking-wide">
             致：需要高信任門檻的預約型服務
           </div>
+          <p className="text-brand-400 font-bold text-lg md:text-xl mb-6 tracking-wide">
+            {siteContent.hero.positioning}
+          </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-8 leading-tight">
             {siteContent.hero.title}
           </h1>
@@ -90,6 +93,12 @@ export const HomePage = () => {
           <p className="text-lg md:text-xl text-slate-300 mb-8 font-medium whitespace-pre-line leading-relaxed max-w-3xl mx-auto">
             {siteContent.hero.description}
           </p>
+
+          <div className="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-300 font-medium whitespace-pre-line leading-relaxed">
+              {siteContent.hero.boundary}
+            </p>
+          </div>
 
           <p className="text-lg md:text-xl text-brand-300/80 mb-12 font-bold whitespace-pre-line">
             {siteContent.hero.softPermission}
@@ -209,6 +218,9 @@ export const HomePage = () => {
                         transition={{ duration: 0.4 }}
                         className="border-t border-slate-800 bg-slate-800/20 px-8 py-8 rounded-b-xl"
                       >
+                        <div className="mb-6 bg-brand-900/10 border-l-2 border-brand-500 p-4 rounded-r-lg">
+                           <p className="text-lg text-brand-300 font-medium">{pt.positiveFeedback}</p>
+                        </div>
                         <h4 className="text-xl font-bold text-white mb-6 flex items-center">
                           <MessageCircle className="w-5 h-5 text-brand-400 mr-3" />
                           {pt.followUp.question}
@@ -244,15 +256,25 @@ export const HomePage = () => {
                             >
                               <div className="bg-brand-900/10 border-l-4 border-brand-500 p-6 md:p-8 rounded-r-2xl">
                                 <h5 className="text-sm font-bold tracking-widest text-brand-500 mb-3 uppercase">🔍 專屬診斷回饋</h5>
+                                <p className="text-lg text-brand-300 font-medium mb-4 whitespace-pre-line">
+                                  {pt.affirmativeGuidance}
+                                </p>
                                 <p className="text-lg text-slate-200 leading-relaxed whitespace-pre-line mb-6 font-medium">
                                   {pt.microDiagnosis}
                                 </p>
                                 
                                 {pt.microDiagnosisBridge && (
-                                   <p className="text-lg text-brand-300 italic mb-8 border-t border-slate-800/60 pt-4 whitespace-pre-line">
+                                   <p className="text-lg text-brand-300 italic mb-6 border-t border-slate-800/60 pt-4 whitespace-pre-line">
                                       {pt.microDiagnosisBridge}
                                    </p>
                                 )}
+                                
+                                <div className="mb-8 p-4 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                                   <p className="text-slate-300 font-medium flex items-start leading-relaxed whitespace-pre-line">
+                                      <CheckCircle2 className="w-5 h-5 text-brand-400 mr-3 flex-shrink-0 mt-0.5" />
+                                      {pt.progressSense}
+                                   </p>
+                                </div>
 
                                 <button
                                   onClick={() => {
@@ -278,108 +300,45 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 4. Results Philosophy */}
-      <section id="results-philosophy" className="py-24 bg-[#05080f] border-t border-slate-800/50 relative overflow-hidden">
-        <div className="absolute top-0 right-0 -m-32 w-96 h-96 bg-brand-900/10 rounded-full blur-[100px] pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="mb-12 text-center sm:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
-              {siteContent.resultsPhilosophy.title}
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-            {siteContent.resultsPhilosophy.bullets.map((bullet, idx) => (
-               <div key={idx} className="flex items-start bg-slate-900/40 p-6 rounded-xl border border-slate-800">
-                 <Check className="w-6 h-6 text-brand-500 mr-4 flex-shrink-0 mt-0.5" />
-                 <span className="text-lg text-slate-300 leading-relaxed font-medium">{bullet}</span>
+      {/* 4. Compressed Views (降級的舊三大觀點) */}
+      <section id="results-philosophy" className="py-20 bg-[#05080f] border-t border-slate-800/50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {siteContent.compressedViews.map((view, idx) => (
+               <div key={idx} className="bg-slate-900/40 p-8 rounded-2xl border border-slate-800/60 hover:border-slate-700 transition-colors">
+                 <h3 className="text-xl font-bold text-slate-200 mb-4 leading-snug">{view.title}</h3>
+                 <p className="text-base text-slate-400 leading-relaxed font-medium whitespace-pre-line">{view.description}</p>
                </div>
             ))}
-          </div>
-          <div className="space-y-6 lg:w-4/5">
-             <div className="px-6 py-5 bg-gradient-to-r from-slate-900 to-transparent border-l-4 border-slate-700">
-               <p className="text-xl text-slate-300 font-medium leading-relaxed">
-                 {siteContent.resultsPhilosophy.closing}
-               </p>
-             </div>
-             
-             <div className="px-6 py-5 bg-gradient-to-r from-slate-900 to-transparent border-l-4 border-brand-500">
-               <p className="text-xl text-slate-200 font-bold leading-relaxed whitespace-pre-line">
-                 {siteContent.resultsPhilosophy.closing2}
-               </p>
-             </div>
           </div>
         </div>
       </section>
 
-      {/* 5. Hook Breakthrough (講破真相) */}
-      <section className="py-32 bg-black border-y border-slate-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+      {/* 5. Core Proposition (全頁中樞金句) */}
+      <section className="py-28 bg-black border-y border-slate-800 relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-2xl sm:text-3xl text-slate-400 font-medium leading-relaxed mb-10 whitespace-pre-line">
-              {siteContent.hookBreakthrough.layer1}
+            <h2 className="text-2xl sm:text-3xl text-slate-400 font-medium leading-relaxed mb-6 whitespace-pre-line">
+              {siteContent.coreProposition.setup}
             </h2>
-            <div className="text-3xl sm:text-5xl font-bold leading-tight text-white whitespace-pre-line">
-              {siteContent.hookBreakthrough.layer2}
+            <div className="text-3xl sm:text-5xl font-extrabold leading-tight text-white whitespace-pre-line">
+              {siteContent.coreProposition.main}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* 6. Creative Trap (打破短影音迷思) */}
-      <section className="py-24 bg-dark-bg border-b border-slate-800/80">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-             <div className="inline-flex items-center mb-6 text-red-400 font-bold px-4 py-2 bg-red-900/10 border border-red-900/30 rounded-full text-sm">
-                <VideoOff className="w-4 h-4 mr-2" />
-                業界的致命盲區
-             </div>
-             <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-8">
-               {siteContent.creativeTrap.title}
-             </h2>
-             <p className="text-xl text-slate-300 leading-relaxed whitespace-pre-line mb-10 border-l-2 border-slate-700 pl-6">
-                {siteContent.creativeTrap.description}
-             </p>
-          </div>
-          
-          <div className="grid grid-cols-1 gap-4 mb-12">
-             {siteContent.creativeTrap.bullets.map((b, idx) => (
-                <div key={idx} className="flex items-center">
-                   <CheckCircle2 className="w-5 h-5 text-slate-600 mr-4" />
-                   <span className="text-lg text-slate-400 font-medium">{b}</span>
-                </div>
-             ))}
-          </div>
-          
-          <p className="text-2xl font-bold text-brand-400 whitespace-pre-line leading-relaxed">
-             {siteContent.creativeTrap.closing}
-          </p>
-        </div>
-      </section>
-
-      {/* 7. Why Most Fixes Fail (舊方法否定) */}
-      <section className="py-20 bg-slate-900/50 border-b border-slate-800/80">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-dark-bg p-8 sm:p-12 rounded-[2rem] border border-red-900/30 shadow-2xl relative">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 flex items-center leading-tight">
-              <AlertTriangle className="w-8 h-8 text-red-500 mr-4 flex-shrink-0" />
-              {siteContent.whyMostFixesFail.title}
-            </h2>
-            <div className="text-lg sm:text-xl text-slate-300 leading-relaxed whitespace-pre-line mb-8">
-              {siteContent.whyMostFixesFail.description}
-            </div>
-            <div className="pt-8 border-t border-slate-800/80">
-              <p className="text-xl text-slate-200 font-bold whitespace-pre-line leading-relaxed">
-                 {siteContent.whyMostFixesFail.reflection}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 5.1 Progress Hint 1 */}
+      <div className="bg-brand-900/10 border-y border-brand-500/20 py-8 text-center px-4">
+         <p className="text-brand-400 font-bold text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            {siteContent.progressHints[0]}
+         </p>
+      </div>
 
       {/* 8. New Model (新方法合理化) */}
       <section className="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -420,12 +379,59 @@ export const HomePage = () => {
               </p>
            </div>
         </div>
+
+        {/* 9.1 Results Scenario (結果感模組) */}
+        <div className="mt-16 text-center max-w-4xl mx-auto lg:px-0">
+           <h2 className="text-3xl font-bold text-white mb-8">{siteContent.resultsScenario.title}</h2>
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+              {siteContent.resultsScenario.bullets.map((b, i) => (
+                 <div key={i} className="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex items-start text-left hover:border-slate-600 transition-colors">
+                    <CheckCircle2 className="w-6 h-6 text-brand-500 mr-4 flex-shrink-0 mt-1" />
+                    <span className="text-slate-300 text-lg leading-relaxed">{b}</span>
+                 </div>
+              ))}
+           </div>
+           <p className="text-xl text-brand-400 font-bold whitespace-pre-line leading-relaxed pb-8 border-b border-slate-800">{siteContent.resultsScenario.closing}</p>
+        </div>
+
+        {/* 9.2 Micro Evidence (微型真實證據) */}
+        <div className="mt-16 max-w-4xl mx-auto">
+           <h2 className="text-2xl text-center font-bold text-slate-400 mb-10">{siteContent.microEvidence.title}</h2>
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {siteContent.microEvidence.items.map((item, idx) => (
+                 <div key={idx} className="bg-dark-bg p-6 rounded-2xl border-l-4 border-slate-700 flex flex-col justify-center text-left hover:border-brand-500 transition-colors">
+                    <span className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-3">真實切片 {idx + 1}</span>
+                    <p className="text-lg text-slate-300 leading-relaxed font-medium">
+                       {item.content}
+                    </p>
+                 </div>
+              ))}
+           </div>
+        </div>
+
+        {/* 9.3 Mid-Page Objections (中段異議處理) */}
+        <div className="mt-24 max-w-4xl mx-auto rounded-[2rem] bg-slate-900/50 p-8 sm:p-12 border border-slate-800">
+           <h3 className="text-2xl sm:text-3xl font-bold text-white mb-10 text-center">{siteContent.midPageObjections.title}</h3>
+           <div className="space-y-8">
+              {siteContent.midPageObjections.items.map((item, idx) => (
+                 <div key={idx}>
+                    <h4 className="text-xl font-bold text-slate-200 mb-3 flex items-start">
+                       <HelpCircle className="w-6 h-6 text-slate-500 mr-3 mt-0.5 flex-shrink-0" />
+                       {item.question}
+                    </h4>
+                    <p className="text-lg text-slate-400 pl-9 leading-relaxed whitespace-pre-line font-medium border-l-[3px] border-brand-500/30 ml-[11px] py-1">
+                       {item.answer}
+                    </p>
+                 </div>
+              ))}
+           </div>
+        </div>
       </section>
 
       {/* 10. FAQ (異議處理) */}
       <section className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/50">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">你在找我的時候，<br className="sm:hidden" />可能會有的疑問</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">除了這些，<br className="sm:hidden" />你可能也有的疑問</h2>
         </div>
         
         <div className="space-y-4">
@@ -478,6 +484,13 @@ export const HomePage = () => {
             </p>
           </div>
 
+          {/* 5.2 Progress Hint 2 */}
+          <div className="bg-brand-900/10 border-y border-brand-500/20 py-8 text-center px-4 mb-14 -mx-4 sm:mx-0 sm:rounded-2xl">
+             <p className="text-brand-400 font-bold text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+                {siteContent.progressHints[1]}
+             </p>
+          </div>
+
           {/* Micro Commitment 承諾段落 */}
           <div className="mb-14 p-8 bg-slate-900/60 rounded-2xl border border-brand-500/20 shadow-[0_0_40px_rgba(0,185,0,0.05)] mx-auto max-w-2xl">
              <h3 className="text-2xl font-bold text-brand-400 mb-6">{siteContent.microCommitment.title}</h3>
@@ -487,20 +500,39 @@ export const HomePage = () => {
           </div>
 
           {/* 核心承諾區 */}
-          <div className="py-8 px-6 sm:p-14 rounded-[2.5rem] relative overflow-hidden">
-            <h3 className="text-3xl sm:text-4xl font-bold mb-8 text-white relative z-10">{siteContent.finalCta.title}</h3>
-            <p className="text-lg sm:text-xl text-slate-300 mb-12 leading-relaxed whitespace-pre-line max-w-2xl mx-auto relative z-10">
+          <div className="py-12 px-6 sm:p-14 rounded-[2.5rem] relative overflow-hidden bg-slate-900 border border-slate-800 shadow-2xl">
+            <h3 className="text-3xl sm:text-4xl font-bold mb-6 text-white relative z-10">{siteContent.finalCta.title}</h3>
+            
+            <div className="bg-red-900/10 border-l-4 border-red-500/50 p-5 mb-10 text-left w-full max-w-2xl mx-auto relative z-10 rounded-r-xl">
+              <p className="text-red-200 font-medium text-lg leading-relaxed">
+                {siteContent.finalCta.directContactReason}
+              </p>
+            </div>
+
+            <p className="text-lg sm:text-xl text-slate-300 mb-10 leading-relaxed whitespace-pre-line max-w-2xl mx-auto relative z-10">
               {siteContent.finalCta.description}
             </p>
-            <button 
-              onClick={handleFinalCtaClick}
-              className="group relative inline-flex flex-col sm:flex-row items-center justify-center px-10 py-6 w-full sm:w-auto text-2xl font-bold text-white transition-all duration-300 bg-[#00B900] border border-[#00B900] rounded-[1.5rem] hover:bg-[#009900] shadow-[0_0_20px_rgba(0,185,0,0.2)] hover:shadow-[0_0_40px_rgba(0,185,0,0.4)] hover:-translate-y-1 hover:scale-101 focus:outline-none z-10"
-            >
-              <div className="flex items-center">
-                <MessageCircle className="w-8 h-8 mr-3 title-icon" fill="currentColor" strokeWidth={0} />
-                <span className="tracking-wide">{siteContent.finalCta.buttonText}</span>
-              </div>
-            </button>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10 mb-8 mx-auto w-full max-w-3xl">
+              <button 
+                onClick={handleFinalCtaClick}
+                className="group relative inline-flex items-center justify-center px-6 py-5 w-full sm:flex-1 text-lg sm:text-xl font-bold text-white transition-all duration-300 bg-[#00B900] border border-[#00B900] rounded-2xl hover:bg-[#009900] shadow-[0_0_20px_rgba(0,185,0,0.2)] hover:shadow-[0_0_40px_rgba(0,185,0,0.4)] hover:-translate-y-1 focus:outline-none"
+              >
+                <MessageCircle className="w-6 h-6 mr-3 flex-shrink-0" />
+                <span className="truncate">{siteContent.finalCta.buttonText}</span>
+              </button>
+              
+              <a 
+                href="tel:0900000000"
+                className="group relative inline-flex items-center justify-center px-5 py-5 w-full sm:w-[55%] text-lg font-bold text-slate-300 transition-all duration-300 bg-slate-800 border border-slate-700 rounded-2xl hover:bg-slate-700 hover:text-white hover:-translate-y-1 focus:outline-none text-center"
+              >
+                <span className="truncate">{siteContent.finalCta.phoneCtaText}</span>
+              </a>
+            </div>
+            
+            <p className="text-sm text-slate-500 whitespace-pre-line relative z-10 font-medium max-w-xl mx-auto">
+               {siteContent.finalCta.lowRiskHint}
+            </p>
           </div>
         </div>
       </section>
