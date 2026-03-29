@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, ChevronRight, MessageCircle, ArrowRight, Activity, TrendingDown, Target, HelpCircle } from 'lucide-react';
+import { CheckCircle2, ChevronRight, MessageCircle, Activity, TrendingDown, Target, HelpCircle, Check, AlertTriangle, ChevronDown } from 'lucide-react';
 import { siteContent } from '../content/siteContent';
 import { painPoints } from '../content/painPoints';
 import { faqs } from '../content/faq';
@@ -13,9 +13,9 @@ const fadeIn = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
-export const HomePage: React.FC = () => {
+export const HomePage = () => {
   const navigate = useNavigate();
-  const { setPainPoint, selectedPainPoint } = useAppStore();
+  const { setPainPoint, selectedPainPoint, setFollowUpOption, selectedFollowUpOption } = useAppStore();
   const [activeFaq, setActiveFaq] = useState<string | null>(null);
   
   // Progress tracker state
@@ -23,24 +23,23 @@ export const HomePage: React.FC = () => {
   const [showProgress, setShowProgress] = useState(false);
   
   const heroRef = useRef<HTMLElement>(null);
-  const hookRef = useRef<HTMLElement>(null);
   const ctaRef = useRef<HTMLElement>(null);
+
+  // 當使用者回答了微診斷問題，讓系統自動稍微滾動對齊，不突兀。
+  const diagnosisRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      // 1. 判斷是否離開 Hero，決定是否顯示 Progress Bar
       if (heroRef.current) {
         const heroBottom = heroRef.current.getBoundingClientRect().bottom;
         setShowProgress(heroBottom < 100);
       }
       
-      // 2. 判斷是否進入 CTA 區域 (Step 3)
       if (ctaRef.current) {
         const ctaTop = ctaRef.current.getBoundingClientRect().top;
         if (ctaTop < window.innerHeight * 0.75) {
           setActiveStep(3);
         } else if (selectedPainPoint) {
-          // 離開 CTA 且已選痛點，維持 Step 2
           setActiveStep(2);
         } else {
           setActiveStep(1);
@@ -49,23 +48,31 @@ export const HomePage: React.FC = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    // 初始化呼叫一次
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [selectedPainPoint]);
 
   const handlePainPointClick = (id: string) => {
-    setPainPoint(id);
-    setActiveStep(2); // 痛點選擇後立刻進入 Step 2
-    
-    // 平滑滾動到「中段爆點」區塊 (延遲以確保動畫順暢)
+    // 若不同點擊，重設狀態
+    if (selectedPainPoint !== id) {
+      setPainPoint(id);
+      setActiveStep(2);
+    } else {
+      // 支援取消選擇
+      setPainPoint(null);
+      setActiveStep(1);
+    }
+  };
+
+  const handleFollowUpClick = (id: string) => {
+    setFollowUpOption(id);
+    // 回答追問後，平滑對齊微診斷區塊以免使用者不知道下方長出了內容
     setTimeout(() => {
-      hookRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      diagnosisRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 200);
   };
 
   const handleFinalCtaClick = () => {
-    // 點擊後直接導向 LIFF
     navigate('/liff');
   };
 
@@ -73,16 +80,19 @@ export const HomePage: React.FC = () => {
     <div className="min-h-screen bg-dark-bg text-slate-100 font-sans selection:bg-brand-500 selection:text-white pb-20">
       <ProgressTracker currentStep={activeStep} isVisible={showProgress} />
       
-      {/* 1. Hero 區塊 */}
-      <section ref={heroRef} className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center min-h-[90vh] flex flex-col justify-center">
+      {/* 1. Hero 區塊 (最小容許開場) */}
+      <section ref={heroRef} className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center min-h-[85vh] flex flex-col justify-center">
         <motion.div initial="hidden" animate="visible" variants={fadeIn}>
-          <div className="inline-block mb-6 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-500 text-sm font-medium tracking-wide">
-            專為預約型產業與高客單價設計
+          <div className="inline-block mb-6 px-4 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300 text-sm font-medium tracking-wide">
+            致：需要高信任門檻的預約型服務
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-8 leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-8 leading-tight">
             {siteContent.hero.title}
           </h1>
-          <p className="text-xl md:text-2xl text-slate-300 mb-8 font-medium whitespace-pre-line leading-relaxed">
+          <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-8 text-brand-400">
+            {siteContent.hero.subtitle}
+          </h2>
+          <p className="text-lg md:text-xl text-slate-300 mb-12 font-medium whitespace-pre-line leading-relaxed max-w-3xl mx-auto">
             {siteContent.hero.description}
           </p>
           
@@ -90,21 +100,21 @@ export const HomePage: React.FC = () => {
             onClick={() => {
               document.getElementById('diagnostic')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white transition-all duration-300 bg-brand-600 border border-transparent rounded-full hover:bg-brand-500 hover:scale-105 hover:shadow-[0_0_20px_rgba(34,197,94,0.4)] focus:outline-none"
+            className="group relative inline-flex items-center justify-center px-8 py-4 text-xl font-bold text-white transition-all duration-300 bg-[#00B900] border border-transparent rounded-full hover:bg-[#009900] shadow-[0_0_20px_rgba(0,185,0,0.2)] hover:scale-105 focus:outline-none"
           >
             {siteContent.hero.ctaText}
-            <ChevronRight className="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" />
+            <ChevronDown className="w-6 h-6 ml-2 group-hover:translate-y-1 transition-transform" />
           </button>
         </motion.div>
       </section>
 
-      {/* 2. 建立共同點區塊 (改為簡約黑底風格) */}
+      {/* 2. 建立共同點區塊 (Affinity) */}
       <section className="py-20 bg-[#0a0f18] border-y border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center sm:text-left">
             <h2 className="text-2xl font-bold text-slate-400">{siteContent.affinity.title}</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
             {siteContent.affinity.requirements.map((req, idx) => (
               <div key={idx} className="flex items-start">
                 <CheckCircle2 className="w-6 h-6 text-brand-500 mr-4 flex-shrink-0 mt-0.5" />
@@ -112,61 +122,181 @@ export const HomePage: React.FC = () => {
               </div>
             ))}
           </div>
+          <div className="p-6 bg-slate-900 border border-slate-800 rounded-2xl">
+            <p className="text-lg text-slate-300 leading-relaxed whitespace-pre-line italic">
+              {siteContent.affinity.closing}
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* 3. 互動式診斷區 (核心分流) */}
-      <section id="diagnostic" className="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 3. 漸進式診斷區 (Diagnostic - Layer 1, 2, 3) */}
+      <section id="diagnostic" className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[600px]">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">先確認一下，<br className="sm:hidden"/>你現在卡在哪裡？</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            {selectedPainPoint ? "我們來往下拆解這個環節：" : "你現在通常卡在哪個環節？"}
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {painPoints.map((pt) => {
-            const icons = {
-              high_cpa: TrendingDown,
-              low_conversion: MessageCircle,
-              unstable: Activity,
-              no_idea: HelpCircle
-            };
-            const Icon = icons[pt.id as keyof typeof icons] || Target;
-            const isSelected = selectedPainPoint === pt.id;
+        <div className="flex flex-col gap-6 relative">
+          <AnimatePresence mode="popLayout">
+            {painPoints.map((pt) => {
+              const icons = {
+                high_cpa: TrendingDown,
+                low_conversion: MessageCircle,
+                unstable: Activity,
+                no_idea: HelpCircle
+              };
+              const Icon = icons[pt.id as keyof typeof icons] || Target;
+              const isSelected = selectedPainPoint === pt.id;
 
-            return (
-              <div
-                key={pt.id}
-                onClick={() => handlePainPointClick(pt.id)}
-                className={`cursor-pointer group relative p-8 rounded-2xl border-2 transition-all duration-300 ${
-                  isSelected 
-                    ? 'border-brand-500 bg-brand-500/5 shadow-[0_0_30px_rgba(34,197,94,0.15)] scale-[1.02]' 
-                    : 'border-slate-800 bg-slate-900/50 hover:border-brand-500/50 hover:bg-slate-800'
-                }`}
-              >
-                <div className="flex items-start">
-                  <div className={`w-14 h-14 rounded-xl flex flex-shrink-0 items-center justify-center mr-6 border transition-colors ${isSelected ? 'bg-brand-500/20 border-brand-500' : 'bg-dark-bg border-slate-700 group-hover:border-brand-500/50'}`}>
-                    <Icon className={`w-7 h-7 ${isSelected ? 'text-brand-400' : 'text-slate-400 group-hover:text-brand-400'}`} />
-                  </div>
-                  <div>
-                    <h3 className={`text-2xl font-bold mb-3 transition-colors ${isSelected ? 'text-white' : 'text-slate-200 group-hover:text-brand-300'}`}>
-                      {pt.title}
-                    </h3>
-                    <p className="text-slate-400 text-base leading-relaxed mb-4 whitespace-pre-line">
-                      {pt.detailedDescription}
-                    </p>
-                    <div className={`flex items-center text-sm font-bold mt-6 ${isSelected ? 'text-brand-500' : 'text-slate-500 group-hover:text-brand-500'}`}>
-                      <span>{isSelected ? '已選擇此狀況' : '點擊選擇此狀況'}</span>
-                      <ArrowRight className={`w-4 h-4 ml-1 transition-transform ${isSelected ? 'translate-x-1' : 'group-hover:translate-x-1'}`} />
+              // 當用戶選擇了其中一個痛點，其他沒選中的隱藏以避免畫面擁擠（產生專屬對話感）
+              if (selectedPainPoint && !isSelected) return null;
+
+              return (
+                <motion.div
+                  layout
+                  key={pt.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95, height: 0, overflow: 'hidden' }}
+                  transition={{ duration: 0.4 }}
+                  className={`relative rounded-2xl border-2 transition-all duration-300 ${
+                    isSelected 
+                      ? 'border-brand-500 bg-slate-900 shadow-[0_0_30px_rgba(34,197,94,0.1)]' 
+                      : 'border-slate-800 bg-slate-900/50 hover:border-brand-500/50 hover:bg-slate-800 cursor-pointer'
+                  }`}
+                >
+                  {/* Layer 1：痛點卡片表面 */}
+                  <div 
+                    onClick={() => !isSelected && handlePainPointClick(pt.id)}
+                    className="p-8"
+                  >
+                    <div className="flex items-start">
+                      <div className={`w-14 h-14 rounded-xl flex flex-shrink-0 items-center justify-center mr-6 border transition-colors ${isSelected ? 'bg-brand-500/20 border-brand-500' : 'bg-dark-bg border-slate-700'}`}>
+                        <Icon className={`w-7 h-7 ${isSelected ? 'text-brand-400' : 'text-slate-400'}`} />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex justify-between items-start">
+                          <h3 className={`text-2xl font-bold mb-3 ${isSelected ? 'text-white' : 'text-slate-200'}`}>
+                            {pt.title}
+                          </h3>
+                          {isSelected && (
+                            <button 
+                              onClick={(e) => { e.stopPropagation(); handlePainPointClick(pt.id); }}
+                              className="text-sm text-slate-500 hover:text-white underline underline-offset-4"
+                            >
+                              重選
+                            </button>
+                          )}
+                        </div>
+                        <p className="text-slate-400 text-base leading-relaxed mb-4 whitespace-pre-line">
+                          {pt.detailedDescription}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
+
+                  {/* Layer 2：情境追問 (選中才展開) */}
+                  <AnimatePresence>
+                    {isSelected && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        transition={{ duration: 0.4 }}
+                        className="border-t border-slate-800 bg-slate-800/20 px-8 py-8 rounded-b-xl"
+                      >
+                        <h4 className="text-xl font-bold text-white mb-6 flex items-center">
+                          <MessageCircle className="w-5 h-5 text-brand-400 mr-3" />
+                          {pt.followUp.question}
+                        </h4>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {pt.followUp.options.map((opt) => {
+                            const isOptSelected = selectedFollowUpOption === opt.id;
+                            return (
+                              <button
+                                key={opt.id}
+                                onClick={() => handleFollowUpClick(opt.id)}
+                                className={`text-left p-5 rounded-xl border transition-all duration-300 focus:outline-none ${
+                                  isOptSelected 
+                                   ? 'border-brand-500 bg-brand-500/10 text-white shadow-inner transform scale-[1.02]' 
+                                   : 'border-slate-700 bg-slate-800/50 text-slate-300 hover:border-brand-400/50 hover:bg-slate-700'
+                                }`}
+                              >
+                                {opt.text}
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        {/* Layer 3：微診斷回饋 (回答追問才展開) */}
+                        <AnimatePresence>
+                          {selectedFollowUpOption && (
+                            <motion.div
+                              ref={diagnosisRef}
+                              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                              animate={{ opacity: 1, height: 'auto', marginTop: 32 }}
+                              transition={{ duration: 0.5 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="bg-brand-900/10 border-l-4 border-brand-500 p-6 md:p-8 rounded-r-2xl">
+                                <h5 className="text-sm font-bold tracking-widest text-brand-500 mb-3 uppercase">🔍 專屬診斷回饋</h5>
+                                <p className="text-lg text-slate-200 leading-relaxed whitespace-pre-line mb-6 font-medium">
+                                  {pt.microDiagnosis}
+                                </p>
+                                
+                                <button
+                                  onClick={() => {
+                                    document.getElementById('results-philosophy')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                  }}
+                                  className="mx-auto flex items-center justify-center text-sm font-bold text-slate-400 hover:text-brand-400 transition-colors py-2 px-4 rounded-full bg-slate-800 border border-slate-700 hover:border-brand-500/50"
+                                >
+                                  {pt.recommendedNextStep} <ChevronDown className="w-4 h-4 ml-2" />
+                                </button>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </div>
       </section>
 
-      {/* 4. [新增] 中段轉折爆點區塊 (Hook Section) */}
-      <section ref={hookRef} className="py-32 bg-black border-y border-slate-900">
+      {/* 4. Results Philosophy (判斷標準) */}
+      <section id="results-philosophy" className="py-24 bg-[#05080f] border-t border-slate-800/50 relative overflow-hidden">
+        <div className="absolute top-0 right-0 -m-32 w-96 h-96 bg-brand-900/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="mb-12 text-center sm:text-left">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+              {siteContent.resultsPhilosophy.title}
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+            {siteContent.resultsPhilosophy.bullets.map((bullet, idx) => (
+               <div key={idx} className="flex items-start bg-slate-900/40 p-6 rounded-xl border border-slate-800">
+                 <Check className="w-6 h-6 text-brand-500 mr-4 flex-shrink-0 mt-0.5" />
+                 <span className="text-lg text-slate-300 leading-relaxed font-medium">{bullet}</span>
+               </div>
+            ))}
+          </div>
+          <div className="px-6 py-5 bg-gradient-to-r from-slate-900 to-transparent border-l-4 border-brand-500">
+            <p className="text-xl text-slate-200 font-bold leading-relaxed">
+              {siteContent.resultsPhilosophy.closing}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Hook Breakthrough (講破真相) */}
+      <section className="py-32 bg-black border-y border-slate-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -174,45 +304,73 @@ export const HomePage: React.FC = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-2xl sm:text-3xl text-slate-400 font-medium leading-relaxed mb-8">
+            <h2 className="text-2xl sm:text-3xl text-slate-400 font-medium leading-relaxed mb-10 whitespace-pre-line">
               {siteContent.hookBreakthrough.layer1}
             </h2>
             <div className="text-3xl sm:text-5xl font-bold leading-tight text-white whitespace-pre-line">
               {siteContent.hookBreakthrough.layer2}
             </div>
-            {/* 引導向下 */}
-            <div className="mt-16 flex justify-center sm:justify-start">
-               <div className="w-1 h-24 bg-gradient-to-b from-brand-500 to-transparent rounded-full animate-pulse"></div>
-            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* 5. 新模型說明區 */}
-      <section className="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">{siteContent.newModel.title}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {siteContent.newModel.steps.map((step, idx) => (
-             <div key={idx} className="bg-slate-900 p-8 rounded-2xl border border-slate-800 relative">
-               <div className="text-6xl font-black text-slate-800 absolute top-4 right-4 opacity-30">0{idx+1}</div>
-               <h3 className="text-2xl font-bold text-white mb-4 relative z-10">{step.name}</h3>
-               <p className="text-slate-400 text-lg relative z-10">{step.desc}</p>
-             </div>
-          ))}
-        </div>
-        
-        <div className="bg-[#0a0f18] rounded-2xl p-8 border border-slate-800">
-           <h3 className="text-2xl font-bold mb-6">{siteContent.evidence.title}</h3>
-           <p className="text-slate-300 text-lg leading-relaxed whitespace-pre-line">
-             {siteContent.evidence.description}
-           </p>
+      {/* 6. Why Most Fixes Fail (舊方法否定) */}
+      <section className="py-20 bg-slate-900/50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-dark-bg p-8 sm:p-12 rounded-[2rem] border border-red-900/30 relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 left-0 w-1.5 h-full bg-red-600/80"></div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 flex items-center leading-tight">
+              <AlertTriangle className="w-8 h-8 text-red-500 mr-4 flex-shrink-0" />
+              {siteContent.whyMostFixesFail.title}
+            </h2>
+            <div className="text-lg sm:text-xl text-slate-300 leading-relaxed whitespace-pre-line">
+              {siteContent.whyMostFixesFail.description}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 6. FAQ 疑慮處理區 */}
+      {/* 7. New Model (新方法合理化) */}
+      <section className="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">{siteContent.newModel.title}</h2>
+        <div className="max-w-3xl mx-auto mb-16">
+          <p className="text-xl text-slate-400 text-center whitespace-pre-line mb-12">
+            {siteContent.newModel.description}
+          </p>
+          <div className="space-y-6">
+            {siteContent.newModel.steps.map((step, idx) => (
+               <div key={idx} className="bg-[#0a0f18] p-8 rounded-2xl border border-slate-800 relative text-center sm:text-left flex flex-col sm:flex-row items-center sm:items-start transition-colors hover:border-slate-700">
+                 <div className="text-5xl font-black text-slate-800 mr-6 mb-4 sm:mb-0">0{idx+1}</div>
+                 <div>
+                   <h3 className="text-2xl font-bold text-white mb-3">{step.name}</h3>
+                   <p className="text-slate-400 text-lg">{step.desc}</p>
+                 </div>
+               </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* 8. Evidence 區塊 (權威說服與平台訊號) */}
+        <div className="bg-[#0a0f18] rounded-[2rem] p-8 sm:p-12 border border-slate-800 mt-10 max-w-4xl mx-auto shadow-xl">
+           <h3 className="text-3xl font-bold mb-8 text-white">{siteContent.evidence.title}</h3>
+           <p className="text-slate-300 text-lg leading-relaxed whitespace-pre-line">
+             {siteContent.evidence.description}
+           </p>
+           
+           <div className="mt-10 p-6 bg-slate-900/80 rounded-xl border border-slate-700/60 relative">
+             <div className="absolute left-0 top-0 w-1 h-full bg-slate-600 rounded-l-xl"></div>
+              <p className="text-sm sm:text-base text-slate-400 leading-relaxed whitespace-pre-line">
+                <span className="font-bold text-slate-200 block mb-2">補充視角（平台訊號變更）</span>
+                {siteContent.evidence.microProof}
+              </p>
+           </div>
+        </div>
+      </section>
+
+      {/* 9. FAQ (異議處理) */}
       <section className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold">你在找我的時候，<br className="sm:hidden" />可能會有的疑問</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">你在找我的時候，<br className="sm:hidden" />可能會有的疑問</h2>
         </div>
         
         <div className="space-y-4">
@@ -225,9 +383,9 @@ export const HomePage: React.FC = () => {
                 className="w-full py-6 text-left flex justify-between items-start focus:outline-none group"
                 onClick={() => setActiveFaq(activeFaq === faq.id ? null : faq.id)}
               >
-                <span className="font-bold text-xl text-slate-200 group-hover:text-brand-400 transition-colors">{faq.question}</span>
+                <span className="font-bold text-xl text-slate-200 group-hover:text-brand-400 transition-colors pr-8">{faq.question}</span>
                 <ChevronRight 
-                  className={`w-6 h-6 text-slate-500 transition-transform duration-300 mt-0.5 ${
+                  className={`w-6 h-6 text-slate-500 transition-transform duration-300 mt-0.5 flex-shrink-0 ${
                     activeFaq === faq.id ? 'rotate-90' : 'rotate-0'
                   }`} 
                 />
@@ -241,7 +399,7 @@ export const HomePage: React.FC = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="pb-8 text-slate-400 text-lg leading-relaxed whitespace-pre-line">
+                    <div className="pb-8 pt-2 text-slate-400 text-lg leading-relaxed whitespace-pre-line">
                       {faq.answer}
                     </div>
                   </motion.div>
@@ -252,28 +410,43 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. Final CTA */}
-      <section ref={ctaRef} className="py-32 bg-gradient-to-b from-dark-bg to-brand-900/10 border-t border-slate-800 text-center">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">{siteContent.finalCta.title}</h2>
-          <p className="text-xl text-slate-300 mb-12 leading-relaxed whitespace-pre-line">
-            {siteContent.finalCta.description}
-          </p>
-          <button 
-            onClick={handleFinalCtaClick}
-            className="group relative inline-flex flex-col sm:flex-row items-center justify-center px-10 py-6 w-full sm:w-auto text-2xl font-bold text-white transition-all duration-300 bg-[#00B900] border border-transparent rounded-2xl hover:bg-[#009900] shadow-[0_0_30px_rgba(0,185,0,0.2)] hover:shadow-[0_0_40px_rgba(0,185,0,0.4)] hover:-translate-y-1 focus:outline-none"
-          >
-            <div className="flex items-center">
-              <MessageCircle className="w-8 h-8 mr-3 sm:mr-4" fill="currentColor" strokeWidth={0} />
-              <span>{siteContent.finalCta.buttonText}</span>
-            </div>
-          </button>
+      {/* 10. CTA 降壓與 Final CTA 區塊 */}
+      <section ref={ctaRef} className="pt-24 pb-32 bg-gradient-to-b from-dark-bg to-brand-900/5 text-center px-4 sm:px-6 lg:px-8 border-t border-slate-800/80">
+        <div className="max-w-4xl mx-auto">
+          {/* Friction Objection 降阻力段落 */}
+          <div className="mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-slate-200 leading-tight">
+              {siteContent.frictionObjection.title}
+            </h2>
+            <p className="text-xl text-slate-400 leading-relaxed whitespace-pre-line">
+              {siteContent.frictionObjection.description}
+            </p>
+          </div>
+
+          {/* 核心呼籲框 */}
+          <div className="bg-slate-900/90 py-12 px-6 sm:p-14 rounded-[2.5rem] border border-slate-700 shadow-2xl relative overflow-hidden">
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-brand-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+            
+            <h3 className="text-3xl sm:text-4xl font-bold mb-8 text-white relative z-10">{siteContent.finalCta.title}</h3>
+            <p className="text-lg sm:text-xl text-slate-300 mb-12 leading-relaxed whitespace-pre-line max-w-2xl mx-auto relative z-10">
+              {siteContent.finalCta.description}
+            </p>
+            <button 
+              onClick={handleFinalCtaClick}
+              className="group relative inline-flex flex-col sm:flex-row items-center justify-center px-10 py-6 w-full sm:w-auto text-2xl font-bold text-white transition-all duration-300 bg-[#00B900] border border-[#00B900] rounded-[1.5rem] hover:bg-[#009900] shadow-[0_0_20px_rgba(0,185,0,0.15)] hover:shadow-[0_0_30px_rgba(0,185,0,0.3)] hover:-translate-y-1 hover:scale-101 focus:outline-none z-10"
+            >
+              <div className="flex items-center">
+                <MessageCircle className="w-8 h-8 mr-3 title-icon" fill="currentColor" strokeWidth={0} />
+                <span className="tracking-wide">{siteContent.finalCta.buttonText}</span>
+              </div>
+            </button>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="py-8 text-center text-slate-600 text-sm">
-        <p>© {new Date().getFullYear()} 轉換架構系統 | 高客單信任漏斗</p>
+        <p>© {new Date().getFullYear()} 轉換架構系統 | 陪伴式漏斗重構</p>
       </footer>
     </div>
   );

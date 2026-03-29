@@ -1,24 +1,22 @@
 export const liffContent = {
   welcome: {
-    greeting: "你剛剛那個問題，我幫你整理好了",
-    successMessage: "下面這些，是你現在最該先看的。",
-    painPointPrefix: "你剛剛選的是：",
+    greeting: "好，我先不跟你講漂亮話。",
+    successMessage: "我先幫你看，你現在比較像是：\n流量問題、頁面問題，還是承接問題。",
+    painPointPrefix: "因為你選的是：",
     callToActions: [
-      { id: "report", label: "先看我卡在哪", style: "primary" },
-      { id: "plans", label: "看看怎麼補", style: "secondary" },
-      { id: "booking", label: "直接聊 15 分鐘", style: "outline" }
+      { id: "report", label: "先看問題在哪", style: "primary" },
+      { id: "plans", label: "再看怎麼補", style: "secondary" },
+      { id: "booking", label: "想快一點，直接聊 15 分鐘", style: "outline" }
     ],
-    chatbotPrompt: "我把細節丟到 LINE 給你了，直接點下面看。",
-    chatButton: "打開 LINE 看內容"
+    chatbotPrompt: "不是把這頁丟給你就結束了。\n如果你真的要做，後面我也會幫你把哪裡漏掉、哪裡該補，繼續往下拆。",
+    chatButton: "去 LINE 看我們接下來要拆什麼"
   },
 
   fallback: {
-    title: "差最後一步",
-    description:
-      "你現在還沒辦法拿到內容，是因為還沒加好友。\n\n或者你之前不小心封鎖了。\n\n把這一步做完，就可以直接拿到。",
-    addFriendButton: "加入好友",
-    refreshButton: "我好了，重新檢查",
-    blockedMessage:
-      "如果加不了，去 LINE 的封鎖名單把我們解除就可以了。"
+    title: "差這一步就好了",
+    description: "你現在還拿不到內容，不是系統壞掉。\n\n是因為你還沒加好友，\n或是之前不小心把我們封鎖了。\n\n把這一步完成，我就能把內容直接丟給你。",
+    addFriendButton: "先加好友",
+    refreshButton: "我好了，重新檢查一次",
+    blockedMessage: "如果按了還是不行去 LINE 的封鎖名單把我們解除就可以。"
   }
 };

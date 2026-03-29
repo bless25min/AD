@@ -12,13 +12,15 @@ export interface UserProfile {
 interface AppState {
   // Persisted state
   selectedPainPoint: string | null;
+  selectedFollowUpOption: string | null;
   entryPath: string;
   utmData: {
     source?: string;
     medium?: string;
     campaign?: string;
   };
-  setPainPoint: (id: string) => void;
+  setPainPoint: (id: string | null) => void;
+  setFollowUpOption: (id: string | null) => void;
   setEntryPath: (path: string) => void;
   setUtmData: (data: Partial<AppState['utmData']>) => void;
 
@@ -37,9 +39,11 @@ export const useAppStore = create<AppState>()(
     (set) => ({
       // initial persisted state
       selectedPainPoint: null,
+      selectedFollowUpOption: null,
       entryPath: '/',
       utmData: {},
-      setPainPoint: (id) => set({ selectedPainPoint: id }),
+      setPainPoint: (id) => set({ selectedPainPoint: id, selectedFollowUpOption: null }),
+      setFollowUpOption: (id) => set({ selectedFollowUpOption: id }),
       setEntryPath: (path) => set({ entryPath: path }),
       setUtmData: (data) => set((state) => ({ utmData: { ...state.utmData, ...data } })),
 
@@ -57,6 +61,7 @@ export const useAppStore = create<AppState>()(
       // Only persist these keys
       partialize: (state) => ({
         selectedPainPoint: state.selectedPainPoint,
+        selectedFollowUpOption: state.selectedFollowUpOption,
         entryPath: state.entryPath,
         utmData: state.utmData,
       }),
