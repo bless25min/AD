@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Copy, ShieldCheck, Building2, User, FileText, Download, Loader2 } from 'lucide-react';
@@ -13,7 +13,15 @@ export const ContractPage = () => {
   const [searchParams] = useSearchParams();
   const { isInitializing } = useLiff();
   const { isLoggedIn, profile } = useAppStore();
-  
+
+  // LINE Tag 轉換追蹤代碼 (載入合約頁即視為轉換)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any)._lt) {
+      (window as any)._lt('send', 'cv', {
+        type: 'Conversion'
+      }, ['2eb550c6-34c8-4379-8ffa-677e5e51038f']);
+    }
+  }, []);
   const formatTwDate = (dateStr: string) => {
     if (!dateStr) return '';
     const d = new Date(dateStr);
