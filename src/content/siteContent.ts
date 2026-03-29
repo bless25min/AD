@@ -51,5 +51,16 @@ export const siteContent = {
     description:
       "你先知道自己卡在哪。\n\n我會直接告訴你：\n\n是哪一段在流失\n為什麼會卡住\n可以怎麼補\n\n你再決定要不要做。",
     buttonText: "用 LINE 登入，拿我的診斷"
-  }
+  },
+
+  hookBreakthrough: {
+    layer1: "這一切，不是因為你素材不夠用力，也不是因為你不懂受眾。",
+    layer2: "真正的原因是——\n\n在客戶準備把信任交給你、做出決定的『關鍵那一刻』，\n他心裡產生了疑慮。\n\n而你的頁面，剛好沒有人幫他解答。"
+  },
+
+  progressSteps: [
+    { id: 1, label: "了解你的狀況" },
+    { id: 2, label: "找出問題" },
+    { id: 3, label: "給你解法" }
+  ]
 };
