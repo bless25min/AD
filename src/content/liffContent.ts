@@ -8,7 +8,7 @@ export const liffContent = {
       { id: "plans", label: "再看哪一段該怎麼先補", style: "secondary" },
       { id: "booking", label: "想快一點，直接聊 15 分鐘", style: "outline" }
     ],
-    chatbotPrompt: "不是把這幾頁看斷就結束了。\n後面我也會陪你繼續拆、幫你補、幫你往下走，慢慢把漏掉的洞填起來。",
+    chatbotPrompt: "不僅僅是把這幾頁看完就結束了。\n後面我也會陪你繼續拆、幫你補、幫你往下走，慢慢把漏掉的洞填起來。",
     chatButton: "去 LINE 看我們接下來要拆什麼"
   },
 

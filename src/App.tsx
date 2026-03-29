@@ -4,6 +4,7 @@ import { HomePageB } from './pages/HomePageB';
 import { LiffInitPage } from './pages/LiffInitPage';
 import { LiffWelcomePage } from './pages/LiffWelcomePage';
 import { LiffFriendRequiredPage } from './pages/LiffFriendRequiredPage';
+import { ContractPage } from './pages/ContractPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/liff" element={<LiffInitPage />} />
         <Route path="/liff/welcome" element={<LiffWelcomePage />} />
         <Route path="/liff/friend-required" element={<LiffFriendRequiredPage />} />
+        <Route path="/contract" element={<ContractPage />} />
       </Routes>
     </BrowserRouter>
   );
