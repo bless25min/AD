@@ -1,0 +1,56 @@
+# 專案開發日誌 (DevLog)
+> **專案代號**：高轉換信任漏斗 (High-Conversion Sales Funnel with LINE LIFF)
+> **核心技術**：React + TypeScript + Vite + Tailwind CSS v4 + Cloudflare Pages Functions
+
+這份開發日誌記錄了專案從「基本服務頁」一路打磨到「具備頂級電銷能量的線上顧問分身」的每一個關鍵迭代 (Iteration) 與交付版本。
+
+---
+
+## 🟢 v0.1: 架構奠基與 MVP (Minimum Viable Product)
+**發布重點**：完成軟體基礎設施建立，打通知名度到私域的數位橋樑。
+* **技術棧部署**：初始化 ViteReact 環境，配置 Tailwind CSS v4，並設定架構支援後續部署至 Cloudflare Pages。
+* **無伺服器後端 (Serverless)**：實作基於 Cloudflare Functions 的基本 API（`/api/session`, `/api/friendship` 等）。
+* **UI 原型**：完成常見的「描述功能型」服務頁面結構（Hero, Pain Points, FAQ, CTA）。
+* **LINE 整合破冰**：引入 `@line/liff` SDK，串通基礎的 LINE Auth 與好友驗證。
+
+## 🟢 v0.2: 邊界防護與狀態邏輯強化
+**發布重點**：解決真實世界流量進件可能發生的各種 LINE 授權阻路與斷線。
+* **細緻化四態好友檢測**：捨棄粗暴的「加 / 沒加」二分法，升級為四種嚴格檢驗狀態：`friend`、`not_friend_or_blocked`、`checking`、`unknown`，能精準認出「已加但封鎖」的死胡同。
+* **外部瀏覽器無縫支援**：強制啟用 `withLoginOnExternalBrowser: true`，確保從 Facebook/Instagram 投廣點擊進來的外部瀏覽器訪客也能順利在點擊 CTA 後觸發 LINE App 驗證。
+* **阻擋牆 (Friend-Required) 開發**：針對未加好友/封鎖者建立極具安全感的 `/liff/friend-required` 強制檢驗承接頁面，加入「我好了，重新檢查」的功能。
+
+## 🟢 v0.3: 部署優化與內容架構抽離
+**發布重點**：解決 Cloudflare Pages 的自動部署錯誤，並準備進入文案快速優化期。
+* **Cloudflare 建置適配**：校正 `npm run build` 指令與編譯輸出結構 (`dist`)，清除 Cloudflare 的部署報錯。
+* **內容抽離 (Content Abstraction)**：全面將散落在元件中的寫死文案提取到 `src/content/*.ts` (包含 `siteContent`, `painPoints`, `faq`, `liffContent`)。讓日後修改文案不再需要動到 JSX，全面提升可維護性。
+
+## 🟢 v0.4: CRO 升級 ── 從「說明」到「共鳴」 (The Psychology Shift)
+**發布重點**：脫離一般落地頁的框架，導入行為心理學與結案焦慮的轉換導向優化 (Conversion Rate Optimization)。
+* **進度感與結案焦慮 (`ProgressTracker`)**：拋開呆板的捲軸條，改採依據點擊深度跳轉的心理進度條（*你在哪裡 ➔ 找出問題 ➔ 給你解法*），在用戶還沒填單前就產生「未完成的焦慮」。
+* **Hook Breakthrough 爆點結構**：在診斷區塊後方插入「黑底白字」的極簡重擊：打破「不是你廣告投不好」的歸因，直接講破「是沒人接住」。
+* **LIFF 對談化重建**：拔除原先冷冰冰的「系統儀表板 (Dashboard)」，套用「真人顧問遞送報告」的動態對白與綠色在線燈號，把科技感完全隱藏。
+* **全第一人稱訴求**：CTA 按鈕從客觀的「立即預約」轉換為自我主觀意識極高的「我想知道答案」。
+
+## 🟢 v0.5: 電銷腳本化 ── 多層漸進式診斷整合 (The Sales Persona)
+**發布重點**：將這套頁面徹底打造成為「擁有實戰判斷標準」與「能拆解痛點」的頂級電銷分身。
+* **三層微診斷 (Micro-Diagnosis)**：引入顛覆常規的一頁式邏輯，實作具備 Inline Expansion (無縫展開) 的對話機制。用戶點擊痛點後不僅不跳頁，反而當場拉出一個「追問」，並給予「微診斷回饋」，完美複刻了頂級顧問「挖出不吐露的恐懼，並一針見血」的成交法。
+* **植入核心世界觀 (Worldview Modules)**：
+  - 加裝 **「我不太看熱鬧，我比較看結果」** 區塊，建立強勢權威。
+  - 加裝 **「越努力死越快 / 常常是被自己搞亂」** 區塊，直接否定現有錯誤解法。
+  - 加裝 **「我知道你討厭多做一步」** 的終極降壓區塊緊貼最終 CTA。
+* **同理異議處理 (Empathic FAQ)**：修正防備性問答，遵循「同理 (很正常...) ➔ 解構 (其實問題不在那...) ➔ 收斂 (而是...)」三段論，讓 FAQ 本身也成為推車滑軌。
+* **「不講漂亮話」的承接法**：完全將歡迎頁的客服禮貌丟棄，以「好，我先不跟你講漂亮話，我幫你看...」極致接地氣的口吻承接，保證訪客覺得背後是一個真人在帶領。
+
+## 🟢 v0.6: 深度成交心理學與抗拒解除 (The Deep Sales Empathy)
+**發布重點**：將這套對白分身的「懂你感」推到極致，並截斷所有可能流失的逃避路線。
+* **最小容許開場 (`softPermission`)**：在 Hero 首屏追加「你不用先相信我...」的降壓宣告，把防護罩完全拆除。
+* **加深角色投射 (`closing2`)**：在 Affinity 與 Results Philosophy 新增進階共鳴，把「你明明有做事卻不知道漏在哪」以及「你看過別家熱鬧但沒結果」的挫敗感精準點出。
+* **講破創意迷思 (`creativeTrap`)**：新增「許多人把希望賭在短影音創意團隊」的獨立警示區塊，直接截斷盲目迷信行銷創意的退路，逼迫正視漏斗承接問題。
+* **微小承諾 (`microCommitment`)**：在 Final CTA 之前墊入「你不用現在決定，先答應自己花 1 分鐘看問題」的緩衝地帶，徹底消除最後點擊的神經阻力。
+* **動態渲染層升級**：`HomePage.tsx` 完整重構以無縫渲染上述所有新增的對白與板塊，維持強大的順滑視覺。
+
+---
+
+**未來發展建議 (Next Steps)**：
+- 對接前端真實 Analytics (如 PostHog) 以驗證每個微診斷節點的點擊留存率。
+- 後端資料庫串接 (D1 / KV) 將蒐集到的 Session 與 PainPoint 偏好實體化保存。

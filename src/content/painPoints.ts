@@ -15,6 +15,7 @@ export interface PainPoint {
   
   // 必須寫破他沒說出來的痛
   microDiagnosis: string;
+  microDiagnosisBridge?: string;
   
   recommendedNextStep: string;
 }

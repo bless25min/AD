@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, ChevronRight, MessageCircle, Activity, TrendingDown, Target, HelpCircle, Check, AlertTriangle, ChevronDown } from 'lucide-react';
+import { CheckCircle2, ChevronRight, MessageCircle, Activity, TrendingDown, Target, HelpCircle, Check, AlertTriangle, ChevronDown, VideoOff } from 'lucide-react';
 import { siteContent } from '../content/siteContent';
 import { painPoints } from '../content/painPoints';
 import { faqs } from '../content/faq';
@@ -24,8 +24,6 @@ export const HomePage = () => {
   
   const heroRef = useRef<HTMLElement>(null);
   const ctaRef = useRef<HTMLElement>(null);
-
-  // 當使用者回答了微診斷問題，讓系統自動稍微滾動對齊，不突兀。
   const diagnosisRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -53,12 +51,10 @@ export const HomePage = () => {
   }, [selectedPainPoint]);
 
   const handlePainPointClick = (id: string) => {
-    // 若不同點擊，重設狀態
     if (selectedPainPoint !== id) {
       setPainPoint(id);
       setActiveStep(2);
     } else {
-      // 支援取消選擇
       setPainPoint(null);
       setActiveStep(1);
     }
@@ -66,7 +62,6 @@ export const HomePage = () => {
 
   const handleFollowUpClick = (id: string) => {
     setFollowUpOption(id);
-    // 回答追問後，平滑對齊微診斷區塊以免使用者不知道下方長出了內容
     setTimeout(() => {
       diagnosisRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 200);
@@ -80,7 +75,7 @@ export const HomePage = () => {
     <div className="min-h-screen bg-dark-bg text-slate-100 font-sans selection:bg-brand-500 selection:text-white pb-20">
       <ProgressTracker currentStep={activeStep} isVisible={showProgress} />
       
-      {/* 1. Hero 區塊 (最小容許開場) */}
+      {/* 1. Hero 區塊 */}
       <section ref={heroRef} className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center min-h-[85vh] flex flex-col justify-center">
         <motion.div initial="hidden" animate="visible" variants={fadeIn}>
           <div className="inline-block mb-6 px-4 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300 text-sm font-medium tracking-wide">
@@ -89,11 +84,15 @@ export const HomePage = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-8 leading-tight">
             {siteContent.hero.title}
           </h1>
-          <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-8 text-brand-400">
+          <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-8 text-brand-400 whitespace-pre-line">
             {siteContent.hero.subtitle}
           </h2>
-          <p className="text-lg md:text-xl text-slate-300 mb-12 font-medium whitespace-pre-line leading-relaxed max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-300 mb-8 font-medium whitespace-pre-line leading-relaxed max-w-3xl mx-auto">
             {siteContent.hero.description}
+          </p>
+
+          <p className="text-lg md:text-xl text-brand-300/80 mb-12 font-bold whitespace-pre-line">
+            {siteContent.hero.softPermission}
           </p>
           
           <button 
@@ -108,7 +107,7 @@ export const HomePage = () => {
         </motion.div>
       </section>
 
-      {/* 2. 建立共同點區塊 (Affinity) */}
+      {/* 2. Affinity (角色困境) */}
       <section className="py-20 bg-[#0a0f18] border-y border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center sm:text-left">
@@ -122,15 +121,22 @@ export const HomePage = () => {
               </div>
             ))}
           </div>
-          <div className="p-6 bg-slate-900 border border-slate-800 rounded-2xl">
-            <p className="text-lg text-slate-300 leading-relaxed whitespace-pre-line italic">
-              {siteContent.affinity.closing}
-            </p>
+          <div className="space-y-6">
+            <div className="p-6 bg-slate-900 border border-slate-800 rounded-2xl">
+              <p className="text-lg text-slate-300 leading-relaxed whitespace-pre-line">
+                {siteContent.affinity.closing}
+              </p>
+            </div>
+            <div className="p-6 bg-transparent border-l-4 border-brand-500">
+              <p className="text-xl text-brand-400 font-bold leading-relaxed whitespace-pre-line">
+                {siteContent.affinity.closing2}
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 3. 漸進式診斷區 (Diagnostic - Layer 1, 2, 3) */}
+      {/* 3. Diagnostic */}
       <section id="diagnostic" className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[600px]">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
@@ -150,7 +156,6 @@ export const HomePage = () => {
               const Icon = icons[pt.id as keyof typeof icons] || Target;
               const isSelected = selectedPainPoint === pt.id;
 
-              // 當用戶選擇了其中一個痛點，其他沒選中的隱藏以避免畫面擁擠（產生專屬對話感）
               if (selectedPainPoint && !isSelected) return null;
 
               return (
@@ -167,7 +172,6 @@ export const HomePage = () => {
                       : 'border-slate-800 bg-slate-900/50 hover:border-brand-500/50 hover:bg-slate-800 cursor-pointer'
                   }`}
                 >
-                  {/* Layer 1：痛點卡片表面 */}
                   <div 
                     onClick={() => !isSelected && handlePainPointClick(pt.id)}
                     className="p-8"
@@ -197,7 +201,6 @@ export const HomePage = () => {
                     </div>
                   </div>
 
-                  {/* Layer 2：情境追問 (選中才展開) */}
                   <AnimatePresence>
                     {isSelected && (
                       <motion.div
@@ -230,7 +233,6 @@ export const HomePage = () => {
                           })}
                         </div>
 
-                        {/* Layer 3：微診斷回饋 (回答追問才展開) */}
                         <AnimatePresence>
                           {selectedFollowUpOption && (
                             <motion.div
@@ -246,6 +248,12 @@ export const HomePage = () => {
                                   {pt.microDiagnosis}
                                 </p>
                                 
+                                {pt.microDiagnosisBridge && (
+                                   <p className="text-lg text-brand-300 italic mb-8 border-t border-slate-800/60 pt-4 whitespace-pre-line">
+                                      {pt.microDiagnosisBridge}
+                                   </p>
+                                )}
+
                                 <button
                                   onClick={() => {
                                     document.getElementById('results-philosophy')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -270,7 +278,7 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 4. Results Philosophy (判斷標準) */}
+      {/* 4. Results Philosophy */}
       <section id="results-philosophy" className="py-24 bg-[#05080f] border-t border-slate-800/50 relative overflow-hidden">
         <div className="absolute top-0 right-0 -m-32 w-96 h-96 bg-brand-900/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -287,10 +295,18 @@ export const HomePage = () => {
                </div>
             ))}
           </div>
-          <div className="px-6 py-5 bg-gradient-to-r from-slate-900 to-transparent border-l-4 border-brand-500">
-            <p className="text-xl text-slate-200 font-bold leading-relaxed">
-              {siteContent.resultsPhilosophy.closing}
-            </p>
+          <div className="space-y-6 lg:w-4/5">
+             <div className="px-6 py-5 bg-gradient-to-r from-slate-900 to-transparent border-l-4 border-slate-700">
+               <p className="text-xl text-slate-300 font-medium leading-relaxed">
+                 {siteContent.resultsPhilosophy.closing}
+               </p>
+             </div>
+             
+             <div className="px-6 py-5 bg-gradient-to-r from-slate-900 to-transparent border-l-4 border-brand-500">
+               <p className="text-xl text-slate-200 font-bold leading-relaxed whitespace-pre-line">
+                 {siteContent.resultsPhilosophy.closing2}
+               </p>
+             </div>
           </div>
         </div>
       </section>
@@ -314,25 +330,60 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 6. Why Most Fixes Fail (舊方法否定) */}
-      <section className="py-20 bg-slate-900/50">
+      {/* 6. Creative Trap (打破短影音迷思) */}
+      <section className="py-24 bg-dark-bg border-b border-slate-800/80">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-dark-bg p-8 sm:p-12 rounded-[2rem] border border-red-900/30 relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 left-0 w-1.5 h-full bg-red-600/80"></div>
+          <div className="mb-12">
+             <div className="inline-flex items-center mb-6 text-red-400 font-bold px-4 py-2 bg-red-900/10 border border-red-900/30 rounded-full text-sm">
+                <VideoOff className="w-4 h-4 mr-2" />
+                業界的致命盲區
+             </div>
+             <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-8">
+               {siteContent.creativeTrap.title}
+             </h2>
+             <p className="text-xl text-slate-300 leading-relaxed whitespace-pre-line mb-10 border-l-2 border-slate-700 pl-6">
+                {siteContent.creativeTrap.description}
+             </p>
+          </div>
+          
+          <div className="grid grid-cols-1 gap-4 mb-12">
+             {siteContent.creativeTrap.bullets.map((b, idx) => (
+                <div key={idx} className="flex items-center">
+                   <CheckCircle2 className="w-5 h-5 text-slate-600 mr-4" />
+                   <span className="text-lg text-slate-400 font-medium">{b}</span>
+                </div>
+             ))}
+          </div>
+          
+          <p className="text-2xl font-bold text-brand-400 whitespace-pre-line leading-relaxed">
+             {siteContent.creativeTrap.closing}
+          </p>
+        </div>
+      </section>
+
+      {/* 7. Why Most Fixes Fail (舊方法否定) */}
+      <section className="py-20 bg-slate-900/50 border-b border-slate-800/80">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-dark-bg p-8 sm:p-12 rounded-[2rem] border border-red-900/30 shadow-2xl relative">
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 flex items-center leading-tight">
               <AlertTriangle className="w-8 h-8 text-red-500 mr-4 flex-shrink-0" />
               {siteContent.whyMostFixesFail.title}
             </h2>
-            <div className="text-lg sm:text-xl text-slate-300 leading-relaxed whitespace-pre-line">
+            <div className="text-lg sm:text-xl text-slate-300 leading-relaxed whitespace-pre-line mb-8">
               {siteContent.whyMostFixesFail.description}
+            </div>
+            <div className="pt-8 border-t border-slate-800/80">
+              <p className="text-xl text-slate-200 font-bold whitespace-pre-line leading-relaxed">
+                 {siteContent.whyMostFixesFail.reflection}
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 7. New Model (新方法合理化) */}
+      {/* 8. New Model (新方法合理化) */}
       <section className="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">{siteContent.newModel.title}</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center whitespace-pre-line leading-tight">{siteContent.newModel.title}</h2>
         <div className="max-w-3xl mx-auto mb-16">
           <p className="text-xl text-slate-400 text-center whitespace-pre-line mb-12">
             {siteContent.newModel.description}
@@ -350,14 +401,18 @@ export const HomePage = () => {
           </div>
         </div>
         
-        {/* 8. Evidence 區塊 (權威說服與平台訊號) */}
+        {/* 9. Evidence 區塊 (權威說服與平台訊號) */}
         <div className="bg-[#0a0f18] rounded-[2rem] p-8 sm:p-12 border border-slate-800 mt-10 max-w-4xl mx-auto shadow-xl">
-           <h3 className="text-3xl font-bold mb-8 text-white">{siteContent.evidence.title}</h3>
-           <p className="text-slate-300 text-lg leading-relaxed whitespace-pre-line">
+           <h3 className="text-3xl font-bold mb-8 text-white whitespace-pre-line">{siteContent.evidence.title}</h3>
+           <p className="text-slate-300 text-lg leading-relaxed whitespace-pre-line mb-10 border-b border-slate-800 pb-10">
              {siteContent.evidence.description}
            </p>
            
-           <div className="mt-10 p-6 bg-slate-900/80 rounded-xl border border-slate-700/60 relative">
+           <p className="text-xl text-brand-300 font-bold leading-relaxed whitespace-pre-line mb-10">
+             {siteContent.evidence.supportLine}
+           </p>
+
+           <div className="mt-6 p-6 bg-slate-900/80 rounded-xl border border-slate-700/60 relative">
              <div className="absolute left-0 top-0 w-1 h-full bg-slate-600 rounded-l-xl"></div>
               <p className="text-sm sm:text-base text-slate-400 leading-relaxed whitespace-pre-line">
                 <span className="font-bold text-slate-200 block mb-2">補充視角（平台訊號變更）</span>
@@ -367,8 +422,8 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 9. FAQ (異議處理) */}
-      <section className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 10. FAQ (異議處理) */}
+      <section className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/50">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white">你在找我的時候，<br className="sm:hidden" />可能會有的疑問</h2>
         </div>
@@ -410,11 +465,11 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 10. CTA 降壓與 Final CTA 區塊 */}
+      {/* 11. CTA 降壓 + Micro Commitment + Final CTA 區塊 */}
       <section ref={ctaRef} className="pt-24 pb-32 bg-gradient-to-b from-dark-bg to-brand-900/5 text-center px-4 sm:px-6 lg:px-8 border-t border-slate-800/80">
         <div className="max-w-4xl mx-auto">
           {/* Friction Objection 降阻力段落 */}
-          <div className="mb-16">
+          <div className="mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-slate-200 leading-tight">
               {siteContent.frictionObjection.title}
             </h2>
@@ -423,17 +478,23 @@ export const HomePage = () => {
             </p>
           </div>
 
-          {/* 核心呼籲框 */}
-          <div className="bg-slate-900/90 py-12 px-6 sm:p-14 rounded-[2.5rem] border border-slate-700 shadow-2xl relative overflow-hidden">
-            <div className="absolute -top-40 -right-40 w-80 h-80 bg-brand-500/10 rounded-full blur-[80px] pointer-events-none"></div>
-            
+          {/* Micro Commitment 承諾段落 */}
+          <div className="mb-14 p-8 bg-slate-900/60 rounded-2xl border border-brand-500/20 shadow-[0_0_40px_rgba(0,185,0,0.05)] mx-auto max-w-2xl">
+             <h3 className="text-2xl font-bold text-brand-400 mb-6">{siteContent.microCommitment.title}</h3>
+             <p className="text-xl text-slate-200 leading-relaxed whitespace-pre-line font-medium">
+               {siteContent.microCommitment.description}
+             </p>
+          </div>
+
+          {/* 核心承諾區 */}
+          <div className="py-8 px-6 sm:p-14 rounded-[2.5rem] relative overflow-hidden">
             <h3 className="text-3xl sm:text-4xl font-bold mb-8 text-white relative z-10">{siteContent.finalCta.title}</h3>
             <p className="text-lg sm:text-xl text-slate-300 mb-12 leading-relaxed whitespace-pre-line max-w-2xl mx-auto relative z-10">
               {siteContent.finalCta.description}
             </p>
             <button 
               onClick={handleFinalCtaClick}
-              className="group relative inline-flex flex-col sm:flex-row items-center justify-center px-10 py-6 w-full sm:w-auto text-2xl font-bold text-white transition-all duration-300 bg-[#00B900] border border-[#00B900] rounded-[1.5rem] hover:bg-[#009900] shadow-[0_0_20px_rgba(0,185,0,0.15)] hover:shadow-[0_0_30px_rgba(0,185,0,0.3)] hover:-translate-y-1 hover:scale-101 focus:outline-none z-10"
+              className="group relative inline-flex flex-col sm:flex-row items-center justify-center px-10 py-6 w-full sm:w-auto text-2xl font-bold text-white transition-all duration-300 bg-[#00B900] border border-[#00B900] rounded-[1.5rem] hover:bg-[#009900] shadow-[0_0_20px_rgba(0,185,0,0.2)] hover:shadow-[0_0_40px_rgba(0,185,0,0.4)] hover:-translate-y-1 hover:scale-101 focus:outline-none z-10"
             >
               <div className="flex items-center">
                 <MessageCircle className="w-8 h-8 mr-3 title-icon" fill="currentColor" strokeWidth={0} />
