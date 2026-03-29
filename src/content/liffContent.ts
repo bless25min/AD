@@ -1,15 +1,13 @@
 export const liffContent = {
   welcome: {
     greeting: "好，我先不跟你講漂亮話。",
-    successMessage: "你現在不用自己一個人把整件事想完。\n我先幫你抓最關鍵那一段。\n不用一次搞懂全部，先看最重要的就好。",
-    painPointPrefix: "針對你現在卡住的環節，我建議我們先看：",
+    successMessage: "你剛剛先把最麻煩的一步做完了。\n接下來不用一次搞懂全部，先看最重要的就好。\n我先幫你抓最關鍵那一段。",
+    painPointPrefix: "因為你剛剛提到：",
+    optionPrefix: "而且最常發生的是：",
     callToActions: [
-      { id: "report", label: "先看你目前像哪種卡點", style: "primary" },
-      { id: "plans", label: "再看哪一段該怎麼先補", style: "secondary" },
+      { id: "report", label: "先看為什麼會這樣", style: "primary" },
       { id: "booking", label: "想快一點，直接聊 15 分鐘", style: "outline" }
-    ],
-    chatbotPrompt: "不僅僅是把這幾頁看完就結束了。\n後面我也會陪你繼續拆、幫你補、幫你往下走，慢慢把漏掉的洞填起來。",
-    chatButton: "去 LINE 看我們接下來要拆什麼"
+    ]
   },
 
   fallback: {

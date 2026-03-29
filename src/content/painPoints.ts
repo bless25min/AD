@@ -16,6 +16,10 @@ export interface PainPoint {
   microDiagnosisBridge?: string;
   progressSense: string;
   recommendedNextStep: string;
+  // added for pure LINE follow-up flow
+  lineCard1: string;
+  lineCard2: string;
+  lineCard3: string;
 }
 
 export const painPoints: PainPoint[] = [
@@ -37,7 +41,10 @@ export const painPoints: PainPoint[] = [
     microDiagnosis: "這在我們系統裡屬於【前端切入點失焦】。\n\n當大家都在賣一樣的規格時，廣告只講功能已經沒用了。你必須重新提煉出那一句『讓他非停下來看不可』的痛點口號。",
     microDiagnosisBridge: "你真正怕的不僅是預算被浪費，更是花完了連經驗都沒留下，下次只能繼續盲拍素材。",
     progressSense: "太好了，既然知道是前端切入點的問題，我們就不用再去白費力氣改整個網站了。",
-    recommendedNextStep: "看具體的切入點定位法"
+    recommendedNextStep: "看具體的切入點定位法",
+    lineCard1: "這個狀況很常見，很多人就是卡在這裡。這兩年的獲客成本的確翻了好幾倍，你感覺到不對，代表你其實已經比很多人早一步發現危機。",
+    lineCard2: "其實，這不是你少設了什麼後台功能。更可能是第一個切入點，已經沒有以前那麼容易讓人停下來看，才導致後面的流量一直進不來。",
+    lineCard3: "先不要急著加更多預算去測廣告。先把那些本來要靠你後面慢慢解釋的關鍵句，提早放到他來找你之前。"
   },
   {
     id: "high_bounce",
@@ -57,7 +64,10 @@ export const painPoints: PainPoint[] = [
     microDiagnosis: "這在我們系統裡屬於【承接段信任斷裂】。\n\n他帶著痛點進來，第一眼想看的是『你能怎麼救我』，但大多數頁面第一眼卻在講『我們有多厲害』。",
     microDiagnosisBridge: "你真正損失的不是這一次的點擊費，而是那些明明有強烈需求，卻在最後一秒因為不信任而離開的潛在優質客戶。",
     progressSense: "抓出信任斷層後，我們只需要把順序對調，把『解法』放在『公司介紹』前面，流失率就會大幅下降。",
-    recommendedNextStep: "看信任承接重構法"
+    recommendedNextStep: "看信任承接重構法",
+    lineCard1: "這個狀況很常見，很多人看流失數據真的會吐血。但這反而代表你的第一步做對了：你的廣宣確實有成功吸引到他們點擊。",
+    lineCard2: "點進來代表有興趣，馬上跑掉通常不是因為網頁不漂亮，而是他沒安全感。他第一眼想看你能不能救他，你看似卻在講公司有多強。",
+    lineCard3: "先不要急著找人重新設計整個版面。只要稍微改一下順序，把「解法」放在「介紹」之前，那幾秒鐘的猶豫拿掉，人就留下來了。"
   },
   {
     id: "no_booking",
@@ -77,7 +87,10 @@ export const painPoints: PainPoint[] = [
     microDiagnosis: "這在我們系統裡屬於【行動阻力過高】。\n\n你給的下一步太沉重了。『立即購買』或『專業諮詢』對還沒完全信任你的冷客來說，心理壓力太大了。",
     microDiagnosisBridge: "你真正怕的是不管怎麼用心解釋，客戶還是只在乎價錢，讓你的專業被當成菜市場比價的附屬品。",
     progressSense: "既然找到了卡點在最後一哩路，我們只需要把『高壓的預約』降級成『低壓的微承諾』甚至『行動交換』，推進的意願就會瞬間拉升。",
-    recommendedNextStep: "看低阻力推進策略"
+    recommendedNextStep: "看低阻力推進策略",
+    lineCard1: "這個狀況很常見，猜不透客人真的滿無力的。但他們願意花時間滑到底，其實你已經贏過很多連看都不被看的品牌了。",
+    lineCard2: "他們不是不想問，而是不敢問。因為「直接諮詢」或「立即預約」對還沒完全信任你的陌生人來說，壓力太大了。",
+    lineCard3: "先不要急著去大降價或改產品。先把高壓的動作，降級成容易答應的小事，對話的橋樑就接上了。"
   },
   {
     id: "hard_to_close",
@@ -97,6 +110,9 @@ export const painPoints: PainPoint[] = [
     microDiagnosis: "這在我們系統裡屬於【漏斗定位倒置】。\n\n成熟的獲客系統，應該是在『頁面』上就完成教育與洗腦，讓來到 LINE 的人已經是帶著認同與意願的準客戶，而不是來比價的過客。",
     microDiagnosisBridge: "你真正失去的不僅僅是一張單，而是原本可以自動化篩選與獲客的系統，讓你每天陷在無效溝通裡無法抽身。",
     progressSense: "了解這點後，我們要把教育客戶的負擔往前推給頁面。讓頁面完成前處理，你來做高端客戶的承接。",
-    recommendedNextStep: "看教育前置化策略"
+    recommendedNextStep: "看教育前置化策略",
+    lineCard1: "每天回罐頭問題真的很心累。但這代表你前面真的有辦法把人帶進來，你只是卡在最後一哩路。",
+    lineCard2: "不是你不會聊，而是很多本來該在前面講清楚的事，最後都壓到 LINE 裡才補，導致進來的人只是到處比價。",
+    lineCard3: "先不要急著背更多銷售話術。先把教育客人的工作往前推給頁面。讓網頁提早幫你篩選，你再來接手那些真正懂你價值的人就好。"
   }
 ];
