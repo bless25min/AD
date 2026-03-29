@@ -4,6 +4,7 @@ export interface ContractParams {
   project: string;
   startDate: string;
   endDate: string;
+  companyName?: string;
 }
 
 export const getContractTerms = (params: ContractParams) => {
@@ -38,7 +39,7 @@ export const getContractTerms = (params: ContractParams) => {
     },
     {
       title: "8. 合約終止與解除",
-      content: `1. 合約期滿前七日內，任一方均無以書面或電子郵件通知他方為不續約之意思表示者，則合約期限自動展延一期，屆期滿時亦同。\n\n2. 任何一方不履行或違反本合約任一條款時，他方得以七日內書面或電子郵件通知，逾期未回應者，自動終止合約。\n\n3. 甲、乙雙方同意，於合約未到期前提前終止合約，得按每月新台幣五萬元計算當期服務費用，並於當期合約到期前匯入乙方指定收款帳戶。`
+      content: `1. 合約期滿前七日內，任一方均無以書面或電子郵件通知他方為不續約之意思表示者，則合約期限自動展延一期，屆期滿時亦同。\n\n2. 任何一方不履行或違反本合約任一條款時，他方得以七日內書面或電子郵件通知，逾期未回應者，自動終止合約。\n\n3. 甲、乙雙方同意，於合約未到期前提前終止合約，得按每月新台幣七萬元計算當期服務費用，並於當期合約到期前匯入乙方指定收款帳戶。`
     },
     {
       title: "9. 管轄機關及準據法與附則",

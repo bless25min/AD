@@ -4,41 +4,47 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Copy, ShieldCheck, Building2, User, FileText, Download } from 'lucide-react';
 import { getContractTerms, paymentInfo } from '../content/contractTerms';
 
+import html2pdf from 'html2pdf.js';
+
+
 export const ContractPage = () => {
   const [searchParams] = useSearchParams();
   
-  // Format dates or fallback
-  const getTodayFormatted = () => {
-    const d = new Date();
+  const formatTwDate = (dateStr: string) => {
+    if (!dateStr) return '';
+    const d = new Date(dateStr);
     return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
   };
 
-  const getFutureFormatted = (months: number) => {
-    const d = new Date();
-    d.setMonth(d.getMonth() + months);
+  const calcEndDate = (startDateStr: string, monthsStr: string) => {
+    if (!startDateStr || !monthsStr) return '';
+    const d = new Date(startDateStr);
+    d.setMonth(d.getMonth() + parseInt(monthsStr, 10));
     return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
   };
-
-  const urlMonths = searchParams.get('months') || '6';
-  const defaultStartDate = searchParams.get('startDate') || getTodayFormatted();
-  const defaultEndDate = searchParams.get('endDate') || getFutureFormatted(parseInt(urlMonths, 10));
-
-  const contractParams = {
-    amount: searchParams.get('amount') || '50,000',
-    months: urlMonths,
-    project: searchParams.get('project') || '社群內容產製與行銷顧問',
-    startDate: defaultStartDate,
-    endDate: defaultEndDate,
-  };
-
-  const terms = getContractTerms(contractParams);
 
   // Form State
   const [formData, setFormData] = useState({
     companyName: '',
     vat: '',
-    representative: ''
+    representative: '',
+    months: searchParams.get('months') || '6',
+    startDate: searchParams.get('startDate') 
+      ? new Date(searchParams.get('startDate')!).toISOString().split('T')[0] 
+      : new Date().toISOString().split('T')[0],
   });
+
+  const contractParams = {
+    amount: searchParams.get('amount') || '70,000',
+    months: formData.months,
+    project: searchParams.get('project') || '社群內容產製與行銷顧問',
+    startDate: formatTwDate(formData.startDate),
+    endDate: calcEndDate(formData.startDate, formData.months),
+    companyName: formData.companyName || '下附數位簽署人',
+  };
+
+  const terms = getContractTerms(contractParams);
+
   const [isAgreed, setIsAgreed] = useState(false);
   const [isSigned, setIsSigned] = useState(false);
   const [signedDate, setSignedDate] = useState<string | null>(null);
@@ -66,6 +72,21 @@ export const ContractPage = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleDownloadPdf = () => {
+    const element = document.getElementById('contract-document');
+    if (!element) return;
+    
+    const opt = {
+      margin:       10,
+      filename:     `${formData.companyName || '公司'}_顧問服務合約.pdf`,
+      image:        { type: 'jpeg' as const, quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true },
+      jsPDF:        { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const }
+    };
+
+    html2pdf().set(opt).from(element).save();
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0f18] text-slate-200 font-sans selection:bg-brand-500 selection:text-white pb-32">
       {/* Header */}
@@ -86,14 +107,14 @@ export const ContractPage = () => {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
         
         {/* Document Container */}
-        <div className="bg-slate-900 border border-slate-700/60 rounded-2xl shadow-2xl overflow-hidden mb-8 relative">
+        <div id="contract-document" className="bg-slate-900 border border-slate-700/60 rounded-2xl shadow-2xl overflow-hidden mb-8 relative">
           
           <div className="p-8 sm:p-12 border-b border-slate-800">
             <h1 className="text-3xl md:text-4xl font-black text-white mb-8 text-center tracking-wide">
               數據顧問服務合約書
             </h1>
             <div className="flex flex-col md:flex-row justify-between text-slate-400 text-lg mb-8 font-medium space-y-4 md:space-y-0">
-              <div>立約人 (甲方)：下附數位簽署人</div>
+              <div>立約人 (甲方)：{formData.companyName || '下附數位簽署人'}</div>
               <div>立約人 (乙方)：貳拾伍數據顧問企業社</div>
             </div>
             <p className="text-slate-300 leading-relaxed mb-8">
@@ -112,6 +133,26 @@ export const ContractPage = () => {
                 </section>
               ))}
             </div>
+            
+            {isSigned && (
+              <div className="mt-16 pt-8 border-t border-slate-700">
+                <h3 className="text-xl font-bold text-white mb-6">簽署紀錄 (數位簽章)</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-slate-300">
+                  <div>
+                    <p className="mb-2"><span className="text-slate-500">甲方立約人代表：</span> {formData.representative}</p>
+                    <p className="mb-2"><span className="text-slate-500">甲方公司名稱：</span> {formData.companyName}</p>
+                    <p className="mb-2"><span className="text-slate-500">甲方統一編號：</span> {formData.vat || '無'}</p>
+                  </div>
+                  <div>
+                    <p className="mb-2"><span className="text-slate-500">乙方立約人代表：</span> 貳拾伍數據顧問企業社</p>
+                    <p className="mb-2"><span className="text-slate-500">簽署完成時間：</span> {signedDate}</p>
+                    <p className="mb-2 text-[#00B900] font-bold flex items-center">
+                      <CheckCircle2 className="w-4 h-4 mr-1" /> 已同意數位合約條例
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -131,10 +172,37 @@ export const ContractPage = () => {
 
           <h2 className="text-2xl font-bold text-white mb-8 flex items-center">
             <Building2 className="w-6 h-6 text-brand-500 mr-3" />
-            請填寫甲方立約資訊
+            合約期間與立約資訊設定
           </h2>
 
           <form onSubmit={handleSign} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 border-b border-slate-800 pb-8">
+              <div>
+                <label className="block text-sm font-medium text-slate-400 mb-2">合約開始日期 <span className="text-red-500">*</span></label>
+                <input
+                  type="date"
+                  required
+                  disabled={isSigned}
+                  className="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 disabled:opacity-50 transition-colors [&::-webkit-calendar-picker-indicator]:invert"
+                  value={formData.startDate}
+                  onChange={(e) => setFormData({...formData, startDate: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-400 mb-2">合約長度 (月數) <span className="text-red-500">*</span></label>
+                <input
+                  type="number"
+                  min="1"
+                  max="60"
+                  required
+                  disabled={isSigned}
+                  className="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 disabled:opacity-50 transition-colors"
+                  value={formData.months}
+                  onChange={(e) => setFormData({...formData, months: e.target.value})}
+                />
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-slate-400 mb-2">甲方公司名稱 <span className="text-red-500">*</span></label>
@@ -246,9 +314,16 @@ export const ContractPage = () => {
                   <Download className="w-8 h-8" />
                 </div>
                 <h2 className="text-3xl font-black text-white mb-4">合約已成立，準備邁出第一步</h2>
-                <p className="text-xl text-slate-400 font-medium max-w-2xl mx-auto">
+                <p className="text-xl text-slate-400 font-medium max-w-2xl mx-auto mb-6">
                   請將首期服務款項匯至以下指定帳戶。<br/>匯款完成後，我將立刻為您啟動後續工作流程。
                 </p>
+                <button
+                  onClick={handleDownloadPdf}
+                  className="inline-flex items-center px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl transition-colors shadow-lg shadow-brand-500/20"
+                >
+                  <FileText className="w-5 h-5 mr-2" />
+                  下載合約 PDF
+                </button>
               </div>
 
               <div className="max-w-xl mx-auto bg-slate-800/50 border border-slate-700 rounded-2xl p-6 sm:p-8 backdrop-blur-sm relative z-10">
