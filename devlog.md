@@ -109,6 +109,14 @@
 
 ---
 
+## 🟢 v1.3: 企業級合約屏障與自動化通知 (Enterprise Contract Security & Automated Push)
+**發布重點**：強制合約頁面實名登入，並實作透過後端 API 給予客戶自動化的 LINE 確認推播信件，完成簽署體驗閉環。
+* **LIFF Auth Guard 權限鎖定 (Secure Access)**：大幅升級 `/contract` 安全性，匯入 `useLiff` 強制阻擋未授權存取。當探測到未登入狀態，將出現在地化 Loader 並直接引發 LINE 驗證程序，確保獲取的 `userId` 為合法真實身分。
+* **無伺服器推播引擎 (Serverless Push Notifier)**：建置全新的 `functions/api/notify-contract.ts` 後端 API 節點。在使用者按下「正式簽署」時，以非同步背景執行的形式呼叫 LINE Messaging API 送出確認。
+* **零時差確認推送**：客戶在畫面完成數位合約與生成 PDF 的瞬間，手機端 LINE 官方帳號也會同時收到推播。文案動態抓取「公司名稱、合約起訖日與月費」，並溫馨提示後續匯款事項，構成如真人般的專業顧問體驗。
+
+---
+
 **未來發展建議 (Next Steps)**：
 - 對接前端真實 Analytics (如 PostHog) 以驗證每個微診斷節點的點擊留存率。
 - 測試 A/B 版本的實際流量耗損，並調整 B 版的主視覺重心。

@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Copy, ShieldCheck, Building2, User, FileText, Download } from 'lucide-react';
+import { CheckCircle2, Copy, ShieldCheck, Building2, User, FileText, Download, Loader2 } from 'lucide-react';
 import { getContractTerms, paymentInfo } from '../content/contractTerms';
+import { useLiff } from '../hooks/useLiff';
+import { useAppStore } from '../store/useAppStore';
 
 import html2pdf from 'html2pdf.js';
 
 
 export const ContractPage = () => {
   const [searchParams] = useSearchParams();
+  const { isInitializing } = useLiff();
+  const { isLoggedIn, profile } = useAppStore();
   
   const formatTwDate = (dateStr: string) => {
     if (!dateStr) return '';
@@ -50,7 +54,7 @@ export const ContractPage = () => {
   const [signedDate, setSignedDate] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
-  const handleSign = (e: React.FormEvent) => {
+  const handleSign = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.companyName || !formData.representative || !isAgreed) return;
     
@@ -64,6 +68,25 @@ export const ContractPage = () => {
     setTimeout(() => {
       document.getElementById('payment-section')?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
+
+    // Notify backend
+    if (isLoggedIn && profile?.userId) {
+      try {
+        await fetch('/api/notify-contract', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            userId: profile.userId,
+            companyName: formData.companyName,
+            startDate: contractParams.startDate,
+            endDate: contractParams.endDate,
+            amount: contractParams.amount,
+          })
+        });
+      } catch (err) {
+        console.error('Failed to send notification:', err);
+      }
+    }
   };
 
   const handleCopy = () => {
@@ -86,6 +109,26 @@ export const ContractPage = () => {
 
     html2pdf().set(opt).from(element).save();
   };
+
+  if (isInitializing) {
+    return (
+      <div className="min-h-screen bg-[#0a0f18] flex flex-col items-center justify-center p-4">
+        <Loader2 className="w-10 h-10 text-brand-500 animate-spin mb-4" />
+        <h1 className="text-xl font-medium text-slate-200">合約系統驗證中...</h1>
+        <p className="text-sm text-slate-400 mt-2">正在讀取您的 LINE 數位簽章授權</p>
+      </div>
+    );
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <div className="min-h-screen bg-[#0a0f18] flex flex-col items-center justify-center p-4">
+        <Loader2 className="w-10 h-10 text-brand-500 animate-spin mb-4" />
+        <h1 className="text-xl font-medium text-slate-200">請稍候...</h1>
+        <p className="text-sm text-slate-400 mt-2">正在導向 LINE 登入以確保合約安全性</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0a0f18] text-slate-200 font-sans selection:bg-brand-500 selection:text-white pb-32">
