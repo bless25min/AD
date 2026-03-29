@@ -6,7 +6,10 @@ export interface PainPoint {
   positiveFeedback: string;
   followUp: {
     question: string;
-    options: string[];
+    options: {
+      id: string;
+      text: string;
+    }[];
   };
   affirmativeGuidance: string;
   microDiagnosis: string;
@@ -24,7 +27,11 @@ export const painPoints: PainPoint[] = [
     positiveFeedback: "你不是唯一遇到這個問題的人。這兩年的流量成本的確翻了好幾倍。",
     followUp: {
       question: "這是你最不想看到、卻每天發生的畫面嗎？",
-      options: ["對，尤其這幾個月特別明顯", "時好時壞，很不穩定", "其實流量有，但就是進不來"]
+      options: [
+        { id: "recent_drop", text: "對，尤其這幾個月特別明顯" },
+        { id: "unstable", text: "時好時壞，很不穩定" },
+        { id: "no_conversion", text: "其實流量有，但就是進不來" }
+      ]
     },
     affirmativeGuidance: "其實，你不需要再花幾萬塊去上玄學般的廣告投手課。\n問題通常不是出在你『不夠懂臉書設定』，而是『素材沒有抓到市場現在真正在痛的地方』。",
     microDiagnosis: "這在我們系統裡屬於【前端切入點失焦】。\n\n當大家都在賣一樣的規格時，廣告只講功能已經沒用了。你必須重新提煉出那一句『讓他非停下來看不可』的痛點口號。",
@@ -40,7 +47,11 @@ export const painPoints: PainPoint[] = [
     positiveFeedback: "這反而代表你的第一步做對了：你的廣告切入點有成功吸引到他們點擊。",
     followUp: {
       question: "這種花了錢買人進來，卻眼睜睜看他們離開的感覺，是不是很眼熟？",
-      options: ["對，看數據真的會吐血", "大部分人在第一屏就跑了", "滑到底了也沒點按鈕"]
+      options: [
+        { id: "frustrating_data", text: "對，看數據真的會吐血" },
+        { id: "first_screen_bounce", text: "大部分人在第一屏就跑了" },
+        { id: "no_action", text: "滑到底了也沒點按鈕" }
+      ]
     },
     affirmativeGuidance: "如果他們點了廣告，代表他們『有興趣』；但進站後馬上跑掉，代表他們『不相信你』或『看不懂』。\n這不是設計不夠美，是敘事順序錯了。",
     microDiagnosis: "這在我們系統裡屬於【承接段信任斷裂】。\n\n他帶著痛點進來，第一眼想看的是『你能怎麼救我』，但大多數頁面第一眼卻在講『我們公司有多牛』。",
@@ -56,7 +67,11 @@ export const painPoints: PainPoint[] = [
     positiveFeedback: "這表示你的內容是有價值的，他們願意花時間閱讀。",
     followUp: {
       question: "當你看到這種『只看不問』的數據，是不是常懷疑自己到底寫錯什麼？",
-      options: ["對，完全猜不透他們在想什麼", "可能他們覺得太貴了吧？", "有時候會跑去問很基礎的問題"]
+      options: [
+        { id: "cant_guess", text: "對，完全猜不透他們在想什麼" },
+        { id: "maybe_price", text: "可能他們覺得太貴了吧？" },
+        { id: "basic_questions", text: "有時候會跑去問很基礎的問題" }
+      ]
     },
     affirmativeGuidance: "真相是：他們想問，但是『不敢問』。\n他們怕一點進去就會被強迫推銷，或是根本懶得去消化查證你說的話。",
     microDiagnosis: "這在我們系統裡屬於【行動阻力過高】。\n\n你給的下一步太沉重了。『立即購買』或『專業諮詢』對還沒完全信任你的冷客來說，心理壓力太大了。",
@@ -72,7 +87,11 @@ export const painPoints: PainPoint[] = [
     positiveFeedback: "這代表你的前端導流是暢通的，你已經解決了最難的『帶人進來』的問題。",
     followUp: {
       question: "每天處理這種沒有營養的詢價，是不是把你原本該拿來服務核心客戶的時間都吃光了？",
-      options: ["沒錯，每天回這些真的很心累", "報價也是死，不報價也是死", "最後成交的都是本來就認識的"]
+      options: [
+        { id: "exhausted", text: "沒錯，每天回這些真的很心累" },
+        { id: "price_trap", text: "報價也是死，不報價也是死" },
+        { id: "only_referrals", text: "最後成交的都是本來就認識的" }
+      ]
     },
     affirmativeGuidance: "真正的問題出在你把『篩選與教育』的工作，全部壓在最後一關的人工對話上。",
     microDiagnosis: "這在我們系統裡屬於【漏斗定位倒置】。\n\n成熟的獲客系統，應該是在『頁面』上就完成教育與洗腦，讓來到 LINE 的人已經是帶著認同與意願的準客戶，而不是來比價的過客。",

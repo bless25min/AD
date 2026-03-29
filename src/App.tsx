@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// Pages
 import { HomePage } from './pages/HomePage';
-import { HomePageB } from './pages/HomePageB';
+import { PainPointPage } from './pages/PainPointPage';
+import { SituationPage } from './pages/SituationPage';
 import { LiffInitPage } from './pages/LiffInitPage';
 import { LiffWelcomePage } from './pages/LiffWelcomePage';
 import { LiffFriendRequiredPage } from './pages/LiffFriendRequiredPage';
@@ -11,7 +13,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/b" element={<HomePageB />} />
+        <Route path="/path/:painId" element={<PainPointPage />} />
+        <Route path="/path/:painId/:optionId" element={<SituationPage />} />
         <Route path="/liff" element={<LiffInitPage />} />
         <Route path="/liff/welcome" element={<LiffWelcomePage />} />
         <Route path="/liff/friend-required" element={<LiffFriendRequiredPage />} />
