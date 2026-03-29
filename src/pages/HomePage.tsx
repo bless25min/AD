@@ -1,83 +1,52 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, ChevronRight, MessageCircle, Activity, TrendingDown, Target, HelpCircle, ChevronDown } from 'lucide-react';
 import { siteContent } from '../content/siteContent';
 import { painPoints } from '../content/painPoints';
 import { faqs } from '../content/faq';
-import { useAppStore } from '../store/useAppStore';
-import { ProgressTracker } from '../components/ProgressTracker';
-
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-};
 
 export const HomePage = () => {
   const navigate = useNavigate();
-  const { setPainPoint, selectedPainPoint, setFollowUpOption, selectedFollowUpOption } = useAppStore();
-  const [activeFaq, setActiveFaq] = useState<string | null>(null);
-  
-  // Progress tracker state
-  const [activeStep, setActiveStep] = useState(1);
-  const [showProgress, setShowProgress] = useState(false);
-  
-  const heroRef = useRef<HTMLElement>(null);
   const ctaRef = useRef<HTMLElement>(null);
-  const diagnosisRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (heroRef.current) {
-        const heroBottom = heroRef.current.getBoundingClientRect().bottom;
-        setShowProgress(heroBottom < 100);
-      }
-      
-      if (ctaRef.current) {
-        const ctaTop = ctaRef.current.getBoundingClientRect().top;
-        if (ctaTop < window.innerHeight * 0.75) {
-          setActiveStep(3);
-        } else if (selectedPainPoint) {
-          setActiveStep(2);
-        } else {
-          setActiveStep(1);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [selectedPainPoint]);
-
-  const handlePainPointClick = (id: string) => {
-    if (selectedPainPoint !== id) {
-      setPainPoint(id);
-      setActiveStep(2);
-    } else {
-      setPainPoint(null);
-      setActiveStep(1);
-    }
-  };
-
-  const handleFollowUpClick = (id: string) => {
-    setFollowUpOption(id);
-    setTimeout(() => {
-      diagnosisRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 200);
-  };
+  
+  const [expandedPoint, setExpandedPoint] = useState<string | null>(null);
+  const [deepExpanded, setDeepExpanded] = useState<Record<string, boolean>>({});
+  const [activeFaq, setActiveFaq] = useState<string | null>(null);
 
   const handleFinalCtaClick = () => {
     navigate('/liff');
   };
 
+  const handlePointClick = (id: string) => {
+    if (expandedPoint === id) {
+      setExpandedPoint(null);
+      setDeepExpanded(prev => ({ ...prev, [id]: false }));
+    } else {
+      setExpandedPoint(id);
+    }
+  };
+
+  const handleDeepExpand = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setDeepExpanded(prev => ({ ...prev, [id]: true }));
+  };
+
+  const getIcon = (id: string) => {
+    switch(id) {
+      case 'traffic_drop': return <TrendingDown className="w-8 h-8 md:w-10 md:h-10 text-brand-400" />;
+      case 'high_bounce': return <Activity className="w-8 h-8 md:w-10 md:h-10 text-brand-400" />;
+      case 'no_booking': return <Target className="w-8 h-8 md:w-10 md:h-10 text-brand-400" />;
+      default: return <MessageCircle className="w-8 h-8 md:w-10 md:h-10 text-brand-400" />;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-dark-bg text-slate-100 font-sans selection:bg-brand-500 selection:text-white pb-20">
-      <ProgressTracker currentStep={activeStep} isVisible={showProgress} />
       
-      {/* 1. Hero 區塊 */}
-      <section ref={heroRef} className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center min-h-[85vh] flex flex-col justify-center">
-        <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+      {/* 1. Hero */}
+      <section className="relative pt-24 md:pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center flex flex-col justify-center">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <div className="inline-block mb-6 px-4 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300 text-sm font-medium tracking-wide">
             致：需要高信任門檻的預約型服務
           </div>
@@ -93,30 +62,28 @@ export const HomePage = () => {
           <p className="text-lg md:text-xl text-slate-300 mb-8 font-medium whitespace-pre-line leading-relaxed max-w-3xl mx-auto">
             {siteContent.hero.description}
           </p>
-
-          <div className="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 mb-8 max-w-2xl mx-auto">
+          
+          <div className="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 mb-8 max-w-2xl mx-auto transition-colors hover:border-slate-700">
             <p className="text-lg text-slate-300 font-medium whitespace-pre-line leading-relaxed">
               {siteContent.hero.boundary}
             </p>
           </div>
-
+          
           <p className="text-lg md:text-xl text-brand-300/80 mb-12 font-bold whitespace-pre-line">
             {siteContent.hero.softPermission}
           </p>
-          
+
           <button 
-            onClick={() => {
-              document.getElementById('diagnostic')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="group relative inline-flex items-center justify-center px-8 py-4 text-xl font-bold text-white transition-all duration-300 bg-[#00B900] border border-transparent rounded-full hover:bg-[#009900] shadow-[0_0_20px_rgba(0,185,0,0.2)] hover:scale-105 focus:outline-none"
+            onClick={() => document.getElementById('diagnostic')?.scrollIntoView({ behavior: 'smooth' })}
+            className="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white transition-all duration-300 bg-brand-600 border border-brand-500 rounded-2xl hover:bg-brand-500 shadow-[0_0_20px_rgba(var(--brand-500),0.3)] hover:shadow-[0_0_40px_rgba(var(--brand-500),0.5)] hover:-translate-y-1 focus:outline-none"
           >
-            {siteContent.hero.ctaText}
-            <ChevronDown className="w-6 h-6 ml-2 group-hover:translate-y-1 transition-transform" />
+            <span className="tracking-wide">{siteContent.hero.ctaText}</span>
+            <ChevronRight className="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" />
           </button>
         </motion.div>
       </section>
 
-      {/* 2. Affinity (角色困境) */}
+      {/* 2. Affinity */}
       <section className="py-20 bg-[#0a0f18] border-y border-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center sm:text-left">
@@ -132,12 +99,10 @@ export const HomePage = () => {
           </div>
           <div className="space-y-6">
             <div className="p-6 bg-slate-900 border border-slate-800 rounded-2xl">
-              <p className="text-lg text-slate-300 leading-relaxed whitespace-pre-line">
+              <p className="text-lg text-slate-300 leading-relaxed whitespace-pre-line font-medium mb-6">
                 {siteContent.affinity.closing}
               </p>
-            </div>
-            <div className="p-6 bg-transparent border-l-4 border-brand-500">
-              <p className="text-xl text-brand-400 font-bold leading-relaxed whitespace-pre-line">
+              <p className="text-xl text-brand-400 font-bold whitespace-pre-line leading-relaxed">
                 {siteContent.affinity.closing2}
               </p>
             </div>
@@ -145,177 +110,22 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 3. Diagnostic */}
-      <section id="diagnostic" className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[600px]">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            {selectedPainPoint ? "我們來往下拆解這個環節：" : "你現在通常卡在哪個環節？"}
-          </h2>
-        </div>
-
-        <div className="flex flex-col gap-6 relative">
-          <AnimatePresence mode="popLayout">
-            {painPoints.map((pt) => {
-              const icons = {
-                high_cpa: TrendingDown,
-                low_conversion: MessageCircle,
-                unstable: Activity,
-                no_idea: HelpCircle
-              };
-              const Icon = icons[pt.id as keyof typeof icons] || Target;
-              const isSelected = selectedPainPoint === pt.id;
-
-              if (selectedPainPoint && !isSelected) return null;
-
-              return (
-                <motion.div
-                  layout
-                  key={pt.id}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95, height: 0, overflow: 'hidden' }}
-                  transition={{ duration: 0.4 }}
-                  className={`relative rounded-2xl border-2 transition-all duration-300 ${
-                    isSelected 
-                      ? 'border-brand-500 bg-slate-900 shadow-[0_0_30px_rgba(34,197,94,0.1)]' 
-                      : 'border-slate-800 bg-slate-900/50 hover:border-brand-500/50 hover:bg-slate-800 cursor-pointer'
-                  }`}
-                >
-                  <div 
-                    onClick={() => !isSelected && handlePainPointClick(pt.id)}
-                    className="p-8"
-                  >
-                    <div className="flex items-start">
-                      <div className={`w-14 h-14 rounded-xl flex flex-shrink-0 items-center justify-center mr-6 border transition-colors ${isSelected ? 'bg-brand-500/20 border-brand-500' : 'bg-dark-bg border-slate-700'}`}>
-                        <Icon className={`w-7 h-7 ${isSelected ? 'text-brand-400' : 'text-slate-400'}`} />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex justify-between items-start">
-                          <h3 className={`text-2xl font-bold mb-3 ${isSelected ? 'text-white' : 'text-slate-200'}`}>
-                            {pt.title}
-                          </h3>
-                          {isSelected && (
-                            <button 
-                              onClick={(e) => { e.stopPropagation(); handlePainPointClick(pt.id); }}
-                              className="text-sm text-slate-500 hover:text-white underline underline-offset-4"
-                            >
-                              重選
-                            </button>
-                          )}
-                        </div>
-                        <p className="text-slate-400 text-base leading-relaxed mb-4 whitespace-pre-line">
-                          {pt.detailedDescription}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <AnimatePresence>
-                    {isSelected && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        transition={{ duration: 0.4 }}
-                        className="border-t border-slate-800 bg-slate-800/20 px-8 py-8 rounded-b-xl"
-                      >
-                        <div className="mb-6 bg-brand-900/10 border-l-2 border-brand-500 p-4 rounded-r-lg">
-                           <p className="text-lg text-brand-300 font-medium">{pt.positiveFeedback}</p>
-                        </div>
-                        <h4 className="text-xl font-bold text-white mb-6 flex items-center">
-                          <MessageCircle className="w-5 h-5 text-brand-400 mr-3" />
-                          {pt.followUp.question}
-                        </h4>
-                        
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          {pt.followUp.options.map((opt) => {
-                            const isOptSelected = selectedFollowUpOption === opt.id;
-                            return (
-                              <button
-                                key={opt.id}
-                                onClick={() => handleFollowUpClick(opt.id)}
-                                className={`text-left p-5 rounded-xl border transition-all duration-300 focus:outline-none ${
-                                  isOptSelected 
-                                   ? 'border-brand-500 bg-brand-500/10 text-white shadow-inner transform scale-[1.02]' 
-                                   : 'border-slate-700 bg-slate-800/50 text-slate-300 hover:border-brand-400/50 hover:bg-slate-700'
-                                }`}
-                              >
-                                {opt.text}
-                              </button>
-                            );
-                          })}
-                        </div>
-
-                        <AnimatePresence>
-                          {selectedFollowUpOption && (
-                            <motion.div
-                              ref={diagnosisRef}
-                              initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                              animate={{ opacity: 1, height: 'auto', marginTop: 32 }}
-                              transition={{ duration: 0.5 }}
-                              className="overflow-hidden"
-                            >
-                              <div className="bg-brand-900/10 border-l-4 border-brand-500 p-6 md:p-8 rounded-r-2xl">
-                                <h5 className="text-sm font-bold tracking-widest text-brand-500 mb-3 uppercase">🔍 專屬診斷回饋</h5>
-                                <p className="text-lg text-brand-300 font-medium mb-4 whitespace-pre-line">
-                                  {pt.affirmativeGuidance}
-                                </p>
-                                <p className="text-lg text-slate-200 leading-relaxed whitespace-pre-line mb-6 font-medium">
-                                  {pt.microDiagnosis}
-                                </p>
-                                
-                                {pt.microDiagnosisBridge && (
-                                   <p className="text-lg text-brand-300 italic mb-6 border-t border-slate-800/60 pt-4 whitespace-pre-line">
-                                      {pt.microDiagnosisBridge}
-                                   </p>
-                                )}
-                                
-                                <div className="mb-8 p-4 bg-slate-800/40 rounded-xl border border-slate-700/50">
-                                   <p className="text-slate-300 font-medium flex items-start leading-relaxed whitespace-pre-line">
-                                      <CheckCircle2 className="w-5 h-5 text-brand-400 mr-3 flex-shrink-0 mt-0.5" />
-                                      {pt.progressSense}
-                                   </p>
-                                </div>
-
-                                <button
-                                  onClick={() => {
-                                    document.getElementById('results-philosophy')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                  }}
-                                  className="mx-auto flex items-center justify-center text-sm font-bold text-slate-400 hover:text-brand-400 transition-colors py-2 px-4 rounded-full bg-slate-800 border border-slate-700 hover:border-brand-500/50"
-                                >
-                                  {pt.recommendedNextStep} <ChevronDown className="w-4 h-4 ml-2" />
-                                </button>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* 4. Compressed Views (降級的舊三大觀點) */}
-      <section id="results-philosophy" className="py-20 bg-[#05080f] border-t border-slate-800/50">
+      {/* 3. Compressed Views */}
+      <section className="py-20 bg-[#05080f] border-b border-slate-800/50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {siteContent.compressedViews.map((view, idx) => (
                <div key={idx} className="bg-slate-900/40 p-8 rounded-2xl border border-slate-800/60 hover:border-slate-700 transition-colors">
-                 <h3 className="text-xl font-bold text-slate-200 mb-4 leading-snug">{view.title}</h3>
-                 <p className="text-base text-slate-400 leading-relaxed font-medium whitespace-pre-line">{view.description}</p>
+                 <h3 className="text-xl font-bold text-brand-400 mb-4 leading-snug">{view.title}</h3>
+                 <p className="text-base text-slate-300 leading-relaxed font-medium whitespace-pre-line">{view.description}</p>
                </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 5. Core Proposition (全頁中樞金句) */}
-      <section className="py-28 bg-black border-y border-slate-800 relative">
+      {/* 4. Core Proposition */}
+      <section className="py-28 bg-black border-b border-slate-800 relative shadow-2xl">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -333,18 +143,18 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 5.1 Progress Hint 1 */}
-      <div className="bg-brand-900/10 border-y border-brand-500/20 py-8 text-center px-4">
+      {/* 5. Progress Hint 1 */}
+      <div className="bg-brand-900/10 border-b border-brand-500/20 py-8 text-center px-4">
          <p className="text-brand-400 font-bold text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             {siteContent.progressHints[0]}
          </p>
       </div>
 
-      {/* 8. New Model (新方法合理化) */}
+      {/* 6. New Model */}
       <section className="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center whitespace-pre-line leading-tight">{siteContent.newModel.title}</h2>
-        <div className="max-w-3xl mx-auto mb-16">
-          <p className="text-xl text-slate-400 text-center whitespace-pre-line mb-12">
+        <div className="max-w-3xl mx-auto">
+          <p className="text-xl text-slate-400 text-center whitespace-pre-line mb-12 font-medium">
             {siteContent.newModel.description}
           </p>
           <div className="space-y-6">
@@ -352,65 +162,34 @@ export const HomePage = () => {
                <div key={idx} className="bg-[#0a0f18] p-8 rounded-2xl border border-slate-800 relative text-center sm:text-left flex flex-col sm:flex-row items-center sm:items-start transition-colors hover:border-slate-700">
                  <div className="text-5xl font-black text-slate-800 mr-6 mb-4 sm:mb-0">0{idx+1}</div>
                  <div>
-                   <h3 className="text-2xl font-bold text-white mb-3">{step.name}</h3>
-                   <p className="text-slate-400 text-lg">{step.desc}</p>
+                   <h3 className="text-2xl font-bold text-brand-400 mb-3">{step.name}</h3>
+                   <p className="text-slate-300 text-lg">{step.desc}</p>
                  </div>
                </div>
             ))}
           </div>
         </div>
-        
-        {/* 9. Evidence 區塊 (權威說服與平台訊號) */}
-        <div className="bg-[#0a0f18] rounded-[2rem] p-8 sm:p-12 border border-slate-800 mt-10 max-w-4xl mx-auto shadow-xl">
-           <h3 className="text-3xl font-bold mb-8 text-white whitespace-pre-line">{siteContent.evidence.title}</h3>
-           <p className="text-slate-300 text-lg leading-relaxed whitespace-pre-line mb-10 border-b border-slate-800 pb-10">
-             {siteContent.evidence.description}
-           </p>
-           
-           <p className="text-xl text-brand-300 font-bold leading-relaxed whitespace-pre-line mb-10">
-             {siteContent.evidence.supportLine}
-           </p>
+      </section>
 
-           <div className="mt-6 p-6 bg-slate-900/80 rounded-xl border border-slate-700/60 relative">
-             <div className="absolute left-0 top-0 w-1 h-full bg-slate-600 rounded-l-xl"></div>
-              <p className="text-sm sm:text-base text-slate-400 leading-relaxed whitespace-pre-line">
-                <span className="font-bold text-slate-200 block mb-2">補充視角（平台訊號變更）</span>
-                {siteContent.evidence.microProof}
-              </p>
-           </div>
-        </div>
-
-        {/* 9.1 Results Scenario (結果感模組) */}
-        <div className="mt-16 text-center max-w-4xl mx-auto lg:px-0">
-           <h2 className="text-3xl font-bold text-white mb-8">{siteContent.resultsScenario.title}</h2>
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+      {/* 7. Results Scenario */}
+      <section className="py-24 bg-[#05080f] border-y border-slate-800/50">
+        <div className="text-center max-w-5xl mx-auto px-4 lg:px-8">
+           <h2 className="text-3xl font-bold text-white mb-10">{siteContent.resultsScenario.title}</h2>
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
               {siteContent.resultsScenario.bullets.map((b, i) => (
                  <div key={i} className="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex items-start text-left hover:border-slate-600 transition-colors">
-                    <CheckCircle2 className="w-6 h-6 text-brand-500 mr-4 flex-shrink-0 mt-1" />
+                    <CheckCircle2 className="w-6 h-6 text-brand-500 mr-4 flex-shrink-0 mt-0.5" />
                     <span className="text-slate-300 text-lg leading-relaxed">{b}</span>
                  </div>
               ))}
            </div>
-           <p className="text-xl text-brand-400 font-bold whitespace-pre-line leading-relaxed pb-8 border-b border-slate-800">{siteContent.resultsScenario.closing}</p>
+           <p className="text-2xl text-brand-400 font-bold whitespace-pre-line leading-relaxed pb-8">{siteContent.resultsScenario.closing}</p>
         </div>
+      </section>
 
-        {/* 9.2 Micro Evidence (微型真實證據) */}
-        <div className="mt-16 max-w-4xl mx-auto">
-           <h2 className="text-2xl text-center font-bold text-slate-400 mb-10">{siteContent.microEvidence.title}</h2>
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {siteContent.microEvidence.items.map((item, idx) => (
-                 <div key={idx} className="bg-dark-bg p-6 rounded-2xl border-l-4 border-slate-700 flex flex-col justify-center text-left hover:border-brand-500 transition-colors">
-                    <span className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-3">真實切片 {idx + 1}</span>
-                    <p className="text-lg text-slate-300 leading-relaxed font-medium">
-                       {item.content}
-                    </p>
-                 </div>
-              ))}
-           </div>
-        </div>
-
-        {/* 9.3 Mid-Page Objections (中段異議處理) */}
-        <div className="mt-24 max-w-4xl mx-auto rounded-[2rem] bg-slate-900/50 p-8 sm:p-12 border border-slate-800">
+      {/* 8. Mid-Page Objections */}
+      <section className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-slate-900/50 rounded-[2rem] p-8 sm:p-12 border border-slate-800">
            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-10 text-center">{siteContent.midPageObjections.title}</h3>
            <div className="space-y-8">
               {siteContent.midPageObjections.items.map((item, idx) => (
@@ -419,7 +198,7 @@ export const HomePage = () => {
                        <HelpCircle className="w-6 h-6 text-slate-500 mr-3 mt-0.5 flex-shrink-0" />
                        {item.question}
                     </h4>
-                    <p className="text-lg text-slate-400 pl-9 leading-relaxed whitespace-pre-line font-medium border-l-[3px] border-brand-500/30 ml-[11px] py-1">
+                    <p className="text-lg text-slate-400 pl-9 leading-relaxed whitespace-pre-line font-medium border-l-[3px] border-brand-500/30 ml-[11px] py-2">
                        {item.answer}
                     </p>
                  </div>
@@ -428,10 +207,183 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 10. FAQ (異議處理) */}
-      <section className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/50">
+      {/* 9. Friction Objection */}
+      <section className="pt-24 pb-12 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center border-t border-slate-800/50">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-slate-200 leading-tight">
+          {siteContent.frictionObjection.title}
+        </h2>
+        <p className="text-xl text-slate-400 leading-relaxed whitespace-pre-line max-w-3xl mx-auto font-medium">
+          {siteContent.frictionObjection.description}
+        </p>
+      </section>
+
+      {/* 10. Diagnostic (painPoints 互動診斷) */}
+      <section id="diagnostic" className="pb-32 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="space-y-6">
+          {painPoints.map((pt) => {
+             const isExpanded = expandedPoint === pt.id;
+             const isDeep = deepExpanded[pt.id];
+
+             return (
+              <div 
+                key={pt.id}
+                onClick={() => handlePointClick(pt.id)}
+                className={`group rounded-2xl transition-all duration-300 transform cursor-pointer border ${
+                  isExpanded ? 'bg-slate-900 border-brand-500/50 shadow-lg' : 'bg-slate-900/50 border-slate-800 hover:border-slate-700 hover:bg-slate-900/80'
+                }`}
+              >
+                <div className="p-6 md:p-8 flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className={`mr-6 transition-transform duration-500 ${isExpanded ? 'scale-110' : 'scale-100 group-hover:scale-110'}`}>
+                      {getIcon(pt.id)}
+                    </div>
+                    <div className="text-left font-bold text-xl md:text-2xl text-slate-200 group-hover:text-white transition-colors">
+                      {pt.title}
+                    </div>
+                  </div>
+                  <ChevronDown className={`w-8 h-8 text-slate-500 transition-transform duration-500 ${isExpanded ? 'rotate-180 text-brand-400' : ''}`} />
+                </div>
+
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="border-t border-slate-800 bg-slate-800/20 px-8 py-8 rounded-b-xl cursor-default"
+                      onClick={(e) => e.stopPropagation()} // Prevent collapse when clicking inside
+                    >
+                      {/* Layer 1: Short Desc + Positive Feedback */}
+                      <p className="text-xl text-slate-200 font-medium mb-6 leading-relaxed">
+                        {pt.shortDescription}
+                      </p>
+                      <div className="mb-8 bg-brand-900/10 border-l-4 border-brand-500 p-5 rounded-r-lg">
+                         <p className="text-lg text-brand-300 font-bold">{pt.positiveFeedback}</p>
+                      </div>
+                      
+                      {/* FollowUp Question -> Deep Expand trigger */}
+                      {!isDeep && (
+                        <div>
+                          <h4 className="text-xl font-bold text-white mb-6 flex items-center">
+                            <MessageCircle className="w-5 h-5 text-brand-400 mr-3" />
+                            {pt.followUp.question}
+                          </h4>
+                          <div className="space-y-4">
+                            {pt.followUp.options.map((opt, oIdx) => (
+                              <button 
+                                key={oIdx}
+                                onClick={(e) => handleDeepExpand(pt.id, e)}
+                                className="w-full text-left p-4 rounded-xl border border-slate-700 bg-slate-800 text-slate-300 hover:bg-brand-900/20 hover:border-brand-500/50 hover:text-white transition-all text-lg font-medium group/btn flex justify-between items-center"
+                              >
+                                {opt}
+                                <ChevronRight className="w-5 h-5 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Layer 2: Deep Dive (Micro-Diagnosis) */}
+                      <AnimatePresence>
+                        {isDeep && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4 }}
+                          >
+                             <div className="bg-[#05080f] border border-brand-500/30 p-6 md:p-8 rounded-2xl relative shadow-xl">
+                               <h5 className="text-sm font-bold tracking-widest text-brand-500 mb-5 uppercase flex items-center">
+                                 <Target className="w-4 h-4 mr-2" /> 深入診斷回饋
+                               </h5>
+                               <p className="text-lg text-brand-300 font-bold mb-5 whitespace-pre-line leading-relaxed">
+                                 {pt.affirmativeGuidance}
+                               </p>
+                               <p className="text-lg text-slate-200 leading-relaxed whitespace-pre-line mb-6 font-medium">
+                                 {pt.microDiagnosis}
+                               </p>
+                               
+                               <p className="text-lg text-slate-400 italic mb-8 border-t border-slate-700/60 pt-6 whitespace-pre-line font-medium leading-relaxed">
+                                 {pt.microDiagnosisBridge}
+                               </p>
+                               
+                               <div className="mb-10 p-5 bg-brand-900/10 rounded-xl border border-brand-500/20">
+                                  <p className="text-brand-400 font-bold flex items-start leading-relaxed whitespace-pre-line">
+                                     <CheckCircle2 className="w-5 h-5 mr-3 flex-shrink-0 mt-0.5" />
+                                     {pt.progressSense}
+                                  </p>
+                               </div>
+
+                               <button
+                                 onClick={(e) => {
+                                   e.stopPropagation();
+                                   document.getElementById('micro-evidence')?.scrollIntoView({ behavior: 'smooth' });
+                                 }}
+                                 className="w-full bg-brand-600 hover:bg-brand-500 text-white font-bold py-5 px-6 rounded-xl flex items-center justify-center transition-colors shadow-lg"
+                               >
+                                 <span className="text-lg">{pt.recommendedNextStep}</span>
+                                 <ChevronRight className="w-5 h-5 ml-2" />
+                               </button>
+                             </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 11. Micro Evidence */}
+      <section id="micro-evidence" className="py-24 bg-dark-bg border-y border-slate-800/80">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+           <h2 className="text-2xl text-center font-bold text-slate-400 mb-12">{siteContent.microEvidence.title}</h2>
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+              {siteContent.microEvidence.items.map((item, idx) => (
+                 <div key={idx} className="bg-slate-900 p-8 rounded-2xl border-l-4 border-slate-700 flex flex-col justify-center text-left hover:border-brand-500 transition-colors shadow-md">
+                    <span className="text-xs text-brand-500 font-bold uppercase tracking-wider mb-4 pb-4 border-b border-slate-800">現場切片 {idx + 1}</span>
+                    <p className="text-lg text-slate-300 leading-relaxed font-medium">
+                       {item.content}
+                    </p>
+                 </div>
+              ))}
+           </div>
+           
+           {/* Folded Long Evidence (Downgraded) */}
+           <div className="max-w-3xl mx-auto">
+             <details className="group bg-slate-900/50 border border-slate-800 rounded-2xl cursor-pointer shadow-lg overflow-hidden transition-all duration-300">
+               <summary className="font-bold text-lg text-slate-400 py-5 px-6 flex justify-between items-center group-hover:text-slate-300 list-none">
+                 <span>看看這些破口背後的底層判斷邏輯</span>
+                 <ChevronDown className="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" />
+               </summary>
+               <div className="p-6 pt-2 border-t border-slate-800 text-left bg-dark-bg">
+                 <h3 className="text-2xl font-bold mb-6 text-white whitespace-pre-line">{siteContent.evidence.title}</h3>
+                 <p className="text-slate-300 text-lg leading-relaxed whitespace-pre-line mb-8">
+                   {siteContent.evidence.description}
+                 </p>
+                 <p className="text-lg text-brand-400 font-bold leading-relaxed whitespace-pre-line mb-8">
+                   {siteContent.evidence.supportLine}
+                 </p>
+                 <div className="p-5 bg-slate-900/80 rounded-xl border border-slate-700">
+                   <p className="text-sm md:text-base text-slate-400 leading-relaxed whitespace-pre-line">
+                     <span className="font-bold text-slate-200 block mb-2">平台訊號與底層邏輯：</span>
+                     {siteContent.evidence.microProof}
+                   </p>
+                 </div>
+               </div>
+             </details>
+           </div>
+        </div>
+      </section>
+
+      {/* 12. FAQ (異議處理) */}
+      <section id="faq" className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">除了這些，<br className="sm:hidden" />你可能也有的疑問</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">除了這些，<br className="sm:hidden" />你可能也有的心理掙扎</h2>
         </div>
         
         <div className="space-y-4">
@@ -444,10 +396,10 @@ export const HomePage = () => {
                 className="w-full py-6 text-left flex justify-between items-start focus:outline-none group"
                 onClick={() => setActiveFaq(activeFaq === faq.id ? null : faq.id)}
               >
-                <span className="font-bold text-xl text-slate-200 group-hover:text-brand-400 transition-colors pr-8">{faq.question}</span>
+                <span className="font-bold text-xl text-slate-200 group-hover:text-brand-400 transition-colors pr-8 leading-snug">{faq.question}</span>
                 <ChevronRight 
                   className={`w-6 h-6 text-slate-500 transition-transform duration-300 mt-0.5 flex-shrink-0 ${
-                    activeFaq === faq.id ? 'rotate-90' : 'rotate-0'
+                    activeFaq === faq.id ? 'rotate-90 text-brand-400' : 'rotate-0'
                   }`} 
                 />
               </button>
@@ -460,8 +412,8 @@ export const HomePage = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="pb-8 pt-2 text-slate-400 text-lg leading-relaxed whitespace-pre-line">
-                      {faq.answer}
+                    <div className="pb-8 pt-2 text-slate-400 text-lg leading-relaxed whitespace-pre-line font-medium border-l-[3px] border-brand-500/20 pl-4 ml-2">
+                       {faq.answer}
                     </div>
                   </motion.div>
                 )}
@@ -471,75 +423,70 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* 11. CTA 降壓 + Micro Commitment + Final CTA 區塊 */}
-      <section ref={ctaRef} className="pt-24 pb-32 bg-gradient-to-b from-dark-bg to-brand-900/5 text-center px-4 sm:px-6 lg:px-8 border-t border-slate-800/80">
+      {/* 13. Progress Hint 2 */}
+      <div className="bg-brand-900/10 border-y border-brand-500/20 py-8 text-center px-4">
+         <p className="text-brand-400 font-bold text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            {siteContent.progressHints[1]}
+         </p>
+      </div>
+
+      {/* 14. Micro Commitment + 15. Final CTA */}
+      <section ref={ctaRef} className="pt-20 pb-32 bg-gradient-to-b from-dark-bg to-brand-900/5 text-center px-4 sm:px-6 lg:px-8 border-b border-slate-800">
         <div className="max-w-4xl mx-auto">
-          {/* Friction Objection 降阻力段落 */}
-          <div className="mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-slate-200 leading-tight">
-              {siteContent.frictionObjection.title}
-            </h2>
-            <p className="text-xl text-slate-400 leading-relaxed whitespace-pre-line">
-              {siteContent.frictionObjection.description}
-            </p>
-          </div>
-
-          {/* 5.2 Progress Hint 2 */}
-          <div className="bg-brand-900/10 border-y border-brand-500/20 py-8 text-center px-4 mb-14 -mx-4 sm:mx-0 sm:rounded-2xl">
-             <p className="text-brand-400 font-bold text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-                {siteContent.progressHints[1]}
-             </p>
-          </div>
-
-          {/* Micro Commitment 承諾段落 */}
-          <div className="mb-14 p-8 bg-slate-900/60 rounded-2xl border border-brand-500/20 shadow-[0_0_40px_rgba(0,185,0,0.05)] mx-auto max-w-2xl">
+          {/* Micro Commitment */}
+          <div className="mb-14 p-8 bg-slate-900/60 rounded-2xl border border-brand-500/20 shadow-[0_0_40px_rgba(0,185,0,0.05)] mx-auto max-w-2xl bg-gradient-to-b from-slate-900/80 to-slate-900/40">
              <h3 className="text-2xl font-bold text-brand-400 mb-6">{siteContent.microCommitment.title}</h3>
-             <p className="text-xl text-slate-200 leading-relaxed whitespace-pre-line font-medium">
+             <p className="text-xl text-slate-200 leading-relaxed whitespace-pre-line font-bold">
                {siteContent.microCommitment.description}
              </p>
           </div>
 
-          {/* 核心承諾區 */}
+          {/* Final CTA */}
           <div className="py-12 px-6 sm:p-14 rounded-[2.5rem] relative overflow-hidden bg-slate-900 border border-slate-800 shadow-2xl">
             <h3 className="text-3xl sm:text-4xl font-bold mb-6 text-white relative z-10">{siteContent.finalCta.title}</h3>
             
+            <p className="text-xl sm:text-2xl text-slate-200 mb-10 leading-relaxed whitespace-pre-line max-w-2xl mx-auto relative z-10 font-bold">
+              {siteContent.finalCta.description}
+            </p>
+
             <div className="bg-red-900/10 border-l-4 border-red-500/50 p-5 mb-10 text-left w-full max-w-2xl mx-auto relative z-10 rounded-r-xl">
               <p className="text-red-200 font-medium text-lg leading-relaxed">
                 {siteContent.finalCta.directContactReason}
               </p>
             </div>
-
-            <p className="text-lg sm:text-xl text-slate-300 mb-10 leading-relaxed whitespace-pre-line max-w-2xl mx-auto relative z-10">
-              {siteContent.finalCta.description}
-            </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10 mb-8 mx-auto w-full max-w-3xl">
               <button 
                 onClick={handleFinalCtaClick}
-                className="group relative inline-flex items-center justify-center px-6 py-5 w-full sm:flex-1 text-lg sm:text-xl font-bold text-white transition-all duration-300 bg-[#00B900] border border-[#00B900] rounded-2xl hover:bg-[#009900] shadow-[0_0_20px_rgba(0,185,0,0.2)] hover:shadow-[0_0_40px_rgba(0,185,0,0.4)] hover:-translate-y-1 focus:outline-none"
+                className="group relative inline-flex items-center justify-center px-6 py-5 w-full sm:flex-1 text-lg sm:text-xl font-bold text-white transition-all duration-300 bg-brand-600 border border-brand-500 rounded-2xl hover:bg-brand-500 shadow-[0_0_20px_rgba(var(--brand-500),0.3)] hover:-translate-y-1 focus:outline-none"
               >
-                <MessageCircle className="w-6 h-6 mr-3 flex-shrink-0" />
+                <Target className="w-6 h-6 mr-3 flex-shrink-0" />
                 <span className="truncate">{siteContent.finalCta.buttonText}</span>
               </button>
               
-              <a 
-                href="tel:0900000000"
-                className="group relative inline-flex items-center justify-center px-5 py-5 w-full sm:w-[55%] text-lg font-bold text-slate-300 transition-all duration-300 bg-slate-800 border border-slate-700 rounded-2xl hover:bg-slate-700 hover:text-white hover:-translate-y-1 focus:outline-none text-center"
-              >
-                <span className="truncate">{siteContent.finalCta.phoneCtaText}</span>
-              </a>
+              <div className="w-full sm:flex-1 relative mt-4 sm:mt-0">
+                <a 
+                  href="tel:0900000000"
+                  className="group relative inline-flex items-center justify-center px-5 py-5 w-full text-lg font-bold text-slate-300 transition-all duration-300 bg-slate-800 border border-slate-700 rounded-2xl hover:bg-slate-700 hover:text-white hover:-translate-y-1 focus:outline-none text-center"
+                >
+                  <MessageCircle className="w-5 h-5 mr-3" />
+                  <span className="truncate">{siteContent.finalCta.phoneCtaText}</span>
+                </a>
+              </div>
             </div>
             
-            <p className="text-sm text-slate-500 whitespace-pre-line relative z-10 font-medium max-w-xl mx-auto">
-               {siteContent.finalCta.lowRiskHint}
-            </p>
+            <div className="mt-8 p-5 bg-slate-800/40 rounded-xl max-w-2xl mx-auto relative z-10">
+               <p className="text-base text-brand-300/80 font-bold whitespace-pre-line leading-relaxed">
+                 {siteContent.finalCta.lowRiskHint}
+               </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="py-8 text-center text-slate-600 text-sm">
-        <p>© {new Date().getFullYear()} 轉換架構系統 | 陪伴式漏斗重構</p>
+        <p>© {new Date().getFullYear()} 獲客漏斗重建系統 | 成熟流量轉化</p>
       </footer>
     </div>
   );

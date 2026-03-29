@@ -3,97 +3,81 @@ export interface PainPoint {
   title: string;
   shortDescription: string;
   detailedDescription: string;
-  
-  // 新版正向心理學推進
   positiveFeedback: string;
-  
   followUp: {
     question: string;
-    options: {
-      id: string;
-      text: string;
-    }[];
+    options: string[];
   };
-  
   affirmativeGuidance: string;
   microDiagnosis: string;
   microDiagnosisBridge?: string;
   progressSense: string;
-  
   recommendedNextStep: string;
 }
 
 export const painPoints: PainPoint[] = [
   {
-    id: "high_cpa",
-    title: "廣告越投越貴，但你根本不敢停",
-    shortDescription: "你知道再這樣下去很危險，可是你更怕一停就什麼都沒了。",
-    detailedDescription: "你絕對很熟悉這種感覺：\n\n預算一加，成本就跟著往上衝。\n預算一降，名單直接變少。\n\n你會開始懷疑自己：\n是不是我不懂投放？是不是市場變差了？\n但最折磨人的，是你慢慢變得『不敢放大預算』。\n每一筆錢丟進去，都好像在賭明天會不會有人問。",
-    positiveFeedback: "這個狀況很常見，很多人就是卡在這裡，然後一直不知道怎麼拆。",
+    id: "traffic_drop",
+    title: "廣告越投越貴，點擊率一直掉",
+    shortDescription: "以前隨便投都有單，現在換了幾百組素材，預算還是像丟進水裡。",
+    detailedDescription: "你可能已經試過換代操、學剪短影音、做梗圖，但每次紅利期都越來越短。你開始懷疑是不是自己的產品沒對手強，或是臉書演算法又在針對你。",
+    positiveFeedback: "你不是唯一遇到這個問題的人。這兩年的流量成本的確翻了三倍。",
     followUp: {
-      question: "很多人走到這一步，心裡最常冒出來的是這兩種，你比較像哪一個？",
-      options: [
-        { id: "burn", text: "預算越燒越高，但不敢再加大" },
-        { id: "boss", text: "不知道還要不要繼續投，老闆或夥伴開始懷疑" }
-      ]
+      question: "這是你最不想看到、卻每天發生的畫面嗎？",
+      options: ["對，尤其這幾個月特別明顯", "時好時壞，很不穩定", "其實流量有，但就是進不來"]
     },
-    affirmativeGuidance: "你會卡在這裡，不代表你做錯很多，反而代表你已經看見有問題，只是還不知道怎麼拆。",
-    microDiagnosis: "不是廣告壞掉，也不是你懂不懂投放的問題。是你失去了對『轉換』的控制感。\n\n當漏斗後端接不住流量時，前端每一次加大預算都是在賭機率。這種沒有『確定感』的投放，才是你不敢放大的根本原因。",
-    progressSense: "看到這裡，你其實已經比一開始更接近答案了。如果現在有一種「對，就是這個」的感覺，代表這正是你要補的洞。",
-    recommendedNextStep: "先不要急著砸更多預算。我們得先把進來的人『怎麼被說服』的過程，重新順一次。"
+    affirmativeGuidance: "其實，你不需要再花幾萬塊去上玄學般的廣告投手課。\n問題通常不是出在你『不夠懂臉書設定』，而是『素材沒有抓到市場現在真正在痛的地方』。",
+    microDiagnosis: "這在我們系統裡屬於【前端切入點失焦】。\n\n當大家都在賣一樣的規格時，廣告只講功能已經沒用了。你必須重新提煉出那一句『讓他非停下來看不可』的痛點口號。",
+    microDiagnosisBridge: "你真正怕的不是預算花完，而是花完了連經驗都沒留下，下次只能繼續盲拍素材。",
+    progressSense: "太好了，既然知道是前端切入點的問題，我們就不用再去白費力氣改整個網站了。",
+    recommendedNextStep: "看具體的切入點定位法"
   },
   {
-    id: "low_conversion",
-    title: "有人來問，但最後都死在『我再看看』",
-    shortDescription: "最累的其實不是沒人問，是每個人都像快成交了，最後又冷掉。",
-    detailedDescription: "你每天都在回訊息，耐心報價、解釋，甚至聊得很開心。\n\n但最後總是聽到這句：\n『好，我想一下』\n『我跟家人討論一下』\n然後就徹底消失了。\n\n久了你一定會懷疑：『是不是我不會賣？』或者『是不是定價太高？』",
-    positiveFeedback: "你有注意到這一層，其實已經比很多人早一步。",
+    id: "high_bounce",
+    title: "有人進網站，但馬上就跳走",
+    shortDescription: "流量數據看起來很美，但停留時間不到 10 秒，根本沒有人留名單。",
+    detailedDescription: "你花錢把人買進來了，但他們連看完第一屏的耐心都沒有。你以為是網頁不夠漂亮，請人重新設計了版面，加了酷炫的動畫，結果跳出率還是一樣高。",
+    positiveFeedback: "這反而代表你的第一步做對了：你的廣告切入點有成功吸引到他們點擊。",
     followUp: {
-      question: "很多人走到這一步，心裡最常冒出來的是這兩種，你比較像哪一個？",
-      options: [
-        { id: "ghost", text: "LINE 聊得很熱絡，但一談到價格或步驟就消失" },
-        { id: "compare", text: "一直問別家的價格，然後說要回去考慮" }
-      ]
+      question: "這種花了錢買人進來，卻眼睜睜看他們離開的感覺，是不是很眼熟？",
+      options: ["對，看 GA 數據真的會吐血", "大部分人在第一屏就跑了", "滑到底了也沒點按鈕"]
     },
-    affirmativeGuidance: "這不是你不會講，也不是因為客戶沒錢。這只是一個很常漏掉的設計盲區。",
-    microDiagnosis: "真正的原因是：對方在開口找你之前，腦袋裡那堆『可是...』，根本沒有被提前解決掉。\n\n他在防備。他在等你說服他，而不是自己想通。這代表你的『頁面承接』沒有先幫你處理掉他的疑慮。",
-    progressSense: "這很正常，當你發現這是頁面問題而不是銷售力問題時，你就已經抓到核心了。",
-    recommendedNextStep: "把那些『本來要靠你用嘴巴補』的說服過程，先搬到他來找你之前的頁面上。"
+    affirmativeGuidance: "如果他們點了廣告，代表他們『有需求』；但進站後馬上跑掉，代表他們『不相信你』或『看不懂你的解法』。\n這不是設計不夠美，是敘事順序錯了。",
+    microDiagnosis: "這在我們系統裡屬於【承接段信任斷裂】。\n\n他帶著痛點進來，第一眼想看的是『你能怎麼救我』，但大多數頁面第一眼卻在講『我們公司有多牛』。",
+    microDiagnosisBridge: "你真正損失的不是這一次的點擊費，而是那些明明有強烈需求，卻在最後一秒因為不信任而離開的潛在優質客戶。",
+    progressSense: "抓出信任斷層後，我們只需要把順序對調，把『解法』放在『公司介紹』前面，流失率就會大幅下降。",
+    recommendedNextStep: "看信任承接重構法"
   },
   {
-    id: "unstable",
-    title: "偶爾會爆單，但更多時候是零",
-    shortDescription: "有時候很好，有時候直接歸零。最可怕的是，你不知道為什麼好。",
-    detailedDescription: "有幾天你會覺得：『對，就是這個感覺！』\n\n但到了下週，整個數據又莫名其妙掉下去。\n你開始慌了：是我哪裡改壞了嗎？是不是那一波運氣比較好？\n\n這種『不知道為什麼成交』，比『沒有成交』還要讓人焦慮。",
-    positiveFeedback: "其實很多人都在這個循環裡，你並不孤單。",
+    id: "no_booking",
+    title: "看完了頁面，卻沒人預約/私訊",
+    shortDescription: "他們在頁面上滑了很久，但就是不點那個『立即諮詢』的按鈕。",
+    detailedDescription: "你的服務說明寫得很清楚，案例也放了，專業度看起來沒問題。但客人就是寧願自己猜，也不肯點開 LINE 或填寫表單來問你，彷彿那個按鈕會咬人。",
+    positiveFeedback: "這表示你的內容是有價值的，他們願意花時間閱讀。",
     followUp: {
-      question: "很多人走到這一步，心裡最常冒出來的是這兩種，你比較像哪一個？",
-      options: [
-        { id: "change_ads", text: "趕快換素材、調廣告、重開幾個活動" },
-        { id: "freeze", text: "不知道哪裡壞了，只能乾等，不敢亂動" }
-      ]
+      question: "當你看到這種『只看不問』的數據，是不是常懷疑自己到底寫錯什麼？",
+      options: ["對，完全猜不透他們在想什麼", "可能他們覺得太貴了吧？", "有時候會跑去問很基礎的問題"]
     },
-    affirmativeGuidance: "你會覺得無力是正常的，不代表你能力不夠，而是你缺乏一個可以驗證的控制節點。",
-    microDiagnosis: "這其實是最危險的狀態。因為沒有『穩定成交機制』，所以每一次成交都像是運氣好剛好遇到想買的人，而不是被你的流程說服。\n\n沒有確定性的流程，哪怕你今天大賣，明天的焦慮依然會存在。",
-    progressSense: "知道問題出在『流程確定性』，代表你已經走到可以開始系統化解決的階段了。",
-    recommendedNextStep: "把運氣拿掉。把你曾經成交過的『那個對話過程』，複製成會一直自己運作的流程。"
+    affirmativeGuidance: "真相是：他們不是不想問，而是『不敢問』。\n他們怕一點進去就會被強迫推銷，或是怕自己問了看起來很不專業。",
+    microDiagnosis: "這在我們系統裡屬於【行動阻力過高】。\n\n你給的下一步太沉重了。『立即購買』或『專業諮詢』對還沒完全信任你的冷客來說，心理壓力太大了。",
+    microDiagnosisBridge: "你真正怕的是不管怎麼用心解釋，客戶還是只在乎價錢，讓你的專業被當成菜市場比價的附屬品。",
+    progressSense: "既然找到了卡點在最後一哩路，我們只需要把『高壓的預約』降級成『低壓的微承諾』，他們推進的意願就會瞬間拉升。",
+    recommendedNextStep: "看低阻力推進策略"
   },
   {
-    id: "no_idea",
-    title: "有互動有流量，但就是沒人下決定",
-    shortDescription: "看起來好像大家都喜歡，但就是沒有結果。",
-    detailedDescription: "你看著後台的數字：\n有人按讚、有人留言、有人點進來，甚至也有人加了 LINE。\n\n但最後沒人掏錢，沒人預約。\n你會想：『是不是我哪裡做錯了？』\n其實不是因為你做錯，而是因為在他要下決定的最關鍵那一手，他遲疑了。",
-    positiveFeedback: "這是一個很好的起點，代表你的第一層吸引力是沒問題的！",
+    id: "hard_to_close",
+    title: "加了 LINE，但對話很難推進",
+    shortDescription: "每天都在回罐頭問題，對方只問『多少錢』，報價後就已讀不回。",
+    detailedDescription: "你的客服團隊每天都很忙，但忙的都是做苦工。客人對你的價值沒有認知，只是一直拿別家的規格來跟你比價，你覺得自己的專業被當菜市場。",
+    positiveFeedback: "這代表你的前端導流是暢通的，你已經解決了最難的『帶人進來』的問題。",
     followUp: {
-      question: "很多人走到這一步，心裡最常冒出來的是這兩種，你比較像哪一個？",
-      options: [
-        { id: "fake_hope", text: "覺得快成交了，但等不到結果，很耗神" },
-        { id: "give_up", text: "開始覺得自己做這些內容，是不是根本在浪費時間" }
-      ]
+      question: "每天處理這種沒有營養的詢價，是不是把你原本該拿來服務核心客戶的時間都吃光了？",
+      options: ["沒錯，每天回這些真的很心累", "報價也是死，不報價也是死", "最後成交的都是本來就認識的"]
     },
-    affirmativeGuidance: "這代表你已經把困難的部分（讓人注意）做到了，只差最後一步把他接住。",
-    microDiagnosis: "這是典型的『流量沒有被接住』。現代人對『多走一步』非常抗拒。哪怕他有一秒鐘的興趣，只要在那短短幾秒鐘沒有一個強而有力的介面推他一把，幫他回答『這干我什麼事』，他就會滑掉。",
-    progressSense: "看清楚這是『承接斷層』後，所有的焦慮就會慢慢平息，因為你知道該怎麼做了。",
-    recommendedNextStep: "抓出他猶豫不決的那幾秒鐘是卡在哪裡，然後把它補起來。"
+    affirmativeGuidance: "問題不是你的客服態度不好。\n真正的問題出在你把『篩選與教育』的工作，全部壓在最後一關的人工對話上。",
+    microDiagnosis: "這在我們系統裡屬於【漏斗定位倒置】。\n\n成熟的獲客系統，應該是在『頁面』上就完成教育與洗腦，讓來到 LINE 的人已經是帶著意願的準客戶，而不是來比價的過客。",
+    microDiagnosisBridge: "你真正失去的不是一張單，而是原本可以自動化過濾客戶的系統，讓你每天陷在無效溝通裡無法抽身。",
+    progressSense: "了解這點後，我們要把教育客戶的負擔往前推給頁面。讓頁面做黑臉篩選，讓你來做高端承接。",
+    recommendedNextStep: "看教育前置化策略"
   }
 ];
