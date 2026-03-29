@@ -8,14 +8,20 @@ import liff from '@line/liff';
 export const LiffInitPage: React.FC = () => {
   const { isInitializing, initError } = useLiff();
   const navigate = useNavigate();
-  const { friendshipStatus, isLoggedIn } = useAppStore();
+  const { friendshipStatus, isLoggedIn, entryPath } = useAppStore();
 
   useEffect(() => {
     // 當初始化完成且確定登入狀態後，進行路由拋轉
     if (!isInitializing && isLoggedIn) {
       if (friendshipStatus === 'friend') {
-        // 如果是已被驗證的好友 ➜ 直接進入儀表板
-        navigate('/liff/welcome', { replace: true });
+        // 如果原本是從例如 /contract 發起登入的，就回到 /contract；否則預設進迎賓對話
+        const targetPath = (entryPath && entryPath !== '/' && entryPath !== '/liff') 
+          ? entryPath 
+          : '/liff/welcome';
+        
+        // 拋轉後清除路徑，避免下次流程互相干擾
+        useAppStore.getState().setEntryPath('/');
+        navigate(targetPath, { replace: true });
       } else if (friendshipStatus === 'not_friend_or_blocked') {
         // 不是好友或被封鎖 ➜ 優先呼叫 liff.requestFriendship() API 彈出加入畫面
         // 如果失敗（不支援的瀏覽器或版本），直接跳到防線頁面

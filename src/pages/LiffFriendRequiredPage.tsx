@@ -50,7 +50,11 @@ export const LiffFriendRequiredPage: React.FC = () => {
       
       if (isFriend) {
         setFriendshipStatus('friend');
-        navigate('/liff/welcome', { replace: true });
+        const targetPath = (useAppStore.getState().entryPath && useAppStore.getState().entryPath !== '/' && useAppStore.getState().entryPath !== '/liff') 
+          ? useAppStore.getState().entryPath 
+          : '/liff/welcome';
+        useAppStore.getState().setEntryPath('/');
+        navigate(targetPath, { replace: true });
       } else {
         setErrorMsg('狀態未改變，請確認您已將官方帳號解除封鎖並加入好友。');
       }

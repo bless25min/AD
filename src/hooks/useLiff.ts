@@ -26,8 +26,16 @@ export const useLiff = () => {
         setIsLoggedIn(isLoggedIn);
 
         if (!isLoggedIn) {
-          // 動態抓取當下的網址 (例如 /liff 或 /contract)，讓 LINE 登入後精準跳回目前頁面
-          liff.login({ redirectUri: window.location.href });
+          // 移除 redirectUri，改用原生 Endpoint URL 避免 400 Bad Request
+          // 但在跳轉前，先把當下的網址存進 localStorage (Zustand persist)
+          const { setEntryPath } = useAppStore.getState();
+          const p = window.location.pathname;
+          // 若不是去 /liff 或 /，就記住這一個來源網址 (例如 /contract)
+          if (p !== '/liff' && p !== '/') {
+            setEntryPath(p);
+          }
+          
+          liff.login();
           return; // 因為會重新導向，所以中斷後續執行
         }
 
