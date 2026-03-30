@@ -50,13 +50,13 @@ export const painPoints: PainPoint[] = [
     id: "high_bounce",
     title: "有人進網站，但馬上就跳走",
     shortDescription: "流量數據看起來很美，但停留時間不到 10 秒，根本沒有人留名單。",
-    detailedDescription: "你花錢把人買進來了，但他們連看完第一屏的耐心都沒有。你以為是網頁不夠漂亮，資訊內容不夠多，請人重新設計了版面，加了許多影片跟圖文，結果跳出率還是一樣高。",
+    detailedDescription: "你花錢把人買進來了，但他們連看完第一頁的耐心都沒有。你以為是網頁不夠漂亮，資訊內容不夠多，請人重新設計了版面，加了許多影片跟圖文，結果跳出率還是一樣高。",
     positiveFeedback: "這反而代表你的第一步做對了：你的廣告切入點有成功吸引到他們點擊。",
     followUp: {
       question: "這種花了錢買人進來，卻眼睜睜看他們離開的感覺，是不是很眼熟？",
       options: [
         { id: "frustrating_data", text: "對，看數據真的會吐血" },
-        { id: "first_screen_bounce", text: "大部分人在第一屏就跑了" },
+        { id: "first_screen_bounce", text: "大部分人在第一頁就跑了" },
         { id: "no_action", text: "滑到底了也沒點按鈕" }
       ]
     },

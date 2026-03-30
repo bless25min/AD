@@ -1,4 +1,5 @@
 import { Phone } from 'lucide-react';
+import { useAppStore } from '../store/useAppStore';
 
 interface DualCTAProps {
   isSticky?: boolean;
@@ -19,7 +20,22 @@ export const DualCTA = ({ isSticky = false }: DualCTAProps) => {
           
           {/* 主按鈕 (LINE) */}
           <button 
-            onClick={() => window.location.href = '/liff'}
+            onClick={() => {
+              const liffId = import.meta.env.VITE_LIFF_ID;
+              const { selectedPainPoint, selectedFollowUpOption } = useAppStore.getState();
+              if (!liffId) {
+                window.location.href = '/liff';
+                return;
+              }
+              const params = new URLSearchParams();
+              if (selectedPainPoint) params.append('painId', selectedPainPoint);
+              if (selectedFollowUpOption) params.append('optionId', selectedFollowUpOption);
+              
+              const qs = params.toString();
+              const liffUrl = `https://liff.line.me/${liffId}${qs ? `?${qs}` : ''}`;
+              
+              window.location.href = liffUrl;
+            }}
             className="w-full relative inline-flex items-center justify-center px-6 py-4 text-lg font-bold text-white transition-all duration-300 bg-[#06C755] border border-[#05b04b] rounded-2xl hover:bg-[#05b04b] shadow-[0_0_20px_rgba(6,199,85,0.2)] hover:shadow-[0_0_30px_rgba(6,199,85,0.4)] hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#06C755]/50"
           >
             {/* LINE icon */}

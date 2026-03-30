@@ -19,6 +19,7 @@ export const LiffWelcomePage: React.FC = () => {
     }
   }, [friendshipStatus, navigate]);
 
+  // 嘗試找出對應的痛點與選項，若無則為 undefined / null，進而觸發底下的 Fallback 選擇器
   const matchedPainPoint = painPoints.find(p => p.id === selectedPainPoint);
   const matchedOption = matchedPainPoint?.followUp.options.find(o => o.id === selectedFollowUpOption);
 
@@ -37,7 +38,11 @@ export const LiffWelcomePage: React.FC = () => {
 
     // 依據不同按鈕行為操作
     if (actionId === 'booking') {
-      liff.openWindow({ url: 'https://calendly.com/', external: true });
+      // 改回預約行事曆 (如 Calendly / Cal.com)，並使用獨立的系統變數方便抽換
+      const calendarUrl = import.meta.env.VITE_CALENDAR_URL || 'https://calendly.com/';
+      
+      // 開啟外部瀏覽器顯示預約介面
+      liff.openWindow({ url: calendarUrl, external: true });
     } else if (actionId === 'report') {
       setShowCards(true);
       setTimeout(() => {
@@ -50,133 +55,168 @@ export const LiffWelcomePage: React.FC = () => {
     <div className="min-h-screen bg-dark-bg text-slate-100 p-4 sm:p-6 lg:p-8 flex flex-col items-center">
       <div className="w-full max-w-md mx-auto pt-6 pb-20">
         
-        {/* Header: 對話式開場 */}
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-          className="mb-8 pl-2"
-        >
-          <div className="flex items-center mb-6">
-            <div className="relative">
-              {profile?.pictureUrl ? (
-                <img src={profile.pictureUrl} alt="Avatar" className="w-16 h-16 rounded-full border border-slate-700 object-cover" />
-              ) : (
-                 <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700">
-                   <span className="text-2xl text-slate-400">{profile?.displayName?.charAt(0) || 'Hi'}</span>
-                 </div>
-              )}
-              {/* 綠點代表在線感 */}
-              <div className="absolute bottom-0 right-0 w-4 h-4 bg-[#00B900] rounded-full border-2 border-dark-bg"></div>
-            </div>
-            
-            <div className="ml-4">
-              <div className="text-sm text-slate-400 mb-0.5">來自系統的接手確認</div>
-              <h1 className="text-xl font-bold tracking-tight">
-                {profile?.displayName ? `${profile.displayName}，` : ''}{liffContent.welcome.greeting}
-              </h1>
-            </div>
-          </div>
+        {/* 狀態分歧點：判斷身上是否有攜帶選項點擊紀錄 */}
+        {!matchedPainPoint ? (
           
-          <div className="inline-flex items-start bg-[#00B900]/10 text-[#00B900] px-5 py-4 rounded-2xl text-[15px] font-medium border border-[#00B900]/20 leading-relaxed whitespace-pre-line shadow-sm">
-            <Check className="w-5 h-5 mr-3 flex-shrink-0 mt-0.5" strokeWidth={3} />
-            {liffContent.welcome.successMessage}
-          </div>
-        </motion.div>
-
-        {/* Dynamic Summary (個人化摘要) */}
-        {matchedPainPoint && (
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
-            className="mb-8 relative"
-          >
-            {/* 視覺氣泡小尾巴 */}
-            <div className="absolute -top-3 left-8 w-6 h-6 bg-slate-900 border-l border-t border-slate-800 rotate-45"></div>
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="space-y-6 px-2 mt-8">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-800 border border-slate-700 mb-4">
+                <span className="text-2xl text-slate-400">{profile?.displayName?.charAt(0) || 'Hi'}</span>
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2 tracking-wide">
+                聽說你目前生意卡關了？
+              </h2>
+              <p className="text-slate-400 text-[15px] leading-relaxed">
+                為了馬上切入重點，請快速告訴我，<br />底下哪一個是你現在最大的痛：
+              </p>
+            </div>
             
-            <div className="bg-slate-900 border border-slate-800 p-7 rounded-2xl rounded-tl-none relative z-10 shadow-lg">
-              <span className="text-brand-400 block mb-2 font-medium">{liffContent.welcome.painPointPrefix}</span>
-              <h3 className="text-xl font-bold text-white mb-2">「{matchedPainPoint.title}」</h3>
-              
-              {matchedOption && (
-                <>
-                  <span className="text-brand-400 block mb-2 font-medium mt-6 border-t border-slate-800/80 pt-5">
-                    {liffContent.welcome.optionPrefix}
-                  </span>
-                  <div className="text-slate-300 text-[15px] leading-relaxed opacity-95 bg-dark-bg p-4 rounded-xl border border-slate-800/50">
-                    「{matchedOption.text}」
+            <div className="grid grid-cols-1 gap-3">
+              {painPoints.map((pt) => (
+                <button
+                  key={pt.id}
+                  onClick={() => {
+                    useAppStore.getState().setPainPoint(pt.id);
+                  }}
+                  className="w-full text-left p-5 bg-slate-900/80 border border-slate-700/80 rounded-2xl hover:bg-brand-900/10 hover:border-brand-500/40 transition-all group shadow-sm relative overflow-hidden"
+                >
+                  <div className="text-white font-bold mb-1.5 text-[15px] flex items-center">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    {pt.title}
                   </div>
-                </>
-              )}
+                  <div className="text-[13px] text-slate-400 leading-relaxed pr-4">
+                    {pt.shortDescription}
+                  </div>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-brand-500 transition-opacity">
+                    <Link2 className="w-4 h-4" />
+                  </div>
+                </button>
+              ))}
             </div>
           </motion.div>
+
+        ) : (
+          
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+            {/* Header: 對話式開場 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+              className="mb-8 pl-2"
+            >
+              <div className="flex items-center mb-6">
+                <div className="relative">
+                  {profile?.pictureUrl ? (
+                    <img src={profile.pictureUrl} alt="Avatar" className="w-16 h-16 rounded-full border border-slate-700 object-cover" />
+                  ) : (
+                     <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700">
+                       <span className="text-2xl text-slate-400">{profile?.displayName?.charAt(0) || 'Hi'}</span>
+                     </div>
+                  )}
+                  {/* 綠點代表在線感 */}
+                  <div className="absolute bottom-0 right-0 w-4 h-4 bg-[#00B900] rounded-full border-2 border-dark-bg"></div>
+                </div>
+                
+                <div className="ml-4">
+                  <div className="text-sm text-slate-400 mb-0.5">來自系統的接手確認</div>
+                  <h1 className="text-xl font-bold tracking-tight">
+                    {profile?.displayName ? `${profile.displayName}，` : ''}{liffContent.welcome.greeting}
+                  </h1>
+                </div>
+              </div>
+              
+              <div className="inline-flex items-start bg-[#00B900]/10 text-[#00B900] px-5 py-4 rounded-2xl text-[15px] font-medium border border-[#00B900]/20 leading-relaxed whitespace-pre-line shadow-sm">
+                <Check className="w-5 h-5 mr-3 flex-shrink-0 mt-0.5" strokeWidth={3} />
+                {liffContent.welcome.successMessage}
+              </div>
+            </motion.div>
+
+            {/* Dynamic Summary (個人化摘要) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+              className="mb-8 relative"
+            >
+              <div className="absolute -top-3 left-8 w-6 h-6 bg-slate-900 border-l border-t border-slate-800 rotate-45"></div>
+              <div className="bg-slate-900 border border-slate-800 p-7 rounded-2xl rounded-tl-none relative z-10 shadow-lg">
+                <span className="text-brand-400 block mb-2 font-medium">{liffContent.welcome.painPointPrefix}</span>
+                <h3 className="text-xl font-bold text-white mb-2">「{matchedPainPoint.title}」</h3>
+                {matchedOption && (
+                  <>
+                    <span className="text-brand-400 block mb-2 font-medium mt-6 border-t border-slate-800/80 pt-5">
+                      {liffContent.welcome.optionPrefix}
+                    </span>
+                    <div className="text-slate-300 text-[15px] leading-relaxed opacity-95 bg-dark-bg p-4 rounded-xl border border-slate-800/50">
+                      「{matchedOption.text}」
+                    </div>
+                  </>
+                )}
+              </div>
+            </motion.div>
+
+            {/* Action Buttons */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+              className="space-y-3 mb-10"
+            >
+              {liffContent.welcome.callToActions.map((cta) => {
+                const icons = {
+                  report: <FileText className="w-5 h-5 mr-3 flex-shrink-0" />,
+                  booking: <Calendar className="w-5 h-5 mr-3 flex-shrink-0" />
+                };
+                const styles = {
+                  primary: "bg-white text-black hover:bg-slate-200 border-transparent shadow-md",
+                  outline: "bg-transparent text-slate-300 border-slate-700 hover:border-slate-500 hover:text-white"
+                };
+                return (
+                  <button
+                    key={cta.id}
+                    onClick={() => handleCtaClick(cta.id)}
+                    className={`w-full flex items-center justify-center py-[18px] px-6 rounded-2xl font-bold transition-all border ${
+                      styles[cta.style as keyof typeof styles]
+                    }`}
+                  >
+                    {icons[cta.id as keyof typeof icons] || <Link2 className="w-5 h-5 mr-3" />}
+                    {cta.label}
+                  </button>
+                )
+              })}
+            </motion.div>
+
+            {/* 3 Cards Section (Revealed on Click) */}
+            <AnimatePresence>
+              {showCards && (
+                 <motion.div 
+                   id="cards-section" 
+                   initial={{ opacity: 0, y: 30, height: 0 }} 
+                   animate={{ opacity: 1, y: 0, height: 'auto' }} 
+                   transition={{ duration: 0.4 }}
+                   className="mb-10 space-y-4 pt-4 border-t border-slate-800/80"
+                 >
+                   {/* Card 1: 先接住 */}
+                   <div className="bg-brand-900/10 border-l-4 border-brand-500 py-5 px-6 rounded-r-2xl shadow-sm">
+                      <p className="text-slate-200 leading-relaxed font-medium">
+                        {matchedPainPoint.lineCard1}
+                      </p>
+                   </div>
+                   {/* Card 2: 真正卡點 */}
+                   <div className="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl relative">
+                      <span className="absolute -top-3 left-6 bg-slate-800 text-brand-300 text-xs font-bold px-3 py-1 rounded-full border border-slate-700">真正卡點</span>
+                      <p className="text-slate-300 leading-relaxed mt-2">
+                        {matchedPainPoint.lineCard2}
+                      </p>
+                   </div>
+                   {/* Card 3: 先補哪裡 */}
+                   <div className="bg-slate-900/80 p-6 rounded-2xl border border-slate-700 shadow-xl relative overflow-hidden mt-6">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/10 rounded-full blur-3xl -mr-10 -mt-10"></div>
+                      <span className="absolute -top-3 left-6 bg-brand-500/20 text-brand-400 text-xs font-bold px-3 py-1 rounded-full border border-brand-500/30">我們接下來補哪裡</span>
+                      <p className="text-white leading-relaxed relative z-10 mt-2 font-medium">
+                        {matchedPainPoint.lineCard3}
+                      </p>
+                   </div>
+                 </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
         )}
-
-        {/* Action Buttons */}
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-          className="space-y-3 mb-10"
-        >
-          {liffContent.welcome.callToActions.map((cta) => {
-            const icons = {
-              report: <FileText className="w-5 h-5 mr-3 flex-shrink-0" />,
-              booking: <Calendar className="w-5 h-5 mr-3 flex-shrink-0" />
-            };
-
-            const styles = {
-              primary: "bg-white text-black hover:bg-slate-200 border-transparent shadow-md",
-              outline: "bg-transparent text-slate-300 border-slate-700 hover:border-slate-500 hover:text-white"
-            };
-
-            return (
-              <button
-                key={cta.id}
-                onClick={() => handleCtaClick(cta.id)}
-                className={`w-full flex items-center justify-center py-[18px] px-6 rounded-2xl font-bold transition-all border ${
-                  styles[cta.style as keyof typeof styles]
-                }`}
-              >
-                {icons[cta.id as keyof typeof icons] || <Link2 className="w-5 h-5 mr-3" />}
-                {cta.label}
-              </button>
-            )
-          })}
-        </motion.div>
-
-        {/* 3 Cards Section (Revealed on Click) */}
-        <AnimatePresence>
-          {showCards && matchedPainPoint && (
-             <motion.div 
-               id="cards-section" 
-               initial={{ opacity: 0, y: 30, height: 0 }} 
-               animate={{ opacity: 1, y: 0, height: 'auto' }} 
-               transition={{ duration: 0.4 }}
-               className="mb-10 space-y-4 pt-4 border-t border-slate-800/80"
-             >
-               {/* Card 1: 先接住 */}
-               <div className="bg-brand-900/10 border-l-4 border-brand-500 py-5 px-6 rounded-r-2xl shadow-sm">
-                  <p className="text-slate-200 leading-relaxed font-medium">
-                    {matchedPainPoint.lineCard1}
-                  </p>
-               </div>
-               
-               {/* Card 2: 真正卡點 */}
-               <div className="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl relative">
-                  <span className="absolute -top-3 left-6 bg-slate-800 text-brand-300 text-xs font-bold px-3 py-1 rounded-full border border-slate-700">真正卡點</span>
-                  <p className="text-slate-300 leading-relaxed mt-2">
-                    {matchedPainPoint.lineCard2}
-                  </p>
-               </div>
-               
-               {/* Card 3: 先補哪裡 */}
-               <div className="bg-slate-900/80 p-6 rounded-2xl border border-slate-700 shadow-xl relative overflow-hidden mt-6">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/10 rounded-full blur-3xl -mr-10 -mt-10"></div>
-                  <span className="absolute -top-3 left-6 bg-brand-500/20 text-brand-400 text-xs font-bold px-3 py-1 rounded-full border border-brand-500/30">我們接下來補哪裡</span>
-                  <p className="text-white leading-relaxed relative z-10 mt-2 font-medium">
-                    {matchedPainPoint.lineCard3}
-                  </p>
-               </div>
-               
-             </motion.div>
-          )}
-        </AnimatePresence>
 
       </div>
     </div>

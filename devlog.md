@@ -131,9 +131,19 @@
 * **全站基礎追蹤 (Base Code & PV)**：於 `index.html` 的 `<head>` 底層實裝 LINE Tag 基本程式碼，捕捉所有由各個渠道流入首頁或子頁面的 `PV` 流量，確保不漏接任何名單點擊。
 * **終點轉換埋設 (Conversion Event Tracking)**：針對 React SPA 的單頁生命週期特性，精準地將轉換代碼 (`cv`) 綁定於 `/contract` 頁面（`ContractPage.tsx`）的 `useEffect` 中。當潛在客戶成功走通漏斗、完成登入並進入合約準備階段時，系統才會向 LINE LAP 發送「轉換成功」的高意圖訊號。
 
+## 🟢 v1.4.2: 跨環境狀態繼承與進站體驗補強 (Cross-Browser State Flow & Fallback)
+**發布重點**：修復核心流程中 Safari/Chrome 跳轉至 LINE 內部瀏覽器時的斷點與 localStorage 遺失問題，並強化邊緣情境下的進站體驗。
+* **LINE Universal Link 狀態投遞**：改造 `DualCTA`，捨棄不穩定的 `redirectUri` 機制。按鍵觸發時，將使用者的選擇 (`painId`, `optionId`) 直接夾帶於 `liff.line.me` 網址參數中，強制開啟 LINE App，確保跨瀏覽器跳轉時狀態 100% 存活。
+* **前端記憶重構 (`useLiff.ts` & `LiffInitPage`)**：
+  * 進站時秒速攔截 URL 參數並覆寫入 `useAppStore`，解決 In-App Browser 無法讀取外部 Safari/Chrome localStorage 的系統級限制。
+  * 導入 `entryPath` 記憶羅盤，登入前鎖定用戶出發網址（如 `/contract`），跳轉後無縫精準歸位，徹底拔除容易引起 400 Bad Request 的 Callback URL 白名單相依性。
+* **陌生客降落傘 (Fallback Selector)**：升級 `/liff/welcome`。當偵測到無參數直接空降的訪客時，不顯示破圖或生硬預設值，而是無縫展開「優雅的 4 張微診斷點擊卡」。客人點擊後，動態滑出完整對口白與短卡，維持 100% 沉浸式漏斗體驗。
+* **預約行事曆回歸 (`VITE_CALENDAR_URL`)**：捨棄難以控制時間的 LINE 直接通話，改為引入外部行事曆（Calendly / Cal.com）變數，讓顧問能精準掌控閒置時段並無縫進行 15 分鐘的線上收單。
+
 ---
 
 **未來發展建議 (Next Steps)**：
 - 對接前端真實 Analytics (如 PostHog) 以驗證每個微診斷節點的點擊留存率。
 - 測試 A/B 版本的實際流量耗損，並調整 B 版的主視覺重心。
 - 後端資料庫串接 (D1 / KV) 將蒐集到的 Session 與 PainPoint 偏好實體化保存。
+
