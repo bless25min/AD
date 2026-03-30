@@ -6,14 +6,14 @@ import { getContractTerms, paymentInfo } from '../content/contractTerms';
 import { useLiff } from '../hooks/useLiff';
 import { useAppStore } from '../store/useAppStore';
 
-import html2pdf from 'html2pdf.js';
+
 
 
 export const ContractPage = () => {
   const [searchParams] = useSearchParams();
   const { isInitializing } = useLiff();
   const { isLoggedIn, profile } = useAppStore();
-  const [isDownloading, setIsDownloading] = useState(false);
+
 
   // LINE Tag 轉換追蹤代碼 (載入合約頁即視為轉換)
   useEffect(() => {
@@ -134,27 +134,8 @@ export const ContractPage = () => {
     }
   };
 
-  const handleDownloadPdf = async () => {
-    const element = document.getElementById('contract-document');
-    if (!element) return;
-    
-    setIsDownloading(true);
-    try {
-      const opt = {
-        margin:       10,
-        filename:     `${formData.companyName || '公司'}_成交優化與廣告成長合作合約書.pdf`,
-        image:        { type: 'jpeg' as const, quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true },
-        jsPDF:        { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const }
-      };
-
-      await html2pdf().set(opt).from(element).save();
-    } catch (err) {
-      console.error('Failed to generate PDF:', err);
-      alert("產生 PDF 時發生錯誤。若您正在使用 LINE 內部瀏覽器，這可能是底層攔截了下載動作，請點擊畫面右上角選單「以預設瀏覽器開啟」後再試一次下載！");
-    } finally {
-      setIsDownloading(false);
-    }
+  const handlePrintPdf = () => {
+    window.print();
   };
 
   if (isInitializing) {
@@ -178,8 +159,54 @@ export const ContractPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0f18] text-slate-200 font-sans selection:bg-brand-500 selection:text-white pb-32">
-      {/* Header */}
+    <>
+      <style>{`
+        @media print {
+          body {
+            background-color: white !important;
+            color: black !important;
+            margin: 0;
+            padding: 0;
+          }
+          body * {
+            visibility: hidden;
+          }
+          #contract-document, #contract-document * {
+            visibility: visible;
+          }
+          #contract-document {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100vw !important;
+            padding: 2cm !important;
+            background: white !important;
+            color: black !important;
+            border: none !important;
+            box-shadow: none !important;
+          }
+          #contract-document p, 
+          #contract-document h1, 
+          #contract-document h3, 
+          #contract-document span,
+          #contract-document div {
+            color: black !important;
+            border-color: #333 !important;
+          }
+          #contract-document section {
+            page-break-inside: avoid;
+            margin-bottom: 24px;
+          }
+          .print-hide {
+            display: none !important;
+          }
+          @page {
+            margin: 0;
+          }
+        }
+      `}</style>
+      <div className="min-h-screen bg-[#0a0f18] text-slate-200 font-sans selection:bg-brand-500 selection:text-white pb-32">
+        {/* Header */}
       <header className="bg-slate-900 border-b border-slate-800 sticky top-0 z-40 shadow-lg">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center text-brand-400 font-bold text-xl">
@@ -290,12 +317,12 @@ export const ContractPage = () => {
         <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 sm:p-10 shadow-xl overflow-hidden relative">
           
           {isSigned && (
-            <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] z-10 flex items-center justify-center">
+            <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] z-10 flex items-center justify-center print-hide">
               <div className="bg-slate-800/90 border border-slate-700 p-6 rounded-2xl shadow-2xl transform -rotate-3 border-l-4 border-l-[#00B900]">
                 <div className="text-[#00B900] font-black text-2xl mb-1 flex items-center">
                   <CheckCircle2 className="w-6 h-6 mr-2" /> 合約已產生完畢
                 </div>
-                <div className="text-slate-400 text-sm font-mono mt-2">請向下滑動下載 PDF 進行用印</div>
+                <div className="text-slate-400 text-sm font-mono mt-2">請向下滑動列印 / 存成 PDF 進行用印</div>
               </div>
             </div>
           )}
@@ -489,19 +516,14 @@ export const ContractPage = () => {
                 </div>
                 <h2 className="text-3xl font-black text-white mb-4">合約已為您產生，準備邁出第一步</h2>
                 <p className="text-xl text-slate-400 font-medium max-w-2xl mx-auto mb-6">
-                  請點擊下方按鈕下載合約並用印，也請將首期服務款項匯至以下指定帳戶。<br/>雙方確認款項及合約後，我將立刻為您啟動後續工作流程。
+                  請點擊下方按鈕開啟列印畫面，您可直接列印實體合約，或在印表機選項點選「另存為 PDF」。請將首期服務款項匯至下方帳戶。<br/>雙方確認款項及合約後，我將立刻為您啟動工作流程。
                 </p>
                 <button
-                  onClick={handleDownloadPdf}
-                  disabled={isDownloading}
-                  className="inline-flex items-center px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl transition-colors shadow-lg shadow-brand-500/20 disabled:opacity-50"
+                  onClick={handlePrintPdf}
+                  className="inline-flex items-center px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl transition-colors shadow-lg shadow-brand-500/20"
                 >
-                  {isDownloading ? (
-                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                  ) : (
-                    <FileText className="w-5 h-5 mr-2" />
-                  )}
-                  {isDownloading ? '正在產生 PDF...' : '下載合約 PDF'}
+                  <FileText className="w-5 h-5 mr-2" />
+                  列印合約 / 存成 PDF
                 </button>
               </div>
 
@@ -565,6 +587,7 @@ export const ContractPage = () => {
         </AnimatePresence>
 
       </main>
-    </div>
+      </div>
+    </>
   );
 };
