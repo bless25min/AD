@@ -544,9 +544,16 @@ export const ContractPage = () => {
                 <div className="space-y-6">
                   
                   <div>
-                    <div className="text-sm font-medium text-slate-500 mb-1">銀行代號</div>
+                    <div className="text-sm font-medium text-slate-500 mb-1">收款銀行</div>
                     <div className="text-xl text-white font-bold tracking-wide">
                       {paymentInfo.bankCode} ({paymentInfo.bankName})
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="text-sm font-medium text-slate-500 mb-1">收款人戶名</div>
+                    <div className="text-xl text-white font-bold tracking-wide">
+                      {paymentInfo.accountName}
                     </div>
                   </div>
                   

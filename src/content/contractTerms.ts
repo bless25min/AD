@@ -76,5 +76,5 @@ export const paymentInfo = {
   bankCode: "004",
   bankName: "臺灣銀行",
   accountNumber: "007001004263",
-  accountName: "貳拾伍數據顧問企業社"
+  accountName: "貳拾伍數據顧問企業社廖天佑"
 };
