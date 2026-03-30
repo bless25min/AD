@@ -54,15 +54,16 @@ export const LiffWelcomePage: React.FC = () => {
     await new Promise(resolve => setTimeout(resolve, 600));
 
     try {
+      // 嘗試自動發送訊息 (此 API「僅限」用戶從 LINE 聊天室內點開 LIFF 時才有效)
       if (liff.isInClient() && liff.isApiAvailable('sendMessage')) {
         await liff.sendMessages([{ type: 'text', text: messageText }]);
         liff.closeWindow(); // 發出後瞬間關閉，直接露出聊天框！
       } else {
-        throw new Error("Not in Client or sendMessage not available");
+        throw new Error("sendMessages not available in this context");
       }
     } catch (error) {
-       // 4. Fallback: 外部瀏覽器或報錯
-       // 戳後端紀錄，並嚴格保留 painId / optionId / ready_to_chat 記憶，導回官方帳號
+       // 4. 關鍵 Fallback: 從網頁跳轉過來的用戶，必定會走到這裡 (因為不在聊天室 context)
+       // 先戳後端紀錄，並嚴格保留狀態
        try {
          await fetch('/api/track/push', {
            method: 'POST',
@@ -76,11 +77,21 @@ export const LiffWelcomePage: React.FC = () => {
          });
        } catch (e) {}
        
-       const addFriendUrl = import.meta.env.VITE_LINE_ADD_FRIEND_URL;
-       if (addFriendUrl) {
-         window.location.href = addFriendUrl;
+       // 【最佳解】使用 LINE 官方 oaMessage Scheme 將文字「預填」在對話框中
+       const oaId = import.meta.env.VITE_LINE_OA_ID; 
+       
+       if (oaId) {
+         // 去除可能誤填的 @ 前綴再補上 (確保格式正確，如 @xxx)
+         const cleanOaId = oaId.startsWith('@') ? oaId : `@${oaId}`;
+         window.location.href = `https://line.me/R/oaMessage/${cleanOaId}/?${encodeURIComponent(messageText)}`;
        } else {
-         liff.closeWindow();
+         // 如果沒有設定 OA_ID，只能導向官方帳號主頁 (文字框會是空的)
+         const addFriendUrl = import.meta.env.VITE_LINE_ADD_FRIEND_URL;
+         if (addFriendUrl) {
+           window.location.href = addFriendUrl;
+         } else {
+           liff.closeWindow();
+         }
        }
     } finally {
       // 視窗將被關閉或網頁跳轉，只做狀態保險
