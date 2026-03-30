@@ -6,6 +6,7 @@ import { painPoints } from '../content/painPoints';
 import { siteContent } from '../content/siteContent';
 import { faqs } from '../content/faq';
 import { DualCTA } from '../components/DualCTA';
+import { useAppStore } from '../store/useAppStore';
 
 export const SituationPage = () => {
   const { painId, optionId } = useParams();
@@ -17,12 +18,16 @@ export const SituationPage = () => {
   const painPoint = painPoints.find(p => p.id === painId);
   const option = painPoint?.followUp.options.find(o => o.id === optionId);
 
-  // 防護
+  // 防護與寫入狀態
   useEffect(() => {
     if (!painPoint || !option) {
       navigate('/');
+    } else {
+      // 寫入全域狀態以便後續 DualCTA 能抓取到網址參數送入 LIFF
+      useAppStore.getState().setPainPoint(painId || null);
+      useAppStore.getState().setFollowUpOption(optionId || null);
     }
-  }, [painPoint, option, navigate]);
+  }, [painPoint, option, navigate, painId, optionId]);
 
   // 監聽滾動以顯示/隱藏 Sticky CTA
   useEffect(() => {

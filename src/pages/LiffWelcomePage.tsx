@@ -132,6 +132,47 @@ export const LiffWelcomePage: React.FC = () => {
             </div>
           </motion.div>
 
+        ) : !matchedOption ? (
+
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="space-y-6 px-2 mt-8">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-800 border border-slate-700 mb-4">
+                <span className="text-2xl text-slate-400">{profile?.displayName?.charAt(0) || 'Hi'}</span>
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2 tracking-wide">
+                好，針對這個狀況
+              </h2>
+              <p className="text-slate-400 text-[15px] leading-relaxed block mt-2 px-4 py-2 bg-slate-800/50 rounded-lg">
+                底下哪一個情境最符合你的現況：
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 gap-3">
+              {matchedPainPoint.followUp.options.map((opt) => (
+                <button
+                  key={opt.id}
+                  onClick={() => {
+                    useAppStore.getState().setFollowUpOption(opt.id);
+                  }}
+                  className="w-full text-left p-5 bg-slate-900/80 border border-slate-700/80 rounded-2xl hover:bg-brand-900/10 hover:border-brand-500/40 transition-all group shadow-sm relative overflow-hidden"
+                >
+                  <div className="text-[15px] text-slate-200 leading-relaxed pr-4 font-medium transition-colors group-hover:text-white">
+                    {opt.text}
+                  </div>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-brand-500 transition-opacity">
+                    <Link2 className="w-4 h-4" />
+                  </div>
+                </button>
+              ))}
+            </div>
+            <button 
+              onClick={() => useAppStore.getState().setPainPoint(null)}
+              className="mt-6 w-full text-center text-sm text-slate-500 hover:text-slate-300 transition-colors"
+            >
+               重選其他狀況
+            </button>
+          </motion.div>
+
         ) : (
           
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
