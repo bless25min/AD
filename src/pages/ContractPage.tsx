@@ -50,7 +50,7 @@ export const ContractPage = () => {
     const num = parseInt(m, 10);
     if (num === 1) return '90,000';
     if (num === 3) return '80,000';
-    if (num >= 12) return '70,000';
+    if (num >= 6) return '70,000';
     return searchParams.get('amount') || '70,000';
   };
 
@@ -172,8 +172,9 @@ export const ContractPage = () => {
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
         
-        {/* Document Container */}
-        <div id="contract-document" className="bg-slate-900 border border-slate-700/60 rounded-2xl shadow-2xl overflow-hidden mb-8 relative">
+        <div className="flex flex-col-reverse gap-8">
+          {/* Document Container */}
+          <div id="contract-document" className="bg-slate-900 border border-slate-700/60 rounded-2xl shadow-2xl overflow-hidden relative">
           
           <div className="p-8 sm:p-12 border-b border-slate-800">
             <h1 className="text-3xl md:text-4xl font-black text-white mb-8 text-center tracking-wide">
@@ -256,16 +257,22 @@ export const ContractPage = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-400 mb-2">合約長度 (月數) <span className="text-red-500">*</span></label>
-                <input
-                  type="number"
-                  min="1"
-                  max="60"
-                  required
-                  disabled={isSigned}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 disabled:opacity-50 transition-colors"
-                  value={formData.months}
-                  onChange={(e) => setFormData({...formData, months: e.target.value})}
-                />
+                <div className="relative">
+                  <select
+                    required
+                    disabled={isSigned}
+                    className="w-full appearance-none bg-slate-800 border border-slate-700 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 disabled:opacity-50 transition-colors cursor-pointer"
+                    value={formData.months}
+                    onChange={(e) => setFormData({...formData, months: e.target.value})}
+                  >
+                    <option value="1">1 個月 (月合約)</option>
+                    <option value="3">3 個月 (季合約)</option>
+                    <option value="6">6 個月 (半年約)</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-400">
+                    <svg className="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -360,6 +367,7 @@ export const ContractPage = () => {
               </button>
             )}
           </form>
+        </div>
         </div>
 
         {/* Payment Section (Unlocks after signed) */}
