@@ -11,21 +11,6 @@ export const LiffInitPage: React.FC = () => {
   const { friendshipStatus, isLoggedIn, entryPath } = useAppStore();
 
   useEffect(() => {
-    // 從網址列抓取從 liff.line.me 帶來的狀態還原參數 (解決 Safari -> LINE App 的 localStorage 遺失)
-    const params = new URLSearchParams(window.location.search);
-    const painId = params.get('painId');
-    const optionId = params.get('optionId');
-    
-    if (painId) {
-      const store = useAppStore.getState();
-      store.setPainPoint(painId);
-      if (optionId) {
-        store.setFollowUpOption(optionId);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
     // 當初始化完成且確定登入狀態後，進行路由拋轉
     if (!isInitializing && isLoggedIn) {
       if (friendshipStatus === 'friend') {

@@ -19,8 +19,20 @@ export const useLiff = () => {
 
         await liff.init({
           liffId,
-          // 移除 withLoginOnExternalBrowser 讓我們先取得主控權
         });
+
+        // 🎯 LIFF 初始化完成後，liff.state 會被還原回標準的 URL query 參數
+        // 此時抓取 liff.line.me 帶來的狀態，並存入 Zustand 記憶中
+        const params = new URLSearchParams(window.location.search);
+        const painId = params.get('painId');
+        const optionId = params.get('optionId');
+        if (painId) {
+          const store = useAppStore.getState();
+          store.setPainPoint(painId);
+          if (optionId) {
+            store.setFollowUpOption(optionId);
+          }
+        }
 
         const isLoggedIn = liff.isLoggedIn();
         setIsLoggedIn(isLoggedIn);
