@@ -14,6 +14,9 @@ export const HomePageB = () => {
   const ctaRef = useRef<HTMLElement>(null);
 
   const handleFinalCtaClick = () => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Lead');
+    }
     navigate('/liff');
   };
 
@@ -128,6 +131,11 @@ export const HomePageB = () => {
               <div className="w-full sm:flex-1 relative">
                 <a 
                   href="tel:0900000000"
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && (window as any).fbq) {
+                      (window as any).fbq('track', 'Contact');
+                    }
+                  }}
                   className="group relative inline-flex items-center justify-center px-6 py-5 w-full text-xl font-bold text-white transition-all duration-300 bg-[#00B900] border border-[#00B900] rounded-2xl hover:bg-[#009900] shadow-[0_0_20px_rgba(0,185,0,0.2)] hover:shadow-[0_0_40px_rgba(0,185,0,0.4)] hover:-translate-y-1 focus:outline-none"
                 >
                   <MessageCircle className="w-6 h-6 mr-3 flex-shrink-0" />

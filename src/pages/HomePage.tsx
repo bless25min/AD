@@ -81,7 +81,7 @@ export const HomePage = () => {
            <h2 className="text-3xl font-bold text-white mb-4">點擊一個你現在最有感的狀況：</h2>
         </div>
         <div className="space-y-6">
-          {painPoints.map((pt) => {
+          {painPoints.filter(pt => pt.id !== 'hard_to_close').map((pt) => {
              return (
               <div 
                 key={pt.id}

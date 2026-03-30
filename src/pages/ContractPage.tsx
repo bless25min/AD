@@ -68,6 +68,13 @@ export const ContractPage = () => {
     
     // Lock the form and show payment
     setIsSigned(true);
+
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Purchase', { 
+        currency: 'TWD', 
+        value: parseInt(contractParams.amount.replace(/,/g, ''), 10) 
+      });
+    }
     
     const now = new Date();
     setSignedDate(`${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,'0')}/${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`);

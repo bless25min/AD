@@ -142,8 +142,28 @@
 
 ---
 
+## 🟢 v1.5.0: 對話點火層與共識確認層 (The Chat Ignition & Consensus Layer)
+**發布重點**：徹底解決「漏斗斷層問題」。把網頁單向閱讀的終點，翻轉為 LINE 聊天室內真實可回看的「雙向對話起點」，並建立最高強度的簽約前信任閉環。
+* **sendMessages-First 點火引擎**：徹底移除了 `LiffWelcomePage` 原有的多項冗長閱讀卡片，改以極簡的交接文字搭配單一按鈕「💬 好，先從這裡開始聊」。按下後，系統會自動在 LINE 聊天室「以使用者的名義」發出前測的痛點摘要，製造強烈而自然的對話起始感。
+* **無縫微過場動畫 (Micro-Handoff)**：在按鈕點擊後加入 600ms 的 Loading 鎖定狀態 (`正在把這段帶進對話…`)，隨後瞬間關閉 LIFF 視窗 (`liff.closeWindow()`)，讓使用者流暢地回到聊天室等待 Bot 回覆。
+* **Fallback 記憶守護**：針對不支援 `sendMessages` 的外部瀏覽器，實裝強悍的 Fallback 機制。透過 `fetch('/api/track/push')` 把 `painId` / `optionId` 狀態精準送往後端，再將使用者導回官方帳號，確保網頁上的所有選項記憶 100% 存活。
+* **狀態流轉與共識層腳本化**：擴充 `line_chatbot_flow.md` 營運腳本。新增高精度狀態如 `chat_started_at` 與 `consensus_confirmed_at`。最關鍵的是在推播合約前，加入了「如果你覺得方向對，是不是該先補這一段？」的**共識確認層**，逼使客戶在 LINE 內留下一句親口說出的『對』。
+
+---
+
+## 🟢 v1.5.1: 全漏斗轉換事件與行爲追蹤矩陣 (Full Funnel Tracking Matrix)
+**發布重點**：不留死角地捕捉所有漏斗節點的高意圖訊號，並為後續廣告優化與 UI 改版提供最紮實的數據基底。
+* **Meta Pixel (FBq) 標準事件佈署**：
+  * **Lead (潛在顧客)**：綁定於前端 2 組主要 CTA (`DualCTA` 的 LINE 按鈕、`HomePageB` 的看報告按鈕)。
+  * **Contact (聯絡我們)**：綁定於所有直撥電話 15 分鐘的 CTA，捕捉高意圖熱線行動。
+  * **InitiateCheckout (進入結帳流程)**：綁定於 `LiffWelcomePage` 點火按鈕，精準抓出願意真正在 LINE 內開聊的高純度受眾。
+  * **Purchase (購買/簽約)**：綁定於 `ContractPage` 的合約簽署完成按鈕，並傳遞動態 TWD 金額（根據客戶自訂的合約總額）。
+* **Hotjar 全站錄影與熱區追蹤**：於 `index.html` 基礎部署 Hotjar 代碼，無縫攝取所有冷熱流量的滾動深度、游標游移與停留斷點，補足 GA4 無法看見的「心理猶豫區塊」。
+
+---
+
 **未來發展建議 (Next Steps)**：
 - 對接前端真實 Analytics (如 PostHog) 以驗證每個微診斷節點的點擊留存率。
-- 測試 A/B 版本的實際流量耗損，並調整 B 版的主視覺重心。
 - 後端資料庫串接 (D1 / KV) 將蒐集到的 Session 與 PainPoint 偏好實體化保存。
+- LINE Messaging API (如 Make / n8n) 實作對接，正式將點火訊息與第 1 輪 Quick Reply 動態串聯。
 

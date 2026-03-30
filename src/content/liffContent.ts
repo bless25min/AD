@@ -1,12 +1,11 @@
 export const liffContent = {
   welcome: {
     greeting: "好，我先不跟你講漂亮話。",
-    successMessage: "你剛剛先把最麻煩的一步做完了。\n接下來不用一次搞懂全部，先看最重要的就好。\n我先幫你抓最關鍵那一段。",
-    painPointPrefix: "因為你剛剛提到：",
+    successMessage: "你剛剛先把最麻煩的一步做完了。接下來不用再看很多，我直接從這裡接著跟你聊。",
+    painPointPrefix: "你剛剛比較像卡在：",
     optionPrefix: "而且最常發生的是：",
     callToActions: [
-      { id: "report", label: "先看為什麼會這樣", style: "primary" },
-      { id: "booking", label: "想快一點，直接聊 15 分鐘", style: "outline" }
+      { id: "chat_start", label: "💬 好，先從這裡開始聊", style: "primary" }
     ]
   },
 
