@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Copy, ShieldCheck, Building2, User, FileText, Download, Loader2 } from 'lucide-react';
+import { CheckCircle2, Copy, ShieldCheck, Building2, User, FileText, Download, Loader2, Phone } from 'lucide-react';
 import { getContractTerms, paymentInfo } from '../content/contractTerms';
 import { useLiff } from '../hooks/useLiff';
 import { useAppStore } from '../store/useAppStore';
@@ -13,6 +13,7 @@ export const ContractPage = () => {
   const [searchParams] = useSearchParams();
   const { isInitializing } = useLiff();
   const { isLoggedIn, profile } = useAppStore();
+  const [isDownloading, setIsDownloading] = useState(false);
 
   // LINE Tag 轉換追蹤代碼 (載入合約頁即視為轉換)
   useEffect(() => {
@@ -40,6 +41,8 @@ export const ContractPage = () => {
     companyName: '',
     vat: '',
     representative: '',
+    contactName: '',
+    contactPhone: '',
     months: searchParams.get('months') || '6',
     startDate: searchParams.get('startDate') 
       ? new Date(searchParams.get('startDate')!).toISOString().split('T')[0] 
@@ -67,7 +70,6 @@ export const ContractPage = () => {
 
   const [isAgreed, setIsAgreed] = useState(false);
   const [isSigned, setIsSigned] = useState(false);
-  const [signedDate, setSignedDate] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const handleSign = async (e: React.FormEvent) => {
@@ -84,9 +86,6 @@ export const ContractPage = () => {
       });
     }
     
-    const now = new Date();
-    setSignedDate(`${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,'0')}/${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`);
-    
     // Scroll to payment card
     setTimeout(() => {
       document.getElementById('payment-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -101,6 +100,8 @@ export const ContractPage = () => {
           body: JSON.stringify({
             userId: profile.userId,
             companyName: formData.companyName,
+            contactName: formData.contactName,
+            contactPhone: formData.contactPhone,
             startDate: contractParams.startDate,
             endDate: contractParams.endDate,
             amount: contractParams.amount,
@@ -118,19 +119,26 @@ export const ContractPage = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleDownloadPdf = () => {
+  const handleDownloadPdf = async () => {
     const element = document.getElementById('contract-document');
     if (!element) return;
     
-    const opt = {
-      margin:       10,
-      filename:     `${formData.companyName || '公司'}_顧問服務合約.pdf`,
-      image:        { type: 'jpeg' as const, quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true },
-      jsPDF:        { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const }
-    };
+    setIsDownloading(true);
+    try {
+      const opt = {
+        margin:       10,
+        filename:     `${formData.companyName || '公司'}_成交優化與廣告成長合作合約書.pdf`,
+        image:        { type: 'jpeg' as const, quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true },
+        jsPDF:        { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const }
+      };
 
-    html2pdf().set(opt).from(element).save();
+      await html2pdf().set(opt).from(element).save();
+    } catch (err) {
+      console.error('Failed to generate PDF:', err);
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   if (isInitializing) {
@@ -160,11 +168,11 @@ export const ContractPage = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center text-brand-400 font-bold text-xl">
             <ShieldCheck className="w-6 h-6 mr-2" />
-            數位顧問合約簽署
+            成交優化與廣告成長合作合約書
           </div>
           {isSigned && (
             <div className="flex items-center text-[#00B900] text-sm font-bold bg-[#00B900]/10 px-3 py-1 rounded-full border border-[#00B900]/20">
-              <CheckCircle2 className="w-4 h-4 mr-1.5" /> 已完成簽署
+              <CheckCircle2 className="w-4 h-4 mr-1.5" /> 合約已為您準備就緒
             </div>
           )}
         </div>
@@ -178,14 +186,14 @@ export const ContractPage = () => {
           
           <div className="p-8 sm:p-12 border-b border-slate-800">
             <h1 className="text-3xl md:text-4xl font-black text-white mb-8 text-center tracking-wide">
-              數據顧問服務合約書
+              成交優化與廣告成長合作合約書
             </h1>
             <div className="flex flex-col md:flex-row justify-between text-slate-400 text-lg mb-8 font-medium space-y-4 md:space-y-0">
               <div>立約人 (甲方)：{formData.companyName || '下附數位簽署人'}</div>
               <div>立約人 (乙方)：貳拾伍數據顧問企業社</div>
             </div>
             <p className="text-slate-300 leading-relaxed mb-8">
-              甲方茲委任乙方提供數據顧問服務，為保障雙方權利與確認雙方義務，特立本數位合約，並同意訂定下列服務條款：
+              甲方茲與乙方簽訂成交優化與廣告成長合作，為保障雙方權利與確認雙方義務，特立本合約，並同意訂定下列服務條款：
             </p>
           </div>
 
@@ -200,26 +208,65 @@ export const ContractPage = () => {
                 </section>
               ))}
             </div>
-            
-            {isSigned && (
-              <div className="mt-16 pt-8 border-t border-slate-700">
-                <h3 className="text-xl font-bold text-white mb-6">簽署紀錄 (數位簽章)</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-slate-300">
-                  <div>
-                    <p className="mb-2"><span className="text-slate-500">甲方立約人代表：</span> {formData.representative}</p>
-                    <p className="mb-2"><span className="text-slate-500">甲方公司名稱：</span> {formData.companyName}</p>
-                    <p className="mb-2"><span className="text-slate-500">甲方統一編號：</span> {formData.vat || '無'}</p>
+            <div className="mt-20 pt-12 border-t-2 border-slate-700">
+              <h3 className="text-xl font-bold text-white mb-10 text-center tracking-widest">立約人</h3>
+              
+              <div className="flex flex-col md:flex-row justify-between gap-16 text-slate-300">
+                <div className="flex-1 space-y-8">
+                  <div className="flex items-end border-b border-slate-700 pb-2">
+                    <span className="w-24 shrink-0 text-slate-400">甲方：</span>
+                    <span className="flex-1 font-bold text-white text-lg">{formData.companyName}</span>
+                    <span className="shrink-0 text-sm text-slate-500">（公司章）</span>
                   </div>
-                  <div>
-                    <p className="mb-2"><span className="text-slate-500">乙方立約人代表：</span> 貳拾伍數據顧問企業社</p>
-                    <p className="mb-2"><span className="text-slate-500">簽署完成時間：</span> {signedDate}</p>
-                    <p className="mb-2 text-[#00B900] font-bold flex items-center">
-                      <CheckCircle2 className="w-4 h-4 mr-1" /> 已同意數位合約條例
-                    </p>
+                  <div className="flex items-end border-b border-slate-700 pb-2 mt-auto">
+                    <span className="w-24 shrink-0 text-slate-400">統一編號：</span>
+                    <span className="flex-1 font-mono tracking-wider">{formData.vat || ' '}</span>
+                  </div>
+                  <div className="flex items-end border-b border-slate-700 pb-2 mt-auto">
+                    <span className="w-24 shrink-0 text-slate-400">代表人：</span>
+                    <span className="flex-1">{formData.representative}</span>
+                    <span className="shrink-0 text-sm text-slate-500">（負責人章）</span>
+                  </div>
+                  <div className="flex items-end border-b border-slate-700 pb-2 mt-8">
+                    <span className="w-24 shrink-0 text-slate-400">聯絡人：</span>
+                    <span className="flex-1">{formData.contactName || ' '}</span>
+                  </div>
+                  <div className="flex items-end border-b border-slate-700 pb-2">
+                    <span className="w-24 shrink-0 text-slate-400">聯絡電話：</span>
+                    <span className="flex-1 font-mono tracking-wider">{formData.contactPhone || ' '}</span>
+                  </div>
+                </div>
+
+                <div className="flex-1 space-y-8">
+                  <div className="flex items-end border-b border-slate-700 pb-2">
+                    <span className="w-24 shrink-0 text-slate-400">乙方：</span>
+                    <span className="flex-1 font-bold text-white text-lg">貳拾伍數據顧問企業社</span>
+                    <span className="shrink-0 text-sm text-slate-500">（公司章）</span>
+                  </div>
+                  <div className="flex items-end border-b border-slate-700 pb-2">
+                    <span className="w-24 shrink-0 text-slate-400">統一編號：</span>
+                    <span className="flex-1 font-mono tracking-wider">91244365</span>
+                  </div>
+                  <div className="flex items-end border-b border-slate-700 pb-2 mt-auto">
+                    <span className="w-24 shrink-0 text-slate-400">代表人：</span>
+                    <span className="flex-1">廖天佑</span>
+                    <span className="shrink-0 text-sm text-slate-500">（負責人章）</span>
+                  </div>
+                  <div className="flex items-end border-b border-slate-700 pb-2 mt-8">
+                    <span className="w-24 shrink-0 text-slate-400">聯絡人：</span>
+                    <span className="flex-1">廖天佑</span>
+                  </div>
+                  <div className="flex items-end border-b border-slate-700 pb-2">
+                    <span className="w-24 shrink-0 text-slate-400">聯絡電話：</span>
+                    <span className="flex-1 font-mono tracking-wider">02-2272-4261</span>
                   </div>
                 </div>
               </div>
-            )}
+              
+              <div className="mt-24 text-center text-slate-400 font-medium">
+                中　華　民　國　　　　　年　　　　　月　　　　　日
+              </div>
+            </div>
           </div>
         </div>
 
@@ -230,9 +277,9 @@ export const ContractPage = () => {
             <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] z-10 flex items-center justify-center">
               <div className="bg-slate-800/90 border border-slate-700 p-6 rounded-2xl shadow-2xl transform -rotate-3 border-l-4 border-l-[#00B900]">
                 <div className="text-[#00B900] font-black text-2xl mb-1 flex items-center">
-                  <CheckCircle2 className="w-6 h-6 mr-2" /> 數位簽署完成
+                  <CheckCircle2 className="w-6 h-6 mr-2" /> 合約已產生完畢
                 </div>
-                <div className="text-slate-400 text-sm font-mono">{signedDate}</div>
+                <div className="text-slate-400 text-sm font-mono mt-2">請向下滑動下載 PDF 進行用印</div>
               </div>
             </div>
           )}
@@ -313,7 +360,7 @@ export const ContractPage = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-400 mb-2">代表人 / 簽署人姓名 <span className="text-red-500">*</span></label>
+              <label className="block text-sm font-medium text-slate-400 mb-2">代表人 / 負責人姓名 <span className="text-red-500">*</span></label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <User className="h-5 w-5 text-slate-500" />
@@ -322,11 +369,48 @@ export const ContractPage = () => {
                   type="text"
                   required
                   disabled={isSigned}
-                  placeholder="請輸入簽署人真實姓名"
+                  placeholder="請輸入公司負責人真實姓名"
                   className="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 disabled:opacity-50 transition-colors"
                   value={formData.representative}
                   onChange={(e) => setFormData({...formData, representative: e.target.value})}
                 />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-slate-400 mb-2">日常聯絡人姓名 <span className="text-red-500">*</span></label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <User className="h-5 w-5 text-slate-500" />
+                  </div>
+                  <input
+                    type="text"
+                    required
+                    disabled={isSigned}
+                    placeholder="請輸入聯絡窗口姓名"
+                    className="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 disabled:opacity-50 transition-colors"
+                    value={formData.contactName}
+                    onChange={(e) => setFormData({...formData, contactName: e.target.value})}
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-400 mb-2">聯絡人行動電話 <span className="text-red-500">*</span></label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <Phone className="h-5 w-5 text-slate-500" />
+                  </div>
+                  <input
+                    type="tel"
+                    required
+                    disabled={isSigned}
+                    placeholder="例如：0912-345-678"
+                    className="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 disabled:opacity-50 transition-colors"
+                    value={formData.contactPhone}
+                    onChange={(e) => setFormData({...formData, contactPhone: e.target.value})}
+                  />
+                </div>
               </div>
             </div>
 
@@ -347,9 +431,9 @@ export const ContractPage = () => {
                 </div>
                 <div className="ml-4">
                   <span className={`text-lg font-bold transition-colors ${isAgreed ? 'text-brand-400' : 'text-slate-300 group-hover:text-white'}`}>
-                    我已詳細閱讀，並同意代表甲方簽署以上顧問服務合約條款。
+                    我已確認上方資訊填寫無誤，並同意將其帶入合約中。
                   </span>
-                  <p className="text-sm text-slate-500 mt-1">本數位勾選具備與紙本簽章同等之法律效力。</p>
+                  <p className="text-sm text-slate-500 mt-1">點擊下方按鈕即可產生專屬您的實體合約 PDF 檔案供雙方後續用印。</p>
                 </div>
               </label>
             </div>
@@ -363,7 +447,7 @@ export const ContractPage = () => {
                     : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
                 }`}
               >
-                確認無誤，正式簽署合約
+                確認無誤，產生實體合約 PDF
               </button>
             )}
           </form>
@@ -387,16 +471,21 @@ export const ContractPage = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 mb-6">
                   <Download className="w-8 h-8" />
                 </div>
-                <h2 className="text-3xl font-black text-white mb-4">合約已成立，準備邁出第一步</h2>
+                <h2 className="text-3xl font-black text-white mb-4">合約已為您產生，準備邁出第一步</h2>
                 <p className="text-xl text-slate-400 font-medium max-w-2xl mx-auto mb-6">
-                  請將首期服務款項匯至以下指定帳戶。<br/>匯款完成後，我將立刻為您啟動後續工作流程。
+                  請點擊下方按鈕下載合約並用印，也請將首期服務款項匯至以下指定帳戶。<br/>雙方確認款項及合約後，我將立刻為您啟動後續工作流程。
                 </p>
                 <button
                   onClick={handleDownloadPdf}
-                  className="inline-flex items-center px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl transition-colors shadow-lg shadow-brand-500/20"
+                  disabled={isDownloading}
+                  className="inline-flex items-center px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl transition-colors shadow-lg shadow-brand-500/20 disabled:opacity-50"
                 >
-                  <FileText className="w-5 h-5 mr-2" />
-                  下載合約 PDF
+                  {isDownloading ? (
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  ) : (
+                    <FileText className="w-5 h-5 mr-2" />
+                  )}
+                  {isDownloading ? '正在產生 PDF...' : '下載合約 PDF'}
                 </button>
               </div>
 

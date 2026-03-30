@@ -5,7 +5,7 @@ interface Env {
 export const onRequestPost: PagesFunction<Env> = async (context) => {
   try {
     const data = await context.request.json<any>();
-    const { userId, companyName, startDate, endDate, amount } = data;
+    const { userId, companyName, startDate, endDate, amount, contactName, contactPhone } = data;
 
     if (!userId) {
       return new Response(JSON.stringify({ error: 'Missing userId' }), { status: 400 });
@@ -13,7 +13,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
     const lineToken = context.env.LINE_CHANNEL_ACCESS_TOKEN;
 
-    const messageText = `數位合約簽署完成通知 🎉\n\n您好，我們已收到《${companyName || '貴公司'}》的簽署紀錄。\n合約期間為：${startDate} 至 ${endDate}\n約定月費為：${amount}。\n\n請盡速將首期款項匯出，並將帳號末五碼傳至本聊天室，謝謝您！`;
+    const messageText = `合作合約書產生通知 🎉\n\n您好，系統已為《${companyName || '貴公司'}》產生專屬的「成交優化與廣告成長合作合約書」。\n合約期間為：${startDate} 至 ${endDate}\n約定月費為：${amount}\n聯絡人：${contactName} (${contactPhone})\n\n請您下載合約 PDF 完成雙方用印，並盡速將首期款項匯出（請將轉帳帳號末五碼回傳至本聊天室）。確認款項後，我們將立即為您啟動工作流程，謝謝您！`;
 
     if (!lineToken) {
       console.warn("No LINE_CHANNEL_ACCESS_TOKEN found. Skipping actual LINE API call.", messageText);
