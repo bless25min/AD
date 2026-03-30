@@ -113,10 +113,25 @@ export const ContractPage = () => {
     }
   };
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(paymentInfo.accountNumber);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(paymentInfo.accountNumber);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = paymentInfo.accountNumber;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Clipboard error:', err);
+      alert("複製失敗，請手動複製帳號：\n" + paymentInfo.accountNumber);
+    }
   };
 
   const handleDownloadPdf = async () => {
@@ -136,6 +151,7 @@ export const ContractPage = () => {
       await html2pdf().set(opt).from(element).save();
     } catch (err) {
       console.error('Failed to generate PDF:', err);
+      alert("產生 PDF 時發生錯誤。若您正在使用 LINE 內部瀏覽器，這可能是底層攔截了下載動作，請點擊畫面右上角選單「以預設瀏覽器開啟」後再試一次下載！");
     } finally {
       setIsDownloading(false);
     }
@@ -245,7 +261,7 @@ export const ContractPage = () => {
                   </div>
                   <div className="flex items-end border-b border-slate-700 pb-2">
                     <span className="w-24 shrink-0 text-slate-400">統一編號：</span>
-                    <span className="flex-1 font-mono tracking-wider">91244365</span>
+                    <span className="flex-1 font-mono tracking-wider">52467800</span>
                   </div>
                   <div className="flex items-end border-b border-slate-700 pb-2 mt-auto">
                     <span className="w-24 shrink-0 text-slate-400">代表人：</span>
@@ -462,7 +478,7 @@ export const ContractPage = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-12 bg-gradient-to-br from-slate-900 to-black border border-brand-500/30 rounded-3xl p-8 sm:p-12 shadow-[0_0_50px_rgba(0,185,0,0.05)] relative overflow-hidden"
+              className="mt-12 bg-gradient-to-br from-slate-900 to-black border border-brand-500/30 rounded-3xl p-8 sm:p-12 shadow-[0_0_50px_rgba(0,185,0,0.05)] relative z-30 overflow-hidden"
             >
               {/* Decorative background flair */}
               <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
