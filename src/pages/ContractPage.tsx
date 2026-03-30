@@ -46,8 +46,16 @@ export const ContractPage = () => {
       : new Date().toISOString().split('T')[0],
   });
 
+  const deriveAmount = (m: string) => {
+    const num = parseInt(m, 10);
+    if (num === 1) return '90,000';
+    if (num === 3) return '80,000';
+    if (num >= 12) return '70,000';
+    return searchParams.get('amount') || '70,000';
+  };
+
   const contractParams = {
-    amount: searchParams.get('amount') || '70,000',
+    amount: searchParams.get('amount') || deriveAmount(formData.months),
     months: formData.months,
     project: searchParams.get('project') || '社群內容產製與行銷顧問',
     startDate: formatTwDate(formData.startDate),

@@ -162,6 +162,29 @@
 
 ---
 
+## 🟢 v1.5.2: 漏斗斷層修復與 Fallback 智慧選單 (Funnel State Integrity & Smart Fallback)
+**發布重點**：修復了 `liff.line.me` 外跳時容易丟失追蹤參數的致命瑕疵，確保潛在客戶一但選定痛點與情境，其選項就會像釘子一樣牢牢鎖死在漏斗深處。
+* **Persistent Zustand 狀態回寫**：在 `SituationPage` 補上了前端狀態回血機制 (`useEffect` 強制回寫選單標籤)。確保 `DualCTA` 按鈕被點擊時，能 100% 精準附帶 `?painId=x&optionId=y` 給 LIFF SDK。
+* **分層式 Fallback Selector**：大幅度重構了 `LiffWelcomePage` 針對「沒有帶參數空降」訪客的防護網。現在墜機選項不再只問「痛點」，只要選完痛點，系統會流暢地原地滑出「第二層情境選單」，確保所有人都必須完成微診斷，底部的「點火按鈕」才會有反應，徹底根絕按鈕失效的靜默 Bug。
+
+---
+
+## 🟢 v1.5.3: Chat Ignition 協議重構 - oaMessage Prefill (The oaMessage Protocol)
+**發布重點**：解決了 LINE 官方對 `liff.sendMessages` 的嚴格環境限制 (該 API 僅限於從聊天室內點開 LIFF 時可用，而在外跳漏斗時必定觸發異常)。
+* **自動退回 oaMessage 協議**：廢棄了空白死路的普通 Fallback。現在當程式偵測到 `sendMessages` 被 LINE 官方阻擋時，會自動切換為原生的 URL Scheme `https://line.me/R/oaMessage/{Basic_ID}/?{Encoded_Text}`。
+* **文字預填體驗 (Prefill Text)**：這項改動成功實現了「無縫進入聊天室，且對話框已經自動打好『我先從這裡開始聊…』」的絕佳體驗，用戶只需動下手指點選送出。
+* **VITE_LINE_OA_ID 全局變數**：在 `.env` 中正式納管這項必備環境變數。
+
+---
+
+## 🟢 v1.5.4: 智慧合約引擎與級距式計價 (Smart Contract Engine & Tiered Pricing)
+**發布重點**：合約不再是死板的 PDF 翻版，而是能即時感應參數、自動重算交易額的「動態法務文件」。
+* **多級距收費條款自動化**：於 `contractTerms.ts` (第 2 條服務費用) 正式寫入「月合約 90k、季合約 80k、年合約 70k」的級距式定價結構，並加上了第 8 條「若提前解約，將以單月計價重新回溯計算補差價」的高強度防偽與防跑單條文。
+* **合約金額動態演算 (`deriveAmount`)**：優化了 `ContractPage.tsx`。當業務團隊僅設定 `&months=3` 給客戶時，系統會全自動解析為 NT$80,000 的合約總價。
+* **精準 Facebook Pixel 綁定**：連同 `Purchase` 價值追蹤，也會跟著這套動態演算得出精確的交易金額報送給 FB 廣告做 ROAS 最佳化。
+
+---
+
 **未來發展建議 (Next Steps)**：
 - 對接前端真實 Analytics (如 PostHog) 以驗證每個微診斷節點的點擊留存率。
 - 後端資料庫串接 (D1 / KV) 將蒐集到的 Session 與 PainPoint 偏好實體化保存。
