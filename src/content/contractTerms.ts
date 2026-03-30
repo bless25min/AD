@@ -31,7 +31,7 @@ export const getContractTerms = (params: ContractParams) => {
     },
     {
       title: "六、服務費用",
-      content: `乙方提供服務依合作期間不同，收費如下：\n月合約：每月 NT$90,000\n季合約（3個月）：每月 NT$80,000\n年合約（12個月）：每月 NT$70,000\n\n甲方簽署之本期合約為 ${params.months} 個月，適用每月新台幣 ${params.amount} 元之約定。\n\n付款方式：\n* 每月 5 日前付款至乙方公司銀行帳戶`
+      content: `乙方提供服務依合作期間不同，收費如下：\n月合約：每月 NT$90,000\n季合約（3個月）：每月 NT$80,000\n半年約（6個月）：每月 NT$70,000\n\n甲方簽署之本期合約為 ${params.months} 個月，適用每月新台幣 ${params.amount} 元之約定。\n\n付款方式：\n* 每月 5 日前付款至乙方公司銀行帳戶`
     },
     {
       title: "七、額外服務",
