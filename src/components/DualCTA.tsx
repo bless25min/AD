@@ -50,7 +50,7 @@ export const DualCTA = ({ isSticky = false }: DualCTAProps) => {
           
           {/* 次按鈕 (Phone) */}
           <a 
-            href="tel:0900000000"
+            href="tel:+88622724261"
             onClick={() => {
               if (typeof window !== 'undefined' && (window as any).fbq) {
                 (window as any).fbq('track', 'Contact');

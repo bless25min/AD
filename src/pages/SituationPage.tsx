@@ -7,6 +7,7 @@ import { siteContent } from '../content/siteContent';
 import { faqs } from '../content/faq';
 import { DualCTA } from '../components/DualCTA';
 import { useAppStore } from '../store/useAppStore';
+import { Footer } from '../components/Footer';
 
 export const SituationPage = () => {
   const { painId, optionId } = useParams();
@@ -238,6 +239,8 @@ export const SituationPage = () => {
         </section>
 
       </div>
+
+      <Footer />
 
       {/* 5. Sticky CTA */}
       <div className={`transition-all duration-300 ease-in-out pointer-events-none ${showStickyCta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>

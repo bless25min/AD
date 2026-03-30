@@ -185,6 +185,31 @@
 
 ---
 
+## 🟢 v1.5.5: 跨站域電話快速撥打優化 (Global Phone Number Re-routing)
+**發布重點**：將全站（包含首頁及各層級落地頁）的 15 分鐘診斷按鈕，全面從預設測試電話替換為官方服務專線 `+88622724261`，確保所有的 `Contact` 轉換漏斗都具備真實的接聽出口。
+
+---
+
+## 🟢 v1.5.6: 品牌信任感結尾 - 全域頁尾導入 (Global Footer Component Integration)
+**發布重點**：為各級頁面加入了標準化且具備高度信任感的版權宣告頁尾。
+* **共用元件 `Footer.tsx`**：將 Email、實體地址、可點擊的聯絡電話、製作人宣告以及 `Privacy Policy` 外連，封裝為高擴充性的共享視圖。
+* **無痛嵌入**：已成功注入 `HomePage.tsx`、`HomePageB.tsx` 與最關鍵的閱讀區塊 `SituationPage.tsx`，在不影響核心漏斗視覺的前提下補足正規品牌感。
+
+---
+
+## 🟢 v1.5.7: 網域驗證與社群分享優化 (Facebook Domain & Meta Registry)
+**發布重點**：為正式銜接 Meta Business Manager (企業管理平台) 的網域主權與廣告追蹤打好地基。
+* **Domain Verification Meta Tag**：在系統的絕對進入點 `index.html` 的 `<head>` 區段植入了 `facebook-domain-verification` 原生標籤，免除了因 SPA 動態渲染可能導致 Facebook 抓取失敗的隱患。
+
+---
+
+## 🟢 v1.5.8: 官方 15 條顧問合約全量導入 (Official 15-Clause Contract Deployment)
+**發布重點**：合約中心不再是範例檔，正式替換為具備實戰性與法律定義嚴謹的 15 條「廣告投放與成交優化顧問服務約定」。
+* **結構化轉譯**：從官方提供的 `.docx` 精準對齊至 `contractTerms.ts` 的 JSON Array 中，保留了動態代碼如 `${params.startDate}` 與 `${params.amount}`。
+* **情境客製化條款**：完善了第 8 條保密協定、第 11 條合約修改方式、第 13 條解約罰款防護條例與最終第 15 條的數位簽署電子合意效力聲明，將顧問服務合約武裝到牙齒。
+
+---
+
 **未來發展建議 (Next Steps)**：
 - 對接前端真實 Analytics (如 PostHog) 以驗證每個微診斷節點的點擊留存率。
 - 後端資料庫串接 (D1 / KV) 將蒐集到的 Session 與 PainPoint 偏好實體化保存。

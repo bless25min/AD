@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, ChevronRight, MessageCircle, Activity, TrendingDown, Target } from 'lucide-react';
 import { siteContent } from '../content/siteContent';
 import { painPoints } from '../content/painPoints';
+import { Footer } from '../components/Footer';
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -105,10 +106,7 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 text-center text-slate-600 text-sm">
-        <p>© {new Date().getFullYear()} 獲客漏斗重建系統 | 成熟流量轉化</p>
-      </footer>
+      <Footer />
     </div>
   );
 };

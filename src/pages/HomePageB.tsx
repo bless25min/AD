@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle2, MessageCircle } from 'lucide-react';
 import { siteContent } from '../content/siteContent';
+import { Footer } from '../components/Footer';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -130,7 +131,7 @@ export const HomePageB = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10 mb-8 mx-auto w-full max-w-3xl mt-12">
               <div className="w-full sm:flex-1 relative">
                 <a 
-                  href="tel:0900000000"
+                  href="tel:+88622724261"
                   onClick={() => {
                     if (typeof window !== 'undefined' && (window as any).fbq) {
                       (window as any).fbq('track', 'Contact');
@@ -157,6 +158,8 @@ export const HomePageB = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
