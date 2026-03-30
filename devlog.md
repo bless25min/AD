@@ -219,6 +219,15 @@
 
 ---
 
+## 🟢 v1.6.0: 穩定化列印與專屬合約動態連結 (Native Print & Dynamic Contract URL)
+**發布重點**：為徹底解決 LINE 內建瀏覽器 (LIFF / WebView) 對檔案下載 (Blob) 的嚴格防堵問題，去除了第三方算圖套件，改走「高保真原生列印」路線，並賦予每份合約「無限期讀寫」的保存能力。
+* **原生列印架構 (Native Print API)**：全面捨棄容易因複雜 DOM 結構而當機的 `html2pdf.js`，改採 JavaScript 內建的 `window.print()`。配合全新的 `@media print` 專屬樣式表，實行了「印表機黑白高反差、隱藏按鈕與表單、禁止跨頁截斷條款」等多維度的列印體驗優化。
+* **專屬動態連結 (URL SearchParams State)**：將合約的狀態儲存機制，從網頁的單次生命週期，進化為透過 `URLSearchParams` 直接綁定。客戶填寫完成後會自動產生打包所有參數的 `contractUrl`，不僅防呆，更改變了「只能一次性產出」的先天限制。
+* **LINE 推播整合擴充**：於 Cloudflare API 中，成功將產出的 `contractUrl` 與「中國信託轉帳資訊」雙雙灌入 LINE 的提醒卡片。不只方便團隊追蹤，更讓客戶可以直接在 LINE 內無腦重開專屬合約，體驗大幅升級。
+* **乙方統編校正**：修正了 `ContractPage.tsx` 預設的 25min 乙方統編為正確的 `52467800`。
+
+---
+
 **未來發展建議 (Next Steps)**：
 - 對接前端真實 Analytics (如 PostHog) 以驗證每個微診斷節點的點擊留存率。
 - 後端資料庫串接 (D1 / KV) 將蒐集到的 Session 與 PainPoint 偏好實體化保存。

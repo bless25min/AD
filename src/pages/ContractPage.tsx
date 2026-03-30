@@ -38,11 +38,11 @@ export const ContractPage = () => {
 
   // Form State
   const [formData, setFormData] = useState({
-    companyName: '',
-    vat: '',
-    representative: '',
-    contactName: '',
-    contactPhone: '',
+    companyName: searchParams.get('companyName') || '',
+    vat: searchParams.get('vat') || '',
+    representative: searchParams.get('representative') || '',
+    contactName: searchParams.get('contactName') || '',
+    contactPhone: searchParams.get('contactPhone') || '',
     months: searchParams.get('months') || '6',
     startDate: searchParams.get('startDate') 
       ? new Date(searchParams.get('startDate')!).toISOString().split('T')[0] 
@@ -85,6 +85,18 @@ export const ContractPage = () => {
         value: parseInt(contractParams.amount.replace(/,/g, ''), 10) 
       });
     }
+
+    // Generate permanent contract link
+    const queryParams = new URLSearchParams({
+      months: formData.months,
+      startDate: formData.startDate,
+      companyName: formData.companyName,
+      vat: formData.vat,
+      representative: formData.representative,
+      contactName: formData.contactName,
+      contactPhone: formData.contactPhone
+    });
+    const contractUrl = `${window.location.origin}${window.location.pathname}?${queryParams.toString()}`;
     
     // Scroll to payment card
     setTimeout(() => {
@@ -105,6 +117,7 @@ export const ContractPage = () => {
             startDate: contractParams.startDate,
             endDate: contractParams.endDate,
             amount: contractParams.amount,
+            contractUrl: contractUrl
           })
         });
       } catch (err) {
