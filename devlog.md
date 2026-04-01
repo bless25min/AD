@@ -236,8 +236,20 @@
 
 ---
 
+## 🟢 v2.0: AI 顧問式成交引擎轉型 (The AI Decision Simulation Engine)
+**發布重點**：正式將系統從純粹的「視覺與流程漏斗」進化為「AI 模擬決策驅動的顧問服務」。全面翻新前端文案與卡片選項，導入「事先模擬客戶真實想法，精準確認卡點後再著手重構」的核心服務定位。
+* **核心主張重塑 (Pivot Strategy)**：全站主視覺由單一的「前端獲客系統」轉型為具備三個明確階段（看懂客戶、找出卡點、決定哪段先動）的「AI 顧問式成交引擎」。將原本「順利轉單」的訴求，升級為「利用 AI 提前解構客戶猶豫與退縮點，消滅無效試錯」。
+* **文案引擎全面刷新 (Content Reboot)**：
+  - `siteContent.ts`: 引入全新論述陣列 `engineSteps` 將 AI 模擬、卡點診斷與優化次序具象化，並讓防禦與解釋文案更加成熟洗鍊。
+  - `painPoints.ts`: 四大痛點描述（流量、跳出、不點按鈕、聊不動）全面改寫。將診斷推向更高維度的「決策入口失焦」、「第一眼信任斷裂」、「最後一步阻力過高」、「教育前置不足」。並加強「痛點展開後」的情境選項。
+  - `faq.ts` 與 `liffContent.ts`: 新增了針對 AI 模擬的疑慮解構，並將 LIFF 的對話承接語氣，調整為「直接接手你現在的成交卡點」，強化真人接盤的厚實度。
+* **視覺與佈局層次化 (UI/UX Realignment)**：
+  - `HomePage.tsx`: 首頁加入 `BrainCircuit` 等 AI 象徵性圖示，引入全新的三段卡片架構，將長篇論述切分出空間層次與過渡動畫。
+  - `PainPointPage.tsx` 與 `SituationPage.tsx`: 同步支援新的文案結構與進度感知，並放大 `PositiveFeedback` 與 `MicroDiagnosisBridge` 帶來的深層「讀心感」。
+
+---
+
 **未來發展建議 (Next Steps)**：
 - 對接前端真實 Analytics (如 PostHog) 以驗證每個微診斷節點的點擊留存率。
 - 後端資料庫串接 (D1 / KV) 將蒐集到的 Session 與 PainPoint 偏好實體化保存。
 - LINE Messaging API (如 Make / n8n) 實作對接，正式將點火訊息與第 1 輪 Quick Reply 動態串聯。
-
