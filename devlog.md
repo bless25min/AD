@@ -249,7 +249,17 @@
 
 ---
 
+## 🟢 v2.1: 雙軌合約機制與無阻力收款體驗 (Dual-Track Contract & Frictionless Onboarding)
+**發布重點**：為因應不同層級客戶與專案需求，於 `ContractPage` 導入「一般固定月費」與「成果分潤模式」雙軌並行的智能合約引擎，並配合合約類型動態調整 UI 呈現。
+* **無縫切換架構 (Seamless Toggle)**：於簽署表單頂部新增獨立切換區塊，支援「一般合約 (固定服務費)」與「成果分潤合約 (20%)」。根據用戶點選狀態，動態抽換合約前言與合約標題，且保留所有欄位記憶體 (`formData`)。
+* **動態條款替換 (Dynamic Terms Swap)**：於 `contractTerms.ts` 新開發 `getProfitShareContractTerms` 陣列引擎。一鍵導入「不收固定月費」、「成交金額 20% 分潤」、「甲方自行支付廣告費」等 16 條專為成果分潤量身打造的實戰法務條文。
+* **智能付款流程隱藏 (Smart Payment UI)**：顛覆「一律顯示收款帳號」的死板設計。系統偵測為「成果分潤合約」且完成簽署後，自動隱藏臺灣銀行的實體帳戶卡片，並將下一步指引無縫變更為：「👉 雙方完成合約用印後，請透過 LINE 通知...」，免除客戶「沒看到款項卻看到帳號」的困惑與認知摩擦。
+* **合約網址參數繼承 (URL State Inheritance)**：簽約完成後產生的 `contractUrl` 會自動把 `?type=profit-share` 鎖進網址中，未來雙方開啟永久連結時不需重新選擇，即自動呈現最終敲定的分潤版合約。
+
+---
+
 **未來發展建議 (Next Steps)**：
 - 對接前端真實 Analytics (如 PostHog) 以驗證每個微診斷節點的點擊留存率。
 - 後端資料庫串接 (D1 / KV) 將蒐集到的 Session 與 PainPoint 偏好實體化保存。
 - LINE Messaging API (如 Make / n8n) 實作對接，正式將點火訊息與第 1 輪 Quick Reply 動態串聯。
+

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Copy, ShieldCheck, Building2, User, FileText, Download, Loader2, Phone } from 'lucide-react';
-import { getContractTerms, paymentInfo } from '../content/contractTerms';
+import { getContractTerms, getProfitShareContractTerms, paymentInfo } from '../content/contractTerms';
 import { useLiff } from '../hooks/useLiff';
 import { useAppStore } from '../store/useAppStore';
 
@@ -36,6 +36,10 @@ export const ContractPage = () => {
     return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
   };
 
+  const [contractType, setContractType] = useState<'standard' | 'profit-share'>(
+    (searchParams.get('type') as 'standard' | 'profit-share') || 'standard'
+  );
+
   // Form State
   const [formData, setFormData] = useState({
     companyName: searchParams.get('companyName') || '',
@@ -66,7 +70,13 @@ export const ContractPage = () => {
     companyName: formData.companyName || '下附數位簽署人',
   };
 
-  const terms = getContractTerms(contractParams);
+  const terms = contractType === 'standard' 
+    ? getContractTerms(contractParams) 
+    : getProfitShareContractTerms(contractParams);
+    
+  const contractTitle = contractType === 'standard'
+    ? '成交優化與廣告成長合作合約書'
+    : '成果分潤合作合約書';
 
   const [isAgreed, setIsAgreed] = useState(false);
   const [isSigned, setIsSigned] = useState(false);
@@ -88,6 +98,7 @@ export const ContractPage = () => {
 
     // Generate permanent contract link
     const queryParams = new URLSearchParams({
+      type: contractType,
       months: formData.months,
       startDate: formData.startDate,
       companyName: formData.companyName,
@@ -224,7 +235,7 @@ export const ContractPage = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center text-brand-400 font-bold text-xl">
             <ShieldCheck className="w-6 h-6 mr-2" />
-            成交優化與廣告成長合作合約書
+            {contractTitle}
           </div>
           {isSigned && (
             <div className="flex items-center text-[#00B900] text-sm font-bold bg-[#00B900]/10 px-3 py-1 rounded-full border border-[#00B900]/20">
@@ -242,14 +253,14 @@ export const ContractPage = () => {
           
           <div className="p-8 sm:p-12 border-b border-slate-800">
             <h1 className="text-3xl md:text-4xl font-black text-white mb-8 text-center tracking-wide">
-              成交優化與廣告成長合作合約書
+              {contractTitle}
             </h1>
             <div className="flex flex-col md:flex-row justify-between text-slate-400 text-lg mb-8 font-medium space-y-4 md:space-y-0">
               <div>立約人 (甲方)：{formData.companyName || '下附數位簽署人'}</div>
               <div>立約人 (乙方)：貳拾伍數據顧問企業社</div>
             </div>
             <p className="text-slate-300 leading-relaxed mb-8">
-              甲方茲與乙方簽訂成交優化與廣告成長合作，為保障雙方權利與確認雙方義務，特立本合約，並同意訂定下列服務條款：
+              甲方茲與乙方簽訂{contractType === 'standard' ? '成交優化與廣告成長合作' : '成果分潤合作'}，為保障雙方權利與確認雙方義務，特立本合約，並同意訂定下列服務條款：
             </p>
           </div>
 
@@ -344,6 +355,33 @@ export const ContractPage = () => {
             <Building2 className="w-6 h-6 text-brand-500 mr-3" />
             合約期間與立約資訊設定
           </h2>
+
+          <div className="flex bg-slate-800 p-1 rounded-xl mb-8 border border-slate-700">
+            <button
+              type="button"
+              onClick={() => setContractType('standard')}
+              disabled={isSigned}
+              className={`flex-1 py-3 text-sm flex items-center justify-center font-bold rounded-lg transition-colors ${
+                contractType === 'standard' 
+                  ? 'bg-brand-500 text-white shadow-md' 
+                  : 'text-slate-400 hover:text-white hover:bg-slate-700 disabled:opacity-50'
+              }`}
+            >
+              一般合約 (固定服務費)
+            </button>
+            <button
+              type="button"
+              onClick={() => setContractType('profit-share')}
+              disabled={isSigned}
+              className={`flex-1 py-3 text-sm flex items-center justify-center font-bold rounded-lg transition-colors ${
+                contractType === 'profit-share' 
+                  ? 'bg-brand-500 text-white shadow-md' 
+                  : 'text-slate-400 hover:text-white hover:bg-slate-700 disabled:opacity-50'
+              }`}
+            >
+              成果分潤合約 (20%)
+            </button>
+          </div>
 
           <form onSubmit={handleSign} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 border-b border-slate-800 pb-8">
@@ -529,7 +567,9 @@ export const ContractPage = () => {
                 </div>
                 <h2 className="text-3xl font-black text-white mb-4">合約已為您產生，準備邁出第一步</h2>
                 <p className="text-xl text-slate-400 font-medium max-w-2xl mx-auto mb-6">
-                  請點擊下方按鈕開啟列印畫面，您可直接列印實體合約，或在印表機選項點選「另存為 PDF」。請將首期服務款項匯至下方帳戶。<br/>雙方確認款項及合約後，我將立刻為您啟動工作流程。
+                  請點擊下方按鈕開啟列印畫面，您可直接列印實體合約，或在印表機選項點選「另存為 PDF」。
+                  {contractType === 'standard' && <><br/>請將首期服務款項匯至下方帳戶。雙方確認款項及合約後，我將立刻為您啟動工作流程。</>}
+                  {contractType === 'profit-share' && <><br/>雙方確認合約後，我將立刻為您啟動工作流程。</>}
                 </p>
                 <button
                   onClick={handlePrintPdf}
@@ -540,68 +580,82 @@ export const ContractPage = () => {
                 </button>
               </div>
 
-              <div className="max-w-xl mx-auto bg-slate-800/50 border border-slate-700 rounded-2xl p-6 sm:p-8 backdrop-blur-sm relative z-10">
-                <div className="space-y-6">
-                  
-                  <div>
-                    <div className="text-sm font-medium text-slate-500 mb-1">收款銀行</div>
-                    <div className="text-xl text-white font-bold tracking-wide">
-                      {paymentInfo.bankCode} ({paymentInfo.bankName})
+              {contractType === 'standard' && (
+                <>
+                  <div className="max-w-xl mx-auto bg-slate-800/50 border border-slate-700 rounded-2xl p-6 sm:p-8 backdrop-blur-sm relative z-10">
+                    <div className="space-y-6">
+                      
+                      <div>
+                        <div className="text-sm font-medium text-slate-500 mb-1">收款銀行</div>
+                        <div className="text-xl text-white font-bold tracking-wide">
+                          {paymentInfo.bankCode} ({paymentInfo.bankName})
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="text-sm font-medium text-slate-500 mb-1">收款人戶名</div>
+                        <div className="text-xl text-white font-bold tracking-wide">
+                          {paymentInfo.accountName}
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <div className="text-sm font-medium text-slate-500 mb-1">匯款帳號</div>
+                        <div className="flex items-center justify-between bg-slate-900 border border-slate-800 rounded-xl p-4 group hover:border-brand-500/50 transition-colors">
+                          <span className="text-2xl font-mono text-brand-400 tracking-wider">
+                            {paymentInfo.accountNumber}
+                          </span>
+                          <button 
+                            onClick={handleCopy}
+                            className="flex items-center justify-center w-10 h-10 rounded-lg bg-slate-800 text-slate-300 hover:text-white hover:bg-brand-600 transition-colors focus:outline-none"
+                            title="複製帳號"
+                          >
+                            {copied ? <CheckCircle2 className="w-5 h-5 text-[#00B900]" /> : <Copy className="w-5 h-5" />}
+                          </button>
+                        </div>
+                        <AnimatePresence>
+                          {copied && (
+                            <motion.span 
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0 }}
+                              className="text-[#00B900] text-sm font-bold absolute mt-2"
+                            >
+                              已複製到剪貼簿！
+                            </motion.span>
+                          )}
+                        </AnimatePresence>
+                      </div>
+
+                      <div>
+                        <div className="text-sm font-medium text-slate-500 mb-1">戶名</div>
+                        <div className="text-xl text-slate-200 font-bold tracking-wide">
+                          {paymentInfo.accountName}
+                        </div>
+                      </div>
+
                     </div>
                   </div>
 
-                  <div>
-                    <div className="text-sm font-medium text-slate-500 mb-1">收款人戶名</div>
-                    <div className="text-xl text-white font-bold tracking-wide">
-                      {paymentInfo.accountName}
+                  <div className="mt-10 text-center relative z-10">
+                    <div className="bg-blue-900/10 border-l-4 border-blue-500 p-5 rounded-r-xl inline-block max-w-xl text-left">
+                      <p className="text-blue-300 font-bold leading-relaxed">
+                        👉 匯款完成後，請透過 LINE 回傳「帳號後五碼」。<br/>核對無誤後，我們會立即展開第一階段的籌備與溝通群組。
+                      </p>
                     </div>
                   </div>
-                  
-                  <div>
-                    <div className="text-sm font-medium text-slate-500 mb-1">匯款帳號</div>
-                    <div className="flex items-center justify-between bg-slate-900 border border-slate-800 rounded-xl p-4 group hover:border-brand-500/50 transition-colors">
-                      <span className="text-2xl font-mono text-brand-400 tracking-wider">
-                        {paymentInfo.accountNumber}
-                      </span>
-                      <button 
-                        onClick={handleCopy}
-                        className="flex items-center justify-center w-10 h-10 rounded-lg bg-slate-800 text-slate-300 hover:text-white hover:bg-brand-600 transition-colors focus:outline-none"
-                        title="複製帳號"
-                      >
-                        {copied ? <CheckCircle2 className="w-5 h-5 text-[#00B900]" /> : <Copy className="w-5 h-5" />}
-                      </button>
-                    </div>
-                    <AnimatePresence>
-                      {copied && (
-                        <motion.span 
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0 }}
-                          className="text-[#00B900] text-sm font-bold absolute mt-2"
-                        >
-                          已複製到剪貼簿！
-                        </motion.span>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                </>
+              )}
 
-                  <div>
-                    <div className="text-sm font-medium text-slate-500 mb-1">戶名</div>
-                    <div className="text-xl text-slate-200 font-bold tracking-wide">
-                      {paymentInfo.accountName}
-                    </div>
+              {contractType === 'profit-share' && (
+                <div className="mt-10 text-center relative z-10">
+                  <div className="bg-brand-900/10 border-l-4 border-brand-500 p-5 rounded-r-xl inline-block max-w-xl text-left">
+                    <p className="text-brand-300 font-bold leading-relaxed">
+                      👉 雙方完成合約用印後，請透過 LINE 通知。<br/>我們將立即為您安排第一階段的籌備與溝通群組。
+                    </p>
                   </div>
-
                 </div>
-              </div>
-
-              <div className="mt-10 text-center relative z-10">
-                <div className="bg-blue-900/10 border-l-4 border-blue-500 p-5 rounded-r-xl inline-block max-w-xl text-left">
-                  <p className="text-blue-300 font-bold leading-relaxed">
-                    👉 匯款完成後，請透過 LINE 回傳「帳號後五碼」。<br/>核對無誤後，我們會立即展開第一階段的籌備與溝通群組。
-                  </p>
-                </div>
-              </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
