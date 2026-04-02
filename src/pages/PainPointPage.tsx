@@ -100,10 +100,10 @@ export const PainPointPage = () => {
         >
           <div className="mb-8 text-center">
             <p className="text-brand-400 font-bold text-lg mb-4">
-              我不會看到問題就立刻叫你重做
+              看到問題還需要知道客戶怎麼想，讓我的AI系統幫你完成
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
-              先把這段成交問題收斂到更準
+              把成交問題收斂到最後一關
             </h2>
             <p className="text-lg text-slate-400 leading-relaxed whitespace-pre-line max-w-3xl mx-auto">
               {siteContent.progressHints[0]}
@@ -141,7 +141,7 @@ export const PainPointPage = () => {
         >
           <div className="mb-8">
             <div className="inline-flex items-center mb-5 px-4 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300 text-sm font-medium tracking-wide">
-              先把現場收斂得更精準
+              把轉換現場收斂得更精準
             </div>
 
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight whitespace-pre-line">
@@ -151,7 +151,7 @@ export const PainPointPage = () => {
             <p className="text-lg text-slate-400 leading-relaxed whitespace-pre-line">
               同樣叫做「{painPoint.title}」，背後真正卡住的位置不一定一樣。
               {'\n'}
-              我先幫你把現場分得更細一點，後面才不會亂改。
+              先幫你把現場客戶內心所想模擬出來，不需要再依靠頻繁更換創意團隊的機緣或運氣。
             </p>
           </div>
 

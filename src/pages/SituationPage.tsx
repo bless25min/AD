@@ -126,7 +126,7 @@ export const SituationPage = () => {
             <div className="space-y-6">
               <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 md:p-8">
                 <div className="text-sm font-bold tracking-widest text-brand-500 mb-4 uppercase">
-                  AI 模擬決策看到的是
+                  我看到的是
                 </div>
                 <p className="text-lg md:text-xl text-slate-200 leading-relaxed whitespace-pre-line font-medium">
                   {painPoint.microDiagnosis}
@@ -158,7 +158,7 @@ export const SituationPage = () => {
               現在先不要急著做很多
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
-              接下來，先做這三件事就夠了
+              接下來，簡單的優化，先做這三件事
             </h2>
             <p className="text-lg text-slate-400 leading-relaxed whitespace-pre-line max-w-3xl mx-auto">
               {siteContent.progressHints[1]}
