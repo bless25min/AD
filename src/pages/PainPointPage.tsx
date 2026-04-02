@@ -160,17 +160,20 @@ export const PainPointPage = () => {
               <button
                 key={opt.id}
                 onClick={() => navigate(`/path/${painId}/${opt.id}`)}
-                className="w-full text-left p-6 sm:px-8 sm:py-6 rounded-2xl border border-slate-700 bg-slate-900/70 text-slate-300 hover:bg-brand-900/20 hover:border-brand-500/40 hover:text-white transition-all text-lg sm:text-xl font-bold group/btn flex justify-between items-center shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                className="w-full text-left p-6 sm:px-8 sm:py-6 rounded-2xl border border-slate-700 bg-slate-900/50 text-slate-300 hover:bg-slate-800 hover:border-brand-500/50 hover:text-white transition-all group/btn flex flex-col md:flex-row justify-between items-start md:items-center shadow-md hover:shadow-lg hover:-translate-y-1 gap-6 md:gap-4"
               >
                 <div>
                   <div className="mb-2 flex items-center text-brand-400 text-sm font-bold tracking-wide">
                     <CheckCircle2 className="w-4 h-4 mr-2" />
                     這比較像我現在的現場
                   </div>
-                  <span className="leading-snug">{opt.text}</span>
+                  <span className="text-lg sm:text-xl font-bold leading-snug">{opt.text}</span>
                 </div>
 
-                <ChevronRight className="w-6 h-6 opacity-50 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 group-hover/btn:text-brand-400 transition-all flex-shrink-0 ml-4" />
+                <div className="inline-flex items-center justify-center px-6 py-3 md:px-5 md:py-2.5 rounded-full border border-brand-500/30 bg-brand-900/10 group-hover/btn:bg-brand-600 group-hover/btn:border-brand-500 transition-all w-full md:w-auto relative overflow-hidden flex-shrink-0 text-brand-400 group-hover/btn:text-white">
+                  <span className="text-sm md:text-base font-bold mr-2">選擇此現況</span>
+                  <ChevronRight className="w-5 h-5 md:w-4 md:h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </div>
               </button>
             ))}
           </div>

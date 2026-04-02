@@ -104,13 +104,13 @@ export const HomePage = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-brand-400 font-bold text-lg mb-4">
-              不是先猜，不是先亂改
+              不需要猜測亂改碰運氣
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
-              先看懂客戶怎麼想，再決定哪一段值得動
+              先看懂客戶怎麼想，再決定怎麼做
             </h2>
             <p className="text-lg text-slate-400 leading-relaxed max-w-3xl mx-auto">
-              很多公司不是沒做，而是每次都從錯的地方補問題。你現在需要的，不是再多一輪素材，而是先把客戶決策路徑看清楚。
+              很多公司是每次都從錯的地方補問題。你現在需要的是先把客戶心裡想法看清楚。
             </p>
           </div>
 
@@ -165,7 +165,7 @@ export const HomePage = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-brand-400 font-bold text-lg mb-4">
-              很多公司不是沒努力，是一直在錯的地方補問題
+              在錯的地方補問題，卻祈求獲得好的結果是很困難的
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white whitespace-pre-line leading-tight">
               {siteContent.coreProposition.main}
@@ -194,13 +194,13 @@ export const HomePage = () => {
       <section id="diagnostic" className="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <p className="text-brand-400 font-bold text-lg mb-4">
-            先別急著重做整站
+            先別急著換廣告素材、換行銷公司
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 leading-tight">
-            先看你的成交，最常卡在哪一段
+            先看你的成交，對客戶來說卡在哪一段
           </h2>
           <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-3xl mx-auto">
-            這不是心理測驗。是先幫你分清楚，你現在最該優化的是前端切入、頁面承接、最後一步阻力，還是 LINE 前面那段教育根本沒做完。
+            先幫你分清楚，你現在最該優化的是哪裡。
           </p>
         </div>
 
@@ -211,9 +211,9 @@ export const HomePage = () => {
               onClick={() => navigate(`/path/${pt.id}`)}
               className="group rounded-2xl transition-all duration-300 transform cursor-pointer border bg-slate-900/50 border-slate-800 hover:border-brand-500/50 hover:bg-slate-900/80 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="p-6 md:p-8 flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="mr-6 transition-transform duration-500 scale-100 group-hover:scale-110">
+              <div className="p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center">
+                  <div className="mb-4 sm:mb-0 sm:mr-6 transition-transform duration-500 scale-100 group-hover:scale-110">
                     {getIcon(pt.id)}
                   </div>
                   <div>
@@ -226,7 +226,10 @@ export const HomePage = () => {
                   </div>
                 </div>
 
-                <ChevronRight className="w-8 h-8 text-slate-500 transition-transform duration-300 group-hover:translate-x-2 group-hover:text-brand-400 flex-shrink-0 ml-4" />
+                <div className="inline-flex items-center justify-center px-6 py-3 md:px-5 md:py-2.5 rounded-full border border-brand-500/30 bg-brand-900/20 group-hover:bg-brand-600 group-hover:border-brand-500 transition-all w-full md:w-auto flex-shrink-0 text-brand-400 group-hover:text-white">
+                  <span className="text-sm md:text-base font-bold mr-2">點擊開始檢測</span>
+                  <ChevronRight className="w-5 h-5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
               </div>
             </div>
           ))}

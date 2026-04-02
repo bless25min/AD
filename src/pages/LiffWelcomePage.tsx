@@ -126,17 +126,20 @@ export const LiffWelcomePage: React.FC = () => {
                   onClick={() => {
                     useAppStore.getState().setPainPoint(pt.id);
                   }}
-                  className="w-full text-left p-5 bg-slate-900/80 border border-slate-700/80 rounded-2xl hover:bg-brand-900/10 hover:border-brand-500/40 transition-all group shadow-sm relative overflow-hidden"
+                  className="w-full text-left p-5 bg-slate-900/50 border border-slate-700/80 rounded-2xl hover:bg-slate-800 hover:border-brand-500/50 hover:-translate-y-0.5 transition-all group shadow-sm flex flex-col justify-between"
                 >
-                  <div className="text-white font-bold mb-1.5 text-[15px] flex items-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                    {pt.title}
+                  <div className="mb-4">
+                    <div className="text-white font-bold mb-1.5 text-[15px] flex items-center">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                      {pt.title}
+                    </div>
+                    <div className="text-[13px] text-slate-400 leading-relaxed pr-4">
+                      {pt.shortDescription}
+                    </div>
                   </div>
-                  <div className="text-[13px] text-slate-400 leading-relaxed pr-4">
-                    {pt.shortDescription}
-                  </div>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-brand-500 transition-opacity">
-                    <Link2 className="w-4 h-4" />
+                  <div className="inline-flex items-center justify-center self-start px-4 py-2 rounded-full border border-brand-500/30 bg-brand-900/10 group-hover:bg-brand-600 group-hover:border-brand-500 transition-all w-full text-brand-400 group-hover:text-white">
+                    <span className="text-[13px] font-bold mr-1">選擇此卡點</span>
+                    <Link2 className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </button>
               ))}
@@ -165,13 +168,14 @@ export const LiffWelcomePage: React.FC = () => {
                   onClick={() => {
                     useAppStore.getState().setFollowUpOption(opt.id);
                   }}
-                  className="w-full text-left p-5 bg-slate-900/80 border border-slate-700/80 rounded-2xl hover:bg-brand-900/10 hover:border-brand-500/40 transition-all group shadow-sm relative overflow-hidden"
+                  className="w-full text-left p-5 bg-slate-900/50 border border-slate-700/80 rounded-2xl hover:bg-slate-800 hover:border-brand-500/50 hover:-translate-y-0.5 transition-all group shadow-sm flex flex-col justify-between"
                 >
-                  <div className="text-[15px] text-slate-200 leading-relaxed pr-4 font-medium transition-colors group-hover:text-white">
+                  <div className="text-[15px] text-slate-200 leading-relaxed pr-4 font-medium transition-colors group-hover:text-white mb-4">
                     {opt.text}
                   </div>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-brand-500 transition-opacity">
-                    <Link2 className="w-4 h-4" />
+                  <div className="inline-flex items-center justify-center self-start px-4 py-2 rounded-full border border-brand-500/30 bg-brand-900/10 group-hover:bg-brand-600 group-hover:border-brand-500 transition-all w-full text-brand-400 group-hover:text-white">
+                    <span className="text-[13px] font-bold mr-1">選擇此現況</span>
+                    <Link2 className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </button>
               ))}
