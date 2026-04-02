@@ -59,7 +59,7 @@ export const SituationPage = () => {
   if (!painPoint || !option) return null;
 
   return (
-    <div className="min-h-screen bg-dark-bg text-slate-100 font-sans selection:bg-brand-500 selection:text-white pb-20 pt-10">
+    <div className="flex flex-col min-h-screen bg-dark-bg text-slate-100 font-sans selection:bg-brand-500 selection:text-white pt-10">
       {/* 頂部導航 */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <button

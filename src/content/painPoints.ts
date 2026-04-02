@@ -67,7 +67,7 @@ export const painPoints: PainPoint[] = [
     followUp: {
       question: "這種『人有進來，但很快就走』的狀況，哪個畫面最常發生？",
       options: [
-        { id: "first_screen_bounce", text: "很多人第一屏看一下就走了" },
+        { id: "first_screen_bounce", text: "很多人第一頁看一下就走了" },
         { id: "mid_page_drop", text: "看了一點，但很快就沒耐心了" },
         { id: "no_connection", text: "內容不算少，但就是看不出有被接住" }
       ]
@@ -77,7 +77,7 @@ export const painPoints: PainPoint[] = [
     microDiagnosis:
       "這在我們的 AI 顧問式成交引擎裡，屬於【第一眼信任斷裂】。\n\nAI 模擬決策很常看見：對方不是看不懂字，而是沒在前幾秒內感覺『你真的在處理我的事』。只要第一眼沒有被接住，他就不會想把心力花在你身上。",
     microDiagnosisBridge:
-      "你真正流掉的，不是那些隨便點進來的人。\n而是那些本來有需求，卻在第一屏就決定先算了的優質客戶。",
+      "你真正流掉的，不是那些隨便點進來的人。\n而是那些本來有需求，卻在第一頁就決定先算了的優質客戶。",
     progressSense:
       "既然知道是第一眼承接的問題，我們就不用先把內容越做越多。先把順序調對，把解法與共鳴放前面，留存才會開始變。",
     recommendedNextStep: "先看第一眼到底哪裡沒有接住他",

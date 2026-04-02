@@ -128,7 +128,7 @@ export const siteContent = {
       {
         type: "story",
         content:
-          "有些案子表面上看起來像廣告失效，拆到最後才發現，是進頁後第一屏就把人推走了。"
+          "有些案子表面上看起來像廣告失效，拆到最後才發現，是進頁後就把人推走了。"
       },
       {
         type: "mapping",

@@ -22,7 +22,7 @@ export const HomePageB = () => {
   };
 
   return (
-    <div className="min-h-screen bg-dark-bg text-slate-100 font-sans selection:bg-brand-500 selection:text-white pb-20">
+    <div className="flex flex-col min-h-screen bg-dark-bg text-slate-100 font-sans selection:bg-brand-500 selection:text-white">
       {/* 1. Hero 區塊 */}
       <section className="relative pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center flex flex-col justify-center">
         <motion.div initial="hidden" animate="visible" variants={fadeIn}>
