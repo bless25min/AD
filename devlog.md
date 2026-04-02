@@ -258,6 +258,15 @@
 
 ---
 
+## 🟢 v2.2: 介面互動補強與 SEO 權重重定位 (Affordance & SEO Optimization)
+**發布重點**：針對使用者體驗的斷點進行精準修復，並透過前端 Schema 與視覺實體截圖，大幅強化官方「AI顧問」的信任基礎。
+* **SEO 與結構化資料全面升級 (`index.html`)**：依據「AI顧問式成交引擎｜把流量變成可預測的成交」全新服務定位，精準配發 SEO Title、Meta Description、Robots (index, follow) 及 Canonical 標籤。更重要的是實裝了深度對齊業務流的 `WebSite`、`Organization` 與 `Service` 巢狀 JSON-LD 架構，讓搜尋爬蟲能精確理解服務級距。
+* **全域視角自動重置 (`ScrollToTop.tsx`)**：解決 React Router 預設行為導致的「跳頁卡在中段」體驗 Bug。強制綁定 `pathname` 監聽，讓潛在客戶每次點開更深層的痛點卡片時，視覺都能平滑流暢地回到最頂部。
+* **顯著化點擊語義 (Click Affordance Overhaul)**：全面翻新 `HomePage` (微診斷卡)、`PainPointPage` (情境卡) 與 `LiffWelcomePage` (Fallback卡) 的交互外觀。拔除存在感薄弱的箭頭圖示，直接升級為帶有 Hover 光暈的「點擊開始檢測」、「選擇此現況」實體膠囊按鈕 (Pill Button)，徹底消滅「不知道可以點」的無效流失率。
+* **AI 真實運算視覺證據 (Social Proof UI)**：於 `HomePage.tsx` 第一順位引擎說明處，完美置入「AI 模擬不同客群視角的內心劇場」的 Glassmorphism 漸層展廳。透過 3 張強烈反差的真實截圖呈現，作為支撐「這不是亂猜」的最強視覺底氣。
+
+---
+
 **未來發展建議 (Next Steps)**：
 - 對接前端真實 Analytics (如 PostHog) 以驗證每個微診斷節點的點擊留存率。
 - 後端資料庫串接 (D1 / KV) 將蒐集到的 Session 與 PainPoint 偏好實體化保存。

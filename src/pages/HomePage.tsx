@@ -110,6 +110,32 @@ export const HomePage = () => {
             </p>
           </div>
 
+          {/* AI Persona Screenshots Demo Block */}
+          <div className="mb-20">
+             <div className="relative group rounded-3xl overflow-hidden border border-slate-700/50 shadow-[0_0_40px_rgba(100,116,139,0.1)] bg-slate-900/40 p-6 md:p-10">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-600 via-brand-400 to-transparent opacity-50 block"></div>
+                <h3 className="text-xl md:text-2xl font-bold text-slate-200 mb-8 text-center flex flex-col sm:flex-row items-center justify-center">
+                   <BrainCircuit className="w-6 h-6 text-brand-500 mb-2 sm:mb-0 sm:mr-3" />
+                   AI 模擬不同客群視角的內心劇場 (系統真實運算截圖)
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                   <div className="rounded-xl overflow-hidden border border-slate-700/80 shadow-lg group-hover:-translate-y-1 transition-transform duration-500 delay-75 relative bg-slate-800">
+                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none z-10"></div>
+                     <img src="/ai-persona-1.png" alt="AI模擬對話-群像1" className="w-full h-auto object-cover relative z-0" />
+                   </div>
+                   <div className="rounded-xl overflow-hidden border border-slate-700/80 shadow-lg group-hover:-translate-y-1 transition-transform duration-500 delay-150 relative bg-slate-800">
+                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none z-10"></div>
+                     <img src="/ai-persona-2.png" alt="AI模擬對話-群像2" className="w-full h-auto object-cover relative z-0" />
+                   </div>
+                   <div className="rounded-xl overflow-hidden border border-slate-700/80 shadow-lg group-hover:-translate-y-1 transition-transform duration-500 delay-200 relative bg-slate-800">
+                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none z-10"></div>
+                     <img src="/ai-persona-3.png" alt="AI模擬對話-群像3" className="w-full h-auto object-cover relative z-0" />
+                   </div>
+                </div>
+                <p className="text-center text-slate-400 text-sm md:text-base mt-8 font-medium">看見客戶的猶豫與痛點，我們才能對症下藥，修正成交流程。</p>
+             </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {engineSteps.map((step, idx) => (
               <div
