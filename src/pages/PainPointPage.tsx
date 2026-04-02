@@ -44,7 +44,7 @@ export const PainPointPage = () => {
           className="mb-10"
         >
           <div className="inline-block mb-6 px-4 py-1.5 rounded-full bg-brand-900/20 border border-brand-500/20 text-brand-300 text-sm font-medium tracking-wide">
-            AI 模擬決策正在收斂
+            初步判斷
           </div>
 
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">

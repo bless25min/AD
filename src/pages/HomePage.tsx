@@ -63,10 +63,6 @@ export const HomePage = () => {
             {siteContent.hero.positioning}
           </div>
 
-          <p className="text-brand-400 font-bold text-lg md:text-xl mb-6 tracking-wide">
-            先看懂客戶怎麼做決定，再重組你的成交系統
-          </p>
-
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-8 leading-tight whitespace-pre-line">
             {siteContent.hero.title}
           </h1>
