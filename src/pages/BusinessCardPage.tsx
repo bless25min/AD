@@ -4,7 +4,7 @@ import { useLiff } from '../hooks/useLiff';
 import { getBusinessCardFlexMessage } from '../lib/flexMessageTemplate';
 
 export const BusinessCardPage: React.FC = () => {
-  const { liff, isInitializing } = useLiff();
+  const { liff, isInitializing } = useLiff(false);
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleShare = async () => {

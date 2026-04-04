@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import liff from '@line/liff';
 import { useAppStore } from '../store/useAppStore';
 
-export const useLiff = () => {
+export const useLiff = (autoLogin: boolean = true) => {
   const { setProfile, setFriendshipStatus, setIsLoggedIn, selectedPainPoint } = useAppStore();
   const [initError, setInitError] = useState<string | null>(null);
   const [isInitializing, setIsInitializing] = useState(true);
@@ -38,17 +38,19 @@ export const useLiff = () => {
         setIsLoggedIn(isLoggedIn);
 
         if (!isLoggedIn) {
-          // 移除 redirectUri，改用原生 Endpoint URL 避免 400 Bad Request
-          // 但在跳轉前，先把當下的網址存進 localStorage (Zustand persist)
-          const { setEntryPath } = useAppStore.getState();
-          const p = window.location.pathname;
-          // 若不是去 /liff 或 /，就記住這一個來源網址 (例如 /contract)
-          if (p !== '/liff' && p !== '/') {
-            setEntryPath(p);
+          if (autoLogin) {
+            const { setEntryPath } = useAppStore.getState();
+            const p = window.location.pathname;
+            if (p !== '/liff' && p !== '/') {
+              setEntryPath(p);
+            }
+            liff.login();
+            return; // 因為會重新導向，所以中斷後續執行
+          } else {
+            // 不強制登入，直接結束初始化
+            setIsInitializing(false);
+            return;
           }
-          
-          liff.login();
-          return; // 因為會重新導向，所以中斷後續執行
         }
 
         // 以下為已登入 (isLoggedIn = true) 的處理邏輯
