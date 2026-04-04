@@ -52,14 +52,13 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
               },
               {
                 type: "box", layout: "vertical", position: "absolute",
-                offsetStart: "calc(50% + 78px)", offsetBottom: "18px", width: "5px", height: "5px", cornerRadius: "2.5px", backgroundColor: "#ffffff80"
+                offsetStart: "70%", offsetBottom: "18px", width: "5px", height: "5px", cornerRadius: "2.5px", backgroundColor: "#ffffff80"
               },
               // ================= 實體內容開始 =================
               // Logo 與 標語 對坐
               {
                 type: "box",
                 layout: "horizontal",
-                alignItems: "center",
                 contents: [
                   {
                     type: "image",
