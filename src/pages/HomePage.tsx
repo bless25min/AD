@@ -1,11 +1,9 @@
 import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ArrowRight, CheckCircle2, UserCircle } from 'lucide-react';
 import { Footer } from '../components/Footer';
 
 export const HomePage = () => {
-  const navigate = useNavigate();
   // 管理漸進式揭露的狀態，1 代表只有第一段可見
   const [visibleLevel, setVisibleLevel] = useState(1);
 
@@ -32,7 +30,7 @@ export const HomePage = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white text-slate-800 font-sans selection:bg-brand-500 selection:text-white pb-0 overflow-x-hidden">
-      
+
       {/* ======================================= */}
       {/* Section 1: Hero */}
       {/* ======================================= */}
@@ -60,7 +58,7 @@ export const HomePage = () => {
                 </p>
                 <div className="p-4 md:p-5 bg-brand-50 border-l-4 border-brand-500 rounded-r-xl shadow-sm">
                   <p className="text-brand-900">
-                    問題不是沒行銷。<br/>
+                    問題不是沒行銷。<br />
                     是沒有一套把<span className="text-accent-600 font-bold">流量接成成交</span>的系統。
                   </p>
                 </div>
@@ -68,9 +66,9 @@ export const HomePage = () => {
 
               {/* 第一層解鎖選項 */}
               {visibleLevel === 1 && (
-                <motion.div 
-                  initial={{ opacity: 0 }} 
-                  animate={{ opacity: 1 }} 
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   transition={{ delay: 1 }}
                   className="pt-4 md:pt-6 space-y-3"
                 >
@@ -104,11 +102,11 @@ export const HomePage = () => {
 
             {/* 右側圖片：使用 h-auto 維持自然比例，防止裁切文字 */}
             <div className="w-full lg:w-1/2 relative flex justify-center items-center mt-8 lg:mt-0">
-               <img 
-                 src="/images/共通點.jpg" 
-                 alt="共通點" 
-                 className="w-full h-auto object-contain rounded-3xl shadow-xl border border-slate-100" 
-               />
+              <img
+                src="/images/共通點.jpg"
+                alt="共通點"
+                className="w-full h-auto object-contain rounded-3xl shadow-xl border border-slate-100"
+              />
             </div>
           </div>
         </motion.div>
@@ -119,7 +117,7 @@ export const HomePage = () => {
       {/* ======================================= */}
       <AnimatePresence>
         {visibleLevel >= 2 && (
-          <motion.section 
+          <motion.section
             ref={section2Ref}
             initial="hidden"
             whileInView="visible"
@@ -131,10 +129,10 @@ export const HomePage = () => {
               <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20">
                 {/* 左側圖片 */}
                 <div className="w-full lg:w-1/2 relative flex justify-center items-center">
-                  <img 
-                    src="/images/舊框架問題.jpg" 
-                    alt="舊框架問題" 
-                    className="w-full h-auto object-contain rounded-3xl shadow-lg border border-slate-200 bg-white p-2 sm:p-4" 
+                  <img
+                    src="/images/舊框架問題.jpg"
+                    alt="舊框架問題"
+                    className="w-full h-auto object-contain rounded-3xl shadow-lg border border-slate-200 bg-white p-2 sm:p-4"
                   />
                 </div>
 
@@ -145,17 +143,17 @@ export const HomePage = () => {
                   </h2>
                   <div className="space-y-6 text-base sm:text-lg text-slate-600 leading-relaxed text-left">
                     <p>
-                      廣告有人點。<br/>
-                      短影音有人看。<br/>
+                      廣告有人點。<br />
+                      短影音有人看。<br />
                       有時候還會衝出一波短期成效。
                     </p>
                     <p>
-                      但過沒多久，<br/>
+                      但過沒多久，<br />
                       又回到缺單、缺預約、缺穩定成交。
                     </p>
                     <p className="text-lg sm:text-xl text-brand-800 border-l-4 border-accent-500 pl-4 py-2 bg-white/50 rounded-r-lg">
-                       你已經有做行銷，也接近目標。<br />
-                       只是沒有讓客戶輕鬆的認識你，<span className="text-brand-600 font-bold block mt-1">自然而然的轉變成訂單。</span>
+                      你已經有做行銷，也接近目標。<br />
+                      只是沒有讓客戶輕鬆的認識你，<span className="text-brand-600 font-bold block mt-1">自然而然的轉變成訂單。</span>
                     </p>
                   </div>
 
@@ -193,7 +191,7 @@ export const HomePage = () => {
       {/* ======================================= */}
       <AnimatePresence>
         {visibleLevel >= 3 && (
-          <motion.section 
+          <motion.section
             ref={section3Ref}
             initial="hidden"
             whileInView="visible"
@@ -250,13 +248,13 @@ export const HomePage = () => {
                 </div>
               </div>
 
-               {/* 右側圖片：使用 flex + w-full 控制確保在手機上不斷行與避免強制高度 */}
-               <div className="w-full flex items-center justify-center relative mt-4 lg:mt-0">
-                  <img 
-                    src="/images/新框架做法.jpg" 
-                    alt="新框架做法" 
-                    className="w-full h-auto object-contain rounded-3xl shadow-xl border border-slate-200 bg-white p-2 sm:p-4" 
-                  />
+              {/* 右側圖片：使用 flex + w-full 控制確保在手機上不斷行與避免強制高度 */}
+              <div className="w-full flex items-center justify-center relative mt-4 lg:mt-0">
+                <img
+                  src="/images/新框架做法.jpg"
+                  alt="新框架做法"
+                  className="w-full h-auto object-contain rounded-3xl shadow-xl border border-slate-200 bg-white p-2 sm:p-4"
+                />
               </div>
             </div>
 
@@ -291,7 +289,7 @@ export const HomePage = () => {
       {/* ======================================= */}
       <AnimatePresence>
         {visibleLevel >= 4 && (
-          <motion.section 
+          <motion.section
             ref={section4Ref}
             initial="hidden"
             whileInView="visible"
@@ -302,11 +300,11 @@ export const HomePage = () => {
             <div className="max-w-4xl mx-auto">
               <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-accent-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-                
+
                 <h2 className="text-3xl md:text-4xl font-bold text-brand-900 mb-6 md:mb-8 text-center relative z-10 w-full word-break">
                   用成交，代替服務費。
                 </h2>
-                
+
                 <div className="space-y-4 md:space-y-6 text-base md:text-lg text-slate-700 leading-relaxed relative z-10">
                   <p>
                     你專心做好營運，<br className="sm:hidden" /> 決定要投入多少廣告預算。
@@ -317,7 +315,7 @@ export const HomePage = () => {
                   <p>
                     中間所有廣告、媒體、內容、執行費用，都不是付給我，<br className="hidden sm:block" /> 依照發票實報實銷。
                   </p>
-                  
+
                   <div className="inline-block px-4 py-3 md:px-5 md:py-3 mt-4 md:mt-6 bg-accent-50 border border-accent-200 rounded-xl w-full sm:w-auto">
                     <p className="text-brand-900 font-bold text-lg md:text-xl text-center sm:text-left">
                       我只從真實成交 / 預約轉換，收取服務費。
@@ -327,16 +325,16 @@ export const HomePage = () => {
 
                 <div className="mt-10 md:mt-12 pt-8 border-t border-slate-100 text-center relative z-10 w-full">
                   <p className="text-slate-500 text-sm md:text-base mb-6 md:mb-8">
-                    [ 補一句 ]<br/>
-                    如果你堅持，合作也可以從高額月費開始。<br className="hidden sm:block"/>
+                    [ 補一句 ]<br />
+                    如果你堅持，合作也可以從高額月費開始。<br className="hidden sm:block" />
                     但我更傾向於長久、健康的合作方式。
                   </p>
 
                   <div className="w-full max-w-2xl mx-auto rounded-2xl bg-white flex items-center justify-center shadow-lg shadow-brand-900/5 p-1 border border-slate-100 mb-8 overflow-hidden">
-                    <img 
-                      src="/images/服務內容及方案.jpg" 
-                      alt="服務內容及方案" 
-                      className="w-full h-auto object-contain rounded-xl" 
+                    <img
+                      src="/images/服務內容及方案.jpg"
+                      alt="服務內容及方案"
+                      className="w-full h-auto object-contain rounded-xl"
                     />
                   </div>
 
@@ -374,7 +372,7 @@ export const HomePage = () => {
       {/* ======================================= */}
       <AnimatePresence>
         {visibleLevel >= 5 && (
-          <motion.section 
+          <motion.section
             ref={section5Ref}
             initial="hidden"
             whileInView="visible"
@@ -385,10 +383,10 @@ export const HomePage = () => {
             <div className="mb-12 md:mb-16">
               {/* 第五區塊：這套方式適合誰 */}
               <div className="w-full max-w-3xl mx-auto rounded-3xl bg-white border border-slate-100 overflow-hidden shadow-lg mb-16 sm:mb-24 p-2 sm:p-4">
-                <img 
-                  src="/images/這套方式適合誰.jpg" 
-                  alt="這套方式適合誰" 
-                  className="w-full h-auto object-contain rounded-2xl" 
+                <img
+                  src="/images/這套方式適合誰.jpg"
+                  alt="這套方式適合誰"
+                  className="w-full h-auto object-contain rounded-2xl"
                 />
               </div>
 
@@ -400,11 +398,11 @@ export const HomePage = () => {
               <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-brand-900 mb-8 md:mb-10 leading-tight">
                 把你現在的產品 / 廣告 / 落地頁丟給我。
               </h2>
-              
+
               <div className="text-base sm:text-lg md:text-xl text-slate-700 space-y-4 md:space-y-6 max-w-2xl mx-auto text-left md:text-center p-5 md:p-8 bg-white rounded-3xl border border-slate-100 shadow-md">
                 <p>我先做出一版我腦中勾勒的標準參考頁給你看。</p>
                 <p>如果你看了，<br className="sm:hidden" />能接受這樣的思維與合作模式，<br className="hidden sm:block" /> 我們再來盤點：</p>
-                
+
                 <ul className="text-left w-full max-w-sm mx-auto space-y-3 pt-6 pb-2 md:pt-8 md:pb-4 border-t border-slate-100">
                   <li className="flex items-center text-slate-800 font-medium">
                     <CheckCircle2 className="w-5 h-5 text-accent-500 mr-3 flex-shrink-0" /> 還缺哪些內容
@@ -421,21 +419,26 @@ export const HomePage = () => {
                 </ul>
 
                 <div className="w-full mt-8 mb-6 border border-slate-100 shadow-md rounded-2xl p-1 md:p-2 bg-slate-50/50">
-                  <img 
-                    src="/images/如何開始.jpg" 
-                    alt="如何開始" 
-                    className="w-full h-auto object-contain rounded-xl" 
+                  <img
+                    src="/images/如何開始.jpg"
+                    alt="如何開始"
+                    className="w-full h-auto object-contain rounded-xl"
                   />
                 </div>
-                
+
                 <p className="pt-6 font-bold text-brand-900 text-lg md:text-xl border-t border-slate-100 text-center">
-                  一切完成後，你就只需要專注在營運上，<span className="text-accent-600 block sm:inline mt-1 sm:mt-0">煩惱如何消化訂單</span>。
+                  完成後你只需要專注在營運上<span className="text-accent-600 block sm:inline mt-1 sm:mt-0">煩惱如何消化訂單。</span>
                 </p>
               </div>
             </div>
 
             <button
-              onClick={() => navigate('/liff')}
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).fbq) {
+                  (window as any).fbq('track', 'Lead');
+                }
+                window.location.href = import.meta.env.VITE_LINE_ADD_FRIEND_URL || 'https://lin.ee/ThjHTSK';
+              }}
               className="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 sm:px-12 py-4 sm:py-5 text-lg sm:text-xl font-bold text-white transition-all duration-300 bg-brand-600 border border-brand-500 rounded-full hover:bg-brand-500 shadow-[0_4px_20px_rgba(42,102,170,0.3)] hover:shadow-[0_8px_40px_rgba(42,102,170,0.5)] active:translate-y-1 sm:hover:-translate-y-2 focus:outline-none overflow-hidden"
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>

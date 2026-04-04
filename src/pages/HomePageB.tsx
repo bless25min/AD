@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle2, MessageCircle } from 'lucide-react';
 import { siteContent } from '../content/siteContent';
@@ -11,14 +10,13 @@ const fadeIn = {
 };
 
 export const HomePageB = () => {
-  const navigate = useNavigate();
   const ctaRef = useRef<HTMLElement>(null);
 
   const handleFinalCtaClick = () => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
       (window as any).fbq('track', 'Lead');
     }
-    navigate('/liff');
+    window.location.href = import.meta.env.VITE_LINE_ADD_FRIEND_URL || 'https://lin.ee/ThjHTSK';
   };
 
   return (
