@@ -21,7 +21,8 @@ export const BusinessCardPage: React.FC = () => {
     try {
       if (liff.isApiAvailable('shareTargetPicker')) {
         const url = window.location.href;
-        const flexMsg = getBusinessCardFlexMessage(url);
+        // 註：若在本地端 (localhost) 測試，LINE 無法抓取圖片。上線後 window.location.origin 即可正常顯示圖片
+        const flexMsg = getBusinessCardFlexMessage(url, window.location.origin);
         
         const result = await liff.shareTargetPicker([flexMsg as any]);
         if (result) {
@@ -96,8 +97,8 @@ END:VCARD`;
             </div>
 
             <div className="border-t border-slate-200 pt-4 flex justify-between items-end">
-              <div className="text-4xl font-extrabold text-blue-900 leading-none relative">
-                25<span className="text-sm font-bold absolute bottom-0 -right-8 text-yellow-500 translate-y-2">MIN</span>
+              <div className="w-20">
+                <img src="/images/logo.jpg" alt="25 MIN" className="w-full h-auto object-contain mix-blend-multiply" />
               </div>
               
               <div className="text-right text-xs text-slate-500 space-y-1 font-medium">
@@ -117,17 +118,15 @@ END:VCARD`;
               <h2 className="text-2xl font-black text-yellow-500 tracking-widest mb-1">用成交，代替服務費</h2>
             </div>
 
-            {/* 掃描意象 (暫代截圖) */}
-            <div className="w-40 h-40 border-4 border-yellow-500/30 rounded-lg p-2 mb-6 relative flex items-center justify-center bg-blue-800 shadow-inner">
-               {/* 邊角裝飾 */}
-               <div className="absolute top-0 left-0 w-4 h-4 border-t-4 border-l-4 border-yellow-500"></div>
-               <div className="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-yellow-500"></div>
-               <div className="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-yellow-500"></div>
-               <div className="absolute bottom-0 right-0 w-4 h-4 border-b-4 border-r-4 border-yellow-500"></div>
+            {/* 個人頭像區塊 */}
+            <div className="w-40 h-40 border-4 border-yellow-500 rounded-lg overflow-hidden mb-6 relative shadow-xl bg-blue-800">
+               <img src="/images/avatar.jpg" alt="Bless Liao" className="w-full h-full object-cover" />
                
-               <div className="text-center text-white/50 text-sm font-medium p-4">
-                 掃描意象 / 個人頭像區塊
-               </div>
+               {/* 邊角裝飾保留科技感 */}
+               <div className="absolute top-0 left-0 w-4 h-4 border-t-4 border-l-4 border-white"></div>
+               <div className="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-white"></div>
+               <div className="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-white"></div>
+               <div className="absolute bottom-0 right-0 w-4 h-4 border-b-4 border-r-4 border-white"></div>
             </div>
 
             <div className="text-center text-blue-100 text-sm font-medium space-y-1 tracking-wide">

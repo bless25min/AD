@@ -3,7 +3,7 @@
  * 這會被放入 liff.shareTargetPicker([ HERE ]) 中
  */
 
-export const getBusinessCardFlexMessage = (cardUrl: string) => {
+export const getBusinessCardFlexMessage = (cardUrl: string, baseUrl: string) => {
   return {
     type: "flex",
     altText: "廖天佑 Bless Liao 的電子名片",
@@ -23,12 +23,21 @@ export const getBusinessCardFlexMessage = (cardUrl: string) => {
             paddingAll: "20px",
             contents: [
               {
+                type: "image",
+                url: `${baseUrl}/images/avatar.jpg`,
+                size: "full",
+                aspectMode: "cover",
+                aspectRatio: "1:1",
+                gravity: "center"
+              },
+              {
                 type: "text",
                 text: "用成交，代替服務費",
                 color: "#eab308", // tailwind yellow-500 (gold)
                 weight: "bold",
                 size: "xl",
                 align: "center",
+                margin: "md"
               },
               {
                 type: "text",
