@@ -20,9 +20,8 @@ export const BusinessCardPage: React.FC = () => {
 
     try {
       if (liff.isApiAvailable('shareTargetPicker')) {
-        const url = window.location.href;
         // 註：若在本地端 (localhost) 測試，LINE 無法抓取圖片。上線後 window.location.origin 即可正常顯示圖片
-        const flexMsg = getBusinessCardFlexMessage(url, window.location.origin);
+        const flexMsg = getBusinessCardFlexMessage(window.location.origin);
         
         const result = await liff.shareTargetPicker([flexMsg as any]);
         if (result) {
@@ -111,8 +110,14 @@ END:VCARD`;
 
           {/* ============== 反面 ============== */}
           <div 
-            className="absolute w-full h-full bg-blue-900 rounded-2xl shadow-xl flex flex-col items-center justify-center p-8 backface-hidden rotate-y-180"
-            style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+            className="absolute w-full h-full rounded-2xl shadow-xl flex flex-col items-center justify-center p-8 backface-hidden rotate-y-180 overflow-hidden"
+            style={{ 
+              backfaceVisibility: 'hidden', 
+              transform: 'rotateY(180deg)',
+              backgroundImage: 'url("/images/circuit.svg")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
           >
             <div className="w-full text-center mb-6">
               <h2 className="text-2xl font-black text-yellow-500 tracking-widest mb-1">用成交，代替服務費</h2>
