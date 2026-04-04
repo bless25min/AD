@@ -22,7 +22,7 @@ function App() {
         <Route path="/liff/welcome" element={<LiffWelcomePage />} />
         <Route path="/liff/friend-required" element={<LiffFriendRequiredPage />} />
         <Route path="/contract" element={<ContractPage />} />
-        <Route path="/card" element={<BusinessCardPage />} />
+        <Route path="/liff/card" element={<BusinessCardPage />} />
       </Routes>
     </BrowserRouter>
   );

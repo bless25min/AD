@@ -68,7 +68,7 @@ END:VCARD`;
 
       {/* 翻轉卡片容器 */}
       <div 
-        className="relative w-full max-w-sm h-80 perspective-1000 cursor-pointer"
+        className="relative w-full max-w-sm h-[400px] md:h-[420px] perspective-1000 cursor-pointer"
         onClick={() => setIsFlipped(!isFlipped)}
       >
         <div 
@@ -79,7 +79,7 @@ END:VCARD`;
         >
           {/* ============== 正面 ============== */}
           <div 
-            className="absolute w-full h-full bg-white rounded-2xl shadow-xl flex flex-col p-8 backface-hidden"
+            className="absolute w-full h-full bg-white rounded-2xl shadow-xl flex flex-col p-6 md:p-8 backface-hidden overflow-hidden"
             style={{ backfaceVisibility: 'hidden' }}
           >
             <div className="flex-1">
@@ -95,8 +95,8 @@ END:VCARD`;
               </div>
             </div>
 
-            <div className="border-t border-slate-200 pt-4 flex justify-between items-end">
-              <div className="w-20">
+            <div className="border-t border-slate-200 pt-4 flex justify-between items-end mt-auto">
+              <div className="w-[85px] shrink-0">
                 <img src="/images/logo.jpg" alt="25 MIN" className="w-full h-auto object-contain mix-blend-multiply" />
               </div>
               
@@ -110,7 +110,7 @@ END:VCARD`;
 
           {/* ============== 反面 ============== */}
           <div 
-            className="absolute w-full h-full rounded-2xl shadow-xl flex flex-col items-center justify-center p-8 backface-hidden rotate-y-180 overflow-hidden"
+            className="absolute w-full h-full rounded-2xl shadow-xl flex flex-col items-center justify-center p-6 md:p-8 backface-hidden rotate-y-180 overflow-hidden"
             style={{ 
               backfaceVisibility: 'hidden', 
               transform: 'rotateY(180deg)',
