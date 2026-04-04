@@ -106,7 +106,7 @@ export const HomePage = () => {
             <div className="w-full lg:w-1/2 relative">
               <div className="aspect-[4/5] md:aspect-square lg:aspect-[4/3] rounded-3xl bg-slate-50 border border-slate-100 overflow-hidden flex items-center justify-center relative group shadow-xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-100/30 to-transparent"></div>
-                <img src="/images/這套方式適合誰.jpg" alt="這套方式適合誰" className="absolute inset-0 w-full h-full object-cover opacity-95 transition-opacity hover:opacity-100" />
+                <img src="/images/共通點.jpg" alt="共通點" className="absolute inset-0 w-full h-full object-cover opacity-95 transition-opacity hover:opacity-100" />
               </div>
             </div>
           </div>
@@ -154,7 +154,6 @@ export const HomePage = () => {
                        你已經有做行銷，也接近目標。<br />
                        只是沒有讓客戶輕鬆的認識你，<span className="text-brand-600 font-bold block mt-1">自然而然的轉變成訂單。</span>
                     </p>
-                    <img src="/images/共通點.jpg" alt="共通點" className="w-full rounded-2xl mt-8 border border-slate-200 shadow-md" />
                   </div>
 
                   {/* 第二層解鎖選項 */}
@@ -375,7 +374,12 @@ export const HomePage = () => {
             className="pt-24 pb-32 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
           >
             <div className="mb-16">
-              {/* 第五區塊視覺焦點 */}
+              {/* 第五區塊：這套方式適合誰 */}
+              <div className="w-full max-w-4xl mx-auto rounded-[2rem] bg-white border border-slate-200 overflow-hidden shadow-xl mb-24">
+                <img src="/images/這套方式適合誰.jpg" alt="這套方式適合誰" className="w-full h-auto object-contain" />
+              </div>
+
+              {/* 結尾視覺焦點 */}
               <div className="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full bg-white border border-slate-100 flex items-center justify-center mb-8 shadow-2xl shadow-brand-900/10 relative overflow-hidden">
                 <img src="/images/logo.jpg" alt="Logo" className="absolute inset-0 w-full h-full object-cover" />
               </div>
