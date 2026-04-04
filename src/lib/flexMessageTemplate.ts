@@ -17,44 +17,12 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
         layout: "vertical",
         paddingAll: "0px",
         contents: [
-          // 吸睛漸層深色背景
           {
             type: "box",
             layout: "vertical",
             paddingAll: "20px",
-            background: {
-              type: "linearGradient",
-              angle: "135deg",
-              startColor: "#0f172a", // slate-900
-              endColor: "#1e3a8a", // blue-900
-            },
+            backgroundColor: "#0f172a", // 捨棄漸層以獲得最高相容性
             contents: [
-              // ================= 電路板網路背景點綴 (Absolute Positioning) =================
-              {
-                type: "box", layout: "vertical", position: "absolute",
-                offsetStart: "0px", offsetTop: "40px", width: "40px", height: "2px", backgroundColor: "#eab30840"
-              },
-              {
-                type: "box", layout: "vertical", position: "absolute",
-                offsetStart: "38px", offsetTop: "38px", width: "6px", height: "6px", cornerRadius: "3px", backgroundColor: "#eab308"
-              },
-              {
-                type: "box", layout: "vertical", position: "absolute",
-                offsetEnd: "20px", offsetTop: "0px", width: "2px", height: "100px", backgroundColor: "#eab30830"
-              },
-              {
-                type: "box", layout: "vertical", position: "absolute",
-                offsetEnd: "18px", offsetTop: "98px", width: "6px", height: "6px", cornerRadius: "3px", backgroundColor: "#eab308"
-              },
-              {
-                type: "box", layout: "vertical", position: "absolute",
-                offsetStart: "50%", offsetBottom: "20px", width: "80px", height: "1px", backgroundColor: "#ffffff30"
-              },
-              {
-                type: "box", layout: "vertical", position: "absolute",
-                offsetStart: "70%", offsetBottom: "18px", width: "5px", height: "5px", cornerRadius: "2.5px", backgroundColor: "#ffffff80"
-              },
-              // ================= 實體內容開始 =================
               // Logo 與 標語 對坐
               {
                 type: "box",
@@ -64,17 +32,15 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
                     type: "image",
                     url: `${baseUrl}/images/logo.jpg`,
                     size: "xs",
-                    flex: 0,
-                    align: "start"
+                    flex: 0
                   },
                   {
                     type: "text",
                     text: "把流量變成可預測的成交",
-                    color: "#eab308", // gold
+                    color: "#eab308",
                     size: "xs",
                     weight: "bold",
-                    align: "end",
-                    gravity: "center"
+                    align: "end"
                   }
                 ]
               },
@@ -88,12 +54,12 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
                   {
                     type: "box",
                     layout: "vertical",
-                    flex: 1,
-                    cornerRadius: "100px",
+                    // 移除與固定寬高衝突的 flex: 1
+                    cornerRadius: "40px", // 從100px下修以確保不高於height
                     width: "80px",
                     height: "80px",
                     borderWidth: "2px",
-                    borderColor: "#eab308", // 金色外框
+                    borderColor: "#eab308", 
                     contents: [
                       {
                         type: "image",
@@ -120,7 +86,7 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
                       {
                         type: "text",
                         text: "Bless Liao",
-                        color: "#94a3b8", // slate-400
+                        color: "#94a3b8",
                         size: "md",
                         weight: "bold",
                       },
