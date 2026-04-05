@@ -50,8 +50,12 @@ export const BusinessCardPage: React.FC = () => {
         if (!liff.isLoggedIn()) {
           // 記住我們要在登入後自動分享
           sessionStorage.setItem('autoShared', 'pending');
-          // 只使用預設的 liff.login()，絕對不能帶自己組裝的 redirectUri 避免 400 Bad Request
-          liff.login();
+          // 將當前路徑存入 Zustand 狀態管理，確保登入跳轉回來後 LiffInitPage 知道要拋轉回這裡
+          import('../store/useAppStore').then(({ useAppStore }) => {
+            useAppStore.getState().setEntryPath(window.location.pathname + window.location.search);
+            // 只使用預設的 liff.login()，絕對不能帶自己組裝的 redirectUri 避免 400 Bad Request
+            liff.login();
+          });
         } else {
           // 已登入就準備觸發分享
           if (sessionStorage.getItem('autoShared') !== 'done') {
