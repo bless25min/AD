@@ -40,33 +40,7 @@ export const BusinessCardPage: React.FC = () => {
   };
 
   useEffect(() => {
-    // 確切確保已完成初始化 liff
-    if (!isInitializing && liff) {
-      const params = new URLSearchParams(window.location.search);
-      // 若網址包含 autoShare 標記，或 session 裡記錄了 pending 狀態 (跨登入保留)
-      const wantsAutoShare = params.get('autoShare') === 'true' || sessionStorage.getItem('autoShared') === 'pending';
-
-      if (wantsAutoShare) {
-        if (!liff.isLoggedIn()) {
-          // 記住我們要在登入後自動分享
-          sessionStorage.setItem('autoShared', 'pending');
-          // 將當前路徑存入 Zustand 狀態管理，確保登入跳轉回來後 LiffInitPage 知道要拋轉回這裡
-          import('../store/useAppStore').then(({ useAppStore }) => {
-            useAppStore.getState().setEntryPath(window.location.pathname + window.location.search);
-            // 只使用預設的 liff.login()，絕對不能帶自己組裝的 redirectUri 避免 400 Bad Request
-            liff.login();
-          });
-        } else {
-          // 已登入就準備觸發分享
-          if (sessionStorage.getItem('autoShared') !== 'done') {
-            sessionStorage.setItem('autoShared', 'done');
-            setTimeout(() => {
-              handleShare();
-            }, 500); // 稍微延遲讓卡片 UI 呈現出來，體驗更好
-          }
-        }
-      }
-    }
+    // 雖然移除了自動分享，但此處可以保留基礎觀察，若日後需要針對初始化的額外操作可放在這裡
   }, [isInitializing, liff]);
 
   const handleVcfDownload = () => {

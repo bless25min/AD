@@ -237,8 +237,8 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
             action: {
               type: "uri",
               label: "📤 分享名片給好友",
-              // 使用大寫的 LIFF 來通過 LINE SDK 的原廠端點嚴格比對
-              uri: `${baseUrl}/LIFF/card?autoShare=true`
+              // 依循退路手段，直接連結到名片網頁，由使用者手動點擊分享按鈕
+              uri: `${baseUrl}/liff/card`
             }
           }
         ]
