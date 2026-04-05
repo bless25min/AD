@@ -43,15 +43,19 @@ export const BusinessCardPage: React.FC = () => {
     // 確切確保已完成初始化 liff
     if (!isInitializing && liff) {
       const params = new URLSearchParams(window.location.search);
-      // 若網址包含 autoShare 標記
-      if (params.get('autoShare') === 'true') {
+      // 若網址包含 autoShare 標記，或 session 裡記錄了 pending 狀態 (跨登入保留)
+      const wantsAutoShare = params.get('autoShare') === 'true' || sessionStorage.getItem('autoShared') === 'pending';
+
+      if (wantsAutoShare) {
         if (!liff.isLoggedIn()) {
-          // 因為 useLiff(false) 不會強制登入，如果點了分享連結未登入，這裡強制觸發 LINE 登入
-          liff.login({ redirectUri: window.location.href });
+          // 記住我們要在登入後自動分享
+          sessionStorage.setItem('autoShared', 'pending');
+          // 只使用預設的 liff.login()，絕對不能帶自己組裝的 redirectUri 避免 400 Bad Request
+          liff.login();
         } else {
           // 已登入就準備觸發分享
-          if (!sessionStorage.getItem('autoShared')) {
-            sessionStorage.setItem('autoShared', 'true');
+          if (sessionStorage.getItem('autoShared') !== 'done') {
+            sessionStorage.setItem('autoShared', 'done');
             setTimeout(() => {
               handleShare();
             }, 500); // 稍微延遲讓卡片 UI 呈現出來，體驗更好
