@@ -40,15 +40,22 @@ export const BusinessCardPage: React.FC = () => {
   };
 
   useEffect(() => {
-    if (!isInitializing && liff && liff.isLoggedIn()) {
+    // 確切確保已完成初始化 liff
+    if (!isInitializing && liff) {
       const params = new URLSearchParams(window.location.search);
+      // 若網址包含 autoShare 標記
       if (params.get('autoShare') === 'true') {
-        if (!sessionStorage.getItem('autoShared')) {
-          sessionStorage.setItem('autoShared', 'true');
-          // 稍微延遲一下讓 UI 呈現後再跳出分享畫面，體驗較好
-          setTimeout(() => {
-            handleShare();
-          }, 500);
+        if (!liff.isLoggedIn()) {
+          // 因為 useLiff(false) 不會強制登入，如果點了分享連結未登入，這裡強制觸發 LINE 登入
+          liff.login({ redirectUri: window.location.href });
+        } else {
+          // 已登入就準備觸發分享
+          if (!sessionStorage.getItem('autoShared')) {
+            sessionStorage.setItem('autoShared', 'true');
+            setTimeout(() => {
+              handleShare();
+            }, 500); // 稍微延遲讓卡片 UI 呈現出來，體驗更好
+          }
         }
       }
     }
