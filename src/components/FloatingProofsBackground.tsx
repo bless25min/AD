@@ -23,31 +23,26 @@ interface SnowflakeData {
   opacity: number;
 }
 
-// 寫死 18 個隨機錯落的設定，避免 React Hydration 錯誤
+// 重新設計 9 個輪播設定，採「單道錯落」墜落策略，徹底避免重疊
 const SNOWFLAKES: SnowflakeData[] = [
-  // 廣告成效 (48% ~ 64%) -> 提高透明度以增加數據清晰度
-  { src: IMAGES[0], width: '50%', left: '-5%', duration: '36s', delay: '-2s', startRot: '-10deg', endRot: '10deg', opacity: 0.22 },
-  { src: IMAGES[1], width: '60%', left: '35%', duration: '36s', delay: '-4s', startRot: '15deg', endRot: '-5deg', opacity: 0.22 },
-  { src: IMAGES[2], width: '64%', left: '45%', duration: '36s', delay: '-6s', startRot: '5deg', endRot: '25deg', opacity: 0.22 },
-  { src: IMAGES[3], width: '55%', left: '10%', duration: '36s', delay: '-8s', startRot: '-20deg', endRot: '0deg', opacity: 0.22 },
-  { src: IMAGES[4], width: '48%', left: '50%', duration: '36s', delay: '-10s', startRot: '0deg', endRot: '-15deg', opacity: 0.22 },
-  
-  // 媒體報導 (改為 24% ~ 36%) -> 維持微弱背景感並且比例適度縮小
-  { src: IMAGES[5], width: '28%', left: '5%', duration: '36s', delay: '-12s', startRot: '-5deg', endRot: '15deg', opacity: 0.1 },
-  { src: IMAGES[6], width: '30%', left: '35%', duration: '36s', delay: '-14s', startRot: '10deg', endRot: '-10deg', opacity: 0.1 },
-  { src: IMAGES[7], width: '34%', left: '60%', duration: '36s', delay: '-16s', startRot: '-15deg', endRot: '5deg', opacity: 0.1 },
-  { src: IMAGES[8], width: '24%', left: '45%', duration: '36s', delay: '-18s', startRot: '20deg', endRot: '-20deg', opacity: 0.1 },
-  
-  // 第二波重複，確保大圖也能隨機出現展示數據
-  { src: IMAGES[0], width: '55%', left: '30%', duration: '36s', delay: '-20s', startRot: '12deg', endRot: '-8deg', opacity: 0.22 },
-  { src: IMAGES[2], width: '62%', left: '-10%', duration: '36s', delay: '-22s', startRot: '-15deg', endRot: '10deg', opacity: 0.22 },
-  { src: IMAGES[4], width: '50%', left: '55%', duration: '36s', delay: '-24s', startRot: '10deg', endRot: '-10deg', opacity: 0.22 },
-  { src: IMAGES[5], width: '32%', left: '20%', duration: '36s', delay: '-26s', startRot: '-8deg', endRot: '12deg', opacity: 0.1 },
-  { src: IMAGES[6], width: '26%', left: '65%', duration: '36s', delay: '-28s', startRot: '15deg', endRot: '-5deg', opacity: 0.1 },
-  { src: IMAGES[7], width: '36%', left: '40%', duration: '36s', delay: '-30s', startRot: '-5deg', endRot: '-25deg', opacity: 0.1 },
-  { src: IMAGES[8], width: '28%', left: '80%', duration: '36s', delay: '-32s', startRot: '-12deg', endRot: '12deg', opacity: 0.1 },
-  { src: IMAGES[1], width: '48%', left: '15%', duration: '36s', delay: '-34s', startRot: '5deg', endRot: '-15deg', opacity: 0.22 },
-  { src: IMAGES[3], width: '60%', left: '60%', duration: '36s', delay: '-36s', startRot: '-10deg', endRot: '20deg', opacity: 0.22 },
+  // #1
+  { src: IMAGES[0], width: '85%', left: '5%', duration: '90s', delay: '0s', startRot: '-3deg', endRot: '4deg', opacity: 0.35 },
+  // #2
+  { src: IMAGES[5], width: '60%', left: '25%', duration: '90s', delay: '-10s', startRot: '5deg', endRot: '-5deg', opacity: 0.15 },
+  // #3
+  { src: IMAGES[1], width: '82%', left: '12%', duration: '90s', delay: '-20s', startRot: '4deg', endRot: '-3deg', opacity: 0.35 },
+  // #4
+  { src: IMAGES[6], width: '65%', left: '5%', duration: '90s', delay: '-30s', startRot: '-6deg', endRot: '6deg', opacity: 0.15 },
+  // #5
+  { src: IMAGES[2], width: '88%', left: '0%', duration: '90s', delay: '-40s', startRot: '-2deg', endRot: '5deg', opacity: 0.35 },
+  // #6
+  { src: IMAGES[7], width: '55%', left: '35%', duration: '90s', delay: '-50s', startRot: '7deg', endRot: '-4deg', opacity: 0.15 },
+  // #7
+  { src: IMAGES[3], width: '78%', left: '18%', duration: '90s', delay: '-60s', startRot: '-5deg', endRot: '2deg', opacity: 0.35 },
+  // #8
+  { src: IMAGES[8], width: '62%', left: '10%', duration: '90s', delay: '-70s', startRot: '3deg', endRot: '-6deg', opacity: 0.15 },
+  // #9
+  { src: IMAGES[4], width: '85%', left: '-2%', duration: '90s', delay: '-80s', startRot: '-4deg', endRot: '3deg', opacity: 0.35 },
 ];
 
 export const FloatingProofsBackground: React.FC<{ className?: string }> = ({ className = '' }) => {
@@ -56,10 +51,10 @@ export const FloatingProofsBackground: React.FC<{ className?: string }> = ({ cla
       <style>{`
         @keyframes proofWaterfall {
           0% {
-            transform: translateY(-50vh) rotate(var(--start-rot));
+            transform: translateY(-80vh) rotate(var(--start-rot));
           }
           100% {
-            transform: translateY(150vh) rotate(var(--end-rot));
+            transform: translateY(400vh) rotate(var(--end-rot));
           }
         }
         .proof-snowflake {
