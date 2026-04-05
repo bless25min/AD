@@ -81,24 +81,27 @@ export const HomePage = () => {
                     <div className="flex flex-col space-y-4">
                       <button
                         onClick={() => revealSection(2, section2Ref)}
-                        className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
+                        className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/30 border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
                       >
-                        <span className="flex-1 pr-4">📌 廣告一直砸，但成本越來越高</span>
-                        <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
+                        <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                        <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">📌 廣告一直砸，但成本越來越高</span>
+                        <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
                       </button>
                       <button
                         onClick={() => revealSection(2, section2Ref)}
-                        className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
+                        className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/30 border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
                       >
-                        <span className="flex-1 pr-4">📌 流量很多，但實際轉換變少</span>
-                        <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
+                        <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                        <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">📌 流量很多，但實際轉換變少</span>
+                        <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
                       </button>
                       <button
                         onClick={() => revealSection(2, section2Ref)}
-                        className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
+                        className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/30 border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
                       >
-                        <span className="flex-1 pr-4">📌 換過行銷團隊，但仍找不出問題在哪</span>
-                        <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
+                        <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                        <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">📌 換過行銷團隊，但仍找不出問題在哪</span>
+                        <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
                       </button>
                     </div>
                   </motion.div>
@@ -169,17 +172,19 @@ export const HomePage = () => {
                         <div className="flex flex-col space-y-4">
                           <button
                             onClick={() => revealSection(3, section3Ref)}
-                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
+                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/30 border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
                           >
-                            <span className="flex-1 pr-4">💡 有時會衝出一波短期成效，然後又冷掉了。</span>
-                            <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
+                            <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                            <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">💡 有時會衝出一波短期成效，然後又冷掉了。</span>
+                            <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
                           </button>
                           <button
                             onClick={() => revealSection(3, section3Ref)}
-                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
+                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/30 border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
                           >
-                            <span className="flex-1 pr-4">💡 連客戶到底為什麼不買單都抓不太準。</span>
-                            <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
+                            <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                            <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">💡 連客戶到底為什麼不買單都抓不太準。</span>
+                            <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
                           </button>
                         </div>
                       </motion.div>
@@ -270,17 +275,19 @@ export const HomePage = () => {
                   <div className="flex flex-col space-y-4">
                     <button
                       onClick={() => revealSection(4, section4Ref)}
-                      className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
+                      className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/30 border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
                     >
-                      <span className="flex-1 pr-4">🤝 這個作法很有層次，那我們具體該怎麼合作？</span>
-                      <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
+                      <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                      <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">🤝 這個作法很有層次，那我們具體該怎麼合作？</span>
+                      <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
                     </button>
                     <button
                       onClick={() => revealSection(4, section4Ref)}
-                      className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
+                      className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/30 border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
                     >
-                      <span className="flex-1 pr-4">🤝 聽起來很精準，那你們的收費模式是怎樣？</span>
-                      <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
+                      <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                      <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">🤝 聽起來很精準，那你們的收費模式是怎樣？</span>
+                      <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
                     </button>
                   </div>
                 </motion.div>
@@ -350,17 +357,19 @@ export const HomePage = () => {
                         <div className="flex flex-col space-y-4">
                           <button
                             onClick={() => revealSection(5, section5Ref)}
-                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-white transition-all duration-300 bg-brand-600 hover:bg-brand-500 border border-brand-600 rounded-2xl shadow-md hover:shadow-brand-500/30 w-full text-left"
+                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-white transition-all duration-300 bg-brand-600 hover:bg-brand-500 border border-brand-500 rounded-2xl shadow-xl hover:shadow-[0_8px_40px_rgba(42,102,170,0.5)] w-full text-left hover:-translate-y-1 overflow-hidden"
                           >
-                            <span className="flex-1 pr-4">💰 我很喜歡「用成交代替服務費」的健康邏輯，我想看下一步。</span>
-                            <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-white/80 group-hover:text-white group-hover:translate-y-1" />
+                            <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                            <span className="relative z-10 flex-1 pr-4 text-shadow-sm">💰 我很喜歡「用成交代替服務費」的健康邏輯，我想看下一步。</span>
+                            <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-white/90 group-hover:text-white group-hover:translate-y-1 drop-shadow-sm" />
                           </button>
                           <button
                             onClick={() => revealSection(5, section5Ref)}
-                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
+                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md border border-slate-300 hover:border-brand-400 hover:bg-white/30 rounded-2xl w-full text-left shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
                           >
-                            <span className="flex-1 pr-4">🤔 月費也有好處，但我編制確實需要診斷。可以聊聊嗎？</span>
-                            <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
+                            <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                            <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">🤔 月費也有好處，但我編制確實需要診斷。可以聊聊嗎？</span>
+                            <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
                           </button>
                         </div>
                       </motion.div>
