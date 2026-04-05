@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ArrowRight, CheckCircle2, UserCircle } from 'lucide-react';
+import { ChevronDown, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Footer } from '../components/Footer';
 import { FloatingProofsBackground } from '../components/FloatingProofsBackground';
 
@@ -44,9 +44,9 @@ export const HomePage = () => {
             <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
               {/* 左側文字 */}
               <div className="w-full lg:w-1/2 space-y-6 md:space-y-8">
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-brand-50 border border-brand-100 text-brand-600 text-xs sm:text-sm font-bold tracking-wider">
-                  <UserCircle className="w-4 h-4 mr-2" />
-                  廖天佑 Bless Liao｜AI顧問式成交引擎
+                <div className="inline-flex items-center p-1 pr-4 rounded-full bg-white/30 backdrop-blur-md border border-brand-200 text-brand-900 shadow-md">
+                  <img src="/images/avatar.jpg" alt="Bless Liao" className="w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-2 sm:mr-3 object-cover border border-white/60 shadow-sm" />
+                  <span className="text-xs sm:text-sm font-extrabold tracking-wider drop-shadow-sm">廖天佑 Bless Liao｜AI顧問式成交引擎</span>
                 </div>
 
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight md:whitespace-pre-line text-brand-900 drop-shadow-sm">
@@ -404,9 +404,9 @@ export const HomePage = () => {
                 />
               </div>
 
-              {/* 結尾視覺焦點 */}
-              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto rounded-full bg-transparent border border-slate-300 backdrop-blur-md flex items-center justify-center mb-6 md:mb-8 shadow-2xl relative overflow-hidden">
-                <img src="/images/logo.jpg" alt="Logo" className="absolute inset-0 w-full h-full object-cover mix-blend-multiply" />
+              {/* 結尾視覺焦點（個人頭像） */}
+              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto rounded-full bg-white/20 border-4 border-white/40 backdrop-blur-md flex items-center justify-center mb-6 md:mb-8 shadow-2xl relative overflow-hidden">
+                <img src="/images/avatar.jpg" alt="Bless Liao" className="absolute inset-0 w-full h-full object-cover" />
               </div>
 
               <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-brand-900 mb-8 md:mb-10 leading-tight drop-shadow-md">
