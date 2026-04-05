@@ -56,13 +56,13 @@ export const HomePage = () => {
                   </span>
                 </h1>
 
-                <div className="space-y-6 text-base sm:text-lg md:text-xl text-slate-600 font-medium leading-relaxed">
+                <div className="space-y-6 text-base sm:text-lg md:text-xl text-slate-700 font-bold leading-relaxed drop-shadow-md">
                   <p>
                     廣告費丟了，石沉大海。<br />
                     短影音拍了，有流量，卻不一定有訂單。
                   </p>
-                  <div className="p-4 md:p-5 bg-brand-50/90 backdrop-blur-sm border-l-4 border-brand-500 rounded-r-xl shadow-sm">
-                    <p className="text-brand-900">
+                  <div className="p-4 md:p-5 bg-transparent border-l-4 border-brand-500 rounded-r-xl">
+                    <p className="text-brand-900 drop-shadow-sm">
                       問題不是沒行銷。<br />
                       是沒有一套把<span className="text-accent-600 font-bold">流量接成成交</span>的系統。
                     </p>
@@ -81,21 +81,21 @@ export const HomePage = () => {
                     <div className="flex flex-col space-y-4">
                       <button
                         onClick={() => revealSection(2, section2Ref)}
-                        className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/95 backdrop-blur-sm hover:bg-brand-50 border border-slate-200 hover:border-brand-500 rounded-2xl w-full text-left shadow-sm hover:shadow-md"
+                        className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
                       >
                         <span className="flex-1 pr-4">📌 廣告一直砸，但成本越來越高</span>
                         <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
                       </button>
                       <button
                         onClick={() => revealSection(2, section2Ref)}
-                        className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/95 backdrop-blur-sm hover:bg-brand-50 border border-slate-200 hover:border-brand-500 rounded-2xl w-full text-left shadow-sm hover:shadow-md"
+                        className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
                       >
                         <span className="flex-1 pr-4">📌 流量很多，但實際轉換變少</span>
                         <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
                       </button>
                       <button
                         onClick={() => revealSection(2, section2Ref)}
-                        className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/95 backdrop-blur-sm hover:bg-brand-50 border border-slate-200 hover:border-brand-500 rounded-2xl w-full text-left shadow-sm hover:shadow-md"
+                        className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
                       >
                         <span className="flex-1 pr-4">📌 換過行銷團隊，但仍找不出問題在哪</span>
                         <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
@@ -128,7 +128,7 @@ export const HomePage = () => {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="relative py-16 md:py-24 bg-slate-50/80 backdrop-blur-md border-y border-slate-200 shadow-sm"
+              className="relative py-16 md:py-24 bg-transparent border-y border-slate-200"
             >
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20">
@@ -137,16 +137,16 @@ export const HomePage = () => {
                     <img
                       src="/images/舊框架問題.jpg"
                       alt="舊框架問題"
-                      className="w-full h-auto object-contain rounded-3xl shadow-lg border border-slate-200 bg-white p-2 sm:p-4"
+                      className="w-full h-auto object-contain rounded-3xl shadow-lg border border-slate-300 bg-white/20 backdrop-blur-md p-2 sm:p-4"
                     />
                   </div>
 
                   {/* 右側文字 */}
-                  <div className="w-full lg:w-1/2 space-y-6 md:space-y-8 text-center lg:text-left">
+                  <div className="w-full lg:w-1/2 space-y-6 md:space-y-8 text-center lg:text-left drop-shadow-md">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-900 leading-tight drop-shadow-sm">
                       有做，不代表有賺。
                     </h2>
-                    <div className="space-y-6 text-base sm:text-lg text-slate-700 leading-relaxed text-left font-medium">
+                    <div className="space-y-6 text-base sm:text-lg text-slate-800 leading-relaxed text-left font-bold">
                       <p>
                         廣告有人點。<br />
                         短影音有人看。<br />
@@ -156,9 +156,9 @@ export const HomePage = () => {
                         但過沒多久，<br />
                         又回到缺單、缺預約、缺穩定成交。
                       </p>
-                      <p className="text-lg sm:text-xl text-brand-900 font-bold border-l-4 border-accent-500 pl-4 py-2 bg-white/80 backdrop-blur-sm rounded-r-lg">
+                      <p className="text-lg sm:text-xl text-brand-900 font-extrabold border-l-4 border-accent-500 pl-4 py-2 bg-transparent rounded-r-lg">
                         你已經有做行銷，也接近目標。<br />
-                        只是沒有讓客戶輕鬆的認識你，<span className="text-brand-700 font-bold block mt-1">自然而然的轉變成訂單。</span>
+                        只是沒有讓客戶輕鬆的認識你，<span className="text-brand-700 font-extrabold block mt-1 drop-shadow-sm">自然而然的轉變成訂單。</span>
                       </p>
                     </div>
 
@@ -169,14 +169,14 @@ export const HomePage = () => {
                         <div className="flex flex-col space-y-4">
                           <button
                             onClick={() => revealSection(3, section3Ref)}
-                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/95 backdrop-blur-sm hover:bg-brand-50 border border-slate-200 hover:border-brand-500 rounded-2xl w-full text-left shadow-sm hover:shadow-md"
+                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
                           >
                             <span className="flex-1 pr-4">💡 有時會衝出一波短期成效，然後又冷掉了。</span>
                             <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
                           </button>
                           <button
                             onClick={() => revealSection(3, section3Ref)}
-                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/95 backdrop-blur-sm hover:bg-brand-50 border border-slate-200 hover:border-brand-500 rounded-2xl w-full text-left shadow-sm hover:shadow-md"
+                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
                           >
                             <span className="flex-1 pr-4">💡 連客戶到底為什麼不買單都抓不太準。</span>
                             <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
@@ -213,41 +213,41 @@ export const HomePage = () => {
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <div className="space-y-6">
-                  <div className="bg-white/95 backdrop-blur-sm border border-slate-200 shadow-md rounded-2xl p-5 md:p-6 group hover:border-brand-400 transition-colors">
+                  <div className="bg-white/20 backdrop-blur-md border border-slate-300 shadow-md rounded-2xl p-5 md:p-6 group hover:border-brand-400 transition-colors drop-shadow-md">
                     <div className="flex items-start">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-lg border border-brand-100">1</div>
+                        <div className="w-10 h-10 rounded-full bg-brand-50/50 backdrop-blur-sm text-brand-800 flex items-center justify-center font-extrabold text-lg border border-brand-200 shadow-sm">1</div>
                       </div>
                       <div className="ml-4 w-full">
                         <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">先用 AI 預見系統模擬用戶決策</h3>
-                        <p className="text-sm md:text-base font-medium text-slate-600">看懂客戶怎麼想。</p>
-                        <img src="/images/simulation.png" alt="Simulation" className="w-full mt-4 rounded-xl border border-slate-100 shadow-sm object-contain bg-white" />
+                        <p className="text-sm md:text-base font-bold text-slate-800">看懂客戶怎麼想。</p>
+                        <img src="/images/simulation.png" alt="Simulation" className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md" />
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-white/95 backdrop-blur-sm border border-slate-200 shadow-md rounded-2xl p-5 md:p-6 group hover:border-brand-400 transition-colors">
+                  <div className="bg-white/20 backdrop-blur-md border border-slate-300 shadow-md rounded-2xl p-5 md:p-6 group hover:border-brand-400 transition-colors drop-shadow-md">
                     <div className="flex items-start">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-lg border border-brand-100">2</div>
+                        <div className="w-10 h-10 rounded-full bg-brand-50/50 backdrop-blur-sm text-brand-800 flex items-center justify-center font-extrabold text-lg border border-brand-200 shadow-sm">2</div>
                       </div>
                       <div className="ml-4 w-full">
                         <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">根據不同痛點與解方，勾勒受眾輪廓與分布</h3>
-                        <p className="text-sm md:text-base font-medium text-slate-600">不是憑感覺猜客群。</p>
-                        <img src="/images/audience.png" alt="Audience" className="w-full mt-4 rounded-xl border border-slate-100 shadow-sm object-contain bg-white" />
+                        <p className="text-sm md:text-base font-bold text-slate-800">不是憑感覺猜客群。</p>
+                        <img src="/images/audience.png" alt="Audience" className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md" />
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-white/95 backdrop-blur-sm border border-slate-200 shadow-md rounded-2xl p-5 md:p-6 group hover:border-brand-400 transition-colors">
+                  <div className="bg-white/20 backdrop-blur-md border border-slate-300 shadow-md rounded-2xl p-5 md:p-6 group hover:border-brand-400 transition-colors drop-shadow-md">
                     <div className="flex items-start">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-lg border border-brand-100">3</div>
+                        <div className="w-10 h-10 rounded-full bg-brand-50/50 backdrop-blur-sm text-brand-800 flex items-center justify-center font-extrabold text-lg border border-brand-200 shadow-sm">3</div>
                       </div>
                       <div className="ml-4 w-full">
                         <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">根據真實問題與期待做內容與創意</h3>
-                        <p className="text-sm md:text-base font-medium text-slate-600">讓成交從靠運氣，變成比較可預測。</p>
-                        <img src="/images/solution.png" alt="Solution" className="w-full mt-4 rounded-xl border border-slate-100 shadow-sm object-contain bg-white" />
+                        <p className="text-sm md:text-base font-bold text-slate-800">讓成交從靠運氣，變成比較可預測。</p>
+                        <img src="/images/solution.png" alt="Solution" className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md" />
                       </div>
                     </div>
                   </div>
@@ -270,14 +270,14 @@ export const HomePage = () => {
                   <div className="flex flex-col space-y-4">
                     <button
                       onClick={() => revealSection(4, section4Ref)}
-                      className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/95 backdrop-blur-sm hover:bg-brand-50 border border-slate-200 hover:border-brand-500 rounded-2xl w-full text-left shadow-sm hover:shadow-md"
+                      className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
                     >
                       <span className="flex-1 pr-4">🤝 這個作法很有層次，那我們具體該怎麼合作？</span>
                       <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
                     </button>
                     <button
                       onClick={() => revealSection(4, section4Ref)}
-                      className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/95 backdrop-blur-sm hover:bg-brand-50 border border-slate-200 hover:border-brand-500 rounded-2xl w-full text-left shadow-sm hover:shadow-md"
+                      className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/40 border border-slate-300 hover:border-brand-500 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
                     >
                       <span className="flex-1 pr-4">🤝 聽起來很精準，那你們的收費模式是怎樣？</span>
                       <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
@@ -300,17 +300,17 @@ export const HomePage = () => {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="py-16 md:py-24 bg-gradient-to-b from-white/70 to-brand-50/80 backdrop-blur-md border-t border-slate-200 px-4 sm:px-6 shadow-sm"
+              className="py-16 md:py-24 bg-transparent border-t border-slate-200 px-4 sm:px-6 shadow-sm"
             >
               <div className="max-w-4xl mx-auto">
-                <div className="bg-white/95 backdrop-blur-md border border-slate-200 rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-accent-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+                <div className="bg-white/10 backdrop-blur-xl border border-slate-300 rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-accent-50/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
 
-                  <h2 className="text-3xl md:text-4xl font-bold text-brand-900 mb-6 md:mb-8 text-center relative z-10 w-full word-break drop-shadow-sm">
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-brand-900 mb-6 md:mb-8 text-center relative z-10 w-full word-break drop-shadow-md">
                     用成交，代替服務費。
                   </h2>
 
-                  <div className="space-y-4 md:space-y-6 text-base md:text-lg font-medium text-slate-800 leading-relaxed relative z-10">
+                  <div className="space-y-4 md:space-y-6 text-base md:text-lg font-bold text-slate-800 leading-relaxed relative z-10 drop-shadow-sm">
                     <p>
                       你專心做好營運，<br className="sm:hidden" /> 決定要投入多少廣告預算。
                     </p>
@@ -321,8 +321,8 @@ export const HomePage = () => {
                       中間所有廣告、媒體、內容、執行費用，都不是付給我，<br className="hidden sm:block" /> 依照發票實報實銷。
                     </p>
 
-                    <div className="inline-block px-4 py-3 md:px-5 md:py-3 mt-4 md:mt-6 bg-accent-50 border border-accent-200 rounded-xl w-full sm:w-auto shadow-sm">
-                      <p className="text-brand-900 font-extrabold text-lg md:text-xl text-center sm:text-left">
+                    <div className="inline-block px-4 py-3 md:px-5 md:py-3 mt-4 md:mt-6 bg-transparent border border-accent-400 rounded-xl w-full sm:w-auto shadow-md backdrop-blur-sm">
+                      <p className="text-brand-900 font-extrabold text-lg md:text-xl text-center sm:text-left drop-shadow-sm">
                         我只從真實成交 / 預約轉換，收取服務費。
                       </p>
                     </div>
@@ -357,7 +357,7 @@ export const HomePage = () => {
                           </button>
                           <button
                             onClick={() => revealSection(5, section5Ref)}
-                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/95 backdrop-blur-sm hover:bg-brand-50 border border-slate-200 hover:border-brand-500 rounded-2xl w-full text-left shadow-sm hover:shadow-md"
+                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl"
                           >
                             <span className="flex-1 pr-4">🤔 月費也有好處，但我編制確實需要診斷。可以聊聊嗎？</span>
                             <ChevronDown className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-500 group-hover:translate-y-1" />
@@ -387,7 +387,7 @@ export const HomePage = () => {
           >
             <div className="mb-12 md:mb-16">
               {/* 第五區塊：這套方式適合誰 */}
-              <div className="w-full max-w-3xl mx-auto rounded-3xl bg-white border border-slate-100 overflow-hidden shadow-lg mb-16 sm:mb-24 p-2 sm:p-4">
+              <div className="w-full max-w-3xl mx-auto rounded-3xl bg-transparent border border-slate-300 backdrop-blur-md overflow-hidden shadow-xl mb-16 sm:mb-24 p-2 sm:p-4">
                 <img
                   src="/images/這套方式適合誰.jpg"
                   alt="這套方式適合誰"
@@ -396,34 +396,34 @@ export const HomePage = () => {
               </div>
 
               {/* 結尾視覺焦點 */}
-              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto rounded-full bg-white border border-slate-100 flex items-center justify-center mb-6 md:mb-8 shadow-2xl shadow-brand-900/10 relative overflow-hidden">
-                <img src="/images/logo.jpg" alt="Logo" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto rounded-full bg-transparent border border-slate-300 backdrop-blur-md flex items-center justify-center mb-6 md:mb-8 shadow-2xl relative overflow-hidden">
+                <img src="/images/logo.jpg" alt="Logo" className="absolute inset-0 w-full h-full object-cover mix-blend-multiply" />
               </div>
 
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-brand-900 mb-8 md:mb-10 leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-brand-900 mb-8 md:mb-10 leading-tight drop-shadow-md">
                 把你現在的產品 / 廣告 / 落地頁丟給我。
               </h2>
 
-              <div className="text-base sm:text-lg md:text-xl text-slate-700 space-y-4 md:space-y-6 max-w-2xl mx-auto text-left md:text-center p-5 md:p-8 bg-white rounded-3xl border border-slate-100 shadow-md">
-                <p className="font-bold">我先做出一版我腦中勾勒的標準參考頁給你看。</p>
-                <p>如果你看了，<br className="sm:hidden" />能接受這樣的思維與合作模式，<br className="hidden sm:block" /> 我們再來盤點：</p>
+              <div className="text-base sm:text-lg md:text-xl text-slate-800 font-bold space-y-4 md:space-y-6 max-w-2xl mx-auto text-left md:text-center p-5 md:p-8 bg-transparent border border-slate-300 backdrop-blur-lg rounded-3xl shadow-xl drop-shadow-sm">
+                <p className="font-extrabold drop-shadow-sm">我先做出一版我腦中勾勒的標準參考頁給你看。</p>
+                <p className="drop-shadow-sm">如果你看了，<br className="sm:hidden" />能接受這樣的思維與合作模式，<br className="hidden sm:block" /> 我們再來盤點：</p>
 
-                <ul className="text-left w-full max-w-sm mx-auto space-y-3 pt-6 pb-2 md:pt-8 md:pb-4 border-t border-slate-100">
-                  <li className="flex items-center text-slate-800 font-medium">
-                    <CheckCircle2 className="w-5 h-5 text-accent-500 mr-3 flex-shrink-0" /> 還缺哪些內容
+                <ul className="text-left w-full max-w-sm mx-auto space-y-3 pt-6 pb-2 md:pt-8 md:pb-4 border-t border-slate-300">
+                  <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
+                    <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 還缺哪些內容
                   </li>
-                  <li className="flex items-center text-slate-800 font-medium">
-                    <CheckCircle2 className="w-5 h-5 text-accent-500 mr-3 flex-shrink-0" /> 哪些你補
+                  <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
+                    <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 哪些你補
                   </li>
-                  <li className="flex items-center text-slate-800 font-medium">
-                    <CheckCircle2 className="w-5 h-5 text-accent-500 mr-3 flex-shrink-0" /> 哪些我協助完成
+                  <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
+                    <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 哪些我協助完成
                   </li>
-                  <li className="flex items-center text-slate-800 font-medium">
-                    <CheckCircle2 className="w-5 h-5 text-accent-500 mr-3 flex-shrink-0" /> 哪些額外採買值得做
+                  <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
+                    <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 哪些額外採買值得做
                   </li>
                 </ul>
 
-                <div className="w-full mt-8 mb-6 border border-slate-100 shadow-md rounded-2xl p-1 md:p-2 bg-slate-50/50">
+                <div className="w-full mt-8 mb-6 border border-slate-300 shadow-xl rounded-2xl p-1 md:p-2 bg-transparent backdrop-blur-md">
                   <img
                     src="/images/如何開始.jpg"
                     alt="如何開始"
@@ -431,8 +431,8 @@ export const HomePage = () => {
                   />
                 </div>
 
-                <p className="pt-6 font-bold text-brand-900 text-lg md:text-xl border-t border-slate-100 text-center">
-                  完成後你只需要專注在營運上<span className="text-accent-600 block sm:inline mt-1 sm:mt-0">煩惱如何消化訂單。</span>
+                <p className="pt-6 font-extrabold text-brand-900 text-lg md:text-xl border-t border-slate-300 text-center drop-shadow-md">
+                  完成後你只需要專注在營運上<span className="text-accent-700 block sm:inline mt-1 sm:mt-0 drop-shadow-sm">煩惱如何消化訂單。</span>
                 </p>
               </div>
             </div>
