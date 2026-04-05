@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ArrowRight, CheckCircle2, UserCircle } from 'lucide-react';
 import { Footer } from '../components/Footer';
+import { FloatingProofsBackground } from '../components/FloatingProofsBackground';
 
 export const HomePage = () => {
   // 管理漸進式揭露的狀態，1 代表只有第一段可見
@@ -29,8 +30,8 @@ export const HomePage = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white text-slate-800 font-sans selection:bg-brand-500 selection:text-white pb-0 overflow-x-hidden">
-
+    <div className="flex flex-col min-h-screen bg-white text-slate-800 font-sans selection:bg-brand-500 selection:text-white pb-0 overflow-x-hidden relative">
+      <FloatingProofsBackground />
       {/* ======================================= */}
       {/* Section 1: Hero */}
       {/* ======================================= */}
