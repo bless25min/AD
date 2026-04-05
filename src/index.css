@@ -27,6 +27,8 @@
     background-color: #f1f5f9; /* 當在電腦瀏覽時，整個視窗的外圍背景色（淡灰色） */
     color: #1e293b; /* Slate 800 for general text */
     -webkit-font-smoothing: antialiased;
+    font-weight: 600; /* 加粗全站基本字體 */
+    letter-spacing: 0.025em; /* 微調字距，讓加粗後的文字更有呼吸空間 */
     margin: 0;
     display: flex;
     justify-content: center;
