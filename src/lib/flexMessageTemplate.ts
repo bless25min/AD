@@ -237,7 +237,8 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
             action: {
               type: "uri",
               label: "📤 分享名片給好友",
-              uri: `${baseUrl}/liff/card?autoShare=true`
+              // 改用 liff.line.me 包裝，確保一進入網頁就具備授權自動彈出分享
+              uri: `https://liff.line.me/${import.meta.env.VITE_LIFF_ID}/liff/card?autoShare=true`
             }
           }
         ]
