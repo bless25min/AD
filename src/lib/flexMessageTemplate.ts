@@ -191,36 +191,53 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
         ]
       },
       
-      // 底部：行動呼籲大按鈕 (雙按鈕並排)
+      // 底部：行動呼籲大按鈕 (雙按鈕並排 + 分享按鈕)
       footer: {
         type: "box",
-        layout: "horizontal",
+        layout: "vertical",
         backgroundColor: "#ffffff",
         paddingAll: "16px",
         spacing: "md",
         contents: [
           {
-            type: "button",
-            style: "primary",
-            color: "#1e3a8a", // 主色深藍
-            height: "sm",
-            flex: 1,
-            action: {
-              type: "uri",
-              label: "進入官方首頁",
-              uri: baseUrl // 直接引導回首頁，而非名片頁
-            }
+            type: "box",
+            layout: "horizontal",
+            spacing: "md",
+            contents: [
+              {
+                type: "button",
+                style: "primary",
+                color: "#1e3a8a", // 主色深藍
+                height: "sm",
+                flex: 1,
+                action: {
+                  type: "uri",
+                  label: "進入官方首頁",
+                  uri: baseUrl // 直接引導回首頁，而非名片頁
+                }
+              },
+              {
+                type: "button",
+                style: "primary",
+                color: "#059669", // LINE 綠色調
+                height: "sm",
+                flex: 1,
+                action: {
+                  type: "uri",
+                  label: "加 LINE 聊聊",
+                  uri: "https://line.me/ti/p/~reedread"
+                }
+              }
+            ]
           },
           {
             type: "button",
-            style: "primary",
-            color: "#059669", // LINE 綠色調
+            style: "secondary",
             height: "sm",
-            flex: 1,
             action: {
               type: "uri",
-              label: "加 LINE 聊聊",
-              uri: "https://line.me/ti/p/~reedread"
+              label: "📤 分享名片給好友",
+              uri: `https://line.me/R/msg/text/?${encodeURIComponent("推薦你認識這台「AI 顧問式成交引擎」，它能幫你打破廣告轉換天花板，把流量變成可預測的成交！\n\n快來看看廖天佑 (Bless) 的電子名片：\n" + baseUrl)}`
             }
           }
         ]
