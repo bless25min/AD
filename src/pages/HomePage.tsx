@@ -451,7 +451,7 @@ export const HomePage = () => {
                 if (typeof window !== 'undefined' && (window as any).fbq) {
                   (window as any).fbq('track', 'Lead');
                 }
-                window.location.href = import.meta.env.VITE_LINE_ADD_FRIEND_URL || 'https://lin.ee/ThjHTSK';
+                window.location.href = 'https://liff.line.me/1654828981-Dqym5ASE/card';
               }}
               className="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 sm:px-12 py-4 sm:py-5 text-lg sm:text-xl font-bold text-white transition-all duration-300 bg-brand-600 border border-brand-500 rounded-full hover:bg-brand-500 shadow-[0_4px_20px_rgba(42,102,170,0.3)] hover:shadow-[0_8px_40px_rgba(42,102,170,0.5)] active:translate-y-1 sm:hover:-translate-y-2 focus:outline-none overflow-hidden"
             >
