@@ -33,7 +33,7 @@ export const HomePage = () => {
     <div className="flex flex-col min-h-screen bg-transparent text-slate-800 font-sans selection:bg-brand-500 selection:text-white pb-0 overflow-x-hidden relative">
       {/* 背景層 z-0 */}
       <FloatingProofsBackground />
-      
+
       {/* 前景層 z-10：100% 不透明、銳利，絕對不會被背景濾鏡干擾 */}
       <div className="relative z-10 w-full flex flex-col flex-1">
         {/* ======================================= */}
@@ -381,89 +381,89 @@ export const HomePage = () => {
           )}
         </AnimatePresence>
 
-      {/* ======================================= */}
-      {/* Section 5: CTA */}
-      {/* ======================================= */}
-      <AnimatePresence>
-        {visibleLevel >= 5 && (
-          <motion.section
-            ref={section5Ref}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUp}
-            className="pt-16 pb-24 md:pt-24 md:pb-32 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full"
-          >
-            <div className="mb-12 md:mb-16">
-              {/* 第五區塊：這套方式適合誰 */}
-              <div className="w-full max-w-3xl mx-auto rounded-3xl bg-transparent border border-slate-300 backdrop-blur-md overflow-hidden shadow-xl mb-16 sm:mb-24 p-2 sm:p-4">
-                <img
-                  src="/images/這套方式適合誰.jpg"
-                  alt="這套方式適合誰"
-                  className="w-full h-auto object-contain rounded-2xl"
-                />
-              </div>
-
-              {/* 結尾視覺焦點（個人頭像） */}
-              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto rounded-full bg-white/20 border-4 border-white/40 backdrop-blur-md flex items-center justify-center mb-6 md:mb-8 shadow-2xl relative overflow-hidden">
-                <img src="/images/avatar.jpg" alt="Bless Liao" className="absolute inset-0 w-full h-full object-cover" />
-              </div>
-
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-brand-900 mb-8 md:mb-10 leading-tight drop-shadow-md">
-                把你現在的產品 / 廣告 / 落地頁丟給我。
-              </h2>
-
-              <div className="text-base sm:text-lg md:text-xl text-slate-800 font-bold space-y-4 md:space-y-6 max-w-2xl mx-auto text-left md:text-center p-5 md:p-8 bg-transparent border border-slate-300 backdrop-blur-lg rounded-3xl shadow-xl drop-shadow-sm">
-                <p className="font-extrabold drop-shadow-sm">我先做出一版我腦中勾勒的標準參考頁給你看。</p>
-                <p className="drop-shadow-sm">如果你看了，<br className="sm:hidden" />能接受這樣的思維與合作模式，<br className="hidden sm:block" /> 我們再來盤點：</p>
-
-                <ul className="text-left w-full max-w-sm mx-auto space-y-3 pt-6 pb-2 md:pt-8 md:pb-4 border-t border-slate-300">
-                  <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
-                    <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 還缺哪些內容
-                  </li>
-                  <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
-                    <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 哪些你補
-                  </li>
-                  <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
-                    <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 哪些我協助完成
-                  </li>
-                  <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
-                    <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 哪些額外採買值得做
-                  </li>
-                </ul>
-
-                <div className="w-full mt-8 mb-6 border border-slate-300 shadow-xl rounded-2xl p-1 md:p-2 bg-transparent backdrop-blur-md">
+        {/* ======================================= */}
+        {/* Section 5: CTA */}
+        {/* ======================================= */}
+        <AnimatePresence>
+          {visibleLevel >= 5 && (
+            <motion.section
+              ref={section5Ref}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+              className="pt-16 pb-24 md:pt-24 md:pb-32 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full"
+            >
+              <div className="mb-12 md:mb-16">
+                {/* 第五區塊：這套方式適合誰 */}
+                <div className="w-full max-w-3xl mx-auto rounded-3xl bg-transparent border border-slate-300 backdrop-blur-md overflow-hidden shadow-xl mb-16 sm:mb-24 p-2 sm:p-4">
                   <img
-                    src="/images/如何開始.jpg"
-                    alt="如何開始"
-                    className="w-full h-auto object-contain rounded-xl"
+                    src="/images/這套方式適合誰.jpg"
+                    alt="這套方式適合誰"
+                    className="w-full h-auto object-contain rounded-2xl"
                   />
                 </div>
 
-                <p className="pt-6 font-extrabold text-brand-900 text-lg md:text-xl border-t border-slate-300 text-center drop-shadow-md">
-                  完成後你只需要專注在營運上<span className="text-accent-700 block sm:inline mt-1 sm:mt-0 drop-shadow-sm">煩惱如何消化訂單。</span>
-                </p>
+                {/* 結尾視覺焦點（個人頭像） */}
+                <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto rounded-full bg-white/20 border-4 border-white/40 backdrop-blur-md flex items-center justify-center mb-6 md:mb-8 shadow-2xl relative overflow-hidden">
+                  <img src="/images/avatar.jpg" alt="Bless Liao" className="absolute inset-0 w-full h-full object-cover" />
+                </div>
+
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-brand-900 mb-8 md:mb-10 leading-tight drop-shadow-md">
+                  把產品 / 廣告 / 落地頁連結私訊給我。
+                </h2>
+
+                <div className="text-base sm:text-lg md:text-xl text-slate-800 font-bold space-y-4 md:space-y-6 max-w-2xl mx-auto text-left md:text-center p-5 md:p-8 bg-transparent border border-slate-300 backdrop-blur-lg rounded-3xl shadow-xl drop-shadow-sm">
+                  <p className="font-extrabold drop-shadow-sm">我先做出一版我腦中勾勒的標準參考頁給你看。</p>
+                  <p className="drop-shadow-sm">如果你看了，<br className="sm:hidden" />能接受這樣的思維與合作模式，<br className="hidden sm:block" /> 我們再來盤點：</p>
+
+                  <ul className="text-left w-full max-w-sm mx-auto space-y-3 pt-6 pb-2 md:pt-8 md:pb-4 border-t border-slate-300">
+                    <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
+                      <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 還缺哪些內容
+                    </li>
+                    <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
+                      <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 哪些你補
+                    </li>
+                    <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
+                      <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 哪些我協助完成
+                    </li>
+                    <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
+                      <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 哪些額外採買值得做
+                    </li>
+                  </ul>
+
+                  <div className="w-full mt-8 mb-6 border border-slate-300 shadow-xl rounded-2xl p-1 md:p-2 bg-transparent backdrop-blur-md">
+                    <img
+                      src="/images/如何開始.jpg"
+                      alt="如何開始"
+                      className="w-full h-auto object-contain rounded-xl"
+                    />
+                  </div>
+
+                  <p className="pt-6 font-extrabold text-brand-900 text-lg md:text-xl border-t border-slate-300 text-center drop-shadow-md">
+                    完成後你只需要專注在營運上<span className="text-accent-700 block sm:inline mt-1 sm:mt-0 drop-shadow-sm">煩惱如何消化訂單。</span>
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <button
-              onClick={() => {
-                if (typeof window !== 'undefined' && (window as any).fbq) {
-                  (window as any).fbq('track', 'Lead');
-                }
-                window.location.href = 'https://liff.line.me/1654828981-Dqym5ASE/card';
-              }}
-              className="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 sm:px-12 py-4 sm:py-5 text-lg sm:text-xl font-bold text-white transition-all duration-300 bg-brand-600 border border-brand-500 rounded-full hover:bg-brand-500 shadow-[0_4px_20px_rgba(42,102,170,0.3)] hover:shadow-[0_8px_40px_rgba(42,102,170,0.5)] active:translate-y-1 sm:hover:-translate-y-2 focus:outline-none overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
-              <span className="relative z-10 tracking-wider sm:tracking-widest text-shadow-sm">先把現況丟給我</span>
-              <ArrowRight className="relative z-10 w-5 h-5 sm:w-6 sm:h-6 ml-2 sm:ml-3 group-hover:translate-x-2 transition-transform" />
-            </button>
-          </motion.section>
-        )}
-      </AnimatePresence>
+              <button
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).fbq) {
+                    (window as any).fbq('track', 'Lead');
+                  }
+                  window.location.href = 'https://liff.line.me/1654828981-Dqym5ASE/card';
+                }}
+                className="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 sm:px-12 py-4 sm:py-5 text-lg sm:text-xl font-bold text-white transition-all duration-300 bg-brand-600 border border-brand-500 rounded-full hover:bg-brand-500 shadow-[0_4px_20px_rgba(42,102,170,0.3)] hover:shadow-[0_8px_40px_rgba(42,102,170,0.5)] active:translate-y-1 sm:hover:-translate-y-2 focus:outline-none overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+                <span className="relative z-10 tracking-wider sm:tracking-widest text-shadow-sm">先把現況丟給我</span>
+                <ArrowRight className="relative z-10 w-5 h-5 sm:w-6 sm:h-6 ml-2 sm:ml-3 group-hover:translate-x-2 transition-transform" />
+              </button>
+            </motion.section>
+          )}
+        </AnimatePresence>
 
-      <Footer />
+        <Footer />
       </div>
     </div>
   );
