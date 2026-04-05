@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Share2, Phone, Mail, UserPlus, Download } from 'lucide-react';
 import { useLiff } from '../hooks/useLiff';
 import { getBusinessCardFlexMessage } from '../lib/flexMessageTemplate';
@@ -38,6 +38,21 @@ export const BusinessCardPage: React.FC = () => {
       alert('分享過程發生錯誤，請稍後再試。');
     }
   };
+
+  useEffect(() => {
+    if (!isInitializing && liff && liff.isLoggedIn()) {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('autoShare') === 'true') {
+        if (!sessionStorage.getItem('autoShared')) {
+          sessionStorage.setItem('autoShared', 'true');
+          // 稍微延遲一下讓 UI 呈現後再跳出分享畫面，體驗較好
+          setTimeout(() => {
+            handleShare();
+          }, 500);
+        }
+      }
+    }
+  }, [isInitializing, liff]);
 
   const handleVcfDownload = () => {
     const vcard = `BEGIN:VCARD

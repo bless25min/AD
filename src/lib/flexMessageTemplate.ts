@@ -237,7 +237,7 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
             action: {
               type: "uri",
               label: "📤 分享名片給好友",
-              uri: `https://line.me/R/msg/text/?${encodeURIComponent("推薦你認識這台「AI 顧問式成交引擎」，它能幫你打破廣告轉換天花板，把流量變成可預測的成交！\n\n快來看看廖天佑 (Bless) 的電子名片：\n" + baseUrl)}`
+              uri: `${baseUrl}/liff/card?autoShare=true`
             }
           }
         ]
