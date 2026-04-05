@@ -25,28 +25,28 @@ interface SnowflakeData {
 // 寫死 18 個隨機錯落的設定，避免 React Hydration 錯誤
 const SNOWFLAKES: SnowflakeData[] = [
   // 廣告成效 (48% ~ 64%)
-  { src: IMAGES[0], width: '50%', left: '-5%', duration: '28s', delay: '-5s', startRot: '-10deg', endRot: '10deg' },
-  { src: IMAGES[1], width: '60%', left: '35%', duration: '35s', delay: '-15s', startRot: '15deg', endRot: '-5deg' },
-  { src: IMAGES[2], width: '64%', left: '45%', duration: '30s', delay: '-8s', startRot: '5deg', endRot: '25deg' },
-  { src: IMAGES[3], width: '55%', left: '10%', duration: '40s', delay: '-25s', startRot: '-20deg', endRot: '0deg' },
-  { src: IMAGES[4], width: '48%', left: '50%', duration: '32s', delay: '-2s', startRot: '0deg', endRot: '-15deg' },
+  { src: IMAGES[0], width: '50%', left: '-5%', duration: '28s', delay: '-2s', startRot: '-10deg', endRot: '10deg' },
+  { src: IMAGES[1], width: '60%', left: '35%', duration: '35s', delay: '-14s', startRot: '15deg', endRot: '-5deg' },
+  { src: IMAGES[2], width: '64%', left: '45%', duration: '30s', delay: '-22s', startRot: '5deg', endRot: '25deg' },
+  { src: IMAGES[3], width: '55%', left: '10%', duration: '40s', delay: '-35s', startRot: '-20deg', endRot: '0deg' },
+  { src: IMAGES[4], width: '48%', left: '50%', duration: '32s', delay: '-45s', startRot: '0deg', endRot: '-15deg' },
   
   // 媒體報導 (36% ~ 48%)
-  { src: IMAGES[5], width: '38%', left: '5%', duration: '22s', delay: '-18s', startRot: '-5deg', endRot: '15deg' },
-  { src: IMAGES[6], width: '40%', left: '35%', duration: '20s', delay: '-7s', startRot: '10deg', endRot: '-10deg' },
-  { src: IMAGES[7], width: '45%', left: '60%', duration: '24s', delay: '-12s', startRot: '-15deg', endRot: '5deg' },
-  { src: IMAGES[8], width: '36%', left: '45%', duration: '18s', delay: '-22s', startRot: '20deg', endRot: '-20deg' },
+  { src: IMAGES[5], width: '38%', left: '5%', duration: '22s', delay: '-6s', startRot: '-5deg', endRot: '15deg' },
+  { src: IMAGES[6], width: '40%', left: '35%', duration: '20s', delay: '-28s', startRot: '10deg', endRot: '-10deg' },
+  { src: IMAGES[7], width: '45%', left: '60%', duration: '24s', delay: '-38s', startRot: '-15deg', endRot: '5deg' },
+  { src: IMAGES[8], width: '36%', left: '45%', duration: '18s', delay: '-52s', startRot: '20deg', endRot: '-20deg' },
   
   // 第二波重複，確保大圖也能隨機出現展示數據
-  { src: IMAGES[0], width: '55%', left: '30%', duration: '33s', delay: '-10s', startRot: '12deg', endRot: '-8deg' },
-  { src: IMAGES[2], width: '62%', left: '-10%', duration: '38s', delay: '-28s', startRot: '-15deg', endRot: '10deg' },
-  { src: IMAGES[4], width: '50%', left: '55%', duration: '31s', delay: '-20s', startRot: '10deg', endRot: '-10deg' },
-  { src: IMAGES[5], width: '42%', left: '20%', duration: '26s', delay: '-4s', startRot: '-8deg', endRot: '12deg' },
-  { src: IMAGES[6], width: '36%', left: '65%', duration: '21s', delay: '-16s', startRot: '15deg', endRot: '-5deg' },
-  { src: IMAGES[7], width: '48%', left: '40%', duration: '27s', delay: '-9s', startRot: '-5deg', endRot: '-25deg' },
-  { src: IMAGES[8], width: '38%', left: '80%', duration: '19s', delay: '-3s', startRot: '-12deg', endRot: '12deg' },
-  { src: IMAGES[1], width: '48%', left: '15%', duration: '36s', delay: '-32s', startRot: '5deg', endRot: '-15deg' },
-  { src: IMAGES[3], width: '60%', left: '60%', duration: '34s', delay: '-14s', startRot: '-10deg', endRot: '20deg' },
+  { src: IMAGES[0], width: '55%', left: '30%', duration: '33s', delay: '-8s', startRot: '12deg', endRot: '-8deg' },
+  { src: IMAGES[2], width: '62%', left: '-10%', duration: '38s', delay: '-55s', startRot: '-15deg', endRot: '10deg' },
+  { src: IMAGES[4], width: '50%', left: '55%', duration: '31s', delay: '-18s', startRot: '10deg', endRot: '-10deg' },
+  { src: IMAGES[5], width: '42%', left: '20%', duration: '26s', delay: '-30s', startRot: '-8deg', endRot: '12deg' },
+  { src: IMAGES[6], width: '36%', left: '65%', duration: '21s', delay: '-42s', startRot: '15deg', endRot: '-5deg' },
+  { src: IMAGES[7], width: '48%', left: '40%', duration: '27s', delay: '-48s', startRot: '-5deg', endRot: '-25deg' },
+  { src: IMAGES[8], width: '38%', left: '80%', duration: '19s', delay: '-58s', startRot: '-12deg', endRot: '12deg' },
+  { src: IMAGES[1], width: '48%', left: '15%', duration: '36s', delay: '-65s', startRot: '5deg', endRot: '-15deg' },
+  { src: IMAGES[3], width: '60%', left: '60%', duration: '34s', delay: '-10s', startRot: '-10deg', endRot: '20deg' },
 ];
 
 export const FloatingProofsBackground: React.FC<{ className?: string }> = ({ className = '' }) => {

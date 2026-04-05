@@ -13,13 +13,34 @@
   --color-dark-bg: #ffffff;
   --color-dark-card: #f8fafc;
   --color-dark-border: #e2e8f0;
+
+  /* 強制完全關閉 RWD 響應式佈局，讓全站鎖死在預設的最底層（手機版）樣式 */
+  --breakpoint-sm: 99999px;
+  --breakpoint-md: 99999px;
+  --breakpoint-lg: 99999px;
+  --breakpoint-xl: 99999px;
+  --breakpoint-2xl: 99999px;
 }
 
 @layer base {
   body {
-    background-color: var(--color-dark-bg);
+    background-color: #f1f5f9; /* 當在電腦瀏覽時，整個視窗的外圍背景色（淡灰色） */
     color: #1e293b; /* Slate 800 for general text */
     -webkit-font-smoothing: antialiased;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* 打造全站的手機版 App 外殼容器 */
+  #root {
+    width: 100%;
+    max-width: 480px; /* 模擬手機最大寬度 */
+    min-height: 100vh;
+    background-color: var(--color-dark-bg);
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.08); /* 讓 app 外框在電腦上有陰影浮出感 */
+    overflow-x: hidden;
   }
 }
 
