@@ -19,10 +19,14 @@ function App() {
         <Route path="/path/:painId" element={<PainPointPage />} />
         <Route path="/path/:painId/:optionId" element={<SituationPage />} />
         <Route path="/liff" element={<LiffInitPage />} />
+        <Route path="/LIFF" element={<LiffInitPage />} />
         <Route path="/liff/welcome" element={<LiffWelcomePage />} />
+        <Route path="/LIFF/welcome" element={<LiffWelcomePage />} />
         <Route path="/liff/friend-required" element={<LiffFriendRequiredPage />} />
+        <Route path="/LIFF/friend-required" element={<LiffFriendRequiredPage />} />
         <Route path="/contract" element={<ContractPage />} />
         <Route path="/liff/card" element={<BusinessCardPage />} />
+        <Route path="/LIFF/card" element={<BusinessCardPage />} />
       </Routes>
     </BrowserRouter>
   );
