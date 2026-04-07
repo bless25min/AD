@@ -171,29 +171,15 @@ export const HomePage = () => {
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
-                    {/* 盲點 1：根本原因 */}
-                    <div className="bg-white/20 backdrop-blur-md border border-slate-300 rounded-3xl p-6 md:p-8 shadow-xl flex flex-col items-center">
-                      <div className="w-full text-left mb-6">
-                        <h4 className="text-xl md:text-2xl font-extrabold text-brand-900 mb-3 drop-shadow-sm">盲點一：演算法只找「好逸惡勞」的捷徑</h4>
-                        <div className="space-y-3 text-sm md:text-base text-slate-800 font-bold bg-white/30 p-4 rounded-xl border border-slate-200">
-                          <p><span className="text-accent-700 font-black">❌ 已知用戶循環。</span>系統只反覆針對「已經反應過的人」，導致龐大的潛在需求完全被阻絕在外。</p>
-                          <p><span className="text-accent-700 font-black">❌ 漏斗同質化。</span>全市場都在用同一套痛點打法，AI 為了最省力，只會分發給同質化的群體。</p>
-                        </div>
-                      </div>
-                      <img src="/images/algo-blindspot.jpg" alt="廣告演算法盲點" className="w-full h-auto object-contain rounded-2xl shadow-md border border-slate-200 mb-2 mt-auto" />
+                  <div className="flex flex-col space-y-8 md:space-y-12 items-center max-w-4xl mx-auto">
+                    {/* 盲點 1：圖表完整呈現 */}
+                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden">
+                      <img src="/images/algo-blindspot.jpg" alt="廣告演算法盲點" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
                     </div>
 
-                    {/* 盲點 2：結果表現 */}
-                    <div className="bg-white/20 backdrop-blur-md border border-slate-300 rounded-3xl p-6 md:p-8 shadow-xl flex flex-col items-center">
-                      <div className="w-full text-left mb-6">
-                        <h4 className="text-xl md:text-2xl font-extrabold text-brand-900 mb-3 drop-shadow-sm">盲點二：這讓數據與日常操作陷入死胡同</h4>
-                        <div className="space-y-3 text-sm md:text-base text-slate-800 font-bold bg-white/30 p-4 rounded-xl border border-slate-200">
-                          <p><span className="text-accent-700 font-black">📉 致命偏誤數據。</span>頻率升高、觸及變慢。CTR 與 CVR 不管怎麼測都趨同。一放大量 CPA 必定惡化崩潰。</p>
-                          <p><span className="text-accent-700 font-black">📉 無效瞎忙操作。</span>受眾細切沒有用，小幅度重製素材無法扭轉 AI 路徑依賴。永遠在同一批人裡反覆優化。</p>
-                        </div>
-                      </div>
-                      <img src="/images/algo-problems.jpg" alt="廣告演算法盲點導致問題" className="w-full h-auto object-contain rounded-2xl shadow-md border border-slate-200 mb-2 mt-auto" />
+                    {/* 盲點 2：圖表完整呈現 */}
+                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden">
+                      <img src="/images/algo-problems.jpg" alt="廣告演算法盲點導致問題" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
                     </div>
                   </div>
                 </div>
