@@ -194,7 +194,7 @@ export const HomePage = () => {
                       >
                         <div className="flex flex-col space-y-8 md:space-y-12 items-center max-w-4xl mx-auto pb-4">
                           {/* 盲點 1：圖表完整呈現 */}
-                          <div 
+                          <div
                             onClick={() => setZoomedImage("/images/algo-blindspot.jpg")}
                             className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all"
                           >
@@ -202,7 +202,7 @@ export const HomePage = () => {
                           </div>
 
                           {/* 盲點 2：圖表完整呈現 */}
-                          <div 
+                          <div
                             onClick={() => setZoomedImage("/images/algo-problems.jpg")}
                             className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all"
                           >
@@ -221,7 +221,7 @@ export const HomePage = () => {
                       如果產品服務銷售方式重度依賴人員成交<br className="sm:hidden" />更會有這些問題
                     </h3>
                     <p className="text-base sm:text-lg text-slate-700 font-bold max-w-2xl mx-auto">
-                      除了系統演算法的問題外，現代人對於取得資訊的低耐心，與冗長的高成本成交流程產生了直接衝突，這正是壓垮銷售團隊的最後一根稻草。
+                      現代人對於取得資訊的低耐心，與冗長的成交流程產生了直接衝突，這正是壓垮銷售團隊的最後一根稻草。
                     </p>
                   </div>
 
@@ -245,7 +245,7 @@ export const HomePage = () => {
                       >
                         <div className="flex flex-col space-y-8 md:space-y-12 items-center max-w-4xl mx-auto pb-4">
                           {/* 困境 1：用戶低耐心 */}
-                          <div 
+                          <div
                             onClick={() => setZoomedImage("/images/user-impatience.jpg")}
                             className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
                           >
@@ -253,7 +253,7 @@ export const HomePage = () => {
                           </div>
 
                           {/* 困境 2：現代成交的高要求 */}
-                          <div 
+                          <div
                             onClick={() => setZoomedImage("/images/sales-friction.jpg")}
                             className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
                           >
@@ -261,7 +261,7 @@ export const HomePage = () => {
                           </div>
 
                           {/* 困境 3：銷售人員崩潰 */}
-                          <div 
+                          <div
                             onClick={() => setZoomedImage("/images/sales-burnout.jpg")}
                             className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
                           >
@@ -293,6 +293,14 @@ export const HomePage = () => {
                         >
                           <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
                           <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">💡 我的確陷入優化瓶頸，完全抓不準新受眾在哪。</span>
+                          <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
+                        </button>
+                        <button
+                          onClick={() => revealSection(3, section3Ref)}
+                          className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/30 border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
+                        >
+                          <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                          <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">💡 是的，團隊花了大量心力溝通，但客戶就是無回應。</span>
                           <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
                         </button>
                       </div>
