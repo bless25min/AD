@@ -103,7 +103,7 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
                         contents: [
                           {
                             type: "text",
-                            text: "AI顧問式成交引擎",
+                            text: "AI 預見成交引擎",
                             color: "#1e293b",
                             size: "xs",
                             weight: "bold",

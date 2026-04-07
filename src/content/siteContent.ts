@@ -1,6 +1,6 @@
 export const siteContent = {
   hero: {
-    positioning: "AI顧問式成交引擎",
+    positioning: "AI 預見成交引擎",
     title: "把流量變成可預測成交",
     subtitle:
       "先看懂客戶怎麼想，再重組你的成交系統。",

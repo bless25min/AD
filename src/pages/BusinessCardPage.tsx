@@ -49,7 +49,7 @@ VERSION:3.0
 N:Liao;Bless;;;
 FN:廖天佑 Bless Liao
 ORG:25 MIN
-TITLE:AI顧問式成交引擎
+TITLE:AI 預見成交引擎
 TEL;TYPE=CELL:0983919101
 EMAIL:bless@25min.co
 URL:https://line.me/ti/p/~reedread
@@ -90,7 +90,7 @@ END:VCARD`;
               <h2 className="text-3xl font-black tracking-wider text-slate-800 mb-1">廖天佑</h2>
               <p className="text-lg font-bold text-slate-500 mb-2">Bless Liao</p>
               <div className="inline-block px-3 py-1 bg-blue-900 text-white font-bold text-sm rounded-full mb-6 mt-2">
-                AI顧問式成交引擎
+                AI 預見成交引擎
               </div>
               
               <div className="text-blue-900 font-bold text-lg mb-8 relative">

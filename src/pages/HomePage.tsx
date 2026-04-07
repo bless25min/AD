@@ -46,7 +46,7 @@ export const HomePage = () => {
               <div className="w-full space-y-6 md:space-y-8">
                 <div className="inline-flex items-center p-1 pr-4 rounded-full bg-white/30 backdrop-blur-md border border-brand-200 text-brand-900 shadow-md">
                   <img src="/images/avatar.jpg" alt="Bless Liao" className="w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-2 sm:mr-3 object-cover border border-white/60 shadow-sm" />
-                  <span className="text-xs sm:text-sm font-extrabold tracking-wider drop-shadow-sm">廖天佑 Bless Liao｜AI顧問式成交引擎</span>
+                  <span className="text-xs sm:text-sm font-extrabold tracking-wider drop-shadow-sm">廖天佑 Bless Liao｜AI 預見成交引擎</span>
                 </div>
 
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight md:whitespace-pre-line text-brand-900 drop-shadow-sm">
@@ -230,8 +230,8 @@ export const HomePage = () => {
                         <div className="w-10 h-10 rounded-full bg-brand-50/50 backdrop-blur-sm text-brand-800 flex items-center justify-center font-extrabold text-lg border border-brand-200 shadow-sm">2</div>
                       </div>
                       <div className="ml-4 w-full">
-                        <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">根據不同痛點與解方，勾勒受眾輪廓與分布</h3>
-                        <p className="text-sm md:text-base font-bold text-slate-800">不是憑感覺猜客群。</p>
+                        <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">根據情境配對 Meta 代理受眾</h3>
+                        <p className="text-sm md:text-base font-bold text-slate-800">不需要憑感覺猜客群。</p>
                         <img src="/images/audience.png" alt="Audience" className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md" />
                       </div>
                     </div>
@@ -243,8 +243,8 @@ export const HomePage = () => {
                         <div className="w-10 h-10 rounded-full bg-brand-50/50 backdrop-blur-sm text-brand-800 flex items-center justify-center font-extrabold text-lg border border-brand-200 shadow-sm">3</div>
                       </div>
                       <div className="ml-4 w-full">
-                        <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">根據真實問題與期待做內容與創意</h3>
-                        <p className="text-sm md:text-base font-bold text-slate-800">讓成交從靠運氣，變成比較可預測。</p>
+                        <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">創意引擎根據不同客戶屬性維度產生聯想</h3>
+                        <p className="text-sm md:text-base font-bold text-slate-800">讓成交與創意內容，不再依賴運氣與試錯。</p>
                         <img src="/images/solution.png" alt="Solution" className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md" />
                       </div>
                     </div>
