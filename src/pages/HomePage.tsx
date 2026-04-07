@@ -342,7 +342,12 @@ export const HomePage = () => {
                       <div className="ml-4 w-full">
                         <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">先用 AI 預見系統模擬用戶決策</h3>
                         <p className="text-sm md:text-base font-bold text-slate-800">看懂客戶怎麼想。</p>
-                        <img src="/images/simulation.png" alt="Simulation" className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md" />
+                        <img 
+                          src="/images/simulation.png" 
+                          alt="Simulation" 
+                          onClick={() => setZoomedImage("/images/simulation.png")}
+                          className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md cursor-zoom-in hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-brand-400 transition-all" 
+                        />
                       </div>
                     </div>
                   </div>
@@ -355,7 +360,12 @@ export const HomePage = () => {
                       <div className="ml-4 w-full">
                         <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">根據情境配對 Meta 代理受眾</h3>
                         <p className="text-sm md:text-base font-bold text-slate-800">不需要憑感覺猜客群。</p>
-                        <img src="/images/audience.png" alt="Audience" className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md" />
+                        <img 
+                          src="/images/audience.png" 
+                          alt="Audience" 
+                          onClick={() => setZoomedImage("/images/audience.png")}
+                          className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md cursor-zoom-in hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-brand-400 transition-all" 
+                        />
                       </div>
                     </div>
                   </div>
@@ -368,7 +378,30 @@ export const HomePage = () => {
                       <div className="ml-4 w-full">
                         <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">創意引擎根據不同客戶屬性維度產生聯想</h3>
                         <p className="text-sm md:text-base font-bold text-slate-800">讓成交與創意內容，不再依賴運氣與試錯。</p>
-                        <img src="/images/solution.png" alt="Solution" className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md" />
+                        <img 
+                          src="/images/solution.png" 
+                          alt="Solution" 
+                          onClick={() => setZoomedImage("/images/solution.png")}
+                          className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md cursor-zoom-in hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-brand-400 transition-all" 
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white/20 backdrop-blur-md border border-slate-300 shadow-md rounded-2xl p-5 md:p-6 group hover:border-brand-400 transition-colors drop-shadow-md">
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 mt-1">
+                        <div className="w-10 h-10 rounded-full bg-brand-50/50 backdrop-blur-sm text-brand-800 flex items-center justify-center font-extrabold text-lg border border-brand-200 shadow-sm">4</div>
+                      </div>
+                      <div className="ml-4 w-full">
+                        <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">需求生成引擎產出執行內容</h3>
+                        <p className="text-sm md:text-base font-bold text-slate-800">需求不是被捕獲，而是被生成、被升級。</p>
+                        <img 
+                          src="/images/demand-generation.png" 
+                          alt="Demand Generation" 
+                          onClick={() => setZoomedImage("/images/demand-generation.png")}
+                          className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md cursor-zoom-in hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-brand-400 transition-all" 
+                        />
                       </div>
                     </div>
                   </div>
