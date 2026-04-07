@@ -157,32 +157,72 @@ export const HomePage = () => {
                         只是沒有讓客戶輕鬆的認識你，<span className="text-brand-700 font-extrabold block mt-1 drop-shadow-sm">自然而然的轉變成訂單。</span>
                       </p>
                     </div>
-
-                    {/* 第二層解鎖選項 */}
-                    {visibleLevel === 2 && (
-                      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-4 md:pt-6">
-                        <p className="text-sm text-slate-500 font-bold mb-4 text-center lg:text-left">這聽起來像你的處境嗎？</p>
-                        <div className="flex flex-col space-y-4">
-                          <button
-                            onClick={() => revealSection(3, section3Ref)}
-                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/30 border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
-                          >
-                            <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
-                            <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">💡 有時會衝出一波短期成效，然後又冷掉了。</span>
-                            <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
-                          </button>
-                          <button
-                            onClick={() => revealSection(3, section3Ref)}
-                            className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/30 border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
-                          >
-                            <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
-                            <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">💡 連客戶到底為什麼不買單都抓不太準。</span>
-                            <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
-                          </button>
-                        </div>
-                      </motion.div>
-                    )}
                   </div>
+                </div>
+
+                {/* 新增區塊：演算法盲點與導致問題 */}
+                <div className="mt-16 pt-16 border-t border-slate-300/50 max-w-5xl mx-auto w-full">
+                  <div className="text-center mb-12">
+                    <h3 className="text-2xl md:text-4xl font-extrabold text-brand-900 mb-4 drop-shadow-sm">
+                      為什麼會這樣？<br className="sm:hidden" />真正的元凶是「演算法的結構性盲點」
+                    </h3>
+                    <p className="text-base sm:text-lg text-slate-700 font-bold max-w-2xl mx-auto">
+                      你以為是素材不夠好，或是受眾沒設準確，但其實是底層系統把你困住了。
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+                    {/* 盲點 1：根本原因 */}
+                    <div className="bg-white/20 backdrop-blur-md border border-slate-300 rounded-3xl p-6 md:p-8 shadow-xl flex flex-col items-center">
+                      <div className="w-full text-left mb-6">
+                        <h4 className="text-xl md:text-2xl font-extrabold text-brand-900 mb-3 drop-shadow-sm">盲點一：演算法只找「好逸惡勞」的捷徑</h4>
+                        <div className="space-y-3 text-sm md:text-base text-slate-800 font-bold bg-white/30 p-4 rounded-xl border border-slate-200">
+                          <p><span className="text-accent-700 font-black">❌ 已知用戶循環。</span>系統只反覆針對「已經反應過的人」，導致龐大的潛在需求完全被阻絕在外。</p>
+                          <p><span className="text-accent-700 font-black">❌ 漏斗同質化。</span>全市場都在用同一套痛點打法，AI 為了最省力，只會分發給同質化的群體。</p>
+                        </div>
+                      </div>
+                      <img src="/images/algo-blindspot.jpg" alt="廣告演算法盲點" className="w-full h-auto object-contain rounded-2xl shadow-md border border-slate-200 mb-2 mt-auto" />
+                    </div>
+
+                    {/* 盲點 2：結果表現 */}
+                    <div className="bg-white/20 backdrop-blur-md border border-slate-300 rounded-3xl p-6 md:p-8 shadow-xl flex flex-col items-center">
+                      <div className="w-full text-left mb-6">
+                        <h4 className="text-xl md:text-2xl font-extrabold text-brand-900 mb-3 drop-shadow-sm">盲點二：這讓數據與日常操作陷入死胡同</h4>
+                        <div className="space-y-3 text-sm md:text-base text-slate-800 font-bold bg-white/30 p-4 rounded-xl border border-slate-200">
+                          <p><span className="text-accent-700 font-black">📉 致命偏誤數據。</span>頻率升高、觸及變慢。CTR 與 CVR 不管怎麼測都趨同。一放大量 CPA 必定惡化崩潰。</p>
+                          <p><span className="text-accent-700 font-black">📉 無效瞎忙操作。</span>受眾細切沒有用，小幅度重製素材無法扭轉 AI 路徑依賴。永遠在同一批人裡反覆優化。</p>
+                        </div>
+                      </div>
+                      <img src="/images/algo-problems.jpg" alt="廣告演算法盲點導致問題" className="w-full h-auto object-contain rounded-2xl shadow-md border border-slate-200 mb-2 mt-auto" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* 第二層解鎖選項 (移至底部) */}
+                <div className="max-w-3xl mx-auto w-full mt-16 pb-4">
+                  {visibleLevel === 2 && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                      <p className="text-sm md:text-base text-slate-600 font-bold mb-5 text-center drop-shadow-sm">你目前的處境，是不是就卡在這個盲點裡？</p>
+                      <div className="flex flex-col space-y-4">
+                        <button
+                          onClick={() => revealSection(3, section3Ref)}
+                          className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/30 border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
+                        >
+                          <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                          <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">💡 沒錯！有時會衝出一波短期成效，然後又冷掉了。</span>
+                          <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
+                        </button>
+                        <button
+                          onClick={() => revealSection(3, section3Ref)}
+                          className="group relative flex items-start sm:items-center justify-between px-5 sm:px-6 py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/20 backdrop-blur-md hover:bg-white/30 border border-slate-300 hover:border-brand-400 rounded-2xl w-full text-left shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
+                        >
+                          <div className="absolute inset-0 bg-white/30 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                          <span className="relative z-10 flex-1 pr-4 drop-shadow-sm">💡 我的確陷入優化瓶頸，完全抓不準新受眾在哪。</span>
+                          <ChevronDown className="relative z-10 w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0 transition-transform text-accent-600 group-hover:translate-y-1 drop-shadow-sm" />
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
                 </div>
               </div>
             </motion.section>
