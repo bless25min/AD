@@ -41,9 +41,9 @@ export const HomePage = () => {
         {/* ======================================= */}
         <section className="relative min-h-[90vh] flex flex-col justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-              {/* 左側文字 */}
-              <div className="w-full lg:w-1/2 space-y-6 md:space-y-8">
+            <div className="flex flex-col items-center max-w-3xl mx-auto">
+              {/* 文字置中寬度限制 */}
+              <div className="w-full space-y-6 md:space-y-8">
                 <div className="inline-flex items-center p-1 pr-4 rounded-full bg-white/30 backdrop-blur-md border border-brand-200 text-brand-900 shadow-md">
                   <img src="/images/avatar.jpg" alt="Bless Liao" className="w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-2 sm:mr-3 object-cover border border-white/60 shadow-sm" />
                   <span className="text-xs sm:text-sm font-extrabold tracking-wider drop-shadow-sm">廖天佑 Bless Liao｜AI顧問式成交引擎</span>
@@ -63,8 +63,8 @@ export const HomePage = () => {
                   </p>
                   <div className="p-4 md:p-5 bg-transparent border-l-4 border-brand-500 rounded-r-xl">
                     <p className="text-brand-900 drop-shadow-sm">
-                      問題不是沒行銷。<br />
-                      是沒有一套把<span className="text-accent-600 font-bold">流量接成成交</span>的系統。
+                      問題出在這裡。<br />
+                      沒有一套能懂你的產品成交邏輯的廣告承接方式，就無法把<span className="text-accent-600 font-bold">流量轉換為成交</span>。
                     </p>
                   </div>
                 </div>
@@ -108,14 +108,7 @@ export const HomePage = () => {
                 )}
               </div>
 
-              {/* 右側圖片 */}
-              <div className="w-full lg:w-1/2 relative flex justify-center items-center mt-8 lg:mt-0">
-                <img
-                  src="/images/共通點.jpg"
-                  alt="共通點"
-                  className="w-full h-auto object-contain rounded-3xl shadow-xl border border-slate-100 bg-white"
-                />
-              </div>
+              {/* 右側圖片已移除 */}
             </div>
           </motion.div>
         </section>
@@ -138,8 +131,8 @@ export const HomePage = () => {
                   {/* 左側圖片 */}
                   <div className="w-full lg:w-1/2 relative flex justify-center items-center">
                     <img
-                      src="/images/舊框架問題.jpg"
-                      alt="舊框架問題"
+                      src="/images/news-pain.jpg"
+                      alt="流量騙局報導"
                       className="w-full h-auto object-contain rounded-3xl shadow-lg border border-slate-300 bg-white/20 backdrop-blur-md p-2 sm:p-4"
                     />
                   </div>
@@ -216,7 +209,7 @@ export const HomePage = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              <div className="grid grid-cols-1 gap-8 lg:gap-12 max-w-3xl mx-auto">
                 <div className="space-y-6">
                   <div className="bg-white/20 backdrop-blur-md border border-slate-300 shadow-md rounded-2xl p-5 md:p-6 group hover:border-brand-400 transition-colors drop-shadow-md">
                     <div className="flex items-start">
@@ -258,14 +251,7 @@ export const HomePage = () => {
                   </div>
                 </div>
 
-                {/* 右側圖片 */}
-                <div className="w-full flex items-center justify-center relative mt-4 lg:mt-0">
-                  <img
-                    src="/images/新框架做法.jpg"
-                    alt="新框架做法"
-                    className="w-full h-auto object-contain rounded-3xl shadow-xl border border-slate-200 bg-white p-2 sm:p-4"
-                  />
-                </div>
+                {/* 右側圖片已移除 */}
               </div>
 
               {/* 第三層解鎖選項 */}
@@ -337,16 +323,16 @@ export const HomePage = () => {
 
                   <div className="mt-10 md:mt-12 pt-8 border-t border-slate-200 text-center relative z-10 w-full">
                     <p className="text-slate-600 font-medium text-sm md:text-base mb-6 md:mb-8">
-                      [ 補一句 ]<br />
+                      [ 無法分潤的產品怎麼辦 ]<br />
                       如果你堅持，合作也可以從高額月費開始。<br className="hidden sm:block" />
                       但我更傾向於長久、健康的合作方式。
                     </p>
 
-                    <div className="w-full max-w-2xl mx-auto rounded-2xl bg-white flex items-center justify-center shadow-lg shadow-brand-900/10 p-1 border border-slate-200 mb-8 overflow-hidden">
+                    <div className="w-full max-w-4xl mx-auto rounded-3xl bg-white/20 backdrop-blur-xl flex items-center justify-center shadow-2xl p-2 sm:p-4 mb-10 overflow-hidden transform hover:scale-[1.01] transition-transform duration-500 border border-slate-300">
                       <img
-                        src="/images/服務內容及方案.jpg"
-                        alt="服務內容及方案"
-                        className="w-full h-auto object-contain rounded-xl"
+                        src="/images/news-solution.png"
+                        alt="無媒體解決方案零風險合作"
+                        className="w-full h-auto object-contain rounded-2xl shadow-sm"
                       />
                     </div>
 
@@ -395,14 +381,7 @@ export const HomePage = () => {
               className="pt-16 pb-24 md:pt-24 md:pb-32 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full"
             >
               <div className="mb-12 md:mb-16">
-                {/* 第五區塊：這套方式適合誰 */}
-                <div className="w-full max-w-3xl mx-auto rounded-3xl bg-transparent border border-slate-300 backdrop-blur-md overflow-hidden shadow-xl mb-16 sm:mb-24 p-2 sm:p-4">
-                  <img
-                    src="/images/這套方式適合誰.jpg"
-                    alt="這套方式適合誰"
-                    className="w-full h-auto object-contain rounded-2xl"
-                  />
-                </div>
+                {/* 頂部圖片已移除 */}
 
                 {/* 結尾視覺焦點（個人頭像） */}
                 <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto rounded-full bg-white/20 border-4 border-white/40 backdrop-blur-md flex items-center justify-center mb-6 md:mb-8 shadow-2xl relative overflow-hidden">
@@ -432,13 +411,7 @@ export const HomePage = () => {
                     </li>
                   </ul>
 
-                  <div className="w-full mt-8 mb-6 border border-slate-300 shadow-xl rounded-2xl p-1 md:p-2 bg-transparent backdrop-blur-md">
-                    <img
-                      src="/images/如何開始.jpg"
-                      alt="如何開始"
-                      className="w-full h-auto object-contain rounded-xl"
-                    />
-                  </div>
+                  {/* 如何開始圖片已移除 */}
 
                   <p className="pt-6 font-extrabold text-brand-900 text-lg md:text-xl border-t border-slate-300 text-center drop-shadow-md">
                     完成後你只需要專注在營運上<span className="text-accent-700 block sm:inline mt-1 sm:mt-0 drop-shadow-sm">煩惱如何消化訂單。</span>
