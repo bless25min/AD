@@ -184,6 +184,35 @@ export const HomePage = () => {
                   </div>
                 </div>
 
+                {/* 新增區塊：人員成交的困境 */}
+                <div className="mt-16 pt-16 border-t border-slate-300/50 max-w-5xl mx-auto w-full">
+                  <div className="text-center mb-10 md:mb-12">
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 mb-4 drop-shadow-sm">
+                      如果產品服務銷售方式重度依賴人員成交<br className="sm:hidden" />更會有這些問題
+                    </h3>
+                    <p className="text-base sm:text-lg text-slate-700 font-bold max-w-2xl mx-auto">
+                      除了系統演算法的問題外，現代人對於取得資訊的低耐心，與冗長的高成本成交流程產生了直接衝突，這正是壓垮銷售團隊的最後一根稻草。
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col space-y-8 md:space-y-12 items-center max-w-4xl mx-auto">
+                    {/* 困境 1：用戶低耐心 */}
+                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden">
+                      <img src="/images/user-impatience.jpg" alt="用戶從願意聽到低耐心" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
+                    </div>
+
+                    {/* 困境 2：現代成交的高要求 */}
+                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden">
+                      <img src="/images/sales-friction.jpg" alt="現代成交的困境" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
+                    </div>
+
+                    {/* 困境 3：銷售人員崩潰 */}
+                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden">
+                      <img src="/images/sales-burnout.jpg" alt="銷售困境" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
+                    </div>
+                  </div>
+                </div>
+
                 {/* 第二層解鎖選項 (移至底部) */}
                 <div className="max-w-3xl mx-auto w-full mt-16 pb-4">
                   {visibleLevel === 2 && (
