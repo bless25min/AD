@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ArrowRight, CheckCircle2 } from 'lucide-react';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 import { Footer } from '../components/Footer';
 import { FloatingProofsBackground } from '../components/FloatingProofsBackground';
 
@@ -9,7 +11,6 @@ export const HomePage = () => {
   const [visibleLevel, setVisibleLevel] = useState(1);
   const [showAlgoDetails, setShowAlgoDetails] = useState(false);
   const [showSalesDetails, setShowSalesDetails] = useState(false);
-  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
   // 區段對應的指標
   const section2Ref = useRef<HTMLElement>(null);
@@ -194,19 +195,17 @@ export const HomePage = () => {
                       >
                         <div className="flex flex-col space-y-8 md:space-y-12 items-center max-w-4xl mx-auto pb-4">
                           {/* 盲點 1：圖表完整呈現 */}
-                          <div
-                            onClick={() => setZoomedImage("/images/algo-blindspot.jpg")}
-                            className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all"
-                          >
-                            <img src="/images/algo-blindspot.jpg" alt="廣告演算法盲點" className="w-full h-auto object-contain rounded-xl md:rounded-2xl pointer-events-none" />
+                          <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                            <Zoom>
+                              <img src="/images/algo-blindspot.jpg" alt="廣告演算法盲點" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
+                            </Zoom>
                           </div>
 
                           {/* 盲點 2：圖表完整呈現 */}
-                          <div
-                            onClick={() => setZoomedImage("/images/algo-problems.jpg")}
-                            className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all"
-                          >
-                            <img src="/images/algo-problems.jpg" alt="廣告演算法盲點導致問題" className="w-full h-auto object-contain rounded-xl md:rounded-2xl pointer-events-none" />
+                          <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                            <Zoom>
+                              <img src="/images/algo-problems.jpg" alt="廣告演算法盲點導致問題" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
+                            </Zoom>
                           </div>
                         </div>
                       </motion.div>
@@ -245,27 +244,24 @@ export const HomePage = () => {
                       >
                         <div className="flex flex-col space-y-8 md:space-y-12 items-center max-w-4xl mx-auto pb-4">
                           {/* 困境 1：用戶低耐心 */}
-                          <div
-                            onClick={() => setZoomedImage("/images/user-impatience.jpg")}
-                            className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
-                          >
-                            <img src="/images/user-impatience.jpg" alt="用戶從願意聽到低耐心" className="w-full h-auto object-contain rounded-xl md:rounded-2xl pointer-events-none" />
+                          <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                            <Zoom>
+                              <img src="/images/user-impatience.jpg" alt="用戶從願意聽到低耐心" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
+                            </Zoom>
                           </div>
 
                           {/* 困境 2：現代成交的高要求 */}
-                          <div
-                            onClick={() => setZoomedImage("/images/sales-friction.jpg")}
-                            className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
-                          >
-                            <img src="/images/sales-friction.jpg" alt="現代成交的困境" className="w-full h-auto object-contain rounded-xl md:rounded-2xl pointer-events-none" />
+                          <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                            <Zoom>
+                              <img src="/images/sales-friction.jpg" alt="現代成交的困境" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
+                            </Zoom>
                           </div>
 
                           {/* 困境 3：銷售人員崩潰 */}
-                          <div
-                            onClick={() => setZoomedImage("/images/sales-burnout.jpg")}
-                            className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
-                          >
-                            <img src="/images/sales-burnout.jpg" alt="銷售困境" className="w-full h-auto object-contain rounded-xl md:rounded-2xl pointer-events-none" />
+                          <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                            <Zoom>
+                              <img src="/images/sales-burnout.jpg" alt="銷售困境" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
+                            </Zoom>
                           </div>
                         </div>
                       </motion.div>
@@ -342,12 +338,9 @@ export const HomePage = () => {
                       <div className="ml-4 w-full">
                         <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">先用 AI 預見系統模擬用戶決策</h3>
                         <p className="text-sm md:text-base font-bold text-slate-800">看懂客戶怎麼想。</p>
-                        <img 
-                          src="/images/simulation.png" 
-                          alt="Simulation" 
-                          onClick={() => setZoomedImage("/images/simulation.png")}
-                          className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md cursor-zoom-in hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-brand-400 transition-all" 
-                        />
+                        <Zoom>
+                          <img src="/images/simulation.png" alt="Simulation" className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md" />
+                        </Zoom>
                       </div>
                     </div>
                   </div>
@@ -360,12 +353,9 @@ export const HomePage = () => {
                       <div className="ml-4 w-full">
                         <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">根據情境配對 Meta 代理受眾</h3>
                         <p className="text-sm md:text-base font-bold text-slate-800">不需要憑感覺猜客群。</p>
-                        <img 
-                          src="/images/audience.png" 
-                          alt="Audience" 
-                          onClick={() => setZoomedImage("/images/audience.png")}
-                          className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md cursor-zoom-in hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-brand-400 transition-all" 
-                        />
+                        <Zoom>
+                          <img src="/images/audience.png" alt="Audience" className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md" />
+                        </Zoom>
                       </div>
                     </div>
                   </div>
@@ -378,12 +368,9 @@ export const HomePage = () => {
                       <div className="ml-4 w-full">
                         <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">創意引擎根據不同客戶屬性維度產生聯想</h3>
                         <p className="text-sm md:text-base font-bold text-slate-800">讓成交與創意內容，不再依賴運氣與試錯。</p>
-                        <img 
-                          src="/images/solution.png" 
-                          alt="Solution" 
-                          onClick={() => setZoomedImage("/images/solution.png")}
-                          className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md cursor-zoom-in hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-brand-400 transition-all" 
-                        />
+                        <Zoom>
+                          <img src="/images/solution.png" alt="Solution" className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md" />
+                        </Zoom>
                       </div>
                     </div>
                   </div>
@@ -396,12 +383,9 @@ export const HomePage = () => {
                       <div className="ml-4 w-full">
                         <h3 className="text-lg md:text-xl font-bold text-brand-900 mb-2">需求生成引擎產出執行內容</h3>
                         <p className="text-sm md:text-base font-bold text-slate-800">需求不是被捕獲，而是被生成、被升級。</p>
-                        <img 
-                          src="/images/demand-generation.png" 
-                          alt="Demand Generation" 
-                          onClick={() => setZoomedImage("/images/demand-generation.png")}
-                          className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md cursor-zoom-in hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-brand-400 transition-all" 
-                        />
+                        <Zoom>
+                          <img src="/images/demand-generation.png" alt="Demand Generation" className="w-full mt-4 rounded-xl border border-slate-300 shadow-sm object-contain bg-white/30 backdrop-blur-md" />
+                        </Zoom>
                       </div>
                     </div>
                   </div>
@@ -595,27 +579,7 @@ export const HomePage = () => {
         <Footer />
       </div>
 
-      {/* 圖片放大深色遮罩 */}
-      <AnimatePresence>
-        {zoomedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setZoomedImage(null)}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-4 py-8 cursor-zoom-out backdrop-blur-sm"
-          >
-            <motion.img
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              src={zoomedImage || undefined}
-              alt="Zoomed Chart"
-              className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+
     </div>
   );
 };
