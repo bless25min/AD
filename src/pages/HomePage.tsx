@@ -7,6 +7,9 @@ import { FloatingProofsBackground } from '../components/FloatingProofsBackground
 export const HomePage = () => {
   // 管理漸進式揭露的狀態，1 代表只有第一段可見
   const [visibleLevel, setVisibleLevel] = useState(1);
+  const [showAlgoDetails, setShowAlgoDetails] = useState(false);
+  const [showSalesDetails, setShowSalesDetails] = useState(false);
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
   // 區段對應的指標
   const section2Ref = useRef<HTMLElement>(null);
@@ -167,21 +170,48 @@ export const HomePage = () => {
                       為什麼會這樣？<br className="sm:hidden" />元凶是「演算法的結構性盲點」
                     </h3>
                     <p className="text-base sm:text-lg text-slate-700 font-bold max-w-2xl mx-auto">
-                      你碰到的問題，其實是底層系統把你困住了。
+                      目前廣告演算法的問題，是它更容易把廣告送給「已經有訊號、已經會反應、已經看過類似內容」的人，這不利於讓你接觸新用戶
                     </p>
                   </div>
 
-                  <div className="flex flex-col space-y-8 md:space-y-12 items-center max-w-4xl mx-auto">
-                    {/* 盲點 1：圖表完整呈現 */}
-                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden">
-                      <img src="/images/algo-blindspot.jpg" alt="廣告演算法盲點" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
-                    </div>
-
-                    {/* 盲點 2：圖表完整呈現 */}
-                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden">
-                      <img src="/images/algo-problems.jpg" alt="廣告演算法盲點導致問題" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
-                    </div>
+                  <div className="flex justify-center mb-8">
+                    <button
+                      onClick={() => setShowAlgoDetails(!showAlgoDetails)}
+                      className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/30 backdrop-blur-md hover:bg-white/50 border border-brand-300 hover:border-brand-500 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
+                    >
+                      <span className="relative z-10 tracking-wider">我想知道為什麼？</span>
+                      <ChevronDown className={`relative z-10 w-5 h-5 ml-2 transition-transform duration-300 ${showAlgoDetails ? 'rotate-180' : ''}`} />
+                    </button>
                   </div>
+
+                  <AnimatePresence>
+                    {showAlgoDetails && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="flex flex-col space-y-8 md:space-y-12 items-center max-w-4xl mx-auto pb-4">
+                          {/* 盲點 1：圖表完整呈現 */}
+                          <div 
+                            onClick={() => setZoomedImage("/images/algo-blindspot.jpg")}
+                            className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all"
+                          >
+                            <img src="/images/algo-blindspot.jpg" alt="廣告演算法盲點" className="w-full h-auto object-contain rounded-xl md:rounded-2xl pointer-events-none" />
+                          </div>
+
+                          {/* 盲點 2：圖表完整呈現 */}
+                          <div 
+                            onClick={() => setZoomedImage("/images/algo-problems.jpg")}
+                            className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all"
+                          >
+                            <img src="/images/algo-problems.jpg" alt="廣告演算法盲點導致問題" className="w-full h-auto object-contain rounded-xl md:rounded-2xl pointer-events-none" />
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
                 {/* 新增區塊：人員成交的困境 */}
@@ -195,22 +225,52 @@ export const HomePage = () => {
                     </p>
                   </div>
 
-                  <div className="flex flex-col space-y-8 md:space-y-12 items-center max-w-4xl mx-auto">
-                    {/* 困境 1：用戶低耐心 */}
-                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden">
-                      <img src="/images/user-impatience.jpg" alt="用戶從願意聽到低耐心" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
-                    </div>
-
-                    {/* 困境 2：現代成交的高要求 */}
-                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden">
-                      <img src="/images/sales-friction.jpg" alt="現代成交的困境" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
-                    </div>
-
-                    {/* 困境 3：銷售人員崩潰 */}
-                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden">
-                      <img src="/images/sales-burnout.jpg" alt="銷售困境" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
-                    </div>
+                  <div className="flex justify-center mb-8">
+                    <button
+                      onClick={() => setShowSalesDetails(!showSalesDetails)}
+                      className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/30 backdrop-blur-md hover:bg-white/50 border border-brand-300 hover:border-brand-500 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
+                    >
+                      <span className="relative z-10 tracking-wider">我想知道為什麼？</span>
+                      <ChevronDown className={`relative z-10 w-5 h-5 ml-2 transition-transform duration-300 ${showSalesDetails ? 'rotate-180' : ''}`} />
+                    </button>
                   </div>
+
+                  <AnimatePresence>
+                    {showSalesDetails && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="flex flex-col space-y-8 md:space-y-12 items-center max-w-4xl mx-auto pb-4">
+                          {/* 困境 1：用戶低耐心 */}
+                          <div 
+                            onClick={() => setZoomedImage("/images/user-impatience.jpg")}
+                            className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
+                          >
+                            <img src="/images/user-impatience.jpg" alt="用戶從願意聽到低耐心" className="w-full h-auto object-contain rounded-xl md:rounded-2xl pointer-events-none" />
+                          </div>
+
+                          {/* 困境 2：現代成交的高要求 */}
+                          <div 
+                            onClick={() => setZoomedImage("/images/sales-friction.jpg")}
+                            className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
+                          >
+                            <img src="/images/sales-friction.jpg" alt="現代成交的困境" className="w-full h-auto object-contain rounded-xl md:rounded-2xl pointer-events-none" />
+                          </div>
+
+                          {/* 困境 3：銷售人員崩潰 */}
+                          <div 
+                            onClick={() => setZoomedImage("/images/sales-burnout.jpg")}
+                            className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden cursor-zoom-in hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
+                          >
+                            <img src="/images/sales-burnout.jpg" alt="銷售困境" className="w-full h-auto object-contain rounded-xl md:rounded-2xl pointer-events-none" />
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
                 {/* 第二層解鎖選項 (移至底部) */}
@@ -493,6 +553,28 @@ export const HomePage = () => {
 
         <Footer />
       </div>
+
+      {/* 圖片放大深色遮罩 */}
+      <AnimatePresence>
+        {zoomedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setZoomedImage(null)}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-4 py-8 cursor-zoom-out backdrop-blur-sm"
+          >
+            <motion.img
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              src={zoomedImage || undefined}
+              alt="Zoomed Chart"
+              className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
