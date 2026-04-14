@@ -394,6 +394,38 @@ export const HomePage = () => {
                 {/* 右側圖片已移除 */}
               </div>
 
+              {/* 新增：示範案例區塊 */}
+              <div className="mt-16 pt-16 border-t border-slate-300/50 max-w-5xl mx-auto w-full">
+                <div className="text-center mb-10 md:mb-12">
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 mb-4 drop-shadow-sm">
+                    動態落地頁<span className="text-brand-600">示範案例</span>
+                  </h3>
+                  <p className="text-base sm:text-lg text-slate-700 font-bold max-w-2xl mx-auto">
+                    透過不同的互動機制，大幅提升用戶停留時間與轉換率
+                  </p>
+                </div>
+                <div className="flex flex-col space-y-12 items-center max-w-4xl mx-auto pb-8">
+                  <div className="w-full">
+                    <h4 className="text-lg md:text-xl font-bold text-brand-900 mb-3 ml-2 border-l-4 border-brand-500 pl-3 drop-shadow-sm">醫美術後模擬</h4>
+                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                      <Zoom><img src="/images/醫美術後模擬落地頁.jpg" alt="醫美術後模擬落地頁" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" loading="lazy" /></Zoom>
+                    </div>
+                  </div>
+                  <div className="w-full">
+                    <h4 className="text-lg md:text-xl font-bold text-brand-900 mb-3 ml-2 border-l-4 border-brand-500 pl-3 drop-shadow-sm">遊戲化機制</h4>
+                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                      <Zoom><img src="/images/遊戲化落地頁.jpg" alt="遊戲化落地頁" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" loading="lazy" /></Zoom>
+                    </div>
+                  </div>
+                  <div className="w-full">
+                    <h4 className="text-lg md:text-xl font-bold text-brand-900 mb-3 ml-2 border-l-4 border-brand-500 pl-3 drop-shadow-sm">知識解鎖</h4>
+                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                      <Zoom><img src="/images/知識解鎖落地頁.jpg" alt="知識解鎖落地頁" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" loading="lazy" /></Zoom>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* 第三層解鎖選項 */}
               {visibleLevel === 3 && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-12 md:mt-16 max-w-2xl mx-auto">
