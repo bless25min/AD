@@ -138,7 +138,7 @@ END:VCARD`;
             </div>
 
             <div className="text-center text-blue-100 text-sm font-medium space-y-1 tracking-wide">
-              <p>廣告投放、互動式落地頁、名單行銷全套服務</p>
+              <p>廣告代操、互動式落地頁、名單行銷全套服務</p>
               <p>創新做法，讓廣告費不再石沉大海</p>
             </div>
           </div>

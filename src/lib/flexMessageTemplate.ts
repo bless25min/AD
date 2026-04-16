@@ -143,7 +143,7 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
               },
               {
                 type: "text",
-                text: "AI 顧問式行銷漏斗・打破廣告轉換天花板",
+                text: "廣告代操、互動式落地頁、名單行銷全套服務",
                 size: "xs",
                 color: "#64748b",
                 align: "center",
