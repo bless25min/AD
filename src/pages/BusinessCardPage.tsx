@@ -22,7 +22,7 @@ export const BusinessCardPage: React.FC = () => {
       if (liff.isApiAvailable('shareTargetPicker')) {
         // 註：若在本地端 (localhost) 測試，LINE 無法抓取圖片。上線後 window.location.origin 即可正常顯示圖片
         const flexMsg = getBusinessCardFlexMessage(window.location.origin);
-        
+
         const result = await liff.shareTargetPicker([flexMsg as any]);
         if (result) {
           console.log('Flex Message Shared Successfully');
@@ -71,18 +71,17 @@ END:VCARD`;
       <h1 className="text-xl font-bold text-slate-800 mb-6">點擊卡片可翻面</h1>
 
       {/* 翻轉卡片容器 */}
-      <div 
+      <div
         className="relative w-full max-w-sm h-[400px] md:h-[420px] perspective-1000 cursor-pointer"
         onClick={() => setIsFlipped(!isFlipped)}
       >
-        <div 
-          className={`w-full h-full relative preserve-3d transition-transform duration-700 ${
-            isFlipped ? 'rotate-y-180' : ''
-          }`}
+        <div
+          className={`w-full h-full relative preserve-3d transition-transform duration-700 ${isFlipped ? 'rotate-y-180' : ''
+            }`}
           style={{ transformStyle: 'preserve-3d' }}
         >
           {/* ============== 正面 ============== */}
-          <div 
+          <div
             className="absolute w-full h-full bg-white rounded-2xl shadow-xl flex flex-col p-6 md:p-8 backface-hidden overflow-hidden"
             style={{ backfaceVisibility: 'hidden' }}
           >
@@ -92,7 +91,7 @@ END:VCARD`;
               <div className="inline-block px-3 py-1 bg-blue-900 text-white font-bold text-sm rounded-full mb-6 mt-2">
                 AI 預見成交引擎
               </div>
-              
+
               <div className="text-blue-900 font-bold text-lg mb-8 relative">
                 把流量變成可預測的成交
                 <div className="absolute -bottom-2 left-0 w-12 h-1 bg-yellow-500 rounded"></div>
@@ -103,7 +102,7 @@ END:VCARD`;
               <div className="w-[85px] shrink-0">
                 <img src="/images/logo.jpg" alt="25 MIN" className="w-full h-auto object-contain mix-blend-multiply" />
               </div>
-              
+
               <div className="text-right text-xs text-slate-500 space-y-1 font-medium">
                 <p>0983-919-101</p>
                 <p>bless@25min.co</p>
@@ -113,10 +112,10 @@ END:VCARD`;
           </div>
 
           {/* ============== 反面 ============== */}
-          <div 
+          <div
             className="absolute w-full h-full rounded-2xl shadow-xl flex flex-col items-center justify-center p-6 md:p-8 backface-hidden rotate-y-180 overflow-hidden"
-            style={{ 
-              backfaceVisibility: 'hidden', 
+            style={{
+              backfaceVisibility: 'hidden',
               transform: 'rotateY(180deg)',
               backgroundImage: 'url("/images/circuit.svg")',
               backgroundSize: 'cover',
@@ -129,18 +128,18 @@ END:VCARD`;
 
             {/* 個人頭像區塊 */}
             <div className="w-40 h-40 border-4 border-yellow-500 rounded-lg overflow-hidden mb-6 relative shadow-xl bg-blue-800">
-               <img src="/images/avatar.jpg" alt="Bless Liao" className="w-full h-full object-cover" />
-               
-               {/* 邊角裝飾保留科技感 */}
-               <div className="absolute top-0 left-0 w-4 h-4 border-t-4 border-l-4 border-white"></div>
-               <div className="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-white"></div>
-               <div className="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-white"></div>
-               <div className="absolute bottom-0 right-0 w-4 h-4 border-b-4 border-r-4 border-white"></div>
+              <img src="/images/avatar.jpg" alt="Bless Liao" className="w-full h-full object-cover" />
+
+              {/* 邊角裝飾保留科技感 */}
+              <div className="absolute top-0 left-0 w-4 h-4 border-t-4 border-l-4 border-white"></div>
+              <div className="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-white"></div>
+              <div className="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-white"></div>
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-4 border-r-4 border-white"></div>
             </div>
 
             <div className="text-center text-blue-100 text-sm font-medium space-y-1 tracking-wide">
-              <p>AI 顧問式行銷漏斗</p>
-              <p>打破廣告轉換天花板</p>
+              <p>廣告投放、互動式落地頁、名單行銷全套服務</p>
+              <p>創新做法，讓廣告費不再石沉大海</p>
             </div>
           </div>
 
@@ -150,7 +149,7 @@ END:VCARD`;
       {/* 互動按鈕區 (CTA) */}
       <div className="w-full max-w-sm mt-8 space-y-4">
         {/* 用來傳送 Flex Message 專用的最強按鈕 */}
-        <button 
+        <button
           onClick={handleShare}
           className="w-full bg-green-500 hover:bg-green-600 active:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2"
         >
@@ -168,7 +167,7 @@ END:VCARD`;
             <UserPlus className="w-5 h-5 mb-1 text-slate-500" />
             <span className="text-sm font-bold">加好友</span>
           </a>
-          
+
           <button
             onClick={handleVcfDownload}
             className="flex flex-col items-center justify-center bg-white border border-slate-200 text-slate-700 py-3 rounded-xl shadow-sm hover:shadow active:scale-95 transition-all"
@@ -176,7 +175,7 @@ END:VCARD`;
             <Download className="w-5 h-5 mb-1 text-slate-500" />
             <span className="text-sm font-bold">存入通訊錄</span>
           </button>
-          
+
           <a
             href="tel:0983919101"
             className="flex flex-col items-center justify-center bg-white border border-slate-200 text-slate-700 py-3 rounded-xl shadow-sm hover:shadow active:scale-95 transition-all"
