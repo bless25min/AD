@@ -143,7 +143,7 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
               },
               {
                 type: "text",
-                text: "廣告代操、互動式落地頁、名單行銷全套服務",
+                text: "廣告代操、內容企劃、互動式落地頁、LINE 承接與媒體曝光規劃",
                 size: "xs",
                 color: "#64748b",
                 align: "center",
@@ -212,7 +212,7 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
                 flex: 1,
                 action: {
                   type: "uri",
-                  label: "進入官方首頁",
+                  label: "近期創新做法",
                   uri: baseUrl // 直接引導回首頁，而非名片頁
                 }
               },
