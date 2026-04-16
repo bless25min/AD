@@ -138,7 +138,7 @@ END:VCARD`;
             </div>
 
             <div className="text-center text-blue-100 text-sm font-medium space-y-1 tracking-wide">
-              <p>廣告代操、內容企劃、互動式落地頁、LINE 承接與媒體曝光規劃</p>
+              <p>廣告代操、內容創意產製、LINE 承接、媒體曝光規劃</p>
               <p>創新做法，讓廣告費不再石沉大海</p>
             </div>
           </div>

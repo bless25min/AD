@@ -143,7 +143,7 @@ export const getBusinessCardFlexMessage = (baseUrl: string) => {
               },
               {
                 type: "text",
-                text: "廣告代操、內容企劃、互動式落地頁、LINE 承接與媒體曝光規劃",
+                text: "廣告代操、內容創意產製、LINE 承接、媒體曝光規劃",
                 size: "xs",
                 color: "#64748b",
                 align: "center",
