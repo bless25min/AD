@@ -423,6 +423,12 @@ export const HomePage = () => {
                       <Zoom><img src="/images/知識解鎖落地頁.jpg" alt="知識解鎖落地頁" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" loading="lazy" /></Zoom>
                     </div>
                   </div>
+                  <div className="w-full">
+                    <h4 className="text-lg md:text-xl font-bold text-brand-900 mb-3 ml-2 border-l-4 border-brand-500 pl-3 drop-shadow-sm">健身互動落地頁</h4>
+                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                      <Zoom><img src="/images/健身落地頁案例.jpg" alt="健身互動落地頁" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" loading="lazy" /></Zoom>
+                    </div>
+                  </div>
                 </div>
               </div>
 
