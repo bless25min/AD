@@ -70,19 +70,6 @@ export const HomePage = () => {
                   />
                 </div>
 
-                <div className="space-y-6 text-base sm:text-lg md:text-xl text-slate-700 font-bold leading-relaxed drop-shadow-md pb-4 pt-2">
-                  <p>
-                    廣告費丟了，石沉大海。<br />
-                    短影音拍了，有流量，卻不一定有訂單。
-                  </p>
-                  <div className="p-4 md:p-5 bg-transparent border-l-4 border-brand-500 rounded-r-xl">
-                    <p className="text-brand-900 drop-shadow-sm">
-                      問題出在這裡。<br />
-                      沒有一套能懂你的產品成交邏輯的廣告承接方式，就無法把<span className="text-accent-600 font-bold">流量轉換為成交</span>。
-                    </p>
-                  </div>
-                </div>
-
                 {/* 第一層解鎖選項 */}
                 {visibleLevel === 1 && (
                   <motion.div
