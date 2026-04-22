@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ChevronDown, ArrowRight } from 'lucide-react';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { Footer } from '../components/Footer';
@@ -47,18 +47,19 @@ export const HomePage = () => {
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
             <div className="flex flex-col items-center max-w-3xl mx-auto">
               {/* 文字置中寬度限制 */}
-              <div className="w-full space-y-6 md:space-y-8">
+              <div className="w-full space-y-6 md:space-y-8 flex flex-col items-center">
                 <div className="inline-flex items-center p-1 pr-4 rounded-full bg-white/30 backdrop-blur-md border border-brand-200 text-brand-900 shadow-md">
                   <img src="/images/avatar.jpg" alt="Bless Liao" className="w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-2 sm:mr-3 object-cover border border-white/60 shadow-sm" />
                   <span className="text-xs sm:text-sm font-extrabold tracking-wider drop-shadow-sm">廖天佑 Bless Liao｜AI 預見成交引擎</span>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight md:whitespace-pre-line text-brand-900 drop-shadow-sm">
-                  你的廣告，到底是在賺你的錢，<br className="hidden md:block" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-500 to-accent-600">
-                    還是在賺客戶的錢？
-                  </span>
-                </h1>
+                <div className="w-full flex justify-center py-4">
+                  <img 
+                    src="/images/你的廣告，到底是在賺你的錢，還是在賺客戶的錢？.png" 
+                    alt="你的廣告到底是在賺你的錢，還是在賺客戶的錢？" 
+                    className="w-full max-w-2xl h-auto object-contain drop-shadow-xl"
+                  />
+                </div>
 
                 <div className="space-y-6 text-base sm:text-lg md:text-xl text-slate-700 font-bold leading-relaxed drop-shadow-md">
                   <p>
@@ -141,38 +142,24 @@ export const HomePage = () => {
                     />
                   </div>
 
-                  {/* 右側文字 */}
-                  <div className="w-full lg:w-1/2 space-y-6 md:space-y-8 text-center lg:text-left drop-shadow-md">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-900 leading-tight drop-shadow-sm">
-                      有做，不代表有賺。
-                    </h2>
-                    <div className="space-y-6 text-base sm:text-lg text-slate-800 leading-relaxed text-left font-bold">
-                      <p>
-                        廣告有人點。<br />
-                        短影音有人看。<br />
-                        有時候還會衝出一波短期成效。
-                      </p>
-                      <p>
-                        但過沒多久，<br />
-                        又回到缺單、缺預約、缺穩定成交。
-                      </p>
-                      <p className="text-lg sm:text-xl text-brand-900 font-extrabold border-l-4 border-accent-500 pl-4 py-2 bg-transparent rounded-r-lg">
-                        你已經有做行銷，也接近目標。<br />
-                        只是沒有讓客戶輕鬆的認識你，<span className="text-brand-700 font-extrabold block mt-1 drop-shadow-sm">自然而然的轉變成訂單。</span>
-                      </p>
-                    </div>
+                  {/* 右側文字（已替換為圖片） */}
+                  <div className="w-full lg:w-1/2 flex justify-center items-center drop-shadow-xl">
+                    <img 
+                      src="/images/有做，不代表有賺。.png" 
+                      alt="有做，不代表有賺" 
+                      className="w-full max-w-lg h-auto object-contain"
+                    />
                   </div>
                 </div>
 
                 {/* 新增區塊：演算法盲點與導致問題 */}
                 <div className="mt-16 pt-16 border-t border-slate-300/50 max-w-5xl mx-auto w-full">
-                  <div className="text-center mb-12">
-                    <h3 className="text-2xl md:text-4xl font-extrabold text-brand-900 mb-4 drop-shadow-sm">
-                      為什麼會這樣？<br className="sm:hidden" />元凶是「演算法的結構性盲點」
-                    </h3>
-                    <p className="text-base sm:text-lg text-slate-700 font-bold max-w-2xl mx-auto">
-                      目前廣告演算法的問題，是它更容易把廣告送給「已經有訊號、已經會反應、已經看過類似內容」的人，這不利於讓你接觸新用戶
-                    </p>
+                  <div className="flex justify-center mb-12 drop-shadow-xl">
+                    <img 
+                      src="/images/為什麼會這樣？.png" 
+                      alt="為什麼會這樣？" 
+                      className="w-full max-w-2xl h-auto object-contain"
+                    />
                   </div>
 
                   <div className="flex justify-center mb-8">
@@ -215,13 +202,12 @@ export const HomePage = () => {
 
                 {/* 新增區塊：人員成交的困境 */}
                 <div className="mt-16 pt-16 border-t border-slate-300/50 max-w-5xl mx-auto w-full">
-                  <div className="text-center mb-10 md:mb-12">
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 mb-4 drop-shadow-sm">
-                      如果產品服務銷售方式重度依賴人員成交<br className="sm:hidden" />更會有這些問題
-                    </h3>
-                    <p className="text-base sm:text-lg text-slate-700 font-bold max-w-2xl mx-auto">
-                      現代人對於取得資訊的低耐心，與冗長的成交流程產生了直接衝突，這正是壓垮銷售團隊的最後一根稻草。
-                    </p>
+                  <div className="flex justify-center mb-10 md:mb-12 drop-shadow-xl">
+                    <img 
+                      src="/images/如果產品服務銷售方式重度依賴人員成交.png" 
+                      alt="重度依賴人員成交的問題" 
+                      className="w-full max-w-2xl h-auto object-contain"
+                    />
                   </div>
 
                   <div className="flex justify-center mb-8">
@@ -395,38 +381,56 @@ export const HomePage = () => {
               </div>
 
               {/* 新增：示範案例區塊 */}
-              <div className="mt-16 pt-16 border-t border-slate-300/50 max-w-5xl mx-auto w-full">
-                <div className="text-center mb-10 md:mb-12">
+              <div className="mt-16 pt-16 border-t border-slate-300/50 max-w-6xl mx-auto w-full">
+                <div className="text-center mb-8 md:mb-12">
                   <h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 mb-4 drop-shadow-sm">
                     動態落地頁<span className="text-brand-600">示範案例</span>
                   </h3>
-                  <p className="text-base sm:text-lg text-slate-700 font-bold max-w-2xl mx-auto">
-                    透過不同的互動機制，大幅提升用戶停留時間與轉換率
+                  <p className="text-base sm:text-lg text-slate-700 font-bold max-w-2xl mx-auto px-4">
+                    透過不同的互動機制，大幅提升用戶停留時間與轉換率<br className="block sm:hidden"/>
+                    <span className="text-sm font-normal text-slate-500 sm:hidden">（左右滑動查看更多）</span>
                   </p>
                 </div>
-                <div className="flex flex-col space-y-12 items-center max-w-4xl mx-auto pb-8">
-                  <div className="w-full">
-                    <h4 className="text-lg md:text-xl font-bold text-brand-900 mb-3 ml-2 border-l-4 border-brand-500 pl-3 drop-shadow-sm">醫美術後模擬</h4>
-                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-                      <Zoom><img src="/images/醫美術後模擬落地頁.jpg" alt="醫美術後模擬落地頁" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" loading="lazy" /></Zoom>
+                
+                {/* 橫向捲動容器 (Mobile) / 網格容器 (Desktop) */}
+                <div className="flex overflow-x-auto pb-8 -mx-4 px-6 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                  {/* 醫美術後模擬 */}
+                  <div className="w-[85vw] sm:w-auto flex-shrink-0 snap-center flex flex-col group">
+                    <div className="flex-1 rounded-3xl shadow-xl border border-slate-200 bg-white/60 backdrop-blur-md p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] relative">
+                      <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md py-1 px-3 rounded-full shadow-sm border border-brand-100">
+                        <h4 className="text-sm md:text-base font-bold text-brand-900">醫美術後模擬</h4>
+                      </div>
+                      <Zoom><img src="/images/醫美術後模擬.png" alt="醫美術後模擬" className="w-full h-auto object-contain rounded-2xl bg-white" loading="lazy" /></Zoom>
                     </div>
                   </div>
-                  <div className="w-full">
-                    <h4 className="text-lg md:text-xl font-bold text-brand-900 mb-3 ml-2 border-l-4 border-brand-500 pl-3 drop-shadow-sm">遊戲化機制</h4>
-                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-                      <Zoom><img src="/images/遊戲化落地頁.jpg" alt="遊戲化落地頁" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" loading="lazy" /></Zoom>
+                  
+                  {/* 遊戲化機制 */}
+                  <div className="w-[85vw] sm:w-auto flex-shrink-0 snap-center flex flex-col group">
+                    <div className="flex-1 rounded-3xl shadow-xl border border-slate-200 bg-white/60 backdrop-blur-md p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] relative">
+                      <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md py-1 px-3 rounded-full shadow-sm border border-brand-100">
+                        <h4 className="text-sm md:text-base font-bold text-brand-900">遊戲化機制</h4>
+                      </div>
+                      <Zoom><img src="/images/遊戲化機制.png" alt="遊戲化機制" className="w-full h-auto object-contain rounded-2xl bg-white" loading="lazy" /></Zoom>
                     </div>
                   </div>
-                  <div className="w-full">
-                    <h4 className="text-lg md:text-xl font-bold text-brand-900 mb-3 ml-2 border-l-4 border-brand-500 pl-3 drop-shadow-sm">知識解鎖</h4>
-                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-                      <Zoom><img src="/images/知識解鎖落地頁.jpg" alt="知識解鎖落地頁" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" loading="lazy" /></Zoom>
+                  
+                  {/* 知識解鎖 */}
+                  <div className="w-[85vw] sm:w-auto flex-shrink-0 snap-center flex flex-col group">
+                    <div className="flex-1 rounded-3xl shadow-xl border border-slate-200 bg-white/60 backdrop-blur-md p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] relative">
+                      <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md py-1 px-3 rounded-full shadow-sm border border-brand-100">
+                        <h4 className="text-sm md:text-base font-bold text-brand-900">知識解鎖</h4>
+                      </div>
+                      <Zoom><img src="/images/知識解鎖.png" alt="知識解鎖" className="w-full h-auto object-contain rounded-2xl bg-white" loading="lazy" /></Zoom>
                     </div>
                   </div>
-                  <div className="w-full">
-                    <h4 className="text-lg md:text-xl font-bold text-brand-900 mb-3 ml-2 border-l-4 border-brand-500 pl-3 drop-shadow-sm">健身互動落地頁</h4>
-                    <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-                      <Zoom><img src="/images/健身落地頁案例.jpg" alt="健身互動落地頁" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" loading="lazy" /></Zoom>
+                  
+                  {/* 健身互動落地頁 */}
+                  <div className="w-[85vw] sm:w-auto flex-shrink-0 snap-center flex flex-col group">
+                    <div className="flex-1 rounded-3xl shadow-xl border border-slate-200 bg-white/60 backdrop-blur-md p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] relative">
+                      <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md py-1 px-3 rounded-full shadow-sm border border-brand-100">
+                        <h4 className="text-sm md:text-base font-bold text-brand-900">健身互動</h4>
+                      </div>
+                      <Zoom><img src="/images/健身互動落地頁.png" alt="健身互動落地頁" className="w-full h-auto object-contain rounded-2xl bg-white" loading="lazy" /></Zoom>
                     </div>
                   </div>
                 </div>
@@ -477,26 +481,12 @@ export const HomePage = () => {
                 <div className="bg-white/10 backdrop-blur-xl border border-slate-300 rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-accent-50/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
 
-                  <h2 className="text-3xl md:text-4xl font-extrabold text-brand-900 mb-6 md:mb-8 text-center relative z-10 w-full word-break drop-shadow-md">
-                    用成交，代替服務費。
-                  </h2>
-
-                  <div className="space-y-4 md:space-y-6 text-base md:text-lg font-bold text-slate-800 leading-relaxed relative z-10 drop-shadow-sm">
-                    <p>
-                      你專心做好營運，<br className="sm:hidden" /> 決定要投入多少廣告預算。
-                    </p>
-                    <p>
-                      剩下市場銷售這段，<br className="sm:hidden" /> 我來幫你規劃、製作、優化。
-                    </p>
-                    <p>
-                      中間所有廣告、媒體、內容、執行費用，都不是付給我，<br className="hidden sm:block" /> 依照發票實報實銷。
-                    </p>
-
-                    <div className="inline-block px-4 py-3 md:px-5 md:py-3 mt-4 md:mt-6 bg-transparent border border-accent-400 rounded-xl w-full sm:w-auto shadow-md backdrop-blur-sm">
-                      <p className="text-brand-900 font-extrabold text-lg md:text-xl text-center sm:text-left drop-shadow-sm">
-                        我只從真實成交 / 預約轉換，收取服務費。
-                      </p>
-                    </div>
+                  <div className="flex justify-center mb-8 relative z-10 drop-shadow-xl">
+                    <img 
+                      src="/images/用成交，代替服務費。.png" 
+                      alt="用成交代替服務費" 
+                      className="w-full max-w-2xl h-auto object-contain"
+                    />
                   </div>
 
                   <div className="mt-10 md:mt-12 pt-8 border-t border-slate-200 text-center relative z-10 w-full">
@@ -566,34 +556,12 @@ export const HomePage = () => {
                   <img src="/images/avatar.jpg" alt="Bless Liao" className="absolute inset-0 w-full h-full object-cover" />
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-brand-900 mb-8 md:mb-10 leading-tight drop-shadow-md">
-                  把產品 / 廣告 / 落地頁連結私訊給我。
-                </h2>
-
-                <div className="text-base sm:text-lg md:text-xl text-slate-800 font-bold space-y-4 md:space-y-6 max-w-2xl mx-auto text-left md:text-center p-5 md:p-8 bg-transparent border border-slate-300 backdrop-blur-lg rounded-3xl shadow-xl drop-shadow-sm">
-                  <p className="font-extrabold drop-shadow-sm">我先做出一版我腦中勾勒的標準參考頁給你看。</p>
-                  <p className="drop-shadow-sm">如果你看了，<br className="sm:hidden" />能接受這樣的思維與合作模式，<br className="hidden sm:block" /> 我們再來盤點：</p>
-
-                  <ul className="text-left w-full max-w-sm mx-auto space-y-3 pt-6 pb-2 md:pt-8 md:pb-4 border-t border-slate-300">
-                    <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
-                      <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 還缺哪些內容
-                    </li>
-                    <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
-                      <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 哪些你補
-                    </li>
-                    <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
-                      <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 哪些我協助完成
-                    </li>
-                    <li className="flex items-center text-slate-900 font-extrabold drop-shadow-sm">
-                      <CheckCircle2 className="w-5 h-5 text-accent-600 mr-3 flex-shrink-0 drop-shadow-sm" /> 哪些額外採買值得做
-                    </li>
-                  </ul>
-
-                  {/* 如何開始圖片已移除 */}
-
-                  <p className="pt-6 font-extrabold text-brand-900 text-lg md:text-xl border-t border-slate-300 text-center drop-shadow-md">
-                    完成後你只需要專注在營運上<span className="text-accent-700 block sm:inline mt-1 sm:mt-0 drop-shadow-sm">煩惱如何消化訂單。</span>
-                  </p>
+                <div className="flex justify-center mb-10 drop-shadow-xl">
+                  <img 
+                    src="/images/把產品  廣告  落地頁連結私訊給我.png" 
+                    alt="把產品廣告落地頁連結私訊給我" 
+                    className="w-full max-w-3xl h-auto object-contain"
+                  />
                 </div>
               </div>
 
