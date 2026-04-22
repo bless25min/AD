@@ -10,6 +10,7 @@ export const HomePage = () => {
   // 管理漸進式揭露的狀態，1 代表只有第一段可見
   const [visibleLevel, setVisibleLevel] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showAlgoDetails, setShowAlgoDetails] = useState(false);
 
   const cases = [
     { img: "/images/醫美術後模擬.png", title: "醫美術後模擬" },
@@ -157,6 +158,43 @@ export const HomePage = () => {
                       className="w-full max-w-2xl h-auto object-contain"
                     />
                   </div>
+
+                  <div className="flex justify-center mb-8">
+                    <button
+                      onClick={() => setShowAlgoDetails(!showAlgoDetails)}
+                      className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/30 backdrop-blur-md hover:bg-white/50 border border-brand-300 hover:border-brand-500 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
+                    >
+                      <span className="relative z-10 tracking-wider">我想知道為什麼？</span>
+                      <ChevronDown className={`relative z-10 w-5 h-5 ml-2 transition-transform duration-300 ${showAlgoDetails ? 'rotate-180' : ''}`} />
+                    </button>
+                  </div>
+
+                  <AnimatePresence>
+                    {showAlgoDetails && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="flex flex-col space-y-8 md:space-y-12 items-center max-w-4xl mx-auto pb-4">
+                          {/* 盲點 1：圖表完整呈現 */}
+                          <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                            <Zoom>
+                              <img src="/images/algo-blindspot.jpg" alt="廣告演算法盲點" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
+                            </Zoom>
+                          </div>
+
+                          {/* 盲點 2：圖表完整呈現 */}
+                          <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                            <Zoom>
+                              <img src="/images/algo-problems.jpg" alt="廣告演算法盲點導致問題" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
+                            </Zoom>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
                 {/* 新增區塊：人員成交的困境 */}
