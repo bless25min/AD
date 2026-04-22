@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ArrowRight } from 'lucide-react';
+import { ChevronDown, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { Footer } from '../components/Footer';
@@ -9,8 +9,17 @@ import { FloatingProofsBackground } from '../components/FloatingProofsBackground
 export const HomePage = () => {
   // 管理漸進式揭露的狀態，1 代表只有第一段可見
   const [visibleLevel, setVisibleLevel] = useState(1);
-  const [showAlgoDetails, setShowAlgoDetails] = useState(false);
-  const [showSalesDetails, setShowSalesDetails] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const cases = [
+    { img: "/images/醫美術後模擬.png", title: "醫美術後模擬" },
+    { img: "/images/遊戲化機制.png", title: "遊戲化機制" },
+    { img: "/images/知識解鎖.png", title: "知識解鎖" },
+    { img: "/images/健身互動落地頁.png", title: "健身互動" },
+  ];
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % cases.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + cases.length) % cases.length);
 
   // 區段對應的指標
   const section2Ref = useRef<HTMLElement>(null);
@@ -61,7 +70,7 @@ export const HomePage = () => {
                   />
                 </div>
 
-                <div className="space-y-6 text-base sm:text-lg md:text-xl text-slate-700 font-bold leading-relaxed drop-shadow-md">
+                <div className="space-y-6 text-base sm:text-lg md:text-xl text-slate-700 font-bold leading-relaxed drop-shadow-md pb-4 pt-2">
                   <p>
                     廣告費丟了，石沉大海。<br />
                     短影音拍了，有流量，卻不一定有訂單。
@@ -161,43 +170,6 @@ export const HomePage = () => {
                       className="w-full max-w-2xl h-auto object-contain"
                     />
                   </div>
-
-                  <div className="flex justify-center mb-8">
-                    <button
-                      onClick={() => setShowAlgoDetails(!showAlgoDetails)}
-                      className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/30 backdrop-blur-md hover:bg-white/50 border border-brand-300 hover:border-brand-500 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
-                    >
-                      <span className="relative z-10 tracking-wider">我想知道為什麼？</span>
-                      <ChevronDown className={`relative z-10 w-5 h-5 ml-2 transition-transform duration-300 ${showAlgoDetails ? 'rotate-180' : ''}`} />
-                    </button>
-                  </div>
-
-                  <AnimatePresence>
-                    {showAlgoDetails && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="flex flex-col space-y-8 md:space-y-12 items-center max-w-4xl mx-auto pb-4">
-                          {/* 盲點 1：圖表完整呈現 */}
-                          <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-                            <Zoom>
-                              <img src="/images/algo-blindspot.jpg" alt="廣告演算法盲點" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
-                            </Zoom>
-                          </div>
-
-                          {/* 盲點 2：圖表完整呈現 */}
-                          <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-                            <Zoom>
-                              <img src="/images/algo-problems.jpg" alt="廣告演算法盲點導致問題" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
-                            </Zoom>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </div>
 
                 {/* 新增區塊：人員成交的困境 */}
@@ -209,50 +181,6 @@ export const HomePage = () => {
                       className="w-full max-w-2xl h-auto object-contain"
                     />
                   </div>
-
-                  <div className="flex justify-center mb-8">
-                    <button
-                      onClick={() => setShowSalesDetails(!showSalesDetails)}
-                      className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold text-brand-900 transition-all duration-300 bg-white/30 backdrop-blur-md hover:bg-white/50 border border-brand-300 hover:border-brand-500 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
-                    >
-                      <span className="relative z-10 tracking-wider">我想知道為什麼？</span>
-                      <ChevronDown className={`relative z-10 w-5 h-5 ml-2 transition-transform duration-300 ${showSalesDetails ? 'rotate-180' : ''}`} />
-                    </button>
-                  </div>
-
-                  <AnimatePresence>
-                    {showSalesDetails && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="flex flex-col space-y-8 md:space-y-12 items-center max-w-4xl mx-auto pb-4">
-                          {/* 困境 1：用戶低耐心 */}
-                          <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-                            <Zoom>
-                              <img src="/images/user-impatience.jpg" alt="用戶從願意聽到低耐心" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
-                            </Zoom>
-                          </div>
-
-                          {/* 困境 2：現代成交的高要求 */}
-                          <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-                            <Zoom>
-                              <img src="/images/sales-friction.jpg" alt="現代成交的困境" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
-                            </Zoom>
-                          </div>
-
-                          {/* 困境 3：銷售人員崩潰 */}
-                          <div className="w-full rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl border border-slate-200 bg-white/40 backdrop-blur-md p-1 md:p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-                            <Zoom>
-                              <img src="/images/sales-burnout.jpg" alt="銷售困境" className="w-full h-auto object-contain rounded-xl md:rounded-2xl" />
-                            </Zoom>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </div>
 
                 {/* 第二層解鎖選項 (移至底部) */}
@@ -392,46 +320,50 @@ export const HomePage = () => {
                   </p>
                 </div>
                 
-                {/* 橫向捲動容器 (Mobile) / 網格容器 (Desktop) */}
-                <div className="flex overflow-x-auto pb-8 -mx-4 px-6 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                  {/* 醫美術後模擬 */}
-                  <div className="w-[85vw] sm:w-auto flex-shrink-0 snap-center flex flex-col group">
-                    <div className="flex-1 rounded-3xl shadow-xl border border-slate-200 bg-white/60 backdrop-blur-md p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] relative">
-                      <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md py-1 px-3 rounded-full shadow-sm border border-brand-100">
-                        <h4 className="text-sm md:text-base font-bold text-brand-900">醫美術後模擬</h4>
-                      </div>
-                      <Zoom><img src="/images/醫美術後模擬.png" alt="醫美術後模擬" className="w-full h-auto object-contain rounded-2xl bg-white" loading="lazy" /></Zoom>
+                {/* Slider UI */}
+                <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto">
+                  <div className="overflow-hidden rounded-3xl shadow-2xl border border-slate-200 bg-white/60 backdrop-blur-md relative group">
+                    <div 
+                      className="flex transition-transform duration-500 ease-in-out items-center" 
+                      style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                    >
+                      {cases.map((cs, idx) => (
+                        <div key={idx} className="w-full flex-shrink-0 relative p-1 md:p-2">
+                          <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md py-1 px-3 rounded-full shadow-sm border border-brand-100">
+                            <h4 className="text-sm md:text-base font-bold text-brand-900">{cs.title}</h4>
+                          </div>
+                          <Zoom>
+                            <img src={cs.img} alt={cs.title} className="w-full h-auto object-contain rounded-2xl bg-white block" loading="lazy" />
+                          </Zoom>
+                        </div>
+                      ))}
                     </div>
+
+                    {/* Left/Right Buttons */}
+                    <button 
+                      onClick={prevSlide}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-brand-900 shadow-md border border-slate-200 opacity-60 md:opacity-0 md:group-hover:opacity-100 transition-all z-20 hover:scale-105"
+                    >
+                      <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+                    </button>
+                    <button 
+                      onClick={nextSlide}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-brand-900 shadow-md border border-slate-200 opacity-60 md:opacity-0 md:group-hover:opacity-100 transition-all z-20 hover:scale-105"
+                    >
+                      <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+                    </button>
                   </div>
-                  
-                  {/* 遊戲化機制 */}
-                  <div className="w-[85vw] sm:w-auto flex-shrink-0 snap-center flex flex-col group">
-                    <div className="flex-1 rounded-3xl shadow-xl border border-slate-200 bg-white/60 backdrop-blur-md p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] relative">
-                      <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md py-1 px-3 rounded-full shadow-sm border border-brand-100">
-                        <h4 className="text-sm md:text-base font-bold text-brand-900">遊戲化機制</h4>
-                      </div>
-                      <Zoom><img src="/images/遊戲化機制.png" alt="遊戲化機制" className="w-full h-auto object-contain rounded-2xl bg-white" loading="lazy" /></Zoom>
-                    </div>
-                  </div>
-                  
-                  {/* 知識解鎖 */}
-                  <div className="w-[85vw] sm:w-auto flex-shrink-0 snap-center flex flex-col group">
-                    <div className="flex-1 rounded-3xl shadow-xl border border-slate-200 bg-white/60 backdrop-blur-md p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] relative">
-                      <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md py-1 px-3 rounded-full shadow-sm border border-brand-100">
-                        <h4 className="text-sm md:text-base font-bold text-brand-900">知識解鎖</h4>
-                      </div>
-                      <Zoom><img src="/images/知識解鎖.png" alt="知識解鎖" className="w-full h-auto object-contain rounded-2xl bg-white" loading="lazy" /></Zoom>
-                    </div>
-                  </div>
-                  
-                  {/* 健身互動落地頁 */}
-                  <div className="w-[85vw] sm:w-auto flex-shrink-0 snap-center flex flex-col group">
-                    <div className="flex-1 rounded-3xl shadow-xl border border-slate-200 bg-white/60 backdrop-blur-md p-2 overflow-hidden hover:border-brand-400 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] relative">
-                      <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md py-1 px-3 rounded-full shadow-sm border border-brand-100">
-                        <h4 className="text-sm md:text-base font-bold text-brand-900">健身互動</h4>
-                      </div>
-                      <Zoom><img src="/images/健身互動落地頁.png" alt="健身互動落地頁" className="w-full h-auto object-contain rounded-2xl bg-white" loading="lazy" /></Zoom>
-                    </div>
+
+                  {/* Indicators */}
+                  <div className="flex justify-center mt-6 space-x-3">
+                    {cases.map((_, idx) => (
+                      <button 
+                        key={idx}
+                        onClick={() => setCurrentSlide(idx)}
+                        className={`transition-all rounded-full ${currentSlide === idx ? 'bg-brand-500 w-8 h-2.5' : 'bg-slate-300 hover:bg-brand-300 w-2.5 h-2.5'}`}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
