@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronDown, ArrowRight, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { Footer } from '../components/Footer';
@@ -13,10 +13,11 @@ export const HomePage = () => {
   const [showAlgoDetails, setShowAlgoDetails] = useState(false);
 
   const cases = [
-    { img: "/images/醫美術後模擬.png", title: "醫美術後模擬" },
-    { img: "/images/遊戲化機制.png", title: "遊戲化機制" },
-    { img: "/images/知識解鎖.png", title: "知識解鎖" },
-    { img: "/images/健身互動落地頁.png", title: "健身互動" },
+    { img: "/images/醫美術後模擬.png", title: "醫美術後模擬", href: "https://dr-julia.25min.co/" },
+    { img: "/images/遊戲化機制.png", title: "遊戲化機制", href: "https://soyaplayablead.25min.co/ad" },
+    { img: "/images/知識解鎖.png", title: "知識解鎖", href: "https://soya.massenlighten.com/" },
+    { img: "/images/健身互動落地頁.png", title: "健身互動", href: "https://fightnight.25min.co/" },
+    { img: "/images/tolokah-adult-assessment.png", title: "身高體態評估", href: "https://tolokah.25min.co/" },
   ];
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % cases.length);
@@ -389,6 +390,18 @@ export const HomePage = () => {
                         aria-label={`Go to slide ${idx + 1}`}
                       />
                     ))}
+                  </div>
+
+                  <div className="mt-6 flex justify-center">
+                    <a
+                      href={cases[currentSlide].href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center justify-center rounded-full border border-brand-300 bg-white/40 px-5 py-3 text-sm sm:text-base font-extrabold text-brand-900 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-500 hover:bg-white/70 hover:shadow-xl"
+                    >
+                      查看{cases[currentSlide].title}案例頁
+                      <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </a>
                   </div>
                 </div>
               </div>
