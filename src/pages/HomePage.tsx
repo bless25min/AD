@@ -13,10 +13,10 @@ export const HomePage = () => {
   const [showAlgoDetails, setShowAlgoDetails] = useState(false);
 
   const cases = [
-    { img: "/images/醫美術後模擬.png", title: "醫美術後模擬", href: "https://dr-julia.25min.co/" },
-    { img: "/images/遊戲化機制.png", title: "遊戲化機制", href: "https://soyaplayablead.25min.co/ad" },
-    { img: "/images/知識解鎖.png", title: "知識解鎖", href: "https://soya.massenlighten.com/" },
-    { img: "/images/健身互動落地頁.png", title: "健身互動", href: "https://fightnight.25min.co/" },
+    { img: "/images/dr-julia-hero-banner.png", title: "醫美術後模擬", href: "https://dr-julia.25min.co/" },
+    { img: "/images/遊戲化落地頁.jpg", title: "遊戲化機制", href: "https://soyaplayablead.25min.co/ad" },
+    { img: "/images/soya-happiness-hero.jpg", title: "知識解鎖", href: "https://soya.massenlighten.com/" },
+    { img: "/images/fightnight-hero-poster.png", title: "健身互動", href: "https://fightnight.25min.co/" },
     { img: "/images/tolokah-adult-assessment.png", title: "身高體態評估", href: "https://tolokah.25min.co/" },
   ];
 
