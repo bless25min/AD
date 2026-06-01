@@ -13,15 +13,32 @@ export const HomePage = () => {
   const [showAlgoDetails, setShowAlgoDetails] = useState(false);
 
   const cases = [
-    { img: "/images/dr-julia-hero-banner.png", title: "醫美術後模擬", href: "https://dr-julia.25min.co/" },
-    { img: "/images/playablead.png", title: "遊戲化機制", href: "https://soyaplayablead.25min.co/ad" },
-    { img: "/images/soya-happiness-hero.jpg", title: "知識解鎖", href: "https://soya.massenlighten.com/" },
-    { img: "/images/fightnight-hero-poster.png", title: "健身互動", href: "https://fightnight.25min.co/" },
-    { img: "/images/tolokah-adult-assessment.png", title: "身高體態評估", href: "https://tolokah.25min.co/" },
+    {
+      img: "/images/tolokah-adult-assessment.png",
+      title: "TOLO",
+      angle: "成人身高體態正式檢測",
+      description: "從創辦人身高故事切入，讓在意身高的人先看原理、案例與限制，再決定是否預約正式檢測。",
+      href: "https://tolokah.25min.co/"
+    },
+    {
+      img: "/images/dr-julia-hero-banner.png",
+      title: "JULIA",
+      angle: "潘醫師眼周照片諮詢",
+      description: "把眼袋、淚溝、眼皮鬆弛與眼尾下垂拆開，先留下照片與困擾，再由醫師評估方向。",
+      href: "https://dr-julia.25min.co/"
+    },
+    {
+      img: "/images/fightnight-hero-poster.png",
+      title: "FIGHTNIGHT",
+      angle: "Fight Night Pass",
+      description: "不是傳統拳擊課，而是用教練口令、沙包回合與群體節奏，把下班後的壓力轉成一晚的釋放。",
+      href: "https://fightnight.25min.co/"
+    },
   ];
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % cases.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + cases.length) % cases.length);
+  const currentCase = cases[currentSlide];
 
   // 區段對應的指標
   const section2Ref = useRef<HTMLElement>(null);
@@ -341,7 +358,7 @@ export const HomePage = () => {
                     動態落地頁<span className="text-brand-600">示範案例</span>
                   </h3>
                   <p className="text-base sm:text-lg text-slate-700 font-bold max-w-2xl mx-auto px-4">
-                    透過不同的互動機制，大幅提升用戶停留時間與轉換率<br className="block sm:hidden"/>
+                    每個案例都先抓住專案自己的成交語氣，再設計互動與下一步。<br className="block sm:hidden"/>
                     <span className="text-sm font-normal text-slate-500 sm:hidden">（左右滑動查看更多）</span>
                   </p>
                 </div>
@@ -380,6 +397,11 @@ export const HomePage = () => {
                     </button>
                   </div>
 
+                  <div className="mt-5 rounded-2xl border border-brand-100 bg-white/50 px-5 py-4 text-left shadow-lg backdrop-blur-md">
+                    <p className="text-xs font-extrabold tracking-wider text-brand-700">{currentCase.angle}</p>
+                    <p className="mt-2 text-sm sm:text-base font-bold leading-relaxed text-slate-800">{currentCase.description}</p>
+                  </div>
+
                   {/* Indicators */}
                   <div className="flex justify-center mt-6 space-x-3">
                     {cases.map((_, idx) => (
@@ -394,12 +416,12 @@ export const HomePage = () => {
 
                   <div className="mt-6 flex justify-center">
                     <a
-                      href={cases[currentSlide].href}
+                      href={currentCase.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group inline-flex items-center justify-center rounded-full border border-brand-300 bg-white/40 px-5 py-3 text-sm sm:text-base font-extrabold text-brand-900 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-500 hover:bg-white/70 hover:shadow-xl"
                     >
-                      查看{cases[currentSlide].title}案例頁
+                      查看{currentCase.title}案例頁
                       <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </a>
                   </div>
