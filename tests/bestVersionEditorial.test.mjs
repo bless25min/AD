@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { access, readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
@@ -50,4 +50,27 @@ test('專訪手機刊名與合作按鈕維持單行', async () => {
 
   assert.match(css, /\.story-nav-cta\s*\{[^}]*white-space:\s*nowrap/s);
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.story-masthead strong\s*\{[^}]*white-space:\s*nowrap/s);
+});
+
+test('RoleFit 使用正式網址與預覽圖', async () => {
+  const content = await read('src/content/collaborationSite.ts');
+  const rolefit = content.match(/name: 'RoleFit',[\s\S]*?\n  },/)?.[0] ?? '';
+
+  assert.match(rolefit, /href: 'https:\/\/rolefit\.25min\.co\/'/);
+  assert.match(rolefit, /image: '\/images\/rolefit-og\.png'/);
+  await access(new URL('../public/images/rolefit-og.png', import.meta.url));
+});
+
+test('LINE Chat Manager 使用指定預覽圖且不提供公開連結', async () => {
+  const [content, component] = await Promise.all([
+    read('src/content/collaborationSite.ts'),
+    read('src/components/home/FeaturedEvidence.tsx'),
+  ]);
+  const lineChatManager = content.match(/name: 'line-chat-manager',[\s\S]*?\n  },/)?.[0] ?? '';
+
+  assert.match(lineChatManager, /image: '\/images\/line-chat-manager-dashboard\.png'/);
+  assert.doesNotMatch(lineChatManager, /href:/);
+  assert.match(component, /item\.href \?/);
+  assert.match(component, /客製專案，不公開連結/);
+  await access(new URL('../public/images/line-chat-manager-dashboard.png', import.meta.url));
 });

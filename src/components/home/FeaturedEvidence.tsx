@@ -23,7 +23,11 @@ export function FeaturedEvidence() {
               <p className="evidence-contribution">{item.contribution}</p>
               <div>{item.outputs.map((output) => <span key={output}>{output}</span>)}</div>
             </div>
-            <a href={item.href} target="_blank" rel="noreferrer" aria-label={`查看 ${item.name} 相關案例`}><ArrowUpRight aria-hidden="true" /></a>
+            {item.href ? (
+              <a href={item.href} target="_blank" rel="noreferrer" aria-label={`查看 ${item.name} 相關案例`}><ArrowUpRight aria-hidden="true" /></a>
+            ) : (
+              <span className="evidence-private" aria-label={`${item.name} 客製專案，不公開連結`}>客製專案<br />不公開連結</span>
+            )}
           </article>
         ))}
       </div>

@@ -22,7 +22,7 @@ export type EvidenceCase = {
   thesis: string;
   contribution: string;
   outputs: string[];
-  href: string;
+  href?: string;
   image?: string;
 };
 
@@ -149,7 +149,7 @@ export const evidenceCases: EvidenceCase[] = [
     thesis: '把散落在 LINE、名單與人工判斷裡的工作，做成可追蹤、可操作的客製系統。',
     contribution: '流程盤點、資料骨幹、LINE／API 整合、營運介面與人工接手。',
     outputs: ['客製系統', '營運流程', '資料證據'],
-    href: 'https://blessliao.25min.co/',
+    image: '/images/line-chat-manager-dashboard.png',
   },
   {
     name: 'TALO',
@@ -175,7 +175,8 @@ export const evidenceCases: EvidenceCase[] = [
     thesis: '把模糊的企業招募困境，轉成買方能搜尋、理解與採取下一步的產品。',
     contribution: 'B2B 定位、買方語言、產品入口、轉換追蹤與市場驗證。',
     outputs: ['產品定位', '買方語言', '市場入口'],
-    href: 'https://blessliao.25min.co/',
+    href: 'https://rolefit.25min.co/',
+    image: '/images/rolefit-og.png',
   },
   {
     name: 'dr-julia',
