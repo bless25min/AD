@@ -74,3 +74,12 @@ test('LINE Chat Manager 使用指定預覽圖且不提供公開連結', async ()
   assert.match(component, /客製專案，不公開連結/);
   await access(new URL('../public/images/line-chat-manager-dashboard.png', import.meta.url));
 });
+
+test('正式建置資產帶版本參數，避免 Pages 回退頁污染長效快取', async () => {
+  const config = await read('vite.config.ts');
+
+  assert.match(config, /assetCacheKey/);
+  assert.match(config, /transformIndexHtml/);
+  assert.match(config, /order:\s*'post'/);
+  assert.match(config, /assets/);
+});
