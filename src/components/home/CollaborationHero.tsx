@@ -1,5 +1,5 @@
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
-import { hero, mediaDemoUrl, portfolioUrl } from '../../content/collaborationSite';
+import { hero, mediaDemoUrl, mediaStoryLibraryUrl, portfolioUrl } from '../../content/collaborationSite';
 
 export function CollaborationHero() {
   return (
@@ -44,6 +44,10 @@ export function CollaborationHero() {
             <strong>當 AI 不只省工，而是讓客戶更願意把下一張訂單交給你</strong>
             <p>看一個真實導入成果，如何被整理成企業故事、業務證據與下一個商機。</p>
             <b>閱讀示範專訪<ArrowUpRight aria-hidden="true" /></b>
+          </a>
+          <a className="collab-library-link" href={mediaStoryLibraryUrl}>
+            <span><small>INDUSTRY STORY LIBRARY</small><b>瀏覽十個產業案例</b></span>
+            <ArrowUpRight aria-hidden="true" />
           </a>
           <dl>
             <div><dt>合作角色</dt><dd>{hero.identity}</dd></div>

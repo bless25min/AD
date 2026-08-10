@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "generate:stories": "node scripts/generate-media-stories.mjs",
+    "build": "npm run generate:stories && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },

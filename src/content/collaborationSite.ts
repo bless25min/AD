@@ -199,3 +199,4 @@ export const trustPrinciples = [
 
 export const portfolioUrl = 'https://blessliao.25min.co/';
 export const mediaDemoUrl = '/stories/ai-manufacturing-order-visibility-demo/';
+export const mediaStoryLibraryUrl = '/stories/';

@@ -135,6 +135,11 @@ html.collaboration-route #root {
 .collab-feature-story p { margin: 10px 0 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
 .collab-feature-story b { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; color: var(--signal); font-size: 14px; }
 .collab-feature-story b svg { width: 16px; }
+.collab-library-link { min-height: 62px; padding: 12px 0; display: flex; justify-content: space-between; align-items: center; gap: 18px; border-bottom: 1px solid var(--line); }
+.collab-library-link span { display: grid; gap: 3px; }
+.collab-library-link small { color: var(--signal); font-size: var(--type-label); font-weight: 700; letter-spacing: .08em; }
+.collab-library-link b { font-family: "Noto Serif TC", "Songti TC", serif; font-size: 17px; }
+.collab-library-link > svg { width: 18px; flex: 0 0 auto; }
 .collab-hero-aside dl { margin: 0; }
 .collab-hero-aside dl div { display: grid; grid-template-columns: 72px 1fr; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); }
 .collab-hero-aside dt { color: var(--muted); font-size: var(--type-label); font-weight: 700; letter-spacing: .08em; }

@@ -10,4 +10,3 @@ const updateProgress = () => {
 window.addEventListener('scroll', updateProgress, { passive: true });
 window.addEventListener('resize', updateProgress);
 updateProgress();
-

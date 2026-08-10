@@ -1,5 +1,5 @@
 import { ArrowUpRight, Check } from 'lucide-react';
-import { blueprintParties, blueprintSteps, mediaDemoUrl } from '../../content/collaborationSite';
+import { blueprintParties, blueprintSteps, mediaStoryLibraryUrl } from '../../content/collaborationSite';
 
 export function SoftwarePartnerBlueprint() {
   return (
@@ -34,8 +34,8 @@ export function SoftwarePartnerBlueprint() {
         </ol>
       </div>
 
-      <a className="media-demo-link" href={mediaDemoUrl}>
-        <span><small>DEMONSTRATION STORY</small><b>閱讀完成版媒體專訪示範</b></span>
+      <a className="media-demo-link" href={mediaStoryLibraryUrl}>
+        <span><small>10 INDUSTRY DEMONSTRATION STORIES</small><b>瀏覽十個產業媒體報導示範</b></span>
         <ArrowUpRight aria-hidden="true" />
       </a>
     </section>

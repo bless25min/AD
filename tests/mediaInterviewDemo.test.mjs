@@ -4,6 +4,7 @@ import test from 'node:test';
 
 const base = '../public/stories/ai-manufacturing-order-visibility-demo/';
 const read = (file) => readFile(new URL(`${base}${file}`, import.meta.url), 'utf8');
+const readShared = (file) => readFile(new URL(`../public/stories/${file}`, import.meta.url), 'utf8');
 
 test('示範專訪使用原創刊名並明確揭露非真實報導', async () => {
   const html = await read('index.html');
@@ -36,8 +37,8 @@ test('示範專訪區分待核准數據與內容再利用情境', async () => {
 
 test('示範專訪具有獨立樣式、閱讀進度與情境主視覺', async () => {
   const [css, script, image] = await Promise.all([
-    read('story.css'),
-    read('story.js'),
+    readShared('story.css'),
+    readShared('story.js'),
     stat(new URL('../public/images/stories/ai-manufacturing-order-visibility-demo.webp', import.meta.url)),
   ]);
 
