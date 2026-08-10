@@ -1,5 +1,5 @@
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
-import { hero, portfolioUrl } from '../../content/collaborationSite';
+import { hero, mediaDemoUrl, portfolioUrl } from '../../content/collaborationSite';
 
 export function CollaborationHero() {
   return (
@@ -31,10 +31,17 @@ export function CollaborationHero() {
           </div>
         </div>
 
-        <aside className="collab-hero-aside" aria-label="合作定位">
-          <div className="collab-aside-index">01 — 06</div>
-          <p>我不替每個角色做完所有事。</p>
-          <strong>我把彼此已經有的能力，接成一個能落地、能被證明、也能繼續長大的合作。</strong>
+        <aside className="collab-hero-aside" aria-label="編輯精選與合作定位">
+          <a className="collab-feature-story" href={mediaDemoUrl}>
+            <span>編輯精選 · AI 導入案例</span>
+            <img
+              src="/images/stories/ai-manufacturing-order-visibility-demo.webp"
+              alt="製造企業以平板掌握產線資訊的情境示意"
+            />
+            <strong>當 AI 不只省工，而是讓客戶更願意把下一張訂單交給你</strong>
+            <p>看一個真實導入成果，如何被整理成企業故事、業務證據與下一個商機。</p>
+            <b>閱讀示範專訪<ArrowUpRight aria-hidden="true" /></b>
+          </a>
           <dl>
             <div><dt>ROLE</dt><dd>{hero.identity}</dd></div>
             <div><dt>MODE</dt><dd>Brand · Build · Marketing</dd></div>
