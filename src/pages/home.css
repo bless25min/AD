@@ -253,7 +253,7 @@ html.collaboration-route #root {
 .evidence-card > a { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--line); }
 .evidence-card > a:hover { color: var(--white); background: var(--ink); }
 .evidence-card > a svg { width: 17px; }
-.evidence-private { color: var(--muted); font-size: 11px; line-height: 1.5; text-align: right; }
+.evidence-private { color: var(--muted); font-size: 0.6875rem; line-height: 1.5; text-align: right; }
 .supporting-proof { min-height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--ink); font-size: 13px; }
 .supporting-proof p { margin: 0; }
 .supporting-proof p span { margin-right: 12px; color: var(--signal); font-size: var(--type-label); font-weight: 700; }
