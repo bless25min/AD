@@ -19,10 +19,10 @@ export const HomePage = () => {
     <main className="collaboration-home">
       <CollaborationHero />
       <AssetRouter />
+      <FeaturedEvidence />
       <CollaborationFlywheel />
       <CollaborationEntrances />
       <SoftwarePartnerBlueprint />
-      <FeaturedEvidence />
       <CollaborationTrust />
       <CollaborationCTA />
     </main>

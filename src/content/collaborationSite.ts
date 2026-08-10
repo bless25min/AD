@@ -28,11 +28,11 @@ export type EvidenceCase = {
 
 export const hero = {
   eyebrow: 'BLESS LIAO · PRODUCT × BUILD × GROWTH PARTNER',
-  title: '把一次合作，變成產品成果、可信案例與下一個商業機會。',
+  title: '把你的產品、客戶與成功案例，變成下一個可成交的合作機會。',
   description:
-    '我與品牌、軟體開發商、顧問及內容夥伴共同設計產品與 AI 應用、完成可驗證的交付，再把成果轉成客戶案例、專訪內容、品牌聲量與 B2B 商機。',
-  primaryCta: '提出一個可以一起放大的合作',
-  secondaryCta: '看一個合作如何創造多方價值',
+    '我補上合作中最容易斷掉的那一段：產品定義、客製系統、AI／LINE 落地、營運流程，以及把真實成果轉成客戶案例與 B2B 業務證據。',
+  primaryCta: '帶一個合作案來聊',
+  secondaryCta: '看軟體商如何創造四方價值',
   identity: '產品、開發與市場共創夥伴',
   englishIdentity: 'Product × Build × Growth Partner',
 };

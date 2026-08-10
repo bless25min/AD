@@ -19,6 +19,9 @@ export function CollaborationHero() {
       <div className="collab-hero-grid">
         <div className="collab-hero-copy">
           <p className="collab-eyebrow">{hero.eyebrow}</p>
+          <p className="collab-audience">
+            <span>軟體開發商</span><span>企業品牌</span><span>顧問／內容夥伴</span>
+          </p>
           <h1>{hero.title}</h1>
           <p className="collab-hero-description">{hero.description}</p>
           <div className="collab-hero-actions">
@@ -43,9 +46,9 @@ export function CollaborationHero() {
             <b>閱讀示範專訪<ArrowUpRight aria-hidden="true" /></b>
           </a>
           <dl>
-            <div><dt>ROLE</dt><dd>{hero.identity}</dd></div>
-            <div><dt>MODE</dt><dd>Brand · Build · Marketing</dd></div>
-            <div><dt>PROOF</dt><dd>40+ real project contexts</dd></div>
+            <div><dt>合作角色</dt><dd>{hero.identity}</dd></div>
+            <div><dt>擅長連接</dt><dd>品牌 × 開發 × 行銷</dd></div>
+            <div><dt>經驗證據</dt><dd>40+ 真實專案情境</dd></div>
           </dl>
           <a href={portfolioUrl} target="_blank" rel="noreferrer">
             瀏覽完整專案庫<ArrowUpRight aria-hidden="true" />

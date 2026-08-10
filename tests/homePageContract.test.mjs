@@ -7,7 +7,7 @@ const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 test('首頁以多方合作而非求職作為核心定位', async () => {
   const content = await read('src/content/collaborationSite.ts');
 
-  assert.match(content, /把一次合作，變成產品成果、可信案例與下一個商業機會/);
+  assert.match(content, /把你的產品、客戶與成功案例，變成下一個可成交的合作機會/);
   assert.match(content, /Product × Build × Growth Partner/);
   assert.doesNotMatch(content, /邀請我加入團隊|應聘|求職|AI 應用規劃師/);
 });

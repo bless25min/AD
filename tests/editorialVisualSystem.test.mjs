@@ -39,7 +39,7 @@ test('首頁行動版維持可讀字級與緊湊垂直節奏', async () => {
 test('示範專訪使用文章字級而不是海報字級', async () => {
   const css = await read('public/stories/ai-manufacturing-order-visibility-demo/story.css');
 
-  assert.match(css, /--story-title:\s*clamp\(2\.5rem,\s*5vw,\s*4rem\)/);
+  assert.match(css, /--story-title:\s*clamp\(2\.25rem,\s*4\.2vw,\s*3\.5rem\)/);
   assert.match(css, /--story-dek:\s*clamp\(1\.25rem,\s*2vw,\s*1\.5rem\)/);
   assert.match(css, /--story-body:\s*1\.125rem/);
   assert.doesNotMatch(css, /font-size:[^;]*(?:104px|96px)/);

@@ -84,6 +84,21 @@ html.collaboration-route #root {
   letter-spacing: .12em;
   text-transform: uppercase;
 }
+.collab-audience {
+  margin: 0 0 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.collab-audience span {
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  color: var(--body);
+  background: var(--white);
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: .03em;
+}
 .collab-hero h1 {
   max-width: 820px;
   margin: 0;
@@ -121,7 +136,7 @@ html.collaboration-route #root {
 .collab-feature-story b { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; color: var(--signal); font-size: 14px; }
 .collab-feature-story b svg { width: 16px; }
 .collab-hero-aside dl { margin: 0; }
-.collab-hero-aside dl div { display: grid; grid-template-columns: 58px 1fr; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.collab-hero-aside dl div { display: grid; grid-template-columns: 72px 1fr; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); }
 .collab-hero-aside dt { color: var(--muted); font-size: var(--type-label); font-weight: 700; letter-spacing: .08em; }
 .collab-hero-aside dd { margin: 0; font-size: 13px; font-weight: 600; }
 .collab-hero-aside > a:last-child { min-height: 44px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 700; }
@@ -311,6 +326,7 @@ html.collaboration-route #root {
   .collab-nav-links a:last-child { display: none; }
   .collab-hero-grid { gap: 38px; padding: 42px 0; }
   .collab-hero h1 { font-size: 2.375rem; line-height: 1.24; letter-spacing: -.025em; }
+  .collab-audience { margin-bottom: 14px; }
   .collab-hero-description { margin-top: 22px; font-size: 16px; }
   .collab-hero-actions { margin-top: 24px; align-items: stretch; flex-direction: column; gap: 8px; }
   .collab-button,
