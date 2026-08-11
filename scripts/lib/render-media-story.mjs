@@ -294,7 +294,7 @@ Sitemap: ${site.origin}/sitemap.xml
 export function renderLlms(stories, site) {
   return `# ${site.name}
 
-> 25MIN BUSINESS STORY 是產品、開發與市場合作案例庫，說明 AI 與數位導入如何轉成 B2B 信任、品牌證據與下一個合作機會。
+> 25MIN BUSINESS STORY 先定義企業專訪目標，再倒推 AI 導入、流程改造與系統整合，讓企業同時完成真實轉型與可對外使用的報導成果。
 
 重要揭露：以下皆為合作情境示範，非真實企業報導；企業名稱、數據、引用與成果在正式發布前必須逐項查證與取得書面同意。
 
@@ -305,7 +305,7 @@ ${stories.map((story) => `- [${story.industry}：${story.shortHeadline}](${site.
 
 ## 合作與作者
 
-- [25MIN 合作首頁](${site.origin}/): 品牌合作、開發合作與行銷合作入口
+- [25MIN 合作首頁](${site.origin}/): AI 導入轉型與企業專訪合作入口
 - 作者與案例製作：${site.authorName}
 `;
 }

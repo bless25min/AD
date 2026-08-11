@@ -14,7 +14,7 @@ test('首頁使用克制且一致的商業媒體字級系統', async () => {
   assert.doesNotMatch(css, /font-size:[^;]*(?:15vw|16vw|116px|130px)/);
 });
 
-test('首頁採固定內容框、主報導與側欄的編輯式版型', async () => {
+test('首頁採固定內容框、核心主張與報導目標側欄', async () => {
   const [css, hero] = await Promise.all([
     read('src/pages/home.css'),
     read('src/components/home/CollaborationHero.tsx'),
@@ -23,8 +23,10 @@ test('首頁採固定內容框、主報導與側欄的編輯式版型', async ()
   assert.match(css, /--content-width:\s*1180px/);
   assert.match(css, /grid-template-columns:\s*minmax\(0,\s*7fr\)\s+minmax\(280px,\s*3fr\)/);
   assert.doesNotMatch(css, /min-height:\s*100svh/);
-  assert.match(hero, /編輯精選/);
+  assert.match(hero, /我們先寫下終點/);
+  assert.match(hero, /collab-goal-card/);
   assert.match(hero, /mediaDemoUrl/);
+  assert.doesNotMatch(hero, /編輯精選|客戶案例|mediaStoryLibraryUrl/);
 });
 
 test('首頁行動版維持可讀字級與緊湊垂直節奏', async () => {

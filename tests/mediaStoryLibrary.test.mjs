@@ -181,21 +181,20 @@ test('案例索引、sitemap、robots 與 llms 清單讓搜尋及對話模型可
   }
 });
 
-test('建置流程會先產生文章，首頁也提供十產業案例入口', async () => {
-  const [packageJson, content, hero, blueprint] = await Promise.all([
+test('建置流程保留十篇文章，但首頁只連結目標成品示範', async () => {
+  const [packageJson, content, hero] = await Promise.all([
     read('package.json'),
     read('src/content/collaborationSite.ts'),
     read('src/components/home/CollaborationHero.tsx'),
-    read('src/components/home/SoftwarePartnerBlueprint.tsx'),
   ]);
 
   const pkg = JSON.parse(packageJson);
   assert.equal(pkg.scripts['generate:stories'], 'node scripts/generate-media-stories.mjs');
   assert.match(pkg.scripts.build, /generate:stories/);
-  assert.match(content, /mediaStoryLibraryUrl/);
-  assert.match(hero, /mediaStoryLibraryUrl/);
-  assert.match(hero, /瀏覽十個產業案例/);
-  assert.match(blueprint, /mediaStoryLibraryUrl/);
+  assert.match(content, /mediaDemoUrl/);
+  assert.match(hero, /mediaDemoUrl/);
+  assert.match(hero, /先看報導完成後的樣子|查看目標成品示範/);
+  assert.doesNotMatch(hero, /mediaStoryLibraryUrl|瀏覽十個產業案例/);
 });
 
 test('產生的文章不留下會污染版本差異的行尾空白', async () => {

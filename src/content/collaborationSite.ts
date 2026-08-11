@@ -27,15 +27,60 @@ export type EvidenceCase = {
 };
 
 export const hero = {
-  eyebrow: 'BLESS LIAO · PRODUCT × BUILD × GROWTH PARTNER',
-  title: '把你的產品、客戶與成功案例，變成下一個可成交的合作機會。',
+  eyebrow: 'AI TRANSFORMATION × BUSINESS STORY',
+  title: '先決定希望市場看見什麼，再把值得被報導的轉型真正做出來。',
   description:
-    '我補上合作中最容易斷掉的那一段：產品定義、客製系統、AI／LINE 落地、營運流程，以及把真實成果轉成客戶案例與 B2B 業務證據。',
-  primaryCta: '帶一個合作案來聊',
-  secondaryCta: '看軟體商如何創造四方價值',
-  identity: '產品、開發與市場共創夥伴',
-  englishIdentity: 'Product × Build × Growth Partner',
+    '我們先把未來的企業專訪定為目標：客戶會因為哪一項改變，更願意下單、續約或合作？再從這個結果倒推 AI 導入、流程改造與系統整合，直到成果真正發生，也能被市場看懂。',
+  primaryCta: '談談你想被報導的改變',
+  secondaryCta: '先看報導完成後的樣子',
+  identity: 'AI 導入轉型與企業故事合作',
+  englishIdentity: 'AI Transformation × Business Story',
 };
+
+export const collaborationSteps = [
+  {
+    number: '01',
+    eyebrow: 'DEFINE THE STORY GOAL',
+    title: '定義報導目標',
+    description: '先回答：這次轉型完成後，客戶、合作夥伴或人才應該如何重新理解這家公司？',
+    result: '產出：報導命題、企業目標與可驗證的成功條件',
+  },
+  {
+    number: '02',
+    eyebrow: 'BUILD THE REAL CHANGE',
+    title: '倒推 AI 導入與整合',
+    description: '從目標回推流程、資料、AI 應用、系統串接與人員接手，完成真正能運作的轉型。',
+    result: '產出：AI 工作流程、系統整合與營運落地',
+  },
+  {
+    number: '03',
+    eyebrow: 'PROVE AND TELL',
+    title: '驗證成果，完成專訪報導',
+    description: '確認可公開的數據、畫面與決策脈絡，把已經發生的改變寫成企業專訪與市場信任。',
+    result: '產出：企業專訪報導與可供業務使用的內容資產',
+  },
+];
+
+export const collaborationOutcomes = [
+  {
+    number: '01',
+    eyebrow: 'OPERATIONAL OUTCOME',
+    title: '真正完成的 AI 導入轉型',
+    description: '不是停在簡報或工具採購，而是讓資料、流程、系統與人員能在實際營運中接得起來。',
+  },
+  {
+    number: '02',
+    eyebrow: 'MARKET OUTCOME',
+    title: '能對外使用的企業專訪報導',
+    description: '把轉型成果變成客戶、合作夥伴與人才看得懂的企業故事，成為提案、銷售與品牌信任的一部分。',
+  },
+];
+
+export const collaborationFit = [
+  '企業有一個影響客戶信任、營運效率或成長的重要問題。',
+  '決策者願意參與，並提供流程、資料與必要的整合條件。',
+  '完成後願意在確認事實與權利邊界後，對外分享轉型成果。',
+];
 
 export const assetPaths: AssetPath[] = [
   {

@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Mail, MessageCircle, Phone } from 'lucide-react';
 
 declare global {
   interface Window {
@@ -7,37 +6,33 @@ declare global {
   }
 }
 
-const lineDestination = 'https://liff.line.me/1654828981-Dqym5ASE/card';
-const choices = ['產品／技術', '品牌／客戶', '成功案例', '內容／通路', '尚未成形的構想'];
-
 export function CollaborationCTA() {
-  const [selected, setSelected] = useState(choices[0]);
-
-  const startConversation = () => {
+  const trackContact = (channel: 'line' | 'email' | 'phone') => {
     window.fbq?.('track', 'Lead');
-    window.sessionStorage.setItem('collaboration_asset', selected);
-    window.location.href = lineDestination;
+    window.sessionStorage.setItem('collaboration_contact_channel', channel);
   };
 
   return (
-    <section className="collab-section cta-section" id="collaborate" aria-labelledby="cta-title">
-      <div className="cta-index">LET'S BUILD THE NEXT PROOF</div>
-      <h2 id="cta-title">提出一個可以<br />一起放大的合作。</h2>
-      <p>不需要先寫完整需求。告訴我你已經擁有什麼、希望哪一方也能受益，以及現在最缺的那一段。</p>
-      <div className="cta-choices" role="group" aria-label="選擇你目前擁有的資產">
-        {choices.map((choice) => (
-          <button key={choice} type="button" className={selected === choice ? 'is-selected' : ''} onClick={() => setSelected(choice)} aria-pressed={selected === choice}>{choice}</button>
-        ))}
+    <section className="collab-section cta-section" id="contact" aria-labelledby="cta-title">
+      <div className="cta-index">START WITH THE CHANGE</div>
+      <h2 id="cta-title">你希望下一篇報導，<br />說明公司完成了什麼改變？</h2>
+      <p>不用先準備完整需求。帶著一個真正想解決的企業問題，以及你希望客戶最後看見的改變來聊。</p>
+      <div className="contact-links" aria-label="Bless Liao 聯絡方式">
+        <a className="contact-link is-primary" href="https://line.me/ti/p/~reedread" target="_blank" rel="noreferrer" onClick={() => trackContact('line')}>
+          <MessageCircle aria-hidden="true" /><span><small>LINE</small><b>加 LINE 討論轉型目標</b></span><ArrowRight aria-hidden="true" />
+        </a>
+        <a className="contact-link" href="mailto:bless@25min.co" onClick={() => trackContact('email')}>
+          <Mail aria-hidden="true" /><span><small>EMAIL</small><b>bless@25min.co</b></span><ArrowRight aria-hidden="true" />
+        </a>
+        <a className="contact-link" href="tel:0983919101" onClick={() => trackContact('phone')}>
+          <Phone aria-hidden="true" /><span><small>PHONE</small><b>0983-919-101</b></span><ArrowRight aria-hidden="true" />
+        </a>
       </div>
-      <button className="cta-main-button" type="button" onClick={startConversation}>
-        從「{selected}」開始談<ArrowRight aria-hidden="true" />
-      </button>
       <footer className="collab-footer">
         <span>© 25MIN · BLESS LIAO</span>
-        <span>BRAND × BUILD × MARKETING</span>
+        <span>AI TRANSFORMATION × BUSINESS STORY</span>
         <a href="#top">BACK TO TOP ↑</a>
       </footer>
     </section>
   );
 }
-

@@ -4,28 +4,28 @@ import test from 'node:test';
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 
-test('首頁第一屏直接說明適合的合作對象與具體能力', async () => {
+test('首頁第一屏直接說明報導目標與 AI 轉型倒推方法', async () => {
   const [content, hero] = await Promise.all([
     read('src/content/collaborationSite.ts'),
     read('src/components/home/CollaborationHero.tsx'),
   ]);
 
-  assert.match(content, /把你的產品、客戶與成功案例，變成下一個可成交的合作機會/);
-  assert.match(content, /帶一個合作案來聊/);
+  assert.match(content, /先決定希望市場看見什麼，再把值得被報導的轉型真正做出來/);
+  assert.match(content, /談談你想被報導的改變/);
   assert.match(hero, /collab-audience/);
-  assert.match(hero, /軟體開發商/);
-  assert.match(hero, /企業品牌/);
-  assert.match(hero, /顧問／內容夥伴/);
+  assert.match(hero, /企業主/);
+  assert.match(hero, /轉型負責人/);
+  assert.match(hero, /軟體合作夥伴/);
 });
 
-test('首頁在解釋合作方法前先提供五個案例證據', async () => {
+test('首頁不放客戶案例並讓三階段流程緊接首屏', async () => {
   const page = await read('src/pages/HomePage.tsx');
-  const evidence = page.indexOf('<FeaturedEvidence />');
-  const flywheel = page.indexOf('<CollaborationFlywheel />');
+  const hero = page.indexOf('<CollaborationHero />');
+  const process = page.indexOf('<OutcomeFirstCollaboration />');
 
-  assert.ok(evidence > 0, '首頁應包含五個案例證據');
-  assert.ok(flywheel > 0, '首頁應包含合作方法');
-  assert.ok(evidence < flywheel, '案例證據應在合作方法之前出現');
+  assert.ok(hero >= 0, '首頁應包含清楚首屏');
+  assert.ok(process > hero, '三階段流程應緊接首屏');
+  assert.doesNotMatch(page, /FeaturedEvidence|mediaStoryLibraryUrl/);
 });
 
 test('專訪靜態資產有版本號，避免線上沿用舊版巨型字級', async () => {
