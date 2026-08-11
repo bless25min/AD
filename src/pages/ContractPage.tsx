@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Copy, ShieldCheck, Building2, User, FileText, Download, Loader2, Phone } from 'lucide-react';
+import { CheckCircle2, Copy, ShieldCheck, Building2, User, FileText, Download, Phone } from 'lucide-react';
 import { getContractTerms, getProfitShareContractTerms, paymentInfo } from '../content/contractTerms';
-import { useLiff } from '../hooks/useLiff';
 import { useAppStore } from '../store/useAppStore';
 
 
@@ -11,7 +10,6 @@ import { useAppStore } from '../store/useAppStore';
 
 export const ContractPage = () => {
   const [searchParams] = useSearchParams();
-  const { isInitializing } = useLiff();
   const { isLoggedIn, profile } = useAppStore();
 
 
@@ -161,26 +159,6 @@ export const ContractPage = () => {
   const handlePrintPdf = () => {
     window.print();
   };
-
-  if (isInitializing) {
-    return (
-      <div className="min-h-screen bg-[#0a0f18] flex flex-col items-center justify-center p-4">
-        <Loader2 className="w-10 h-10 text-brand-500 animate-spin mb-4" />
-        <h1 className="text-xl font-medium text-slate-200">合約系統驗證中...</h1>
-        <p className="text-sm text-slate-400 mt-2">正在讀取您的 LINE 數位簽章授權</p>
-      </div>
-    );
-  }
-
-  if (!isLoggedIn) {
-    return (
-      <div className="min-h-screen bg-[#0a0f18] flex flex-col items-center justify-center p-4">
-        <Loader2 className="w-10 h-10 text-brand-500 animate-spin mb-4" />
-        <h1 className="text-xl font-medium text-slate-200">請稍候...</h1>
-        <p className="text-sm text-slate-400 mt-2">正在導向 LINE 登入以確保合約安全性</p>
-      </div>
-    );
-  }
 
   return (
     <>
