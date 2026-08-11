@@ -8,6 +8,7 @@ import { LiffInitPage } from './pages/LiffInitPage';
 import { LiffWelcomePage } from './pages/LiffWelcomePage';
 import { LiffFriendRequiredPage } from './pages/LiffFriendRequiredPage';
 import { ContractPage } from './pages/ContractPage';
+import { LineMetaAiContractPage, SharedLineMetaAiContractPage } from './pages/LineMetaAiContractPage';
 import { BusinessCardPage } from './pages/BusinessCardPage';
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
         <Route path="/liff/friend-required" element={<LiffFriendRequiredPage />} />
         <Route path="/LIFF/friend-required" element={<LiffFriendRequiredPage />} />
         <Route path="/contract" element={<ContractPage />} />
+        <Route path="/contract/line-meta-ai" element={<LineMetaAiContractPage />} />
+        <Route path="/c/:shareId" element={<SharedLineMetaAiContractPage />} />
         <Route path="/liff/card" element={<BusinessCardPage />} />
         <Route path="/LIFF/card" element={<BusinessCardPage />} />
       </Routes>

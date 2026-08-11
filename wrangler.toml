@@ -1,6 +1,10 @@
-name = "ad-sales-funnel"
+name = "ad"
 compatibility_date = "2024-03-24"
 pages_build_output_dir = "dist"
+
+[[kv_namespaces]]
+binding = "CONTRACT_SHARES"
+id = "65f4e2eb875c4d0c8b42ffd79ac6e7c7"
 
 [vars]
 # 這裡放置不需要保密的公開變數例如 API_URL

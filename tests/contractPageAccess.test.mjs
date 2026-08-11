@@ -28,3 +28,11 @@ test('匿名開啟不會把 LINE 合約通知改成公開呼叫', async () => {
   assert.match(contract, /if \(isLoggedIn && profile\?\.userId\)/);
   assert.match(contract, /fetch\('\/api\/notify-contract'/);
 });
+
+test('LINE Meta AI 合約深層網址有獨立頁面與分享網址路由', async () => {
+  const app = await read('src/App.tsx');
+
+  assert.match(app, /LineMetaAiContractPage/);
+  assert.match(app, /path="\/contract\/line-meta-ai" element={<LineMetaAiContractPage \/>}/);
+  assert.match(app, /path="\/c\/:shareId" element={<SharedLineMetaAiContractPage \/>}/);
+});
