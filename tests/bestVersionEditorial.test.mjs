@@ -31,24 +31,26 @@ test('首頁在解釋合作方法前先提供五個案例證據', async () => {
 test('專訪靜態資產有版本號，避免線上沿用舊版巨型字級', async () => {
   const html = await read('public/stories/ai-manufacturing-order-visibility-demo/index.html');
 
-  assert.match(html, /href="\/stories\/story\.css\?v=20260811-1"/);
-  assert.match(html, /src="\/stories\/story\.js\?v=20260811-1"/);
+  assert.match(html, /href="\/stories\/story\.css\?v=20260811-2"/);
+  assert.match(html, /src="\/stories\/story\.js\?v=20260811-2"/);
   assert.match(html, /洽談案例製作/);
 });
 
-test('專訪標題維持媒體文章尺度並縮短首屏留白', async () => {
+test('專訪標題、摘要與正文維持商業媒體閱讀尺度', async () => {
   const css = await read('public/stories/story.css');
 
-  assert.match(css, /--story-title:\s*clamp\(2\.4rem,\s*5vw,\s*4\.6rem\)/);
-  assert.match(css, /\.article-header\s*\{[^}]*980px[^}]*padding:\s*clamp\(36px,\s*5vw,\s*62px\)\s+0\s+40px/s);
-  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.article-header h1\s*\{\s*font-size:\s*2\.35rem/);
+  assert.match(css, /--story-title:\s*clamp\(2\.25rem,\s*3\.2vw,\s*2\.9rem\)/);
+  assert.match(css, /--story-dek:\s*1\.125rem/);
+  assert.match(css, /--story-body:\s*1\.125rem/);
+  assert.match(css, /\.article-header\s*\{[^}]*padding:\s*38px\s+0\s+32px/s);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?--story-title:\s*clamp\(2rem,\s*9\.6vw,\s*2\.35rem\)/);
 });
 
 test('專訪手機刊名與合作按鈕維持單行', async () => {
   const css = await read('public/stories/story.css');
 
   assert.match(css, /\.story-nav-cta\s*\{[^}]*white-space:\s*nowrap/s);
-  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?\.story-masthead strong\s*\{[^}]*white-space:\s*nowrap/s);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*?\.story-masthead small\s*\{\s*display:\s*none/s);
 });
 
 test('RoleFit 使用正式網址與預覽圖', async () => {

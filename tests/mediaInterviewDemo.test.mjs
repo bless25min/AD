@@ -25,14 +25,12 @@ test('示範專訪呈現製造業 AI 與下一張訂單的商業論點', async (
   assert.match(html, /Telegram/);
 });
 
-test('示範專訪區分待核准數據與內容再利用情境', async () => {
+test('示範專訪以簡潔揭露取代企劃、再利用與大型銷售模組', async () => {
   const html = await read('index.html');
 
-  assert.match(html, /待客戶核准/);
-  for (const reuse of ['官網', '業務提案', '展會 QR', 'newsletter']) {
-    assert.match(html, new RegExp(reuse, 'i'));
-  }
-  assert.match(html, /把你的導入成果，做成下一個客戶看得懂的商業故事/);
+  assert.match(html, /本頁為合作情境示範/);
+  assert.match(html, /了解案例合作方式/);
+  assert.doesNotMatch(html, /待客戶核准|展會 QR|newsletter|把你的導入成果，做成下一個客戶看得懂的商業故事/);
 });
 
 test('示範專訪具有獨立樣式、閱讀進度與情境主視覺', async () => {

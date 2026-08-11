@@ -39,10 +39,12 @@ test('首頁行動版維持可讀字級與緊湊垂直節奏', async () => {
 test('示範專訪使用文章字級而不是海報字級', async () => {
   const css = await read('public/stories/story.css');
 
-  assert.match(css, /--story-title:\s*clamp\(2\.4rem,\s*5vw,\s*4\.6rem\)/);
-  assert.match(css, /--story-dek:\s*clamp\(1\.18rem,\s*2vw,\s*1\.5rem\)/);
-  assert.match(css, /--story-body:\s*1\.08rem/);
-  assert.doesNotMatch(css, /font-size:[^;]*(?:104px|96px)/);
+  assert.match(css, /--story-title:\s*clamp\(2\.25rem,\s*3\.2vw,\s*2\.9rem\)/);
+  assert.match(css, /--story-dek:\s*1\.125rem/);
+  assert.match(css, /--story-body:\s*1\.125rem/);
+  assert.match(css, /--reading-width:\s*700px/);
+  assert.match(css, /\.story-hero\s*\{[^}]*1080px/s);
+  assert.doesNotMatch(css, /\.answer-summary|\.story-rail|\.concept-panel|\.value-grid|\.evidence-box|\.faq-section|\.reuse-section|\.story-cta/);
 });
 
 test('十產業案例庫手機標題避免單字孤行與海報式巨型字級', async () => {

@@ -59,7 +59,7 @@ test('內容資料提供十個不同產業與完整的編輯契約', async () =>
   }
 });
 
-test('十篇靜態文章都有圖片、揭露與產業專屬可見內容', async () => {
+test('十篇靜態文章都以媒體報導正文為唯一閱讀主體', async () => {
   const stories = await loadStories();
   assert.equal(stories.length, 10, '內容資料尚未建立');
 
@@ -73,9 +73,22 @@ test('十篇靜態文章都有圖片、揭露與產業專屬可見內容', async
     assert.match(html, /非真實企業報導/);
     assert.match(html, new RegExp(story.industry));
     assert.match(html, new RegExp(story.headline.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
-    assert.match(html, /data-answer-summary/);
-    assert.match(html, /這個案例在解決什麼/);
-    assert.match(html, /常見問題/);
+    assert.match(html, new RegExp(story.dek.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+    assert.match(html, /class="article-body"/);
+    assert.match(html, /class="article-conclusion"/);
+    for (const planningBlock of [
+      'answer-summary',
+      'story-rail',
+      'concept-panel',
+      'value-grid',
+      'evidence-box',
+      'faq-section',
+      'reuse-section',
+      'story-cta',
+    ]) {
+      assert.doesNotMatch(html, new RegExp(`class="${planningBlock}`), `${story.slug} 不應顯示 ${planningBlock}`);
+    }
+    assert.doesNotMatch(html, /ANSWER-FIRST SUMMARY|STORY AT A GLANCE|ONE STORY · THREE BUSINESS WINS|QUESTIONS DECISION-MAKERS ASK|AFTER PUBLISHING/);
     assert.doesNotMatch(html, /商業周刊|商周|天下雜誌/);
   }
 });
@@ -112,6 +125,7 @@ test('每篇都有一致且真實對應可見內容的搜尋結構', async () =>
     assert.equal(article.author['@type'], 'Person');
     assert.ok(article.image.startsWith(siteOrigin));
     assert.equal(article.inLanguage, 'zh-Hant');
+    assert.equal(article.abstract, story.dek, '結構化摘要必須直接對應標題下方可見導言');
   }
 });
 
@@ -128,6 +142,7 @@ test('案例索引、sitemap、robots 與 llms 清單讓搜尋及對話模型可
   assert.match(library, /十個產業/);
   assert.match(library, /CollectionPage/);
   assert.match(library, /ItemList/);
+  assert.doesNotMatch(library, /library-answer|library-integrity|FOR SEARCH & DECISION|EDITORIAL INTEGRITY/);
   assert.match(robots, /User-agent: OAI-SearchBot\s+Allow: \//);
   assert.match(robots, /Sitemap: https:\/\/ad\.25min\.co\/sitemap\.xml/);
   assert.match(llms, /合作情境示範，非真實企業報導/);

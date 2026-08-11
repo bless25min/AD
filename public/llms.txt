@@ -7,16 +7,16 @@
 ## 案例索引
 
 - [十個產業案例](https://ad.25min.co/stories/): 完整案例庫與編輯原則
-- [精密製造：全球買家一句話，就能直問訂單與交期風險](https://ad.25min.co/stories/ai-manufacturing-order-visibility-demo/): 這個案例示範精密製造商如何把ERP、MES與品保資訊整理成受權限控制的訂單查詢服務。買方能更早掌握進度與異常，企業則把原本的內部效率投資，轉成可被客戶感受到的透明度與下一張訂單競爭力。
-- [紡織染整：把老師傅的色感，變成品牌敢下單的打樣能力](https://ad.25min.co/stories/textile-dyeing-sample-knowledge-demo/): 這個案例示範染整廠如何把歷史配方、布種、設備條件與老師傅判斷整理成可查詢的打樣知識。系統不取代技師，而是讓業務、新人與品牌採購更早理解色差風險，將技術傳承轉成更穩定的接單服務。
-- [食品加工：一通客訴，不再讓全公司翻遍紙本](https://ad.25min.co/stories/food-processing-batch-traceability-demo/): 這個案例示範食品加工廠如何把原料來源、製程、檢驗與出貨通路串成可查詢的批次時間軸。遇到客訴或異常時，企業與通路能更快界定待確認範圍；系統負責整理證據，不自行判定食安責任。
-- [農業合作社：讓一箱水果，帶著可被查證的產地證據出海](https://ad.25min.co/stories/agriculture-coop-export-trust-demo/): 這個案例示範農業合作社如何把農戶、採收、分級、檢驗、包裝與出貨資料整理成批次身分。海外買方看到的不再只有產地故事，而是品質標準與穩定供貨的可查證依據，合作社也能建立共同品牌資產。
-- [建築材料：把規格服務，變成進入工程案的門票](https://ad.25min.co/stories/building-material-specification-service-demo/): 這個案例示範建材廠如何把型錄、測試報告、送審文件、庫存與資深業務知識整理成選型服務。設計師能更快找到候選材料與文件缺口，企業也能更早進入工程決策，把技術服務變成品牌差異。
-- [工業機械維修：機台還沒停，服務就先到](https://ad.25min.co/stories/industrial-machinery-maintenance-intelligence-demo/): 這個案例示範機械商如何把感測趨勢、設備履歷、保養紀錄與老師傅診斷經驗放進同一個服務流程。系統提早提示需要檢查的風險，技師保留最終判斷，售後部門也能從故障救火轉成長期設備健康夥伴。
-- [冷鏈物流：貨還沒到，風險先被看見](https://ad.25min.co/stories/cold-chain-risk-visibility-demo/): 這個案例示範冷鏈業者如何把溫度、車門、路線與預計到貨時間整理成可協作的異常事件。貨主不必等到交付後才看紀錄，而能提早安排驗收、庫存與通路處置；物流商也從運輸供應商升級為風險情報夥伴。
-- [汽車零件：從「應該能裝」到可被查證的經銷承諾](https://ad.25min.co/stories/auto-parts-fitment-inventory-demo/): 這個案例示範汽車零件廠如何整合料號、車型、年份、適配依據與庫存狀態。經銷商能更快取得可追溯的候選答案，例外仍由技術人員確認；品牌也從單純供貨，升級為通路的決策支援者。
-- [傳統批發：訂單不再困在某一支手機裡](https://ad.25min.co/stories/wholesale-line-order-operations-demo/): 這個案例示範傳統批發商如何保留客戶用LINE照片、語音與簡短訊息下單的習慣，同時把內容整理成可確認、可交接的訂單。AI只負責辨識與標示不確定欄位，價格、庫存與交期仍由人員核對後成立。
-- [健身服務品牌：把廣告名單接到真正的到訪與成交](https://ad.25min.co/stories/fitness-lead-to-visit-operations-demo/): 這個案例示範健身品牌如何把廣告來源、聊天對話、預約、到訪、體驗、成交與後續追蹤放進同一條顧客旅程。主管能看見每個責任節點，行銷與門店也能共同優化名單品質、服務流程與成交，而不是互相歸責。
+- [精密製造：全球買家一句話，就能直問訂單與交期風險](https://ad.25min.co/stories/ai-manufacturing-order-visibility-demo/): 當產品品質與價格愈來愈接近，下一代供應商比拚的，開始是「誰能讓客戶更放心」。
+- [紡織染整：把老師傅的色感，變成品牌敢下單的打樣能力](https://ad.25min.co/stories/textile-dyeing-sample-knowledge-demo/): 當配方寫在紙上、判斷留在師傅腦中，客戶看到的不是工藝深度，而是交期與品質的不確定。
+- [食品加工：一通客訴，不再讓全公司翻遍紙本](https://ad.25min.co/stories/food-processing-batch-traceability-demo/): 通路真正購買的不只是產品，而是發生異常時，供應商能不能快速界定範圍、提出處置並保住貨架。
+- [農業合作社：讓一箱水果，帶著可被查證的產地證據出海](https://ad.25min.co/stories/agriculture-coop-export-trust-demo/): 產地故事若沒有分級、批次與供應穩定性的證據，就很難轉成海外買家的價格信任與長期訂單。
+- [建築材料：把規格服務，變成進入工程案的門票](https://ad.25min.co/stories/building-material-specification-service-demo/): 建材規格接近時，能否快速回答適用性、備料與送審問題，往往比單一價格更能影響品牌是否被指定。
+- [工業機械維修：機台還沒停，服務就先到](https://ad.25min.co/stories/industrial-machinery-maintenance-intelligence-demo/): 售後若只在故障後救火，客戶只看見維修費；若能提早辨識風險，服務就能支撐續約與設備再購。
+- [冷鏈物流：貨還沒到，風險先被看見](https://ad.25min.co/stories/cold-chain-risk-visibility-demo/): 物流品牌的價值不只是在時間內送達，而是發生偏差時，能否及早讓客戶調整庫存、通路與驗收安排。
+- [汽車零件：從「應該能裝」到可被查證的經銷承諾](https://ad.25min.co/stories/auto-parts-fitment-inventory-demo/): SKU愈多，經銷商愈怕錯配、缺貨與退換；能快速提供可追溯答案，就能提高被優先詢價的機會。
+- [傳統批發：訂單不再困在某一支手機裡](https://ad.25min.co/stories/wholesale-line-order-operations-demo/): 客戶喜歡用熟悉的聊天方式下單，但企業不能讓訂單真相依賴單一業務的記憶與手機。
+- [健身服務品牌：把廣告名單接到真正的到訪與成交](https://ad.25min.co/stories/fitness-lead-to-visit-operations-demo/): 行銷只報名單數、門店只看成交數，中間的未回覆、未到訪與未追蹤，就會變成沒有人負責的黑洞。
 
 ## 合作與作者
 
