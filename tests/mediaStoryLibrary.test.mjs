@@ -193,7 +193,7 @@ test('建置流程保留十篇文章，但首頁只連結目標成品示範', as
   assert.match(pkg.scripts.build, /generate:stories/);
   assert.match(content, /mediaDemoUrl/);
   assert.match(hero, /mediaDemoUrl/);
-  assert.match(hero, /先看報導完成後的樣子|查看目標成品示範/);
+  assert.match(hero, /看完整專訪示範|企業專訪成品示範/);
   assert.doesNotMatch(hero, /mediaStoryLibraryUrl|瀏覽十個產業案例/);
 });
 

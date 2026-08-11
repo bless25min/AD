@@ -2,6 +2,7 @@ import { ArrowUpRight, Check } from 'lucide-react';
 import {
   collaborationFit,
   collaborationOutcomes,
+  collaborationPaths,
   collaborationSteps,
   mediaDemoUrl,
 } from '../../content/collaborationSite';
@@ -12,10 +13,9 @@ export function OutcomeFirstCollaboration() {
       <section className="collab-section outcome-process-section" id="process" aria-labelledby="process-title">
         <div className="outcome-process-intro">
           <p className="collab-kicker">THE OUTCOME-FIRST METHOD</p>
-          <h2 id="process-title">先把報導寫成企業目標，<br />再把內容做成事實。</h2>
+          <h2 id="process-title">不是先寫新聞，<br />而是先把新聞裡的改變做出來。</h2>
           <div>
-            <p>一般做法是先買工具、做系統，最後才思考它替企業創造了什麼價值。</p>
-            <p>這套合作反過來：先確認市場值得知道的改變，再倒推必須完成的 AI 導入、流程改造與系統整合。</p>
+            <p>先確認市場值得知道的改變，再倒推必須完成的流程、資料、AI 應用與系統整合。</p>
           </div>
         </div>
 
@@ -54,6 +54,30 @@ export function OutcomeFirstCollaboration() {
           <span><small>REPORTING GOAL DEMO</small><b>先看企業專訪完成後的樣子</b></span>
           <ArrowUpRight aria-hidden="true" />
         </a>
+      </section>
+
+      <section className="collab-section outcome-partner-section" id="partners" aria-labelledby="partners-title">
+        <div className="outcome-partner-intro">
+          <p className="collab-kicker">TWO WAYS TO COLLABORATE</p>
+          <h2 id="partners-title">同一套成果導向方法，<br />可以從企業問題，也可以從軟體產品開始。</h2>
+          <p>合作不是把報導外包，也不是只導入一套工具；而是讓技術、企業成果與市場信任在同一個專案裡接起來。</p>
+        </div>
+        <div className="outcome-paths">
+          {collaborationPaths.map((path) => (
+            <article key={path.id}>
+              <p>{path.eyebrow}</p>
+              <h3>{path.title}</h3>
+              <strong>{path.introduction}</strong>
+              <dl>
+                <div><dt>你帶來</dt><dd>{path.partnerBrings}</dd></div>
+                <div><dt>我補上</dt><dd>{path.blessAdds}</dd></div>
+              </dl>
+              <ul aria-label={`${path.title}共同成果`}>
+                {path.sharedOutcomes.map((outcome) => <li key={outcome}><Check aria-hidden="true" />{outcome}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="collab-section outcome-fit-section" aria-labelledby="fit-title">

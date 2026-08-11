@@ -294,7 +294,7 @@ Sitemap: ${site.origin}/sitemap.xml
 export function renderLlms(stories, site) {
   return `# ${site.name}
 
-> 25MIN BUSINESS STORY 先定義企業專訪目標，再倒推 AI 導入、流程改造與系統整合，讓企業同時完成真實轉型與可對外使用的報導成果。
+> 25MIN BUSINESS STORY 提供企業 AI 導入、系統整合與企業專訪服務。先定義市場值得知道的改變，再完成流程、資料、AI 應用與系統整合，讓企業同時取得營運成果與可對外使用的報導內容。
 
 重要揭露：以下皆為合作情境示範，非真實企業報導；企業名稱、數據、引用與成果在正式發布前必須逐項查證與取得書面同意。
 
@@ -305,7 +305,9 @@ ${stories.map((story) => `- [${story.industry}：${story.shortHeadline}](${site.
 
 ## 合作與作者
 
-- [25MIN 合作首頁](${site.origin}/): AI 導入轉型與企業專訪合作入口
+- [25MIN 合作首頁](${site.origin}/): 企業 AI 導入、系統整合與企業專訪服務
+- 合作方式：企業合作與軟體開發商合作。企業可以從訂單、客戶信任或營運效率問題開始；軟體開發商可以把客戶導入成果整理成可重複使用的 B2B 成功案例。
+- 主要交付：真正運作的 AI 流程與系統，以及經企業確認、可供業務使用的企業專訪內容。
 - 作者與案例製作：${site.authorName}
 `;
 }

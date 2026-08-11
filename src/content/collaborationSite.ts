@@ -26,13 +26,23 @@ export type EvidenceCase = {
   image?: string;
 };
 
+export type CollaborationPath = {
+  id: string;
+  eyebrow: string;
+  title: string;
+  introduction: string;
+  partnerBrings: string;
+  blessAdds: string;
+  sharedOutcomes: string[];
+};
+
 export const hero = {
-  eyebrow: 'AI TRANSFORMATION × BUSINESS STORY',
-  title: '先決定希望市場看見什麼，再把值得被報導的轉型真正做出來。',
+  eyebrow: '企業 AI 導入 × 系統整合 × 企業專訪',
+  title: '把 AI 導入做成企業競爭力，再把成果寫成客戶願意相信的專訪。',
   description:
-    '我們先把未來的企業專訪定為目標：客戶會因為哪一項改變，更願意下單、續約或合作？再從這個結果倒推 AI 導入、流程改造與系統整合，直到成果真正發生，也能被市場看懂。',
-  primaryCta: '談談你想被報導的改變',
-  secondaryCta: '先看報導完成後的樣子',
+    '先定義希望市場看見的改變，我協助完成流程盤點、AI 導入、系統整合與營運落地；成果驗證後，再完成企業專訪與業務可以持續使用的內容資產。',
+  primaryCta: '用 LINE 討論一個企業問題',
+  secondaryCta: '看完整專訪示範',
   identity: 'AI 導入轉型與企業故事合作',
   englishIdentity: 'AI Transformation × Business Story',
 };
@@ -41,23 +51,23 @@ export const collaborationSteps = [
   {
     number: '01',
     eyebrow: 'DEFINE THE STORY GOAL',
-    title: '定義報導目標',
-    description: '先回答：這次轉型完成後，客戶、合作夥伴或人才應該如何重新理解這家公司？',
-    result: '產出：報導命題、企業目標與可驗證的成功條件',
+    title: '定義值得被報導的改變',
+    description: '確認客戶為什麼會因此更願意下單、續約或合作。',
+    result: '報導命題 × 企業目標 × 成功條件',
   },
   {
     number: '02',
     eyebrow: 'BUILD THE REAL CHANGE',
-    title: '倒推 AI 導入與整合',
-    description: '從目標回推流程、資料、AI 應用、系統串接與人員接手，完成真正能運作的轉型。',
-    result: '產出：AI 工作流程、系統整合與營運落地',
+    title: '完成 AI 導入與系統整合',
+    description: '從目標回推流程、資料、AI 應用、系統串接與人員接手。',
+    result: 'AI 工作流程 × 系統整合 × 營運落地',
   },
   {
     number: '03',
     eyebrow: 'PROVE AND TELL',
     title: '驗證成果，完成專訪報導',
-    description: '確認可公開的數據、畫面與決策脈絡，把已經發生的改變寫成企業專訪與市場信任。',
-    result: '產出：企業專訪報導與可供業務使用的內容資產',
+    description: '確認可公開的數據、畫面與決策脈絡，把已發生的改變說清楚。',
+    result: '企業專訪 × 業務內容 × 市場信任',
   },
 ];
 
@@ -73,6 +83,27 @@ export const collaborationOutcomes = [
     eyebrow: 'MARKET OUTCOME',
     title: '能對外使用的企業專訪報導',
     description: '把轉型成果變成客戶、合作夥伴與人才看得懂的企業故事，成為提案、銷售與品牌信任的一部分。',
+  },
+];
+
+export const collaborationPaths: CollaborationPath[] = [
+  {
+    id: 'enterprise',
+    eyebrow: 'FOR ENTERPRISES',
+    title: '企業合作',
+    introduction: '從一個影響訂單、客戶信任或營運效率的真實問題開始。',
+    partnerBrings: '真實問題、流程、資料與決策者參與',
+    blessAdds: '目標定義、流程盤點、AI 導入、系統整合、營運落地與專訪製作',
+    sharedOutcomes: ['客戶真正完成導入', '可對外使用的企業專訪', '可持續使用的業務內容資產'],
+  },
+  {
+    id: 'software-partner',
+    eyebrow: 'FOR SOFTWARE PARTNERS',
+    title: '軟體開發商合作',
+    introduction: '把一次客製導入，變成客戶、開發商與市場都能繼續使用的成果。',
+    partnerBrings: '產品、技術能力、客戶關係與交付資源',
+    blessAdds: '應用情境、導入規劃、跨系統整合、客戶訪談與成果內容',
+    sharedOutcomes: ['客戶真正完成導入', '可重複使用的 B2B 成功案例', '開發商與企業共同取得市場信任'],
   },
 ];
 
