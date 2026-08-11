@@ -8,15 +8,15 @@
 
 - [十個產業案例](https://ad.25min.co/stories/): 完整案例庫與編輯原則
 - [精密製造：全球買家一句話，就能直問訂單與交期風險](https://ad.25min.co/stories/ai-manufacturing-order-visibility-demo/): 成立34年的示範企業把AI導入製造現場。當品質與價格愈來愈接近，能讓全球買家直接掌握進度與風險，就是它爭取下一張訂單的新競爭力。
-- [紡織染整：把老師傅的色感，變成品牌敢下單的打樣能力](https://ad.25min.co/stories/textile-dyeing-sample-knowledge-demo/): 老染整廠用AI整理歷史配方與老師傅判斷，讓打樣風險更早被看見。當品牌採購更能相信量產結果，工藝經驗就從內部資產變成爭取下一季訂單的競爭力。
-- [食品加工：一通客訴，不再讓全公司翻遍紙本](https://ad.25min.co/stories/food-processing-batch-traceability-demo/): 食品廠用AI串起原料、製程、檢驗與出貨資料。異常發生時能更快界定範圍、提出處置，正成為品牌保住通路貨架與長期合作的競爭力。
-- [農業合作社：讓一箱水果，帶著可被查證的產地證據出海](https://ad.25min.co/stories/agriculture-coop-export-trust-demo/): 農業合作社用AI整理農戶、採收、分級與出貨資料。當海外買家能查證品質與供應穩定性，產地故事才有機會轉成價格信任與長期訂單。
-- [建築材料：把規格服務，變成進入工程案的門票](https://ad.25min.co/stories/building-material-specification-service-demo/): 建材廠用AI整理型錄、測試報告與資深業務的選型經驗。當適用性、備料與送審問題能更快回答，技術服務就成為品牌被指定、進入工程案的競爭力。
-- [工業機械維修：機台還沒停，服務就先到](https://ad.25min.co/stories/industrial-machinery-maintenance-intelligence-demo/): 機械商用AI整理設備履歷、感測趨勢與老師傅維修經驗。當風險能在故障前被辨識，售後服務就從成本變成支撐續約與設備再購的競爭力。
-- [冷鏈物流：貨還沒到，風險先被看見](https://ad.25min.co/stories/cold-chain-risk-visibility-demo/): 冷鏈業者用AI把溫度、車門、路線與責任人整理成可行動的異常預警。能讓貨主提早調整庫存、通路與驗收安排，正是爭取高價值貨物與長約的競爭力。
-- [汽車零件：從「應該能裝」到可被查證的經銷承諾](https://ad.25min.co/stories/auto-parts-fitment-inventory-demo/): 零件廠用AI整合車型適配依據與真實庫存。當經銷商能快速取得可追溯答案，品牌就更有機會被優先詢價，並把一次供貨變成持續合作。
-- [傳統批發：訂單不再困在某一支手機裡](https://ad.25min.co/stories/wholesale-line-order-operations-demo/): 老批發商用AI讀懂LINE裡的照片、語音與熟客暗語。保留人情味又讓訂單可以核對與交接，成為服務更多客戶、支撐接班成長的競爭力。
-- [健身服務品牌：把廣告名單接到真正的到訪與成交](https://ad.25min.co/stories/fitness-lead-to-visit-operations-demo/): 健身品牌用AI串起廣告來源、對話、預約、到訪與成交。當每一位潛在會員都能被更一致地服務，這套營運能力就成為提升到訪、成交與跨門店成長的競爭力。
+- [紡織染整：把老師傅的色感，變成品牌敢下單的打樣能力](https://ad.25min.co/stories/textile-dyeing-sample-knowledge-demo/): 成立41年的示範染整廠，把AI帶進最仰賴老師傅的打樣現場。對沒有大型IT團隊的中小企業而言，這不是要讓機器取代技師，而是讓品牌客戶更早看見色差與量產風險，增加下一季訂單交付的信心。
+- [食品加工：一通客訴，不再讓全公司翻遍紙本](https://ad.25min.co/stories/food-processing-batch-traceability-demo/): 成立27年的示範食品廠，用AI串起原料、製程、檢驗與出貨紀錄。對人力有限的中小企業而言，更快界定異常範圍，不只是省下查表時間，而是保住通路貨架與長期合作的應變能力。
+- [農業合作社：讓一箱水果，帶著可被查證的產地證據出海](https://ad.25min.co/stories/agriculture-coop-export-trust-demo/): 成立18年的示範合作社，用AI整理農戶、採收、分級、檢驗與出貨資料。這群由小農組成的中小企業想證明：產地故事若能帶著可查證的品質與供應紀錄，就有機會換來更好的價格信任與長期訂單。
+- [建築材料：把規格服務，變成進入工程案的門票](https://ad.25min.co/stories/building-material-specification-service-demo/): 成立33年的示範建材廠，用AI整理型錄、測試報告、庫存與資深業務的選型經驗。對產品差異愈來愈小的中小企業而言，更早回答適用性與送審問題，就是進入工程案、被設計師指定的新競爭力。
+- [工業機械維修：機台還沒停，服務就先到](https://ad.25min.co/stories/industrial-machinery-maintenance-intelligence-demo/): 成立29年的示範機械商，用AI整理設備履歷、感測趨勢與老師傅維修經驗。這家中小企業想把售後從故障後的救火成本，變成客戶在停機前就能感受到、也願意續約的設備健康服務。
+- [冷鏈物流：貨還沒到，風險先被看見](https://ad.25min.co/stories/cold-chain-risk-visibility-demo/): 成立22年的示範冷鏈業者，用AI把溫度、車門、路線與責任人整理成可行動的異常事件。對中小企業而言，能讓貨主在貨損前調整庫存、通路與驗收，就是爭取高價值貨物與長約的競爭力。
+- [汽車零件：從「應該能裝」到可被查證的經銷承諾](https://ad.25min.co/stories/auto-parts-fitment-inventory-demo/): 成立36年的示範汽車零件廠，用AI整合車型適配依據、料號版本與真實庫存。對品項多、人力有限的中小企業而言，讓經銷商更快取得可追溯答案，就是被優先詢價、持續合作的新競爭力。
+- [傳統批發：訂單不再困在某一支手機裡](https://ad.25min.co/stories/wholesale-line-order-operations-demo/): 成立45年的示範批發商，用AI整理LINE裡的照片、語音與熟客暗語。對正面臨接班的中小企業而言，客戶不必改變下單習慣，公司也能降低漏單、錯單與工作綁在單一個人身上的風險，保住接單競爭力。
+- [健身服務品牌：把廣告名單接到真正的到訪與成交](https://ad.25min.co/stories/fitness-lead-to-visit-operations-demo/): 成立12年的示範健身品牌，用AI串起廣告來源、LINE對話、預約、到訪與成交。對預算有限的服務業中小企業而言，看清每位潛在會員在哪裡流失，才能把廣告費變成可改善、可複製的門店成長。
 
 ## 合作與作者
 

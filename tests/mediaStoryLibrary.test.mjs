@@ -84,6 +84,54 @@ test('每篇摘要與正文都以案例企業的 AI 競爭力為主角', async (
   }
 });
 
+test('保留精密製造參考稿，其餘九篇改寫成中小企業商業專訪', async () => {
+  const stories = await loadStories();
+  const reference = stories.find((story) => story.slug === 'ai-manufacturing-order-visibility-demo');
+  const smeStories = stories.filter((story) => story.slug !== 'ai-manufacturing-order-visibility-demo');
+
+  assert.equal(reference?.headline, '34年老廠不再讓客戶「追單」！示範企業押注AI，全球買家一句話就能直問產線');
+  assert.equal(reference?.dek, '成立34年的示範企業把AI導入製造現場。當品質與價格愈來愈接近，能讓全球買家直接掌握進度與風險，就是它爭取下一張訂單的新競爭力。');
+  assert.equal(smeStories.length, 9);
+
+  for (const story of smeStories) {
+    const visibleArticle = [
+      story.headline,
+      story.dek,
+      ...story.lead,
+      ...story.sections.flatMap((section) => [section.title, ...section.paragraphs, section.quote ?? '']),
+      story.closingQuestion,
+      story.closing,
+    ].join('');
+
+    assert.match(story.headline, /AI/, `${story.industry} 標題必須直接呈現 AI 轉型決策`);
+    assert.match(story.headline, /\d+年|老字號|二代|家族/, `${story.industry} 標題需要中小企業的時間或接班脈絡`);
+    assert.match(story.headline, /！|？/, `${story.industry} 標題需要商業媒體的衝突與轉折`);
+    assert.match(story.dek, /中小企業/, `${story.industry} 摘要必須明確對中小企業說話`);
+    assert.match(story.metaDescription, /中小企業/, `${story.industry} 搜尋摘要必須對齊中小企業目標客群`);
+    assert.match(story.answerSummary, /中小企業/, `${story.industry} 對話模型摘要必須對齊中小企業目標客群`);
+    assert.ok(story.keywords.some((keyword) => keyword.includes('中小企業')), `${story.industry} 關鍵字需要涵蓋中小企業搜尋意圖`);
+    assert.match(
+      visibleArticle,
+      /客戶|買家|通路|經銷商|會員/,
+      `${story.industry} 必須從企業客戶或市場關係呈現價值`,
+    );
+    assert.match(
+      visibleArticle,
+      /訂單|下單|接單|續約|詢價|成交|貨架|指定|合作|長約/,
+      `${story.industry} 必須把 AI 導入連到中小企業的商業競爭力`,
+    );
+    assert.match(visibleArticle, /中小企業/, `${story.industry} 正文需要呈現資源有限的企業處境`);
+    assert.equal(story.lead.length, 3, `${story.industry} 需要三段式報導導言`);
+    assert.equal(story.sections.length, 3, `${story.industry} 需要三段完整報導正文`);
+    assert.ok(story.sections.every((section) => section.paragraphs.length === 2));
+    assert.doesNotMatch(
+      visibleArticle,
+      /導入方案|示範系統|解決方案提供商|功能清單/,
+      `${story.industry} 可見報導不應寫成軟體企劃或產品規格`,
+    );
+  }
+});
+
 test('十篇靜態文章都以媒體報導正文為唯一閱讀主體', async () => {
   const stories = await loadStories();
   assert.equal(stories.length, 10, '內容資料尚未建立');
