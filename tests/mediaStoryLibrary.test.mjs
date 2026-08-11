@@ -59,6 +59,31 @@ test('內容資料提供十個不同產業與完整的編輯契約', async () =>
   }
 });
 
+test('每篇摘要與正文都以案例企業的 AI 競爭力為主角', async () => {
+  const stories = await loadStories();
+
+  for (const story of stories) {
+    const articleCopy = [
+      ...story.lead,
+      ...story.sections.flatMap((section) => section.paragraphs),
+      story.closing,
+    ].join('');
+
+    assert.match(story.dek, /AI/, `${story.slug} 摘要必須直接交代 AI 導入`);
+    assert.match(
+      story.dek,
+      /競爭力|訂單|合作|續約|指定|貨架|接單|再購|長約|詢價|成長/,
+      `${story.slug} 摘要必須說明對市場競爭的意義`,
+    );
+    assert.match(articleCopy, /AI/, `${story.slug} 正文必須呈現企業如何導入 AI`);
+    assert.doesNotMatch(
+      articleCopy,
+      /示範方案|軟體商|案例內容也能|一篇經核准的企業故事/,
+      `${story.slug} 正文不應混入合作企劃或服務商視角`,
+    );
+  }
+});
+
 test('十篇靜態文章都以媒體報導正文為唯一閱讀主體', async () => {
   const stories = await loadStories();
   assert.equal(stories.length, 10, '內容資料尚未建立');
