@@ -70,7 +70,7 @@ test('首頁樣式為精簡的成交證據與行動入口提供響應式版面',
   assert.match(css, /\.dual-outcomes/);
   assert.match(css, /\.conversion-outcomes/);
   assert.match(css, /\.method-strip/);
-  assert.match(css, /grid-template-columns: minmax\(0, 1fr\) minmax\(0, 1\.08fr\)/);
+  assert.match(css, /grid-template-columns: minmax\(0, 1\.12fr\) minmax\(0, \.88fr\)/);
   assert.match(css, /@media \(max-width: 680px\)/);
   assert.match(css, /@media \(max-width: 680px\)[\s\S]*\.collab-hero-copy\s*\{\s*display:\s*contents/s);
   assert.match(css, /@media \(max-width: 680px\)[\s\S]*\.collab-hero-actions\s*\{[^}]*order:\s*5/s);

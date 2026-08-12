@@ -23,7 +23,7 @@ html.collaboration-route #root {
   --signal-dark: #8e1d23;
   --proof: #315f4f;
   --content-width: 1120px;
-  --type-hero: clamp(2.2rem, 3.15vw, 3rem);
+  --type-hero: clamp(2.2rem, 3.15vw, 2.65rem);
   --type-section: clamp(1.65rem, 2.4vw, 2.15rem);
   --type-body: clamp(.975rem, 1vw, 1.075rem);
   --type-label: 0.75rem;
@@ -69,7 +69,7 @@ html.collaboration-route #root {
 
 .collab-hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
   gap: clamp(32px, 4vw, 48px);
   padding: clamp(40px, 4.5vw, 56px) 0 34px;
 }

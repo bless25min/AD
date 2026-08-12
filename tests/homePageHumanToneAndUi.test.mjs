@@ -40,7 +40,8 @@ test('首頁用企業主日常會說的話解釋服務，不用企劃式抽象�
 test('首頁字級、區塊留白與卡片高度保持商業網站閱讀尺度', async () => {
   const css = await read('src/pages/home.css');
 
-  assert.match(css, /--type-hero:\s*clamp\(2\.2rem,\s*3\.15vw,\s*3rem\)/);
+  assert.match(css, /--type-hero:\s*clamp\(2\.2rem,\s*3\.15vw,\s*2\.65rem\)/);
+  assert.match(css, /grid-template-columns:\s*minmax\(0,\s*1\.12fr\)\s*minmax\(0,\s*\.88fr\)/);
   assert.match(css, /--type-section:\s*clamp\(1\.65rem,\s*2\.4vw,\s*2\.15rem\)/);
   assert.match(css, /\.collab-section\s*\{[^}]*padding-block:\s*clamp\(52px,\s*6vw,\s*72px\)/s);
   assert.match(css, /\.problem-grid article\s*\{[^}]*min-height:\s*220px/s);

@@ -7,7 +7,7 @@ const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 test('首頁使用克制且一致的商業媒體字級系統', async () => {
   const css = await read('src/pages/home.css');
 
-  assert.match(css, /--type-hero:\s*clamp\(2\.2rem,\s*3\.15vw,\s*3rem\)/);
+  assert.match(css, /--type-hero:\s*clamp\(2\.2rem,\s*3\.15vw,\s*2\.65rem\)/);
   assert.match(css, /--type-section:\s*clamp\(1\.65rem,\s*2\.4vw,\s*2\.15rem\)/);
   assert.match(css, /--type-body:\s*clamp\(\.975rem,\s*1vw,\s*1\.075rem\)/);
   assert.match(css, /--type-label:\s*0\.75rem/);
@@ -21,7 +21,7 @@ test('首頁採固定內容框、核心主張與系統證據首屏', async () =>
   ]);
 
   assert.match(css, /--content-width:\s*1120px/);
-  assert.match(css, /grid-template-columns:\s*minmax\(0,\s*1fr\)\s+minmax\(0,\s*1\.08fr\)/);
+  assert.match(css, /grid-template-columns:\s*minmax\(0,\s*1\.12fr\)\s+minmax\(0,\s*\.88fr\)/);
   assert.doesNotMatch(css, /min-height:\s*100svh/);
   assert.match(hero, /collab-system-visual/);
   assert.match(hero, /line-chat-manager-dashboard\.png/);
