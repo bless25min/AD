@@ -4,17 +4,17 @@ import test from 'node:test';
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 
-test('首頁第一屏直接說明服務、費用優勢與最低詢問門檻', async () => {
+test('首頁第一屏先說清楚從廣告到成交營運的一條龍服務', async () => {
   const [content, hero] = await Promise.all([
     read('src/content/collaborationSite.ts'),
     read('src/components/home/CollaborationHero.tsx'),
   ]);
 
-  assert.match(content, /免大筆建置費，營運系統邊用邊做/);
-  assert.match(content, /聊聊你想改善的流程/);
-  assert.match(hero, /collab-audience/);
-  assert.match(hero, /免大筆建置費/);
-  assert.match(hero, /不用先寫規格/);
+  assert.match(content, /把廣告帶來的客戶，\\n一路接到成交與回購/);
+  assert.match(content, /廣告、AI 客服、LINE／Meta 對話/);
+  assert.match(content, /讓我看看你的流程/);
+  assert.doesNotMatch(hero, /collab-audience/);
+  assert.match(hero, /collab-customer-flow/);
   assert.match(hero, /collab-system-visual/);
 });
 

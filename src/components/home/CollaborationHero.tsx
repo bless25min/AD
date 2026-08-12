@@ -1,5 +1,14 @@
-import { ArrowDown, ArrowUpRight, Check, MessageCircle } from 'lucide-react';
+import { ArrowUpRight, Check, MessageCircle } from 'lucide-react';
 import { hero } from '../../content/collaborationSite';
+
+const customerFlow = [
+  { label: '廣告獲客', detail: '知道客戶從哪裡來' },
+  { label: 'AI 客服', detail: '即時接住每次詢問' },
+  { label: '對話管理', detail: 'LINE、Meta 集中' },
+  { label: '名單追蹤', detail: '自動分派與提醒' },
+  { label: '成交回購', detail: '看見流失與機會' },
+  { label: '營運管理', detail: '主管掌握每一段' },
+];
 
 export function CollaborationHero() {
   const trackLineContact = () => {
@@ -24,10 +33,7 @@ export function CollaborationHero() {
       <div className="collab-hero-grid">
         <div className="collab-hero-copy">
           <p className="collab-eyebrow">{hero.eyebrow}</p>
-          <p className="collab-audience">
-            <span>免大筆建置費</span><span>不用先寫規格</span><span>邊用邊改</span>
-          </p>
-          <h1>{hero.title}</h1>
+          <h1>{hero.title.split('\n').map((line) => <span key={line}>{line}</span>)}</h1>
           <p className="collab-hero-description">{hero.description}</p>
           <p className="collab-hero-assurance"><Check aria-hidden="true" />{hero.assurance}</p>
           <div className="collab-hero-actions">
@@ -39,9 +45,6 @@ export function CollaborationHero() {
               onClick={trackLineContact}
             >
               <MessageCircle aria-hidden="true" />{hero.primaryCta}<ArrowUpRight aria-hidden="true" />
-            </a>
-            <a className="collab-text-link" href="#system">
-              {hero.secondaryCta}<ArrowDown aria-hidden="true" />
             </a>
           </div>
           <p className="collab-hero-microcopy">{hero.microcopy}</p>
@@ -59,19 +62,19 @@ export function CollaborationHero() {
             alt="整合 LINE、Meta 與門市客戶資料的企業營運系統畫面，顯示每個名單由誰負責、下一步什麼時候發生。"
             fetchPriority="high"
           />
-          <ul aria-label="系統畫面重點">
-            <li><Check aria-hidden="true" />每個名單由誰負責</li>
-            <li><Check aria-hidden="true" />下一步什麼時候發生</li>
-            <li><Check aria-hidden="true" />主管看得到流程卡在哪裡</li>
-          </ul>
-          <figcaption>實際開發的客戶營運系統畫面，可依公司的流程與權限調整。</figcaption>
+          <figcaption>實際開發的客戶營運系統：名單負責人、跟進狀態與下一步集中管理。</figcaption>
         </figure>
       </div>
 
-      <div className="collab-hero-footnote">
-        <span>先做一小段，好用再往下接</span>
-        <span aria-hidden="true">現有工具能接，就不全部重來</span>
-      </div>
+      <ol className="collab-customer-flow" aria-label="從廣告到營運的顧客流程">
+        {customerFlow.map((step, index) => (
+          <li key={step.label}>
+            <small>{String(index + 1).padStart(2, '0')}</small>
+            <strong>{step.label}</strong>
+            <span>{step.detail}</span>
+          </li>
+        ))}
+      </ol>
     </header>
   );
 }

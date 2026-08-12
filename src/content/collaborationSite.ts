@@ -37,33 +37,32 @@ export type CollaborationPath = {
 };
 
 export const hero = {
-  eyebrow: '營運系統開發陪跑',
-  title: '免大筆建置費，營運系統邊用邊做。',
+  eyebrow: '廣告 × AI 客服 × 顧客營運系統',
+  title: '把廣告帶來的客戶，\n一路接到成交與回購。',
   description:
-    '不用先買一套大系統，也不用先寫完整規格。從客戶追蹤、進度管理或門市交接的一段開始，陪你邊用邊改，跑順再擴大。',
-  assurance: '先做最小可用的一段；好用，再繼續投入。',
-  primaryCta: '聊聊你想改善的流程',
-  secondaryCta: '先看做出來的系統',
-  microcopy: '一張截圖、Excel 或一段語音，就能開始。',
-  identity: '免大筆建置費的營運系統開發陪跑',
-  englishIdentity: 'Custom AI Systems for Business Operations',
+    '從廣告、AI 客服、LINE／Meta 對話，到名單追蹤、預約、成交與營運管理，我幫你把原本分散的工具和流程，接成一套。',
+  assurance: '不用一開始就押一大筆預算，先從最容易漏掉客戶的一段開始。',
+  primaryCta: '讓我看看你的流程',
+  microcopy: '不用寫規格；一張流程截圖、Excel 或一段語音就能開始。',
+  identity: '從廣告獲客到成交與營運的一條龍顧客系統整合',
+  englishIdentity: 'AI Customer Operations, Connected End to End',
 };
 
 export const businessOutcomes = [
   {
     number: '01',
-    title: '詢問進來，不再沒人接',
-    description: '案件現在在哪裡、下一步該誰做，畫面上看得到。',
+    title: '詢問進來，不再漏接',
+    description: 'AI 先接住，LINE、Meta 與客服對話集中管理。',
   },
   {
     number: '02',
-    title: '進度到哪，不用逐一問',
-    description: '主管直接看到哪裡卡住，先處理正在耽誤的事。',
+    title: '名單交給誰，不再靠群組喊人',
+    description: '自動分派、提醒下一步，每一次跟進都有紀錄。',
   },
   {
     number: '03',
-    title: '做得好的方法，留在公司裡',
-    description: '把提醒、判斷和交接放進流程，不再只靠某個人記得。',
+    title: '哪一段正在漏錢，老闆看得到',
+    description: '從廣告、詢問、預約到成交，知道問題卡在哪裡。',
   },
 ];
 

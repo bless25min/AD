@@ -7,7 +7,7 @@ const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 test('首頁使用克制且一致的商業媒體字級系統', async () => {
   const css = await read('src/pages/home.css');
 
-  assert.match(css, /--type-hero:\s*clamp\(2\.25rem,\s*3\.45vw,\s*3\.25rem\)/);
+  assert.match(css, /--type-hero:\s*clamp\(2\.2rem,\s*3\.15vw,\s*3rem\)/);
   assert.match(css, /--type-section:\s*clamp\(1\.65rem,\s*2\.4vw,\s*2\.15rem\)/);
   assert.match(css, /--type-body:\s*clamp\(\.975rem,\s*1vw,\s*1\.075rem\)/);
   assert.match(css, /--type-label:\s*0\.75rem/);
@@ -34,7 +34,8 @@ test('首頁行動版維持可讀字級與緊湊垂直節奏', async () => {
   const css = await read('src/pages/home.css');
 
   assert.match(css, /@media \(max-width:\s*680px\)/);
-  assert.match(css, /\.collab-hero h1\s*\{[^}]*font-size:\s*clamp\(2rem,\s*8vw,\s*2\.25rem\)/s);
+  assert.match(css, /\.collab-hero h1 span\s*\{[^}]*white-space:\s*nowrap/s);
+  assert.match(css, /\.collab-hero h1\s*\{[^}]*font-size:\s*clamp\(1\.72rem,\s*8vw,\s*2\.1rem\)/s);
   assert.match(css, /\.collab-section\s*\{[^}]*padding-block:\s*3rem/s);
   assert.match(css, /min-height:\s*44px/);
 });
