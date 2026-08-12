@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import * as path from 'path'
 
-const assetCacheKey = '20260810-portfolio-cases'
+const assetCacheKey = '20260812-homepage-polish'
 
 // https://vite.dev/config/
 export default defineConfig({
