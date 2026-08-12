@@ -37,14 +37,14 @@ export type CollaborationPath = {
 };
 
 export const hero = {
-  eyebrow: '企業客製 AI 系統｜顧客、業務與多門市管理',
-  title: '公司要成長，\n不能一直只靠人記得怎麼做。',
+  eyebrow: '企業客製 AI 系統',
+  title: '客人從 LINE 進來，\n誰接、接到哪裡，老闆應該隨時看得到。',
   description:
-    '把散落在 LINE、Meta、門市、Excel 與員工腦中的顧客資料、判斷和流程接起來，做成真正照你公司方式運作的系統。',
-  assurance: '從一個最值得改善的流程開始，不必先推翻既有系統。',
-  primaryCta: '用 LINE 說說現在最卡的流程',
+    '我把散落在 LINE、Meta、門市、Excel 與員工腦中的資料接起來，照你們現在的做法，做成團隊每天真的會用的系統。',
+  assurance: '先挑最常漏單、最花時間的一段做，不用整間公司砍掉重練。',
+  primaryCta: '跟我說現在最容易漏在哪裡',
   secondaryCta: '看系統怎麼運作',
-  microcopy: '不用先寫規格。我們先一起判斷能不能做、值不值得做，以及適合從哪裡開始。',
+  microcopy: '不用準備規格書。把你們現在怎麼做、哪裡最煩，直接講給我聽就好。',
   identity: '企業客製 AI 系統與營運流程合作',
   englishIdentity: 'Custom AI Systems for Business Operations',
 };
@@ -52,88 +52,88 @@ export const hero = {
 export const enterpriseProblems = [
   {
     number: '01',
-    title: '花錢買來的名單，最後沒有人繼續追',
-    description: 'LINE、Meta、網站與門市名單分散，顧客進來後，沒有人能確定現在由誰負責。',
-    loss: '流失的不是一筆資料，而是已經付過成本的客戶。',
+    title: '名單進來了，沒人知道輪到誰接',
+    description: 'LINE 一批、Meta 一批、門市又一批。人一忙，客人就安靜地不見。',
+    loss: '廣告費花了，連為什麼沒成交都沒有留下。',
   },
   {
     number: '02',
-    title: '業績掉了，只看到結果，不知道問題出在哪一段',
-    description: '到底是沒有名單、沒有聯絡、沒有預約、沒有到店，還是成交率下降？',
-    loss: '等到月底才發現，通常已經少掉好幾週可以改善的時間。',
+    title: '月底看到業績掉，已經來不及補',
+    description: '是名單變少、沒聯絡、預約沒到，還是現場沒成交？報表只告訴你少了多少。',
+    loss: '老闆需要的不是更多表格，而是今天該修哪一段。',
   },
   {
     number: '03',
-    title: '公司最會成交的人，他的方法只存在自己腦中',
-    description: '他怎麼問、怎麼判斷、何時追蹤，沒有成為其他人也能使用的公司能力。',
-    loss: '人一忙、一走，經驗也跟著消失。',
+    title: '公司最會賣的人一請假，整組人跟著卡住',
+    description: '他怎麼問、怎麼判斷客人有沒有興趣、幾天後再追，別人只能自己猜。',
+    loss: '這些做法沒有留在公司裡，就很難教、很難複製。',
   },
 ];
 
 export const operatingLoop = [
-  { number: '01', title: '接進來', detail: 'LINE、Meta、網站與門市顧客' },
-  { number: '02', title: '跟下去', detail: '分派、預約、提醒、追蹤與真人接手' },
-  { number: '03', title: '看清楚', detail: '來源、到店、成交、回購與流失環節' },
-  { number: '04', title: '留下來', detail: '顧客需求、失敗原因與有效做法' },
+  { number: '01', title: '客人從哪裡來', detail: 'LINE、Meta、網站或哪一家門市' },
+  { number: '02', title: '現在輪到誰', detail: '分派、預約、提醒、追蹤與真人接手' },
+  { number: '03', title: '卡在哪一關', detail: '沒聯絡、沒到店，還是沒有成交' },
+  { number: '04', title: '下次怎麼更好', detail: '留下客人問什麼、為什麼買或沒買' },
 ];
 
 export const foundationCapabilities = [
-  'LINE／Meta 對話與顧客資料',
-  '名單分派、預約、提醒與追蹤',
-  '多品牌、多門市與主管權限',
-  '來源、到店、成交與 Funnel Dashboard',
+  '把 LINE、Meta 的對話和名單放在一起',
+  '分派、預約、提醒和追蹤',
+  '多品牌、多門市和主管權限',
+  '看得到來源、到店、成交和流失',
 ];
 
 export const customCapabilities = [
-  '公司的欄位與判斷規則',
-  '公司的提醒與接手方式',
-  '公司的主管報表與權限',
-  '既有 CRM、ERP 或第三方 API 串接',
+  '你們習慣用的欄位和判斷方式',
+  '什麼時候提醒、誰要接手',
+  '主管真正想看的數字和權限',
+  '接回原本的 CRM、ERP 或其他工具',
 ];
 
 export const collaborationSteps = [
   {
     number: '01',
-    title: '定義想完成的改變',
-    description: '半年後，你希望客戶與團隊看見公司完成了什麼？',
+    title: '先看你們現在怎麼做',
+    description: '不用先寫規格，我會從第一線的做法把問題找出來。',
   },
   {
     number: '02',
-    title: '選一個最值得改善的流程',
-    description: '先找最影響營收、流失、管理或擴張的那一段。',
+    title: '挑一段最值得先做',
+    description: '先看它能不能多成交、少流失，或讓主管少追著人問。',
   },
   {
     number: '03',
-    title: '做出第一版並投入使用',
-    description: '從一個品牌、門市或流程開始，依照實際使用持續調整。',
+    title: '做出來，讓真的會用的人試',
+    description: '先在一個品牌、門市或團隊跑，不好用就直接改。',
   },
   {
     number: '04',
-    title: '驗證成果，再把改變說清楚',
-    description: '確認真正發生的改變，製作成企業專訪與業務內容。',
+    title: '有結果，再寫成一篇好故事',
+    description: '只寫已經發生、能確認的改變，讓客戶也看得懂。',
   },
 ];
 
 export const collaborationOutcomes = [
   {
     number: '01',
-    title: '一套真正運作的系統',
-    description: '讓顧客資料、業務流程、判斷與經驗留在企業裡，每天都能繼續使用。',
+    title: '團隊每天會打開的系統',
+    description: '名單進來後誰接、追到哪、哪裡卡住，主管不用再一個一個問。',
     image: '/images/line-chat-manager-dashboard.png',
   },
   {
     number: '02',
-    title: '一篇客戶看得懂的企業專訪',
-    description: '讓客戶、合作夥伴與人才看見公司已完成的改變，成為提案與品牌信任的一部分。',
+    title: '客戶願意轉傳給老闆看的專訪',
+    description: '不只說「我們用了 AI」，而是讓人看懂這家公司做了什麼，合作起來為什麼更放心。',
     image: '/images/home/ai-transformation-business-story.jpg',
   },
 ];
 
 export const riskReversals = [
-  '可以從一個流程、一家門市或一個問題開始。',
-  '可串接或延續既有系統，不必一次重做全部。',
-  'AI、權限與真人接手依企業規則設定。',
-  '顧客資料與營運資料歸企業所有。',
+  '先做一個流程、一家店，跑得動再擴大。',
+  '能接原本的 CRM、ERP 或表單，就不要求全部重來。',
+  'AI 能做什麼、誰看得到資料、何時交給真人，由你決定。',
+  '客戶資料和營運資料都是你的。',
 ];
 
 export const collaborationPaths: CollaborationPath[] = [

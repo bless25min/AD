@@ -25,8 +25,8 @@ export function OutcomeFirstCollaboration() {
     <>
       <section className="collab-section problem-section" aria-labelledby="problem-title">
         <div className="compact-heading">
-          <p className="collab-kicker">企業每天真正失去的東西</p>
-          <h2 id="problem-title">你每天都在花錢取得客戶，<br />但有多少人在公司的流程裡消失了？</h2>
+          <p className="collab-kicker">通常不是沒人做，而是沒人看得完整</p>
+          <h2 id="problem-title">廣告有名單、業務有在追，<br />老闆最後還是只能問：「現在到底到哪了？」</h2>
         </div>
         <div className="problem-grid">
           {enterpriseProblems.map((problem) => (
@@ -43,10 +43,10 @@ export function OutcomeFirstCollaboration() {
       <section className="collab-section system-section" id="system" aria-labelledby="system-title">
         <div className="system-intro">
           <div>
-            <p className="collab-kicker">不是多一個會回答問題的工具</p>
-            <h2 id="system-title">讓每一次生意，<br />都為下一次留下可以使用的資料。</h2>
+            <p className="collab-kicker">我做的不是聊天機器人</p>
+            <h2 id="system-title">把客人接進來、一路跟到成交，<br />中間哪裡斷掉，畫面上就看得到。</h2>
           </div>
-          <p>AI 負責整理大量資訊、找出問題與提供判斷依據；真正的服務與決策，仍然由企業掌握。</p>
+          <p>AI 可以整理對話、提醒該追的人、把異常挑出來；要怎麼回、什麼時候交給真人，還是照你公司的規矩。</p>
         </div>
         <ol className="operating-loop">
           {operatingLoop.map((step, index) => (
@@ -62,20 +62,20 @@ export function OutcomeFirstCollaboration() {
 
       <section className="collab-section risk-reversal" aria-labelledby="risk-title">
         <div className="compact-heading">
-          <p className="collab-kicker">從最值得改善的一段開始</p>
-          <h2 id="risk-title">不必重做整家公司，<br />也不必配合一套永遠不能改的軟體。</h2>
-          <p>共通功能不用重做；真正影響競爭力的流程，再依照企業實際使用持續開發。</p>
+          <p className="collab-kicker">不用一開始就做一套大系統</p>
+          <h2 id="risk-title">先挑一個最痛的地方，<br />接起來、跑順了，再往下做。</h2>
+          <p>預約、名單、權限這些基本功能不用從零寫；你們跟別人不一樣的做法，才另外做。</p>
         </div>
         <div className="build-model">
           <article>
-            <span>已經準備好的底座</span>
-            <h3>先讓基本流程跑起來</h3>
+            <span>先用現成的底座</span>
+            <h3>不用為了基本功能多等幾個月</h3>
             <ul>{foundationCapabilities.map((item) => <li key={item}><Check aria-hidden="true" />{item}</li>)}</ul>
           </article>
           <div className="build-model-plus" aria-hidden="true">＋</div>
           <article className="is-custom">
-            <span>依照企業持續客製</span>
-            <h3>讓系統配合公司的做法</h3>
+            <span>再改成你們的做法</span>
+            <h3>不是叫員工遷就軟體</h3>
             <ul>{customCapabilities.map((item) => <li key={item}><Check aria-hidden="true" />{item}</li>)}</ul>
           </article>
         </div>
@@ -83,8 +83,8 @@ export function OutcomeFirstCollaboration() {
 
       <section className="advantage-section" id="advantage" aria-labelledby="advantage-title">
         <div>
-          <p>真正難以追回的先發優勢</p>
-          <h2 id="advantage-title">AI 功能可以抄，<br />但領先一年累積的企業經驗抄不了。</h2>
+          <p>差距不是誰先買 AI</p>
+          <h2 id="advantage-title">對手早你一年開始記錄：<br />哪些客人會買、哪種回法有效、哪一步最容易流失。</h2>
           <div className="learning-loop" aria-label="企業經驗累積循環">
             <span>顧客詢問</span><ArrowRight aria-hidden="true" />
             <span>採取行動</span><ArrowRight aria-hidden="true" />
@@ -92,15 +92,15 @@ export function OutcomeFirstCollaboration() {
             <span>留下原因</span><ArrowRight aria-hidden="true" />
             <span>改善下一次</span>
           </div>
-          <blockquote>最可怕的不是對手有 AI，而是他的公司每做一次生意，就比昨天更會做生意。</blockquote>
+          <blockquote>一年後，他多的不只是一套系統，而是一整年做生意留下來的答案。</blockquote>
         </div>
       </section>
 
       <section className="collab-section approach-section" id="approach" aria-labelledby="approach-title">
         <div className="approach-intro">
-          <p className="collab-kicker">先定義成果，再投入開發</p>
-          <h2 id="approach-title">如果半年後真的被報導，<br />你希望客戶看見公司完成了什麼改變？</h2>
-          <p>企業專訪不是替還沒發生的成果包裝，而是先把目標說清楚，再把改變真的做出來。</p>
+          <p className="collab-kicker">我會怎麼開始</p>
+          <h2 id="approach-title">先別談「全面導入 AI」。<br />把你最想改掉的一件事說清楚。</h2>
+          <p>例如：名單不要再漏、店長每天看得到進度，或新人照著流程也能把客人接好。</p>
         </div>
         <ol className="approach-steps">
           {collaborationSteps.map((step) => (
@@ -115,8 +115,8 @@ export function OutcomeFirstCollaboration() {
 
       <section className="collab-section outcomes-section" aria-labelledby="outcomes-title">
         <div className="compact-heading">
-          <p className="collab-kicker">系統在公司裡運作，成果在市場上繼續說話</p>
-          <h2 id="outcomes-title">一個合作，最後留下兩種價值。</h2>
+          <p className="collab-kicker">做完不只拿到一份簡報</p>
+          <h2 id="outcomes-title">公司裡多一套能用的系統，<br />對外多一個能讓客戶相信你的故事。</h2>
         </div>
         <div className="dual-outcomes">
           {collaborationOutcomes.map((outcome) => (
@@ -135,13 +135,13 @@ export function OutcomeFirstCollaboration() {
             </article>
           ))}
         </div>
-        <p className="outcome-disclosure">專訪內容以可驗證成果為基礎；自有發布、付費刊登與自然媒體報導會清楚區分。</p>
+        <p className="outcome-disclosure">專訪只寫能確認的事實。自有內容、付費刊登和媒體採訪，也會講清楚。</p>
       </section>
 
       <section className="collab-section assurance-section" aria-labelledby="assurance-title">
         <div>
-          <p className="collab-kicker">先讓合作風險可控</p>
-          <h2 id="assurance-title">不需要先承諾一場巨大的數位轉型。</h2>
+          <p className="collab-kicker">先把你最擔心的幾件事講清楚</p>
+          <h2 id="assurance-title">可以小做、可以接舊系統，<br />資料也不會被我拿走。</h2>
         </div>
         <ul>
           {riskReversals.map((item) => <li key={item}><Check aria-hidden="true" /><span>{item}</span></li>)}
@@ -150,12 +150,12 @@ export function OutcomeFirstCollaboration() {
 
       <section className="partner-band" id="partners" aria-labelledby="partner-title">
         <div>
-          <p>給軟體開發商、行銷公司與品牌夥伴</p>
-          <h2 id="partner-title">你有產品、技術或企業客戶，也可以一起完成導入與成功案例。</h2>
-          <span>把一次客製合作，變成客戶、開發商與市場都能繼續使用的 B2B 資產。</span>
+          <p>如果你是軟體公司或行銷公司</p>
+          <h2 id="partner-title">你負責產品或客戶，我來補上導入、整合和案例內容。</h2>
+          <span>一起把客戶真的用起來的過程，做成下一次提案拿得出手的成功案例。</span>
         </div>
         <a href="https://line.me/ti/p/~reedread" target="_blank" rel="noreferrer" onClick={trackPartnerContact}>
-          <MessageCircle aria-hidden="true" />討論共同提案或客戶合作<ArrowUpRight aria-hidden="true" />
+          <MessageCircle aria-hidden="true" />聊一個正在談的客戶<ArrowUpRight aria-hidden="true" />
         </a>
       </section>
     </>

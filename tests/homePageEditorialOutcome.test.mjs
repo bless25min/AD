@@ -4,12 +4,12 @@ import test from 'node:test';
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 
-test('首頁首屏先說清楚企業客製 AI 系統與低風險起點', async () => {
+test('首頁首屏用具體場景說清楚系統與低風險起點', async () => {
   const content = await read('src/content/collaborationSite.ts');
 
-  assert.match(content, /公司要成長，\\n不能一直只靠人記得怎麼做/);
+  assert.match(content, /客人從 LINE 進來，\\n誰接、接到哪裡，老闆應該隨時看得到/);
   assert.match(content, /LINE、Meta、門市、Excel 與員工腦中/);
-  assert.match(content, /用 LINE 說說現在最卡的流程/);
+  assert.match(content, /跟我說現在最容易漏在哪裡/);
   assert.match(content, /看系統怎麼運作/);
 });
 
@@ -31,18 +31,19 @@ test('首頁依序解除顧客流失、導入風險與客製疑慮', async () =>
     read('src/components/home/OutcomeFirstCollaboration.tsx'),
   ]);
 
-  assert.match(component, /你每天都在花錢取得客戶/);
-  assert.match(component, /不必重做整家公司/);
-  assert.match(component, /AI 功能可以抄/);
-  assert.match(component, /一個合作，最後留下兩種價值/);
-  assert.match(content, /可串接或延續既有系統/);
-  assert.match(content, /顧客資料與營運資料歸企業所有/);
+  assert.match(component, /老闆最後還是只能問/);
+  assert.match(component, /不用一開始就做一套大系統/);
+  assert.match(component, /差距不是誰先買 AI/);
+  assert.match(component, /公司裡多一套能用的系統/);
+  assert.match(content, /能接原本的 CRM、ERP 或表單/);
+  assert.match(content, /客戶資料和營運資料都是你的/);
+  assert.doesNotMatch(component, /一個合作，最後留下兩種價值|真正難以追回的先發優勢|企業每天真正失去的東西/);
 });
 
 test('首頁搜尋資料以服務、合作模式與主視覺建立可抽取語意', async () => {
   const [html, llms] = await Promise.all([read('index.html'), read('public/llms.txt')]);
 
-  assert.match(html, /公司要成長，不能一直只靠人記得怎麼做/);
+  assert.match(html, /客人從 LINE 進來，誰接、接到哪裡，老闆應該隨時看得到/);
   assert.match(html, /https:\/\/ad\.25min\.co\/images\/line-chat-manager-dashboard\.png/);
   assert.match(html, /"@type": "OfferCatalog"/);
   assert.match(html, /"@type": "ImageObject"/);

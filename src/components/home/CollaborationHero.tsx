@@ -25,7 +25,7 @@ export function CollaborationHero() {
         <div className="collab-hero-copy">
           <p className="collab-eyebrow">{hero.eyebrow}</p>
           <p className="collab-audience">
-            <span>顧客與業務</span><span>多門市管理</span><span>企業客製 AI 系統</span>
+            <span>LINE／Meta 名單</span><span>業務追蹤</span><span>多門市管理</span>
           </p>
           <h1>{hero.title}</h1>
           <p className="collab-hero-description">{hero.description}</p>
@@ -50,7 +50,7 @@ export function CollaborationHero() {
         <figure className="collab-system-visual">
           <div className="system-window-bar" aria-hidden="true">
             <span /><span /><span />
-            <b>顧客營運管理</b>
+            <b>客戶進度總覽</b>
           </div>
           <img
             src="/images/line-chat-manager-dashboard.png"
@@ -64,13 +64,13 @@ export function CollaborationHero() {
             <li><Check aria-hidden="true" />下一步什麼時候發生</li>
             <li><Check aria-hidden="true" />哪個環節正在漏掉客戶</li>
           </ul>
-          <figcaption>真實系統能力示意，欄位與流程依企業需求設定。</figcaption>
+          <figcaption>這是實際開發的系統畫面；欄位、權限和流程會依公司調整。</figcaption>
         </figure>
       </div>
 
       <div className="collab-hero-footnote">
-        <span>KEEP THE KNOW-HOW. IMPROVE THE NEXT DECISION.</span>
-        <span aria-hidden="true">先從一段流程開始</span>
+        <span>讓老闆看得到，讓團隊接得下去。</span>
+        <span aria-hidden="true">先解決一件最煩的事</span>
       </div>
     </header>
   );

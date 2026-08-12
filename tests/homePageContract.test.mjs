@@ -4,20 +4,20 @@ import test from 'node:test';
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 
-test('首頁以企業經驗與營運失控切入客製 AI 系統', async () => {
+test('首頁用企業主會說的話交代顧客流程問題', async () => {
   const content = await read('src/content/collaborationSite.ts');
 
-  assert.match(content, /公司要成長，\\n不能一直只靠人記得怎麼做/);
-  assert.match(content, /從一個最值得改善的流程開始，不必先推翻既有系統/);
-  assert.match(content, /花錢買來的名單，最後沒有人繼續追/);
-  assert.match(content, /公司最會成交的人，他的方法只存在自己腦中/);
+  assert.match(content, /客人從 LINE 進來，\\n誰接、接到哪裡，老闆應該隨時看得到/);
+  assert.match(content, /不用整間公司砍掉重練/);
+  assert.match(content, /名單進來了，沒人知道輪到誰接/);
+  assert.match(content, /公司最會賣的人一請假，整組人跟著卡住/);
   assert.doesNotMatch(content, /先上車後補票/);
 });
 
 test('首頁清楚區分每天使用的系統與對外使用的企業專訪', async () => {
   const content = await read('src/content/collaborationSite.ts');
 
-  for (const label of ['一套真正運作的系統', '一篇客戶看得懂的企業專訪']) {
+  for (const label of ['團隊每天會打開的系統', '客戶願意轉傳給老闆看的專訪']) {
     assert.match(content, new RegExp(label));
   }
 });
@@ -34,7 +34,7 @@ test('首頁移除客戶案例與複雜分流，只保留結果倒推流程', as
 test('首頁 CTA 以低壓流程討論為主要意圖並保留直接聯絡方式', async () => {
   const cta = await read('src/components/home/CollaborationCTA.tsx');
 
-  assert.match(cta, /用 LINE 說一個我一直想改善的流程/);
+  assert.match(cta, /用 LINE 跟我說最想改哪一段/);
   assert.match(cta, /https:\/\/line\.me\/ti\/p\/~reedread/);
   assert.match(cta, /mailto:bless@25min\.co/);
   assert.match(cta, /tel:0983919101/);
@@ -45,7 +45,7 @@ test('首頁 CTA 以低壓流程討論為主要意圖並保留直接聯絡方式
 test('首頁搜尋摘要對齊企業客製 AI 系統與雙成果商模', async () => {
   const [html, llms] = await Promise.all([read('index.html'), read('public/llms.txt')]);
 
-  assert.match(html, /公司要成長，不能一直只靠人記得怎麼做/);
+  assert.match(html, /客人從 LINE 進來，誰接、接到哪裡，老闆應該隨時看得到/);
   assert.match(html, /企業客製 AI 系統/);
   assert.doesNotMatch(html, /客戶案例與 B2B 商機/);
   assert.match(llms, /企業客製 AI 系統/);
