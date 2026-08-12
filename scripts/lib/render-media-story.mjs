@@ -294,7 +294,7 @@ Sitemap: ${site.origin}/sitemap.xml
 export function renderLlms(stories, site) {
   return `# ${site.name}
 
-> 25MIN BUSINESS STORY 協助企業把 LINE、Meta、門市與業務流程接成每天會用的企業客製 AI 系統。先解決最容易漏單、最花時間的一段；做出能確認的改變後，再製作企業專訪，讓客戶看懂這家公司為什麼更值得合作。
+> 25MIN BUSINESS STORY 協助企業把一直靠人盯、最容易漏單或最難交接的工作，做成每天會用的企業客製 AI 系統。先做出可驗證改變，再整理成讓客戶看懂的企業案例。
 
 重要揭露：以下皆為合作情境示範，非真實企業報導；企業名稱、數據、引用與成果在正式發布前必須逐項查證與取得書面同意。
 
@@ -305,7 +305,7 @@ ${stories.map((story) => `- [${story.industry}：${story.shortHeadline}](${site.
 
 ## 合作與作者
 
-- [25MIN 合作首頁](${site.origin}/): 企業客製 AI 系統、顧客營運整合與企業專訪服務
+- [25MIN 合作首頁](${site.origin}/): 企業客製 AI 系統、營運流程整合與企業案例合作
 - 合作方式：企業合作與軟體開發商合作。企業可以從訂單、客戶信任或營運效率問題開始；軟體開發商可以把客戶導入成果整理成可重複使用的 B2B 成功案例。
 - 主要交付：真正運作的 AI 流程與系統，以及經企業確認、可供業務使用的企業專訪內容。
 - 作者與案例製作：${site.authorName}

@@ -4,16 +4,16 @@ import test from 'node:test';
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 
-test('首頁第一屏直接說明顧客流程問題與客製系統解法', async () => {
+test('首頁第一屏用企業改變切入，並維持最低詢問門檻', async () => {
   const [content, hero] = await Promise.all([
     read('src/content/collaborationSite.ts'),
     read('src/components/home/CollaborationHero.tsx'),
   ]);
 
-  assert.match(content, /客人從 LINE 進來，\\n誰接、接到哪裡，老闆應該隨時看得到/);
-  assert.match(content, /跟我說現在最容易漏在哪裡/);
+  assert.match(content, /把那件你一直想改善，\\n卻只能靠人盯的事，做成公司自己的系統/);
+  assert.match(content, /傳一張你現在的流程給我/);
   assert.match(hero, /collab-audience/);
-  assert.match(hero, /LINE／Meta 名單/);
+  assert.match(hero, /客戶／案件／訂單/);
   assert.match(hero, /多門市管理/);
   assert.match(hero, /collab-system-visual/);
 });

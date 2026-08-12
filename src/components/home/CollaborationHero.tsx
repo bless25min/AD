@@ -9,15 +9,15 @@ export function CollaborationHero() {
 
   return (
     <header className="collab-hero" id="top">
-      <nav className="collab-nav" aria-label="主要導覽">
-        <a className="collab-brand" href="#top" aria-label="回到頁首">
+      <nav className="collab-nav" aria-label="網站導覽">
+        <a className="collab-brand" href="#top" aria-label="回到首頁">
           <img src="/images/avatar.jpg" alt="Bless Liao" />
           <span><b>Bless Liao</b><small>25MIN COLLABORATION</small></span>
         </a>
         <div className="collab-nav-links">
-          <a href="#system">系統怎麼運作</a>
-          <a href="#approach">合作方式</a>
-          <a href="#contact">聯絡我</a>
+          <a href="#system">做成什麼</a>
+          <a href="#approach">怎麼開始</a>
+          <a href="#contact">聊聊現況</a>
         </div>
       </nav>
 
@@ -25,7 +25,7 @@ export function CollaborationHero() {
         <div className="collab-hero-copy">
           <p className="collab-eyebrow">{hero.eyebrow}</p>
           <p className="collab-audience">
-            <span>LINE／Meta 名單</span><span>業務追蹤</span><span>多門市管理</span>
+            <span>客戶／案件／訂單</span><span>業務交接</span><span>多門市管理</span>
           </p>
           <h1>{hero.title}</h1>
           <p className="collab-hero-description">{hero.description}</p>
@@ -50,27 +50,27 @@ export function CollaborationHero() {
         <figure className="collab-system-visual">
           <div className="system-window-bar" aria-hidden="true">
             <span /><span /><span />
-            <b>客戶進度總覽</b>
+            <b>客戶營運總覽</b>
           </div>
           <img
             src="/images/line-chat-manager-dashboard.png"
             width="1800"
             height="1023"
-            alt="整合 LINE、Meta、預約、到店、成交與追蹤狀態的企業顧客營運系統示意畫面"
+            alt="整合 LINE、Meta 與門市客戶資料的企業營運系統畫面，顯示每個名單由誰負責、下一步什麼時候發生。"
             fetchPriority="high"
           />
           <ul aria-label="系統畫面重點">
             <li><Check aria-hidden="true" />每個名單由誰負責</li>
             <li><Check aria-hidden="true" />下一步什麼時候發生</li>
-            <li><Check aria-hidden="true" />哪個環節正在漏掉客戶</li>
+            <li><Check aria-hidden="true" />主管看得到流程卡在哪裡</li>
           </ul>
-          <figcaption>這是實際開發的系統畫面；欄位、權限和流程會依公司調整。</figcaption>
+          <figcaption>從一個每天會用的畫面開始，讓原本散在各處的工作重新接起來。</figcaption>
         </figure>
       </div>
 
       <div className="collab-hero-footnote">
-        <span>讓老闆看得到，讓團隊接得下去。</span>
-        <span aria-hidden="true">先解決一件最煩的事</span>
+        <span>先做一件真的會改變生意的事</span>
+        <span aria-hidden="true">不是先買一套功能</span>
       </div>
     </header>
   );
