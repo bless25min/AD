@@ -193,6 +193,11 @@ html.collaboration-route #root {
 .collab-hero h1 span:first-child { white-space: nowrap; }
 .collab-hero h1 span:last-child { text-wrap: balance; }
 
+@media (min-width: 1180px) {
+  .collab-hero h1 { max-width: 600px; }
+  .collab-hero h1 span:last-child { white-space: nowrap; }
+}
+
 .outcome-process-section { padding-top: clamp(72px, 8vw, 104px); }
 .outcome-process-intro { display: grid; grid-template-columns: minmax(190px, .7fr) minmax(320px, 1.4fr) minmax(260px, 1fr); gap: 36px; align-items: start; }
 .outcome-process-intro .collab-kicker { margin-top: 8px; }

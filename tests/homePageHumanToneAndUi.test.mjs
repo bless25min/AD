@@ -48,6 +48,7 @@ test('首頁字級、區塊留白與卡片高度保持商業網站閱讀尺度',
   assert.match(css, /\.method-strip li\s*\{[^}]*min-height:\s*190px/s);
   assert.match(css, /\.collab-hero h1 span:first-child\s*\{[^}]*white-space:\s*nowrap/s);
   assert.match(css, /\.collab-hero h1 span:last-child\s*\{[^}]*text-wrap:\s*balance/s);
+  assert.match(css, /@media \(min-width:\s*1180px\)[\s\S]*\.collab-hero h1\s*\{[^}]*max-width:\s*600px[\s\S]*\.collab-hero h1 span:last-child\s*\{[^}]*white-space:\s*nowrap/s);
   assert.doesNotMatch(css, /\.collab-hero h1\s*\{[^}]*text-wrap:\s*balance/s);
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.collab-hero h1\s*\{[^}]*font-size:\s*clamp\(1\.72rem,\s*8vw,\s*2\.1rem\)/s);
 });
