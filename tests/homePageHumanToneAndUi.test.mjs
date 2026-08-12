@@ -4,6 +4,23 @@ import test from 'node:test';
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 
+test('首頁第一眼直接說明免大筆建置費的營運系統開發陪跑', async () => {
+  const [content, hero, html] = await Promise.all([
+    read('src/content/collaborationSite.ts'),
+    read('src/components/home/CollaborationHero.tsx'),
+    read('index.html'),
+  ]);
+
+  assert.match(content, /營運系統開發陪跑/);
+  assert.match(content, /免大筆建置費/);
+  assert.match(content, /不用先買一套大系統，也不用先寫完整規格/);
+  assert.match(content, /邊用邊改，跑順再擴大/);
+  assert.match(hero, /免大筆建置費/);
+  assert.match(hero, /不用先寫規格/);
+  assert.match(hero, /邊用邊改/);
+  assert.match(html, /免大筆建置費/);
+});
+
 test('首頁用企業主日常會說的話解釋服務，不用企劃式抽象句', async () => {
   const [content, outcome, cta] = await Promise.all([
     read('src/content/collaborationSite.ts'),
@@ -11,8 +28,8 @@ test('首頁用企業主日常會說的話解釋服務，不用企劃式抽象�
     read('src/components/home/CollaborationCTA.tsx'),
   ]);
 
-  assert.match(content, /公司裡那件一直靠人盯的事，\\n現在可以做成系統了/);
-  assert.match(content, /把你們現在怎麼做給我看/);
+  assert.match(content, /免大筆建置費，營運系統邊用邊做/);
+  assert.match(content, /從客戶追蹤、進度管理或門市交接的一段開始/);
   assert.match(outcome, /該追誰、進度到哪、下一步做什麼/);
   assert.match(outcome, /先挑一件最值得改善的事，[\s\S]*做出第一版/);
   assert.match(cta, /不用先整理規格/);

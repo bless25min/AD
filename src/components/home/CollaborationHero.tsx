@@ -25,7 +25,7 @@ export function CollaborationHero() {
         <div className="collab-hero-copy">
           <p className="collab-eyebrow">{hero.eyebrow}</p>
           <p className="collab-audience">
-            <span>客戶沒跟到</span><span>進度一直問</span><span>交接靠記憶</span>
+            <span>免大筆建置費</span><span>不用先寫規格</span><span>邊用邊改</span>
           </p>
           <h1>{hero.title}</h1>
           <p className="collab-hero-description">{hero.description}</p>
@@ -69,7 +69,7 @@ export function CollaborationHero() {
       </div>
 
       <div className="collab-hero-footnote">
-        <span>先做一小段，真的好用再往下接</span>
+        <span>先做一小段，好用再往下接</span>
         <span aria-hidden="true">現有工具能接，就不全部重來</span>
       </div>
     </header>

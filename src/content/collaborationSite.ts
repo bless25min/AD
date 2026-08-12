@@ -37,15 +37,15 @@ export type CollaborationPath = {
 };
 
 export const hero = {
-  eyebrow: '企業客製 AI 系統',
-  title: '公司裡那件一直靠人盯的事，\n現在可以做成系統了。',
+  eyebrow: '營運系統開發陪跑',
+  title: '免大筆建置費，營運系統邊用邊做。',
   description:
-    '可能是客戶追蹤、門市交接，也可能是你每天都要問一次的進度。把你們現在怎麼做給我看，我會從最值得改善的一段開始。',
-  assurance: '先做一小段，真的好用，再繼續往下接。',
-  primaryCta: '把現在的做法傳給我',
+    '不用先買一套大系統，也不用先寫完整規格。從客戶追蹤、進度管理或門市交接的一段開始，陪你邊用邊改，跑順再擴大。',
+  assurance: '先做最小可用的一段；好用，再繼續投入。',
+  primaryCta: '聊聊你想改善的流程',
   secondaryCta: '先看做出來的系統',
-  microcopy: '截圖、Excel，甚至一段語音都可以。不用先整理規格。',
-  identity: '企業客製 AI 系統與營運流程合作',
+  microcopy: '一張截圖、Excel 或一段語音，就能開始。',
+  identity: '免大筆建置費的營運系統開發陪跑',
   englishIdentity: 'Custom AI Systems for Business Operations',
 };
 

@@ -294,7 +294,7 @@ Sitemap: ${site.origin}/sitemap.xml
 export function renderLlms(stories, site) {
   return `# ${site.name}
 
-> 25MIN BUSINESS STORY 協助企業把客戶追蹤、門市交接和每天都要問的進度，做成團隊真的會用的企業客製 AI 系統。有可驗證改變後，再整理成讓客戶看得懂的企業案例。
+> 25MIN BUSINESS STORY 提供免大筆建置費的營運系統開發陪跑。企業不用先寫完整規格，從客戶追蹤、進度管理或門市交接的一段開始，邊用邊改、跑順再擴大；有可驗證改變後，再整理成客戶看得懂的企業案例。
 
 重要揭露：以下皆為合作情境示範，非真實企業報導；企業名稱、數據、引用與成果在正式發布前必須逐項查證與取得書面同意。
 

@@ -4,13 +4,13 @@ import test from 'node:test';
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 
-test('首頁首屏用企業想改善的工作切入，並給低摩擦的開始方式', async () => {
+test('首頁首屏直接說明營運系統開發陪跑，並給低摩擦的開始方式', async () => {
   const content = await read('src/content/collaborationSite.ts');
 
-  assert.match(content, /公司裡那件一直靠人盯的事，\\n現在可以做成系統了/);
-  assert.match(content, /客戶追蹤、門市交接/);
-  assert.match(content, /把現在的做法傳給我/);
-  assert.match(content, /截圖、Excel，甚至一段語音/);
+  assert.match(content, /免大筆建置費，營運系統邊用邊做/);
+  assert.match(content, /客戶追蹤、進度管理或門市交接/);
+  assert.match(content, /聊聊你想改善的流程/);
+  assert.match(content, /一張截圖、Excel 或一段語音/);
   assert.match(content, /先看做出來的系統/);
 });
 
@@ -41,16 +41,17 @@ test('首頁只保留必要的成交信念：改變、證據、風險與低門�
   assert.doesNotMatch(component, /advantage-section|risk-reversal|system-section|operating-loop|build-model/);
 });
 
-test('首頁搜尋資料以服務、合作模式與主視覺建立可抽取語意', async () => {
+test('首頁搜尋資料以陪跑服務、合作模式與主視覺建立可抽取語意', async () => {
   const [html, llms] = await Promise.all([read('index.html'), read('public/llms.txt')]);
 
-  assert.match(html, /公司裡一直靠人盯的事/);
+  assert.match(html, /免大筆建置費/);
+  assert.match(html, /營運系統開發陪跑/);
   assert.match(html, /https:\/\/ad\.25min\.co\/images\/line-chat-manager-dashboard\.png/);
   assert.match(html, /"@type": "OfferCatalog"/);
   assert.match(html, /"@type": "ImageObject"/);
   assert.match(html, /企業客製 AI 系統/);
   assert.match(html, /軟體開發商成功案例合作/);
-  assert.match(llms, /企業客製 AI 系統/);
+  assert.match(llms, /營運系統開發陪跑/);
   assert.match(llms, /企業合作與軟體開發商合作/);
 });
 
