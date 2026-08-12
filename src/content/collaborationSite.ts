@@ -38,13 +38,13 @@ export type CollaborationPath = {
 
 export const hero = {
   eyebrow: '企業客製 AI 系統',
-  title: '把那件你一直想改善，\n卻只能靠人盯的事，做成公司自己的系統。',
+  title: '公司裡那件一直靠人盯的事，\n現在可以做成系統了。',
   description:
-    '從最容易漏單、最花時間，或最難交接的一段開始。把 AI、資料和現有工具接起來，先讓一個團隊用起來。',
-  assurance: '不必一次押很大；先做最值得的一段，跑順再擴大。',
-  primaryCta: '傳一張你現在的流程給我',
-  secondaryCta: '看系統怎麼運作',
-  microcopy: '截圖、Excel 或一段語音都可以。我先回你：值不值得做，最小可以從哪裡開始。',
+    '可能是客戶追蹤、門市交接，也可能是你每天都要問一次的進度。把你們現在怎麼做給我看，我會從最值得改善的一段開始。',
+  assurance: '先做一小段，真的好用，再繼續往下接。',
+  primaryCta: '把現在的做法傳給我',
+  secondaryCta: '先看做出來的系統',
+  microcopy: '截圖、Excel，甚至一段語音都可以。不用先整理規格。',
   identity: '企業客製 AI 系統與營運流程合作',
   englishIdentity: 'Custom AI Systems for Business Operations',
 };
@@ -52,36 +52,36 @@ export const hero = {
 export const businessOutcomes = [
   {
     number: '01',
-    title: '少漏掉已經來詢問的客戶',
-    description: '知道案件在哪裡、下一步該誰做，不讓詢問停在某個人的手機或待辦裡。',
+    title: '詢問進來，不再沒人接',
+    description: '案件現在在哪裡、下一步該誰做，畫面上看得到。',
   },
   {
     number: '02',
-    title: '不用每天追著人問進度',
-    description: '主管看得到流程卡在哪裡，先處理正在漏錢的地方，不必等月底才知道。',
+    title: '進度到哪，不用逐一問',
+    description: '主管直接看到哪裡卡住，先處理正在耽誤的事。',
   },
   {
     number: '03',
-    title: '讓會做的人把做法留下來',
-    description: '把判斷、提醒和交接變成團隊用得上的流程，新人、主管和下一家店都接得住。',
+    title: '做得好的方法，留在公司裡',
+    description: '把提醒、判斷和交接放進流程，不再只靠某個人記得。',
   },
 ];
 
 export const transformationMethod = [
   {
     number: '01',
-    title: '先選一個值得被改變的問題',
-    description: '少漏單、交接更快，或讓客戶更願意信任你。',
+    title: '把現在的做法給我看',
+    description: '不用寫規格，先看每天怎麼做、最常卡在哪裡。',
   },
   {
     number: '02',
-    title: '把第一版做進真的會用的現場',
-    description: '接既有資料和工具，不好用就依使用狀況調整。',
+    title: '先做一段給現場用',
+    description: '接上原本的資料和工具，邊用邊把不順的地方改好。',
   },
   {
     number: '03',
-    title: '有結果才整理成企業案例',
-    description: '只寫能確認的改變，讓業務和客戶都能拿來用。',
+    title: '有成果，再對外說',
+    description: '把確實發生的改變整理清楚，成為業務拿得出手的案例。',
   },
 ];
 
@@ -89,23 +89,23 @@ export const proofOutcomes = [
   {
     number: '01',
     eyebrow: '公司裡',
-    title: '團隊每天會用的系統',
-    description: '把客戶、案件、訂單和交接接起來，讓大家做同一套流程。',
+    title: '一套公司真的在用的系統',
+    description: '客戶、案件、訂單和交接放在一起，大家照同一套流程做事。',
     image: '/images/line-chat-manager-dashboard.png',
   },
   {
     number: '02',
     eyebrow: '客戶面前',
-    title: '業務敢放進提案的企業案例',
-    description: '把真的發生的改變講清楚，讓下一個客戶知道為什麼更值得跟你合作。',
+    title: '一個客戶看得懂的成果',
+    description: '把導入前後講清楚，讓下一個客戶更快理解你做到了什麼。',
     image: '/images/home/ai-transformation-business-story.jpg',
   },
 ];
 
 export const riskReversals = [
-  '先從一個流程或一個團隊開始，跑得動再擴大。',
-  '能接原本的 CRM、ERP 或表單，就不要求全部重來。',
-  '客戶資料和營運資料都是你的。',
+  '第一版只做最值得改善的那一段。',
+  '原本的 CRM、ERP 或表單能接，就不要求全部重來。',
+  '系統裡的客戶與營運資料，仍然是你的。',
 ];
 
 export const collaborationPaths: CollaborationPath[] = [

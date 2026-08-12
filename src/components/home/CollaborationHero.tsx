@@ -25,7 +25,7 @@ export function CollaborationHero() {
         <div className="collab-hero-copy">
           <p className="collab-eyebrow">{hero.eyebrow}</p>
           <p className="collab-audience">
-            <span>客戶／案件／訂單</span><span>業務交接</span><span>多門市管理</span>
+            <span>客戶沒跟到</span><span>進度一直問</span><span>交接靠記憶</span>
           </p>
           <h1>{hero.title}</h1>
           <p className="collab-hero-description">{hero.description}</p>
@@ -64,13 +64,13 @@ export function CollaborationHero() {
             <li><Check aria-hidden="true" />下一步什麼時候發生</li>
             <li><Check aria-hidden="true" />主管看得到流程卡在哪裡</li>
           </ul>
-          <figcaption>從一個每天會用的畫面開始，讓原本散在各處的工作重新接起來。</figcaption>
+          <figcaption>實際開發的客戶營運系統畫面，可依公司的流程與權限調整。</figcaption>
         </figure>
       </div>
 
       <div className="collab-hero-footnote">
-        <span>先做一件真的會改變生意的事</span>
-        <span aria-hidden="true">不是先買一套功能</span>
+        <span>先做一小段，真的好用再往下接</span>
+        <span aria-hidden="true">現有工具能接，就不全部重來</span>
       </div>
     </header>
   );

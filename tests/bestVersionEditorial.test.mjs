@@ -10,11 +10,11 @@ test('首頁第一屏用企業改變切入，並維持最低詢問門檻', async
     read('src/components/home/CollaborationHero.tsx'),
   ]);
 
-  assert.match(content, /把那件你一直想改善，\\n卻只能靠人盯的事，做成公司自己的系統/);
-  assert.match(content, /傳一張你現在的流程給我/);
+  assert.match(content, /公司裡那件一直靠人盯的事，\\n現在可以做成系統了/);
+  assert.match(content, /把現在的做法傳給我/);
   assert.match(hero, /collab-audience/);
-  assert.match(hero, /客戶／案件／訂單/);
-  assert.match(hero, /多門市管理/);
+  assert.match(hero, /客戶沒跟到/);
+  assert.match(hero, /進度一直問/);
   assert.match(hero, /collab-system-visual/);
 });
 

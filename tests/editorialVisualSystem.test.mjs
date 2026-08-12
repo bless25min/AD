@@ -7,9 +7,9 @@ const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 test('首頁使用克制且一致的商業媒體字級系統', async () => {
   const css = await read('src/pages/home.css');
 
-  assert.match(css, /--type-hero:\s*clamp\(2\.5rem,\s*4\.15vw,\s*3\.85rem\)/);
-  assert.match(css, /--type-section:\s*clamp\(1\.75rem,\s*3vw,\s*2\.5rem\)/);
-  assert.match(css, /--type-body:\s*clamp\(1rem,\s*1\.15vw,\s*1\.125rem\)/);
+  assert.match(css, /--type-hero:\s*clamp\(2\.25rem,\s*3\.45vw,\s*3\.25rem\)/);
+  assert.match(css, /--type-section:\s*clamp\(1\.65rem,\s*2\.4vw,\s*2\.15rem\)/);
+  assert.match(css, /--type-body:\s*clamp\(\.975rem,\s*1vw,\s*1\.075rem\)/);
   assert.match(css, /--type-label:\s*0\.75rem/);
   assert.doesNotMatch(css, /font-size:[^;]*(?:15vw|16vw|116px|130px)/);
 });
@@ -20,8 +20,8 @@ test('首頁採固定內容框、核心主張與系統證據首屏', async () =>
     read('src/components/home/CollaborationHero.tsx'),
   ]);
 
-  assert.match(css, /--content-width:\s*1180px/);
-  assert.match(css, /grid-template-columns:\s*minmax\(0,\s*5fr\)\s+minmax\(0,\s*7fr\)/);
+  assert.match(css, /--content-width:\s*1120px/);
+  assert.match(css, /grid-template-columns:\s*minmax\(0,\s*1fr\)\s+minmax\(0,\s*1\.08fr\)/);
   assert.doesNotMatch(css, /min-height:\s*100svh/);
   assert.match(hero, /collab-system-visual/);
   assert.match(hero, /line-chat-manager-dashboard\.png/);
@@ -34,8 +34,8 @@ test('首頁行動版維持可讀字級與緊湊垂直節奏', async () => {
   const css = await read('src/pages/home.css');
 
   assert.match(css, /@media \(max-width:\s*680px\)/);
-  assert.match(css, /\.collab-hero h1\s*\{[^}]*font-size:\s*clamp\(2rem,\s*9vw,\s*2\.35rem\)/s);
-  assert.match(css, /\.collab-section\s*\{[^}]*padding-block:\s*3\.5rem/s);
+  assert.match(css, /\.collab-hero h1\s*\{[^}]*font-size:\s*clamp\(2rem,\s*8vw,\s*2\.25rem\)/s);
+  assert.match(css, /\.collab-section\s*\{[^}]*padding-block:\s*3rem/s);
   assert.match(css, /min-height:\s*44px/);
 });
 
