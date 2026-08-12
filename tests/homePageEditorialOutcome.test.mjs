@@ -7,7 +7,7 @@ const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 test('首頁首屏直接說明完整顧客營運服務，並給低摩擦的開始方式', async () => {
   const content = await read('src/content/collaborationSite.ts');
 
-  assert.match(content, /把廣告帶來的客戶，\\n一路接到成交與回購/);
+  assert.match(content, /免大筆建置費，\\n行銷落地及營運系統開發陪跑。/);
   assert.match(content, /名單追蹤、預約、成交與營運管理/);
   assert.match(content, /讓我看看你的流程/);
   assert.match(content, /一張流程截圖、Excel 或一段語音/);
@@ -44,7 +44,7 @@ test('首頁只保留必要的成交信念：改變、證據、風險與低門�
 test('首頁搜尋資料以完整顧客營運服務、合作模式與主視覺建立可抽取語意', async () => {
   const [html, llms] = await Promise.all([read('index.html'), read('public/llms.txt')]);
 
-  assert.match(html, /從廣告獲客到成交與營運/);
+  assert.match(html, /行銷落地及營運系統開發陪跑/);
   assert.match(html, /AI 客服/);
   assert.match(html, /https:\/\/ad\.25min\.co\/images\/line-chat-manager-dashboard\.png/);
   assert.match(html, /"@type": "OfferCatalog"/);

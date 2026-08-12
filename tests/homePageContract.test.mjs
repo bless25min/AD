@@ -7,7 +7,7 @@ const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 test('首頁先說清楚完整顧客營運鏈，再呈現企業會得到的改變', async () => {
   const content = await read('src/content/collaborationSite.ts');
 
-  assert.match(content, /把廣告帶來的客戶，\\n一路接到成交與回購/);
+  assert.match(content, /免大筆建置費，\\n行銷落地及營運系統開發陪跑。/);
   assert.match(content, /詢問進來，不再漏接/);
   assert.match(content, /名單交給誰，不再靠群組喊人/);
   assert.match(content, /哪一段正在漏錢，老闆看得到/);
@@ -51,7 +51,7 @@ test('首頁 CTA 允許直接傳現況，不要求客戶先寫規格', async () 
 test('首頁搜尋摘要對齊從廣告到營運的整合服務與企業案例', async () => {
   const [html, llms] = await Promise.all([read('index.html'), read('public/llms.txt')]);
 
-  assert.match(html, /從廣告獲客到成交與營運/);
+  assert.match(html, /行銷落地及營運系統開發陪跑/);
   assert.match(html, /AI 客服/);
   assert.match(html, /企業客製 AI 系統/);
   assert.match(html, /LINE 與 Meta 對話管理/);

@@ -34,7 +34,8 @@ test('首頁行動版維持可讀字級與緊湊垂直節奏', async () => {
   const css = await read('src/pages/home.css');
 
   assert.match(css, /@media \(max-width:\s*680px\)/);
-  assert.match(css, /\.collab-hero h1 span\s*\{[^}]*white-space:\s*nowrap/s);
+  assert.match(css, /\.collab-hero h1 span:first-child\s*\{[^}]*white-space:\s*nowrap/s);
+  assert.match(css, /\.collab-hero h1 span:last-child\s*\{[^}]*text-wrap:\s*balance/s);
   assert.match(css, /\.collab-hero h1\s*\{[^}]*font-size:\s*clamp\(1\.72rem,\s*8vw,\s*2\.1rem\)/s);
   assert.match(css, /\.collab-section\s*\{[^}]*padding-block:\s*3rem/s);
   assert.match(css, /min-height:\s*44px/);

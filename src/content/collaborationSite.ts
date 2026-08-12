@@ -38,13 +38,13 @@ export type CollaborationPath = {
 
 export const hero = {
   eyebrow: '廣告 × AI 客服 × 顧客營運系統',
-  title: '把廣告帶來的客戶，\n一路接到成交與回購。',
+  title: '免大筆建置費，\n行銷落地及營運系統開發陪跑。',
   description:
     '從廣告、AI 客服、LINE／Meta 對話，到名單追蹤、預約、成交與營運管理，我幫你把原本分散的工具和流程，接成一套。',
   assurance: '不用一開始就押一大筆預算，先從最容易漏掉客戶的一段開始。',
   primaryCta: '讓我看看你的流程',
   microcopy: '不用寫規格；一張流程截圖、Excel 或一段語音就能開始。',
-  identity: '從廣告獲客到成交與營運的一條龍顧客系統整合',
+  identity: '免大筆建置費的行銷落地及營運系統開發陪跑',
   englishIdentity: 'AI Customer Operations, Connected End to End',
 };
 

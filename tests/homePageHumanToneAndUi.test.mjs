@@ -12,14 +12,14 @@ test('首頁第一眼直接說明從廣告獲客到成交營運的完整服務',
   ]);
 
   assert.match(content, /廣告 × AI 客服 × 顧客營運系統/);
-  assert.match(content, /把廣告帶來的客戶，\\n一路接到成交與回購/);
+  assert.match(content, /免大筆建置費，\\n行銷落地及營運系統開發陪跑。/);
   assert.match(content, /不用一開始就押一大筆預算/);
   assert.match(hero, /廣告獲客/);
   assert.match(hero, /AI 客服/);
   assert.match(hero, /對話管理/);
   assert.match(hero, /營運管理/);
   assert.doesNotMatch(hero, /collab-audience|secondaryCta/);
-  assert.match(html, /從廣告獲客到成交與營運/);
+  assert.match(html, /行銷落地及營運系統開發陪跑/);
 });
 
 test('首頁用企業主日常會說的話解釋服務，不用企劃式抽象句', async () => {
@@ -45,7 +45,8 @@ test('首頁字級、區塊留白與卡片高度保持商業網站閱讀尺度',
   assert.match(css, /\.collab-section\s*\{[^}]*padding-block:\s*clamp\(52px,\s*6vw,\s*72px\)/s);
   assert.match(css, /\.problem-grid article\s*\{[^}]*min-height:\s*220px/s);
   assert.match(css, /\.method-strip li\s*\{[^}]*min-height:\s*190px/s);
-  assert.match(css, /\.collab-hero h1 span\s*\{[^}]*white-space:\s*nowrap/s);
+  assert.match(css, /\.collab-hero h1 span:first-child\s*\{[^}]*white-space:\s*nowrap/s);
+  assert.match(css, /\.collab-hero h1 span:last-child\s*\{[^}]*text-wrap:\s*balance/s);
   assert.doesNotMatch(css, /\.collab-hero h1\s*\{[^}]*text-wrap:\s*balance/s);
   assert.match(css, /@media \(max-width:\s*680px\)[\s\S]*?\.collab-hero h1\s*\{[^}]*font-size:\s*clamp\(1\.72rem,\s*8vw,\s*2\.1rem\)/s);
 });
