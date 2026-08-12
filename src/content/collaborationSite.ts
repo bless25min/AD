@@ -37,53 +37,103 @@ export type CollaborationPath = {
 };
 
 export const hero = {
-  eyebrow: '企業 AI 導入 × 系統整合 × 企業專訪',
-  title: '把 AI 導入做成企業競爭力，再把成果寫成客戶願意相信的專訪。',
+  eyebrow: '企業客製 AI 系統｜顧客、業務與多門市管理',
+  title: '公司要成長，\n不能一直只靠人記得怎麼做。',
   description:
-    '先定義希望市場看見的改變，我協助完成流程盤點、AI 導入、系統整合與營運落地；成果驗證後，再完成企業專訪與業務可以持續使用的內容資產。',
-  primaryCta: '用 LINE 討論一個企業問題',
-  secondaryCta: '看完整專訪示範',
-  identity: 'AI 導入轉型與企業故事合作',
-  englishIdentity: 'AI Transformation × Business Story',
+    '把散落在 LINE、Meta、門市、Excel 與員工腦中的顧客資料、判斷和流程接起來，做成真正照你公司方式運作的系統。',
+  assurance: '從一個最值得改善的流程開始，不必先推翻既有系統。',
+  primaryCta: '用 LINE 說說現在最卡的流程',
+  secondaryCta: '看系統怎麼運作',
+  microcopy: '不用先寫規格。我們先一起判斷能不能做、值不值得做，以及適合從哪裡開始。',
+  identity: '企業客製 AI 系統與營運流程合作',
+  englishIdentity: 'Custom AI Systems for Business Operations',
 };
+
+export const enterpriseProblems = [
+  {
+    number: '01',
+    title: '花錢買來的名單，最後沒有人繼續追',
+    description: 'LINE、Meta、網站與門市名單分散，顧客進來後，沒有人能確定現在由誰負責。',
+    loss: '流失的不是一筆資料，而是已經付過成本的客戶。',
+  },
+  {
+    number: '02',
+    title: '業績掉了，只看到結果，不知道問題出在哪一段',
+    description: '到底是沒有名單、沒有聯絡、沒有預約、沒有到店，還是成交率下降？',
+    loss: '等到月底才發現，通常已經少掉好幾週可以改善的時間。',
+  },
+  {
+    number: '03',
+    title: '公司最會成交的人，他的方法只存在自己腦中',
+    description: '他怎麼問、怎麼判斷、何時追蹤，沒有成為其他人也能使用的公司能力。',
+    loss: '人一忙、一走，經驗也跟著消失。',
+  },
+];
+
+export const operatingLoop = [
+  { number: '01', title: '接進來', detail: 'LINE、Meta、網站與門市顧客' },
+  { number: '02', title: '跟下去', detail: '分派、預約、提醒、追蹤與真人接手' },
+  { number: '03', title: '看清楚', detail: '來源、到店、成交、回購與流失環節' },
+  { number: '04', title: '留下來', detail: '顧客需求、失敗原因與有效做法' },
+];
+
+export const foundationCapabilities = [
+  'LINE／Meta 對話與顧客資料',
+  '名單分派、預約、提醒與追蹤',
+  '多品牌、多門市與主管權限',
+  '來源、到店、成交與 Funnel Dashboard',
+];
+
+export const customCapabilities = [
+  '公司的欄位與判斷規則',
+  '公司的提醒與接手方式',
+  '公司的主管報表與權限',
+  '既有 CRM、ERP 或第三方 API 串接',
+];
 
 export const collaborationSteps = [
   {
     number: '01',
-    eyebrow: 'DEFINE THE STORY GOAL',
-    title: '定義值得被報導的改變',
-    description: '確認客戶為什麼會因此更願意下單、續約或合作。',
-    result: '報導命題 × 企業目標 × 成功條件',
+    title: '定義想完成的改變',
+    description: '半年後，你希望客戶與團隊看見公司完成了什麼？',
   },
   {
     number: '02',
-    eyebrow: 'BUILD THE REAL CHANGE',
-    title: '完成 AI 導入與系統整合',
-    description: '從目標回推流程、資料、AI 應用、系統串接與人員接手。',
-    result: 'AI 工作流程 × 系統整合 × 營運落地',
+    title: '選一個最值得改善的流程',
+    description: '先找最影響營收、流失、管理或擴張的那一段。',
   },
   {
     number: '03',
-    eyebrow: 'PROVE AND TELL',
-    title: '驗證成果，完成專訪報導',
-    description: '確認可公開的數據、畫面與決策脈絡，把已發生的改變說清楚。',
-    result: '企業專訪 × 業務內容 × 市場信任',
+    title: '做出第一版並投入使用',
+    description: '從一個品牌、門市或流程開始，依照實際使用持續調整。',
+  },
+  {
+    number: '04',
+    title: '驗證成果，再把改變說清楚',
+    description: '確認真正發生的改變，製作成企業專訪與業務內容。',
   },
 ];
 
 export const collaborationOutcomes = [
   {
     number: '01',
-    eyebrow: 'OPERATIONAL OUTCOME',
-    title: '真正完成的 AI 導入轉型',
-    description: '不是停在簡報或工具採購，而是讓資料、流程、系統與人員能在實際營運中接得起來。',
+    title: '一套真正運作的系統',
+    description: '讓顧客資料、業務流程、判斷與經驗留在企業裡，每天都能繼續使用。',
+    image: '/images/line-chat-manager-dashboard.png',
   },
   {
     number: '02',
-    eyebrow: 'MARKET OUTCOME',
-    title: '能對外使用的企業專訪報導',
-    description: '把轉型成果變成客戶、合作夥伴與人才看得懂的企業故事，成為提案、銷售與品牌信任的一部分。',
+    title: '一篇客戶看得懂的企業專訪',
+    description: '讓客戶、合作夥伴與人才看見公司已完成的改變，成為提案與品牌信任的一部分。',
+    image: '/images/home/ai-transformation-business-story.jpg',
   },
+];
+
+export const riskReversals = [
+  '可以從一個流程、一家門市或一個問題開始。',
+  '可串接或延續既有系統，不必一次重做全部。',
+  'AI、權限與真人接手依企業規則設定。',
+  '顧客資料與營運資料歸企業所有。',
 ];
 
 export const collaborationPaths: CollaborationPath[] = [

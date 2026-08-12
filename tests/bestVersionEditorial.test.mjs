@@ -4,22 +4,21 @@ import test from 'node:test';
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 
-test('首頁第一屏直接說明 AI 導入、系統整合與企業專訪成果', async () => {
+test('首頁第一屏直接說明企業成長問題與客製系統解法', async () => {
   const [content, hero] = await Promise.all([
     read('src/content/collaborationSite.ts'),
     read('src/components/home/CollaborationHero.tsx'),
   ]);
 
-  assert.match(content, /把 AI 導入做成企業競爭力，再把成果寫成客戶願意相信的專訪/);
-  assert.match(content, /用 LINE 討論一個企業問題/);
+  assert.match(content, /公司要成長，\\n不能一直只靠人記得怎麼做/);
+  assert.match(content, /用 LINE 說說現在最卡的流程/);
   assert.match(hero, /collab-audience/);
-  assert.match(hero, /AI 導入/);
-  assert.match(hero, /系統整合/);
-  assert.match(hero, /企業專訪/);
-  assert.match(hero, /collab-outcome-visual/);
+  assert.match(hero, /顧客與業務/);
+  assert.match(hero, /多門市管理/);
+  assert.match(hero, /collab-system-visual/);
 });
 
-test('首頁不放客戶案例並讓三階段流程緊接首屏', async () => {
+test('首頁不放客戶案例並讓企業主說服流程緊接首屏', async () => {
   const page = await read('src/pages/HomePage.tsx');
   const hero = page.indexOf('<CollaborationHero />');
   const process = page.indexOf('<OutcomeFirstCollaboration />');

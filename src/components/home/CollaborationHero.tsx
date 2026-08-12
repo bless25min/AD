@@ -1,5 +1,5 @@
-import { ArrowUpRight, MessageCircle } from 'lucide-react';
-import { hero, mediaDemoUrl } from '../../content/collaborationSite';
+import { ArrowDown, ArrowUpRight, Check, MessageCircle } from 'lucide-react';
+import { hero } from '../../content/collaborationSite';
 
 export function CollaborationHero() {
   const trackLineContact = () => {
@@ -15,8 +15,8 @@ export function CollaborationHero() {
           <span><b>Bless Liao</b><small>25MIN COLLABORATION</small></span>
         </a>
         <div className="collab-nav-links">
-          <a href="#process">合作流程</a>
-          <a href="#partners">合作對象</a>
+          <a href="#system">系統怎麼運作</a>
+          <a href="#approach">合作方式</a>
           <a href="#contact">聯絡我</a>
         </div>
       </nav>
@@ -25,10 +25,11 @@ export function CollaborationHero() {
         <div className="collab-hero-copy">
           <p className="collab-eyebrow">{hero.eyebrow}</p>
           <p className="collab-audience">
-            <span>AI 導入</span><span>系統整合</span><span>企業專訪</span>
+            <span>顧客與業務</span><span>多門市管理</span><span>企業客製 AI 系統</span>
           </p>
           <h1>{hero.title}</h1>
           <p className="collab-hero-description">{hero.description}</p>
+          <p className="collab-hero-assurance"><Check aria-hidden="true" />{hero.assurance}</p>
           <div className="collab-hero-actions">
             <a
               className="collab-button collab-button-primary"
@@ -39,35 +40,37 @@ export function CollaborationHero() {
             >
               <MessageCircle aria-hidden="true" />{hero.primaryCta}<ArrowUpRight aria-hidden="true" />
             </a>
-            <a className="collab-text-link" href={mediaDemoUrl}>
-              {hero.secondaryCta}<ArrowUpRight aria-hidden="true" />
+            <a className="collab-text-link" href="#system">
+              {hero.secondaryCta}<ArrowDown aria-hidden="true" />
             </a>
           </div>
+          <p className="collab-hero-microcopy">{hero.microcopy}</p>
         </div>
 
-        <figure className="collab-outcome-visual">
-          <a href={mediaDemoUrl} aria-label="閱讀 AI 導入成果與企業專訪成品示範">
-            <picture>
-              <source media="(max-width: 680px)" srcSet="/images/home/ai-transformation-business-story-mobile.jpg" />
-              <img
-                src="/images/home/ai-transformation-business-story.jpg"
-                width="1600"
-                height="908"
-                alt="25MIN BUSINESS STORY 雜誌與平板呈現製造業 AI 導入成果的企業專訪成品示範"
-                fetchPriority="high"
-              />
-            </picture>
-            <figcaption>
-              <span>AI 導入成果 × 企業專訪成品示範</span>
-              <small>點擊閱讀完整示範專訪 <ArrowUpRight aria-hidden="true" /></small>
-            </figcaption>
-          </a>
+        <figure className="collab-system-visual">
+          <div className="system-window-bar" aria-hidden="true">
+            <span /><span /><span />
+            <b>顧客營運管理</b>
+          </div>
+          <img
+            src="/images/line-chat-manager-dashboard.png"
+            width="1800"
+            height="1023"
+            alt="整合 LINE、Meta、預約、到店、成交與追蹤狀態的企業顧客營運系統示意畫面"
+            fetchPriority="high"
+          />
+          <ul aria-label="系統畫面重點">
+            <li><Check aria-hidden="true" />每個名單由誰負責</li>
+            <li><Check aria-hidden="true" />下一步什麼時候發生</li>
+            <li><Check aria-hidden="true" />哪個環節正在漏掉客戶</li>
+          </ul>
+          <figcaption>真實系統能力示意，欄位與流程依企業需求設定。</figcaption>
         </figure>
       </div>
 
       <div className="collab-hero-footnote">
-        <span>MAKE THE CHANGE. PROVE THE VALUE. TELL THE STORY.</span>
-        <span aria-hidden="true">AI 導入 × 系統整合 × 企業專訪</span>
+        <span>KEEP THE KNOW-HOW. IMPROVE THE NEXT DECISION.</span>
+        <span aria-hidden="true">先從一段流程開始</span>
       </div>
     </header>
   );

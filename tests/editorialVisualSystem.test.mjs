@@ -14,7 +14,7 @@ test('首頁使用克制且一致的商業媒體字級系統', async () => {
   assert.doesNotMatch(css, /font-size:[^;]*(?:15vw|16vw|116px|130px)/);
 });
 
-test('首頁採固定內容框、核心主張與成果圖首屏', async () => {
+test('首頁採固定內容框、核心主張與系統證據首屏', async () => {
   const [css, hero] = await Promise.all([
     read('src/pages/home.css'),
     read('src/components/home/CollaborationHero.tsx'),
@@ -23,9 +23,9 @@ test('首頁採固定內容框、核心主張與成果圖首屏', async () => {
   assert.match(css, /--content-width:\s*1180px/);
   assert.match(css, /grid-template-columns:\s*minmax\(0,\s*5fr\)\s+minmax\(0,\s*7fr\)/);
   assert.doesNotMatch(css, /min-height:\s*100svh/);
-  assert.match(hero, /collab-outcome-visual/);
-  assert.match(hero, /ai-transformation-business-story\.jpg/);
-  assert.match(hero, /mediaDemoUrl/);
+  assert.match(hero, /collab-system-visual/);
+  assert.match(hero, /line-chat-manager-dashboard\.png/);
+  assert.doesNotMatch(hero, /mediaDemoUrl/);
   assert.doesNotMatch(hero, /collab-goal-card/);
   assert.doesNotMatch(hero, /編輯精選|客戶案例|mediaStoryLibraryUrl/);
 });

@@ -229,19 +229,21 @@ test('案例索引、sitemap、robots 與 llms 清單讓搜尋及對話模型可
   }
 });
 
-test('建置流程保留十篇文章，但首頁只連結目標成品示範', async () => {
-  const [packageJson, content, hero] = await Promise.all([
+test('建置流程保留十篇文章，但首頁只在成果區連結目標成品示範', async () => {
+  const [packageJson, content, hero, outcomes] = await Promise.all([
     read('package.json'),
     read('src/content/collaborationSite.ts'),
     read('src/components/home/CollaborationHero.tsx'),
+    read('src/components/home/OutcomeFirstCollaboration.tsx'),
   ]);
 
   const pkg = JSON.parse(packageJson);
   assert.equal(pkg.scripts['generate:stories'], 'node scripts/generate-media-stories.mjs');
   assert.match(pkg.scripts.build, /generate:stories/);
   assert.match(content, /mediaDemoUrl/);
-  assert.match(hero, /mediaDemoUrl/);
-  assert.match(hero, /看完整專訪示範|企業專訪成品示範/);
+  assert.match(outcomes, /mediaDemoUrl/);
+  assert.match(outcomes, /閱讀完整專訪示範|企業專訪成品示範/);
+  assert.doesNotMatch(hero, /mediaDemoUrl/);
   assert.doesNotMatch(hero, /mediaStoryLibraryUrl|瀏覽十個產業案例/);
 });
 
