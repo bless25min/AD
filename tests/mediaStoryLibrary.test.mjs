@@ -87,16 +87,17 @@ test('每篇摘要與正文都以案例企業的 AI 競爭力為主角', async (
   }
 });
 
-test('長榮大學案例把少子化、離線 AI、醫療產學與人才商品化串成完整專訪', async () => {
+test('大學產學案例隱去真實機構名稱並串起少子化、離線 AI、醫療人才與商品化', async () => {
   const stories = await loadStories();
   const story = stories.find((item) => item.slug === universityStorySlug);
 
-  assert.ok(story, '應新增長榮大學離線 AI 產學案例');
-  assert.equal(story.headline, '少子化下，長榮把空教室變 AI 實驗場：讓學生直接解醫療產業真問題');
+  assert.ok(story, '應保留大學離線 AI 產學案例');
+  assert.equal(story.headline, '少子化下，空教室變 AI 實驗場：學生直接解醫療產業真問題');
   assert.equal(story.publishedAt, '2026-08-17');
   assert.equal(story.modifiedAt, '2026-08-17');
   assert.match(story.dek, /少子化/);
-  assert.match(story.dek, /盈萃科技/);
+  assert.match(story.dek, /一所大學/);
+  assert.match(story.dek, /技術夥伴/);
   assert.match(story.dek, /資料不能上雲/);
   assert.match(story.dek, /離線 AI Prototype/);
   assert.match(story.dek, /商品化|新事業/);
@@ -113,6 +114,8 @@ test('長榮大學案例把少子化、離線 AI、醫療產學與人才商品�
   for (const claim of ['少子化', '空教室', '醫療', '資料不能上雲', '學生', '企業', '人才', '商品化']) {
     assert.match(articleCopy, new RegExp(claim), `正文必須交代 ${claim}`);
   }
+
+  assert.doesNotMatch(JSON.stringify(story), /長榮|盈萃/, '內容、SEO 與隱藏資料都不得保留真實機構名稱');
 });
 
 test('保留精密製造參考稿，其餘九篇改寫成中小企業商業專訪', async () => {
