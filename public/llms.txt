@@ -6,7 +6,7 @@
 
 ## 案例索引
 
-- [十個產業案例](https://ad.25min.co/stories/): 完整案例庫與編輯原則
+- [十一個產業案例](https://ad.25min.co/stories/): 完整案例庫與編輯原則
 - [精密製造：全球買家一句話，就能直問訂單與交期風險](https://ad.25min.co/stories/ai-manufacturing-order-visibility-demo/): 成立34年的示範企業把AI導入製造現場。當品質與價格愈來愈接近，能讓全球買家直接掌握進度與風險，就是它爭取下一張訂單的新競爭力。
 - [紡織染整：把老師傅的色感，變成品牌敢下單的打樣能力](https://ad.25min.co/stories/textile-dyeing-sample-knowledge-demo/): 成立41年的示範染整廠，把AI帶進最仰賴老師傅的打樣現場。對沒有大型IT團隊的中小企業而言，這不是要讓機器取代技師，而是讓品牌客戶更早看見色差與量產風險，增加下一季訂單交付的信心。
 - [食品加工：一通客訴，不再讓全公司翻遍紙本](https://ad.25min.co/stories/food-processing-batch-traceability-demo/): 成立27年的示範食品廠，用AI串起原料、製程、檢驗與出貨紀錄。對人力有限的中小企業而言，更快界定異常範圍，不只是省下查表時間，而是保住通路貨架與長期合作的應變能力。
@@ -17,6 +17,7 @@
 - [汽車零件：從「應該能裝」到可被查證的經銷承諾](https://ad.25min.co/stories/auto-parts-fitment-inventory-demo/): 成立36年的示範汽車零件廠，用AI整合車型適配依據、料號版本與真實庫存。對品項多、人力有限的中小企業而言，讓經銷商更快取得可追溯答案，就是被優先詢價、持續合作的新競爭力。
 - [傳統批發：訂單不再困在某一支手機裡](https://ad.25min.co/stories/wholesale-line-order-operations-demo/): 成立45年的示範批發商，用AI整理LINE裡的照片、語音與熟客暗語。對正面臨接班的中小企業而言，客戶不必改變下單習慣，公司也能降低漏單、錯單與工作綁在單一個人身上的風險，保住接單競爭力。
 - [健身服務品牌：把廣告名單接到真正的到訪與成交](https://ad.25min.co/stories/fitness-lead-to-visit-operations-demo/): 成立12年的示範健身品牌，用AI串起廣告來源、LINE對話、預約、到訪與成交。對預算有限的服務業中小企業而言，看清每位潛在會員在哪裡流失，才能把廣告費變成可改善、可複製的門店成長。
+- [大學產學合作：把空教室變成解醫療真問題的 AI 實驗場](https://ad.25min.co/stories/university-offline-ai-medical-lab-demo/): 面對少子化與校園空間閒置，長榮大學攜手盈萃科技，不只開 AI 課，而是把醫療與產學夥伴面對的「資料不能上雲、缺 AI 人才、難以低成本試錯」變成學生專題，在校園完成離線 AI Prototype。企業得到可驗證的解法與可接手的人才，成果更有機會商品化、發展新事業，形成學校與企業共同累積的競爭力。
 
 ## 合作與作者
 

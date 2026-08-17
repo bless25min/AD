@@ -53,7 +53,7 @@ test('示範專訪使用文章字級而不是海報字級', async () => {
   assert.doesNotMatch(css, /\.answer-summary|\.story-rail|\.concept-panel|\.value-grid|\.evidence-box|\.faq-section|\.reuse-section|\.story-cta/);
 });
 
-test('十產業案例庫手機標題避免單字孤行與海報式巨型字級', async () => {
+test('十一產業案例庫手機標題避免單字孤行與海報式巨型字級', async () => {
   const css = await read('public/stories/library.css');
 
   assert.match(css, /\.library-hero h1\s*\{[^}]*text-wrap:\s*balance/s);

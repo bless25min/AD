@@ -13,7 +13,7 @@ const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 const publicRoot = fileURLToPath(new URL('../public/', import.meta.url));
 
 function validateStories(stories) {
-  if (stories.length !== 10) throw new Error(`Expected 10 media stories, received ${stories.length}`);
+  if (stories.length !== 11) throw new Error(`Expected 11 media stories, received ${stories.length}`);
   if (new Set(stories.map((story) => story.slug)).size !== stories.length) throw new Error('Story slugs must be unique');
   if (new Set(stories.map((story) => story.headline)).size !== stories.length) throw new Error('Story headlines must be unique');
 

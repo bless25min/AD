@@ -118,7 +118,7 @@ export function renderStoryPage(story, relatedStories, site) {
         <span>25MIN</span><strong>BUSINESS STORY</strong><small>共創商業誌</small>
       </a>
       <nav aria-label="專訪頁導覽">
-        <a href="/stories/">十個產業</a>
+        <a href="/stories/">十一個產業</a>
         <a class="story-nav-cta" href="/#collaborate">洽談案例製作</a>
       </nav>
     </header>
@@ -192,8 +192,8 @@ function renderLibraryStructuredData(stories, site) {
         '@type': 'CollectionPage',
         '@id': `${url}#collection`,
         url,
-        name: '十個產業 AI 導入與 B2B 品牌案例',
-        description: '十個不同產業的合作情境示範，呈現數位與AI導入如何轉成買方信任、品牌證據與共同商機。',
+        name: '十一個產業 AI 導入與 B2B 品牌案例',
+        description: '十一個不同產業的合作情境示範，呈現數位與AI導入如何轉成買方信任、品牌證據與共同商機。',
         inLanguage: 'zh-Hant',
         mainEntity: { '@id': `${url}#list` },
       },
@@ -214,18 +214,18 @@ function renderLibraryStructuredData(stories, site) {
 
 export function renderStoryLibrary(stories, site) {
   const canonical = `${site.origin}/stories/`;
-  const description = '十個傳統產業、B2B與服務品牌的AI導入合作情境，示範如何把產品成果轉成買方信任、品牌證據與下一個商機。';
+  const description = '十一個製造、服務與產學場域的AI導入合作情境，示範如何把成果轉成買方信任、人才能力、品牌證據與下一個商機。';
   return `<!doctype html>
 <html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-    <title>十個產業 AI 導入與 B2B 品牌案例｜25MIN BUSINESS STORY</title>
+    <title>十一個產業 AI 導入與 B2B 品牌案例｜25MIN BUSINESS STORY</title>
     <meta name="description" content="${description}" />
     <link rel="canonical" href="${canonical}" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="十個產業 AI 導入與 B2B 品牌案例" />
+    <meta property="og:title" content="十一個產業 AI 導入與 B2B 品牌案例" />
     <meta property="og:description" content="${description}" />
     <meta property="og:url" content="${canonical}" />
     <meta property="og:image" content="${site.origin}/images/stories/ai-manufacturing-order-visibility-demo.webp" />
@@ -236,7 +236,7 @@ export function renderStoryLibrary(stories, site) {
     <script type="application/ld+json" id="structured-data">${safeJson(renderLibraryStructuredData(stories, site))}</script>
   </head>
   <body class="library-page">
-    <div class="demo-disclosure" role="note"><strong>合作情境示範</strong><span>十篇皆為非真實企業報導，用於展示可共同製作的內容形式</span></div>
+    <div class="demo-disclosure" role="note"><strong>合作情境示範</strong><span>十一篇皆為非真實企業報導，用於展示可共同製作的內容形式</span></div>
     <header class="story-header">
       <a class="story-masthead" href="/"><span>25MIN</span><strong>BUSINESS STORY</strong><small>共創商業誌</small></a>
       <nav aria-label="案例庫導覽"><a href="#industries">產業案例</a><a class="story-nav-cta" href="/#collaborate">案例合作</a></nav>
@@ -244,8 +244,8 @@ export function renderStoryLibrary(stories, site) {
     <main>
       <header class="library-hero">
         <p>產業案例</p>
-        <h1>十個產業，十種讓客戶更願意合作的理由。</h1>
-        <p>不是把AI寫成省人力工具，而是示範它如何變成買方能感受的服務、企業能累積的品牌證據，以及軟體商能共同放大的成功案例。</p>
+        <h1>十一個場域，十一種讓市場更願意合作的理由。</h1>
+        <p>不是把AI寫成省人力工具，而是示範它如何變成買方能感受的服務、企業能累積的品牌證據，以及學校與產業能共同放大的人才和新事業機會。</p>
       </header>
 
       <section class="story-library" id="industries" aria-labelledby="industries-title">
@@ -266,9 +266,13 @@ export function renderStoryLibrary(stories, site) {
 }
 
 export function renderSitemap(stories, site) {
+  const latestModifiedAt = stories.reduce(
+    (latest, story) => story.modifiedAt > latest ? story.modifiedAt : latest,
+    stories[0].modifiedAt,
+  );
   const urls = [
-    { loc: `${site.origin}/`, lastmod: stories[0].modifiedAt },
-    { loc: `${site.origin}/stories/`, lastmod: stories[0].modifiedAt },
+    { loc: `${site.origin}/`, lastmod: latestModifiedAt },
+    { loc: `${site.origin}/stories/`, lastmod: latestModifiedAt },
     ...stories.map((story) => ({ loc: `${site.origin}/stories/${story.slug}/`, lastmod: story.modifiedAt })),
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -300,7 +304,7 @@ export function renderLlms(stories, site) {
 
 ## 案例索引
 
-- [十個產業案例](${site.origin}/stories/): 完整案例庫與編輯原則
+- [十一個產業案例](${site.origin}/stories/): 完整案例庫與編輯原則
 ${stories.map((story) => `- [${story.industry}：${story.shortHeadline}](${site.origin}/stories/${story.slug}/): ${story.dek}`).join('\n')}
 
 ## 合作與作者

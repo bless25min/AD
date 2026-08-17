@@ -15,7 +15,10 @@ const expectedIndustries = [
   '汽車零件',
   '傳統批發',
   '健身服務品牌',
+  '大學產學合作',
 ];
+
+const universityStorySlug = 'university-offline-ai-medical-lab-demo';
 
 const read = (path) => readFile(new URL(path, root), 'utf8').catch(() => '');
 
@@ -36,13 +39,13 @@ function extractStructuredData(html) {
   return JSON.parse(match[1]);
 }
 
-test('內容資料提供十個不同產業與完整的編輯契約', async () => {
+test('內容資料提供十一個不同產業與完整的編輯契約', async () => {
   const stories = await loadStories();
 
-  assert.equal(stories.length, 10);
+  assert.equal(stories.length, 11);
   assert.deepEqual(stories.map((story) => story.industry), expectedIndustries);
-  assert.equal(new Set(stories.map((story) => story.slug)).size, 10);
-  assert.equal(new Set(stories.map((story) => story.headline)).size, 10);
+  assert.equal(new Set(stories.map((story) => story.slug)).size, 11);
+  assert.equal(new Set(stories.map((story) => story.headline)).size, 11);
 
   for (const story of stories) {
     assert.match(story.slug, /^[a-z0-9-]+-demo$/);
@@ -84,10 +87,38 @@ test('每篇摘要與正文都以案例企業的 AI 競爭力為主角', async (
   }
 });
 
+test('長榮大學案例把少子化、離線 AI、醫療產學與人才商品化串成完整專訪', async () => {
+  const stories = await loadStories();
+  const story = stories.find((item) => item.slug === universityStorySlug);
+
+  assert.ok(story, '應新增長榮大學離線 AI 產學案例');
+  assert.equal(story.headline, '少子化下，長榮把空教室變 AI 實驗場：讓學生直接解醫療產業真問題');
+  assert.equal(story.publishedAt, '2026-08-17');
+  assert.equal(story.modifiedAt, '2026-08-17');
+  assert.match(story.dek, /少子化/);
+  assert.match(story.dek, /盈萃科技/);
+  assert.match(story.dek, /資料不能上雲/);
+  assert.match(story.dek, /離線 AI Prototype/);
+  assert.match(story.dek, /商品化|新事業/);
+  assert.ok(story.keywords.includes('大學產學合作'));
+  assert.ok(story.keywords.includes('離線AI'));
+
+  const articleCopy = [
+    ...story.lead,
+    ...story.sections.flatMap((section) => [section.title, ...section.paragraphs, section.quote ?? '']),
+    story.closingQuestion,
+    story.closing,
+  ].join('');
+
+  for (const claim of ['少子化', '空教室', '醫療', '資料不能上雲', '學生', '企業', '人才', '商品化']) {
+    assert.match(articleCopy, new RegExp(claim), `正文必須交代 ${claim}`);
+  }
+});
+
 test('保留精密製造參考稿，其餘九篇改寫成中小企業商業專訪', async () => {
   const stories = await loadStories();
   const reference = stories.find((story) => story.slug === 'ai-manufacturing-order-visibility-demo');
-  const smeStories = stories.filter((story) => story.slug !== 'ai-manufacturing-order-visibility-demo');
+  const smeStories = stories.filter((story) => !['ai-manufacturing-order-visibility-demo', universityStorySlug].includes(story.slug));
 
   assert.equal(reference?.headline, '34年老廠不再讓客戶「追單」！示範企業押注AI，全球買家一句話就能直問產線');
   assert.equal(reference?.dek, '成立34年的示範企業把AI導入製造現場。當品質與價格愈來愈接近，能讓全球買家直接掌握進度與風險，就是它爭取下一張訂單的新競爭力。');
@@ -132,9 +163,9 @@ test('保留精密製造參考稿，其餘九篇改寫成中小企業商業專�
   }
 });
 
-test('十篇靜態文章都以媒體報導正文為唯一閱讀主體', async () => {
+test('十一篇靜態文章都以媒體報導正文為唯一閱讀主體', async () => {
   const stories = await loadStories();
-  assert.equal(stories.length, 10, '內容資料尚未建立');
+  assert.equal(stories.length, 11, '內容資料尚未建立');
 
   for (const story of stories) {
     const html = await read(`public/stories/${story.slug}/index.html`);
@@ -168,7 +199,7 @@ test('十篇靜態文章都以媒體報導正文為唯一閱讀主體', async ()
 
 test('每篇都有一致且真實對應可見內容的搜尋結構', async () => {
   const stories = await loadStories();
-  assert.equal(stories.length, 10, '內容資料尚未建立');
+  assert.equal(stories.length, 11, '內容資料尚未建立');
 
   for (const story of stories) {
     const html = await read(`public/stories/${story.slug}/index.html`);
@@ -202,7 +233,7 @@ test('每篇都有一致且真實對應可見內容的搜尋結構', async () =>
   }
 });
 
-test('案例索引、sitemap、robots 與 llms 清單讓搜尋及對話模型可發現十篇內容', async () => {
+test('案例索引、sitemap、robots 與 llms 清單讓搜尋及對話模型可發現十一篇內容', async () => {
   const stories = await loadStories();
   const [library, sitemap, robots, llms] = await Promise.all([
     read('public/stories/index.html'),
@@ -211,14 +242,15 @@ test('案例索引、sitemap、robots 與 llms 清單讓搜尋及對話模型可
     read('public/llms.txt'),
   ]);
 
-  assert.equal(stories.length, 10, '內容資料尚未建立');
-  assert.match(library, /十個產業/);
+  assert.equal(stories.length, 11, '內容資料尚未建立');
+  assert.match(library, /十一個產業/);
   assert.match(library, /CollectionPage/);
   assert.match(library, /ItemList/);
   assert.doesNotMatch(library, /library-answer|library-integrity|FOR SEARCH & DECISION|EDITORIAL INTEGRITY/);
   assert.match(robots, /User-agent: OAI-SearchBot\s+Allow: \//);
   assert.match(robots, /Sitemap: https:\/\/ad\.25min\.co\/sitemap\.xml/);
   assert.match(llms, /合作情境示範，非真實企業報導/);
+  assert.match(sitemap, /<loc>https:\/\/ad\.25min\.co\/stories\/<\/loc><lastmod>2026-08-17<\/lastmod>/);
 
   for (const story of stories) {
     const url = `${siteOrigin}/stories/${story.slug}/`;
@@ -229,7 +261,7 @@ test('案例索引、sitemap、robots 與 llms 清單讓搜尋及對話模型可
   }
 });
 
-test('建置流程保留十篇文章，但首頁只在成果區連結目標成品示範', async () => {
+test('建置流程保留十一篇文章，但首頁只在成果區連結目標成品示範', async () => {
   const [packageJson, content, hero, outcomes] = await Promise.all([
     read('package.json'),
     read('src/content/collaborationSite.ts'),
@@ -244,12 +276,12 @@ test('建置流程保留十篇文章，但首頁只在成果區連結目標成�
   assert.match(outcomes, /mediaDemoUrl/);
   assert.match(outcomes, /閱讀完整專訪示範|企業專訪成品示範/);
   assert.doesNotMatch(hero, /mediaDemoUrl/);
-  assert.doesNotMatch(hero, /mediaStoryLibraryUrl|瀏覽十個產業案例/);
+  assert.doesNotMatch(hero, /mediaStoryLibraryUrl|瀏覽(?:十|十一)個產業案例/);
 });
 
 test('產生的文章不留下會污染版本差異的行尾空白', async () => {
   const stories = await loadStories();
-  assert.equal(stories.length, 10, '內容資料尚未建立');
+  assert.equal(stories.length, 11, '內容資料尚未建立');
 
   for (const story of stories) {
     const html = await read(`public/stories/${story.slug}/index.html`);
